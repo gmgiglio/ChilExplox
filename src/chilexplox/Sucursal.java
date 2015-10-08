@@ -16,6 +16,7 @@ public class Sucursal {
     private String ciudad;
     private String direccion;
     private List<Camion> camiones = new LinkedList<>();
+    private List<Pedido> pedidos = new LinkedList<>();
     
     public Sucursal(String nombre, String ciudad, String direccion){
         this.nombre = nombre;

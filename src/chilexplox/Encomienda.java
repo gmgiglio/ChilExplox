@@ -9,6 +9,14 @@ package chilexplox;
  *
  * @author carlossalame
  */
-public class Encomienda {
+public class Encomienda extends Servicio{
+    
+    private String direccionDestino;
+    
+    public Encomienda(int peso, int volumen, int costoEnvio, int prioridad, Sucursal origen, Sucursal destino,
+            String direccionDestino){
+        super(peso, volumen, costoEnvio, prioridad, origen, destino);
+        this.direccionDestino = direccionDestino;
+    }
     
 }

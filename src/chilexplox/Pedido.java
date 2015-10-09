@@ -17,6 +17,7 @@ public class Pedido extends Servicio{
     //contador que se inicia en 0 y aumentará en una unidad cada vez que se ingrese una encomienda al
     //sistema. Este contador corresponde a la prioridad de cada encomienda por defecto.
     private int nroEncomienda = 0;
+    private int idPedido;
     
     
     public Pedido(Sucursal sucOrigen, Sucursal sucDestino, Cliente cliente){
@@ -41,7 +42,7 @@ public class Pedido extends Servicio{
     //agregar una encomienda a un pedido con prioridad por orden de llegada
     public void agregarEnc(int peso, int volumen, Sucursal sucOrigen,Sucursal sucDestino,
             String dirDestino){
-        this.nroEncomienda += 1;
+        this.nroEncomienda++;
         Encomienda e = new Encomienda(peso, volumen, this.nroEncomienda, sucOrigen,sucDestino, dirDestino);
         this.encomiendas.add(e);
         this.peso += peso;
@@ -62,7 +63,4 @@ public class Pedido extends Servicio{
         this.costoEnvio += e.costoEnvio;
         setPrioridad();
     }
-    
-    
-    
 }

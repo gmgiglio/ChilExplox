@@ -5,8 +5,9 @@
         <group>
             <file>file:/Users/carlossalame/ChilExplox/src/chilexplox/Pedido.java</file>
             <file>file:/Users/carlossalame/ChilExplox/src/chilexplox/Sucursal.java</file>
-            <file>file:/Users/carlossalame/ChilExplox/src/chilexplox/Empresa.java</file>
             <file>file:/Users/carlossalame/ChilExplox/src/chilexplox/Servicio.java</file>
+            <file>file:/Users/carlossalame/ChilExplox/src/chilexplox/Empresa.java</file>
+            <file>file:/Users/carlossalame/ChilExplox/src/chilexplox/EstadoPedido.java</file>
             <file>file:/Users/carlossalame/ChilExplox/src/chilexplox/Camion.java</file>
             <file>file:/Users/carlossalame/ChilExplox/src/chilexplox/Usuario.java</file>
             <file>file:/Users/carlossalame/ChilExplox/src/chilexplox/Encomienda.java</file>

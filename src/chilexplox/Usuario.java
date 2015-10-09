@@ -19,9 +19,9 @@ public class Usuario {
         this.contrasena = contrasena;
     }
     
-    public Pedido crearPedido(Sucursal sucOrigen, Sucursal sucDestino, Cliente cliente){
+    public void crearPedido(Sucursal sucOrigen, Sucursal sucDestino, Cliente cliente){
         Pedido p = new Pedido(sucOrigen, sucDestino, cliente);
-        return p;
+        sucOrigen.agregarPedido(p);
     }
     
     public void agregarEnc(Pedido p, int peso, int volumen, Sucursal sucOrigen,Sucursal sucDestino,
@@ -34,7 +34,10 @@ public class Usuario {
         p.agregarEnc(peso, volumen, prioridad, sucOrigen, sucDestino, dirDestino);
     }
     
-    
+    //Envia todos los pedidos pendientes posibles segun disponibilidad de camiones
+    public void enviarPedidos(Sucursal s){
+        
+    }
     
     
 }

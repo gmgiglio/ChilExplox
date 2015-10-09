@@ -12,13 +12,29 @@ import java.util.List;
  */
 public class Empresa {
     
+    
+    
     private String nombre;
     private String rut;
     private List<Sucursal> sucursales = new LinkedList<>();
+    private int nroPedidos = 0;
     
-    public Empresa(String nombre, String rut){
+    private Empresa() {
+    }
+    
+    public static Empresa getInstance() {
+        return EmpresaHolder.INSTANCE;
+    }
+    
+    private static class EmpresaHolder {
+        private static final Empresa INSTANCE = new Empresa();
+    }
+    
+    public void setProperties(String nombre, String rut){
         this.nombre = nombre;
         this.rut = rut;
     }
-    
+    public void agregarSucursal(String nombre, String ciudad, String direccion){
+        this.sucursales.add(new Sucursal(nombre, ciudad, direccion));
+    }
 }

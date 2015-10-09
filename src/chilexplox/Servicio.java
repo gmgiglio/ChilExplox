@@ -11,21 +11,29 @@ package chilexplox;
  */
 public abstract class Servicio {
     
-    private int peso;
-    private int volumen;
-    private int costoEnvio;
-    private int prioridad;
-    private Sucursal sucOrigen;
-    private Sucursal sucDestino;
+    protected int peso;
+    protected int volumen;
+    protected int costoEnvio;
+    protected int prioridad;
+    protected Sucursal sucOrigen;
+    protected Sucursal sucDestino;
     
     
-    public Servicio(int peso, int volumen, int costoEnvio, int prioridad, Sucursal sucOrigen, Sucursal sucDestino){
+    public Servicio(int peso, int volumen, int prioridad, Sucursal sucOrigen, Sucursal sucDestino){
         this.peso=peso;
         this.volumen = volumen;
-        this.costoEnvio = costoEnvio;
         this.prioridad = prioridad;
         this.sucOrigen = sucOrigen;
         this.sucDestino = sucDestino;
+    }
+    
+    protected Servicio(Sucursal sucOrigen, Sucursal sucDestino){
+        this.sucOrigen = sucOrigen;
+        this.sucDestino = sucDestino;
+    }
+    
+    protected int getCostoEnvio(){
+        return this.costoEnvio;
     }
     
 }

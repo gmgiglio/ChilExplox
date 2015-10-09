@@ -13,10 +13,17 @@ public class Encomienda extends Servicio{
     
     private String direccionDestino;
     
-    public Encomienda(int peso, int volumen, int costoEnvio, int prioridad, Sucursal origen, Sucursal destino,
+    public Encomienda(int peso, int volumen, int prioridad, Sucursal origen, Sucursal destino,
             String dirDestino){
-        super(peso, volumen, costoEnvio, prioridad, origen, destino);
+        super(peso, volumen, prioridad, origen, destino);
+        //El costo de envío se calcula sumando mil pesos por kilo y 20000 pesos por metro cubico
+        //Podemos juntarnos a discutir el precio si quieren
+        this.costoEnvio = 1000*peso + 20000*volumen;
         this.direccionDestino = dirDestino;
+    }
+    
+    public void agregarCostoPrioridad(int prioridad){
+        this.costoEnvio += 100*prioridad;
     }
     
 }

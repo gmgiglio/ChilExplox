@@ -18,24 +18,51 @@ public class Pedido extends Servicio{
     //sistema. Este contador corresponde a la prioridad de cada encomienda por defecto.
     private int nroEncomienda = 0;
     
-    public Pedido(int peso, int volumen, int costoEnvio, int prioridad, Sucursal sucOrigen,
-            Sucursal sucDestino, Cliente cliente){
-        super(peso, volumen, costoEnvio, prioridad, sucOrigen, sucDestino);
+    
+    public Pedido(Sucursal sucOrigen, Sucursal sucDestino, Cliente cliente){
+        super(sucOrigen, sucDestino);
+        this.peso = 0;
+        this.volumen = 0;
+        this.costoEnvio = 0;
+        this.prioridad = 0;
         this.cliente = cliente;
     }
     
-    //agregar una encomienda a un pedido con prioridad por orden de llegada
-    private void agregarEnc(int peso, int volumen, int costoEnvio, Sucursal sucOrigen,
-            Sucursal sucDestino, String dirDestino){
-        this.nroEncomienda += 1;
-        this.encomiendas.add(new Encomienda(peso, volumen, costoEnvio, this.nroEncomienda, sucOrigen,
-                sucDestino, dirDestino));
+    //La prioridad del pedido es igual al promedio de las prioridades de todas sus encomiendas
+    private void setPrioridad(){
+        int pr = 0;
+        for(Encomienda e : this.encomiendas){
+            pr += e.prioridad;
+        }
+        pr /= this.encomiendas.size();
+        this.prioridad = pr;
     }
     
+    //agregar una encomienda a un pedido con prioridad por orden de llegada
+    public void agregarEnc(int peso, int volumen, Sucursal sucOrigen,Sucursal sucDestino,
+            String dirDestino){
+        this.nroEncomienda += 1;
+        Encomienda e = new Encomienda(peso, volumen, this.nroEncomienda, sucOrigen,sucDestino, dirDestino);
+        this.encomiendas.add(e);
+        this.peso += peso;
+        this.volumen += volumen;
+        this.costoEnvio += e.costoEnvio;
+        setPrioridad();
+        }
+  
     //asignar encomienda con prioridad indicada por el cliente
-    private void agregarEnc(int peso, int volumen, int costoEnvio, int prioridad, Sucursal sucOrigen,
+    public void agregarEnc(int peso, int volumen, int prioridad, Sucursal sucOrigen,
             Sucursal sucDestino, String dirDestino){
-        this.encomiendas.add(new Encomienda(peso, volumen, costoEnvio, this.nroEncomienda, sucOrigen,
-                sucDestino, dirDestino));
+        int prioridadAsignada = this.nroEncomienda + 100*prioridad;
+        Encomienda e = new Encomienda(peso, volumen, prioridadAsignada, sucOrigen,sucDestino, dirDestino);
+        e.agregarCostoPrioridad(prioridad);
+        this.encomiendas.add(e);
+        this.peso += peso;
+        this.volumen += volumen;
+        this.costoEnvio += e.costoEnvio;
+        setPrioridad();
     }
+    
+    
+    
 }

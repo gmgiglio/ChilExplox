@@ -28,29 +28,29 @@ public class Pedido extends Servicio{
         this.peso = 0;
         this.volumen = 0;
         this.costoEnvio = 0;
-        this.prioridad = 0;
+        this.prioridad = 0.0;
         this.cliente = cliente;
         this.estado = 0;
     }
     
     public Sucursal getSucDestino(){
-        return this.sucDestino;
+        return sucDestino;
     }
     
     //La prioridad del pedido es igual al promedio de las prioridades de todas sus encomiendas
     private void setPrioridad(){
-        int pr = 0;
-        for(Encomienda e : this.encomiendas){
+        double pr = 0;
+        for(Encomienda e : encomiendas){
             pr += e.prioridad;
         }
-        pr /= this.encomiendas.size();
-        this.prioridad = pr;
+        pr /= encomiendas.size();
+        prioridad = pr;
     }
     
     //agregar una encomienda a un pedido con prioridad por orden de llegada
     public void agregarEnc(int peso, int volumen, String dirDestino){
         Empresa.getInstance().nuevaEncomienda();
-        int prioridad = Empresa.getInstance().getNroEncomiendas();
+        double prioridad = 1/(Empresa.getInstance().getNroEncomiendas());
         Encomienda e = new Encomienda(peso, volumen, prioridad, dirDestino);
         this.encomiendas.add(e);
         this.peso += peso;
@@ -59,11 +59,12 @@ public class Pedido extends Servicio{
         setPrioridad();
         }
   
-    //asignar encomienda con prioridad indicada por el cliente
-    public void agregarEnc(int peso, int volumen, int prioridad, String dirDestino){
-        int prioridadAsignada = Empresa.getInstance().getNroEncomiendas() + 100*prioridad;
+    //asignar encomienda con prioridadAgregada indicada por el cliente
+    public void agregarEnc(int peso, int volumen, int prioridadAgregada, String dirDestino){
+        double prioridadPorDefecto = 1/(Empresa.getInstance().getNroEncomiendas());
+        double prioridadAsignada = prioridadPorDefecto + prioridadAgregada;
         Encomienda e = new Encomienda(peso, volumen, prioridadAsignada, dirDestino);
-        e.agregarCostoPrioridad(prioridad);
+        e.agregarCostoPrioridad(prioridadAgregada);
         this.encomiendas.add(e);
         this.peso += peso;
         this.volumen += volumen;

@@ -31,7 +31,7 @@ public class Sucursal{
     public void agregarPedido(Pedido p){
         
         for(int i = 0; i < this.pedidosPend.size(); i++){
-            if(p.prioridad <= this.pedidosPend.get(i).prioridad) this.pedidosPend.add(i, p);
+            if(p.prioridad >= this.pedidosPend.get(i).prioridad) this.pedidosPend.add(i, p);
         }
     }
     

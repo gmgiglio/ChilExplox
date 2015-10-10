@@ -14,11 +14,11 @@ public abstract class Servicio {
     protected int peso;
     protected int volumen;
     protected int costoEnvio;
-    protected int prioridad;
+    protected double prioridad;
     
     protected Servicio(){}
     
-    protected Servicio(int peso, int volumen, int prioridad){
+    protected Servicio(int peso, int volumen, double prioridad){
         this.peso=peso;
         this.volumen = volumen;
         this.prioridad = prioridad;

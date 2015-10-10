@@ -15,21 +15,17 @@ public abstract class Servicio {
     protected int volumen;
     protected int costoEnvio;
     protected int prioridad;
-    protected Sucursal sucOrigen;
-    protected Sucursal sucDestino;
     
+    protected Servicio(){}
     
-    public Servicio(int peso, int volumen, int prioridad, Sucursal sucOrigen, Sucursal sucDestino){
+    protected Servicio(int peso, int volumen, int prioridad){
         this.peso=peso;
         this.volumen = volumen;
         this.prioridad = prioridad;
-        this.sucOrigen = sucOrigen;
-        this.sucDestino = sucDestino;
     }
     
-    protected Servicio(Sucursal sucOrigen, Sucursal sucDestino){
-        this.sucOrigen = sucOrigen;
-        this.sucDestino = sucDestino;
+    protected int getVol(){
+        return this.volumen;
     }
     
     protected int getCostoEnvio(){

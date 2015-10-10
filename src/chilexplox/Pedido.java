@@ -12,21 +12,29 @@ import java.util.LinkedList;
  */
 public class Pedido extends Servicio{
     
+    
+    private int idPedido;
+    private Sucursal sucOrigen;
+    private Sucursal sucDestino;
     private List<Encomienda> encomiendas = new LinkedList<>();
     private Cliente cliente;
-    //contador que se inicia en 0 y aumentará en una unidad cada vez que se ingrese una encomienda al
-    //sistema. Este contador corresponde a la prioridad de cada encomienda por defecto.
-    private int nroEncomienda = 0;
-    private int idPedido;
-    
+    int estado;
     
     public Pedido(Sucursal sucOrigen, Sucursal sucDestino, Cliente cliente){
-        super(sucOrigen, sucDestino);
+        Empresa.getInstance().nuevoPedido();
+        this.idPedido = Empresa.getInstance().getNroPedidos();
+        this.sucOrigen = sucOrigen;
+        this.sucDestino = sucDestino;
         this.peso = 0;
         this.volumen = 0;
         this.costoEnvio = 0;
         this.prioridad = 0;
         this.cliente = cliente;
+        this.estado = 0;
+    }
+    
+    public Sucursal getSucDestino(){
+        return this.sucDestino;
     }
     
     //La prioridad del pedido es igual al promedio de las prioridades de todas sus encomiendas
@@ -40,10 +48,10 @@ public class Pedido extends Servicio{
     }
     
     //agregar una encomienda a un pedido con prioridad por orden de llegada
-    public void agregarEnc(int peso, int volumen, Sucursal sucOrigen,Sucursal sucDestino,
-            String dirDestino){
-        this.nroEncomienda++;
-        Encomienda e = new Encomienda(peso, volumen, this.nroEncomienda, sucOrigen,sucDestino, dirDestino);
+    public void agregarEnc(int peso, int volumen, String dirDestino){
+        Empresa.getInstance().nuevaEncomienda();
+        int prioridad = Empresa.getInstance().getNroEncomiendas();
+        Encomienda e = new Encomienda(peso, volumen, prioridad, dirDestino);
         this.encomiendas.add(e);
         this.peso += peso;
         this.volumen += volumen;
@@ -52,15 +60,18 @@ public class Pedido extends Servicio{
         }
   
     //asignar encomienda con prioridad indicada por el cliente
-    public void agregarEnc(int peso, int volumen, int prioridad, Sucursal sucOrigen,
-            Sucursal sucDestino, String dirDestino){
-        int prioridadAsignada = this.nroEncomienda + 100*prioridad;
-        Encomienda e = new Encomienda(peso, volumen, prioridadAsignada, sucOrigen,sucDestino, dirDestino);
+    public void agregarEnc(int peso, int volumen, int prioridad, String dirDestino){
+        int prioridadAsignada = Empresa.getInstance().getNroEncomiendas() + 100*prioridad;
+        Encomienda e = new Encomienda(peso, volumen, prioridadAsignada, dirDestino);
         e.agregarCostoPrioridad(prioridad);
         this.encomiendas.add(e);
         this.peso += peso;
         this.volumen += volumen;
         this.costoEnvio += e.costoEnvio;
         setPrioridad();
+    }
+    
+    public void setEstado(int i){
+        estado = i;
     }
 }

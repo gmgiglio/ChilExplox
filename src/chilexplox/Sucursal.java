@@ -6,6 +6,7 @@
 package chilexplox;
 import java.util.List;
 import java.util.LinkedList;
+import java.util.Stack;
 /**
  *
  * @author carlossalame
@@ -27,6 +28,8 @@ public class Sucursal{
     private List<Pedido> pedidosEntregados = new LinkedList<>();
     //Pedidos confirmados con informacion incorrecta
     private List<Pedido> pedidosEquivocados = new LinkedList<>();
+    
+    private Stack<Mensaje> buzonMensajes;
     
     public Sucursal(String nombre, String ciudad, String direccion){
         this.nombre = nombre;
@@ -93,5 +96,9 @@ public class Sucursal{
     public void pedidoEquivocado(Pedido p){
         pedidosEquivocados.add(p);
         p.setEstado(4);
+    }
+    
+    public void recibeMensaje(Mensaje mensaje){
+        buzonMensajes.add(mensaje);
     }
 }

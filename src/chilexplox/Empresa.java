@@ -16,7 +16,7 @@ public class Empresa {
     
     private String nombre;
     private String rut;
-    private List<Sucursal> sucursales = new LinkedList<>();
+    protected List<Sucursal> sucursales = new LinkedList<>();
     //Indica el numero de pedidos que se han ingresado a la empresa. Este número será asignado a cada
     //pedido como su idPedido, único para cada uno de ellos.
     private int nroPedidos = 0;

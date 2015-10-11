@@ -26,6 +26,11 @@ public class Usuario {
         sucOrigen.agregarPedido(p);
     }
     
+    public void crearPedido(Sucursal sucOrigen, Sucursal sucDestino){
+        Pedido p = new Pedido(sucOrigen, sucDestino, null);
+        sucOrigen.agregarPedido(p);
+    }
+    
     public void agregarEnc(Pedido p, int peso, int volumen, String dirDestino){
         p.agregarEnc(peso, volumen, dirDestino);
     }
@@ -92,5 +97,9 @@ public class Usuario {
                 }
             }
         }
+    }
+    
+    public void enviarMensaje(Mensaje mensaje, Sucursal sucursal){
+        mensaje.enviar(sucursal);
     }
 }

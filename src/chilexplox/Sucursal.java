@@ -87,5 +87,11 @@ public class Sucursal{
     
     public void pedidoEntregado(Pedido p){
         pedidosEntregados.add(p);
+        p.setEstado(3);
+    }
+    
+    public void pedidoEquivocado(Pedido p){
+        pedidosEquivocados.add(p);
+        p.setEstado(4);
     }
 }

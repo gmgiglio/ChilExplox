@@ -82,9 +82,14 @@ public class Usuario {
     
     public void confirmarPedido(Sucursal s, int idPedido, boolean correcto){
         List<Pedido> pedidosEnDest = s.getPedidosEnDest();
-        if(correcto){
-            for(Pedido p : pedidosEnDest){
-                if(idPedido == p.ge)
+        for(Pedido p : pedidosEnDest){
+            if(idPedido == p.getIdPedido()){
+                if(correcto){
+                    s.pedidoEntregado(p);
+                }
+                else{
+                    s.pedidoEquivocado(p);
+                }
             }
         }
     }

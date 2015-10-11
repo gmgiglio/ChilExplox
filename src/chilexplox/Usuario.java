@@ -58,21 +58,34 @@ public class Usuario {
                 }
             }
         }
-        sucDestino.recibirCamion(camionACargar);
+        sucDestino.recibirCamionCargado(camionACargar);
         }
         else{
             //Mostrar mensaje notificando que no hay pedidos pendientes
         }
     }
     
-    public void recibirPedido(Sucursal s){
-        if(s.getCamionesPend() != null){
+    public void recibirPedido(Sucursal sucDestino){
+        if(sucDestino.getCamionesPend() != null){
             //Pedidos dentro del camion a descargar
-            List<Pedido> pedidosDesc = s.getCamionesPend().get(0).getPedidos();
-            for(Pedido p : pedidosDesc){
-                p.setEstado(2);
+            List<Pedido> pedidosADesc = sucDestino.getCamionesPend().get(0).getPedidos();
+            Sucursal sucOrigen = pedidosADesc.get(0).getSucOrigen();
+            for(Pedido p : pedidosADesc){
+                sucDestino.bajarPedido(p);
             }
-            s.descargarCamion();
+            Camion camionDescargado = sucDestino.getCamionesPend().get(0);
+            sucDestino.despacharCamion();
+            sucOrigen.recibirCamionDescargado(camionDescargado);
+            
         }
-    }   
+    }
+    
+    public void confirmarPedido(Sucursal s, int idPedido, boolean correcto){
+        List<Pedido> pedidosEnDest = s.getPedidosEnDest();
+        if(correcto){
+            for(Pedido p : pedidosEnDest){
+                if(idPedido == p.ge)
+            }
+        }
+    }
 }

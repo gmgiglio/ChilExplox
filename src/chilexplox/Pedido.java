@@ -75,4 +75,18 @@ public class Pedido extends Servicio{
     public void setEstado(int i){
         estado = i;
     }
+
+    /**
+     * @return the sucOrigen
+     */
+    public Sucursal getSucOrigen() {
+        return sucOrigen;
+    }
+
+    /**
+     * @return the idPedido
+     */
+    public int getIdPedido() {
+        return idPedido;
+    }
 }

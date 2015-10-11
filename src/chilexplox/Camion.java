@@ -16,13 +16,11 @@ public class Camion {
     private String patente;
     //Espacio disponible para cargar pedidos [m^3]
     private int espacioDisp;
-    private int estado;
     private List<Pedido> pedidosCargados = new LinkedList<>();
     
-    public Camion(String patente, int capacidad, int estado){
+    public Camion(String patente, int capacidad){
         this.patente = patente;
         this.espacioDisp = capacidad;
-        this.estado = estado;
     }
     
     public List<Pedido> getPedidos(){

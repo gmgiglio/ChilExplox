@@ -21,6 +21,12 @@ public class Sucursal{
     private List<Camion> camionesPend = new LinkedList<>();
     //Pedidos pendientes asignados a ningun camion
     private List<Pedido> pedidosPend = new LinkedList<>();
+    //Pedidos que ya se descargaron del camion y que esperan ser "revisados manualmente"
+    private List<Pedido> pedidosEnDest = new LinkedList<>();
+    //Pedidos confirmados con informacion correcta
+    private List<Pedido> pedidosEntregados = new LinkedList<>();
+    //Pedidos confirmados con informacion incorrecta
+    private List<Pedido> pedidosEquivocados = new LinkedList<>();
     
     public Sucursal(String nombre, String ciudad, String direccion){
         this.nombre = nombre;
@@ -54,11 +60,32 @@ public class Sucursal{
         return camionesPend;
     }
     
-    public void recibirCamion(Camion c){
+    public void recibirCamionCargado(Camion c){
+        camionesPend.add(c);
+    }
+    
+    public void recibirCamionDescargado(Camion c){
         camionesPend.add(c);
     }
 
-    public void descargarCamion(){
+    public void despacharCamion(){
         camionesPend.remove(0);
+    }
+    
+    //Bajar pedido del camion y pasarlo a la lista de pedidos en destino
+    public void bajarPedido(Pedido p){
+        getPedidosEnDest().add(p);
+        p.setEstado(2);
+    }
+
+    /**
+     * @return the pedidosEnDest
+     */
+    public List<Pedido> getPedidosEnDest() {
+        return pedidosEnDest;
+    }
+    
+    public void pedidoEntregado(Pedido p){
+        pedidosEntregados.add(p);
     }
 }

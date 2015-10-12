@@ -105,4 +105,8 @@ public class Sucursal{
     public String getCiudad(){
         return this.ciudad;
     }
+    
+    public String getNombre(){
+        return this.nombre;
+    }
 }

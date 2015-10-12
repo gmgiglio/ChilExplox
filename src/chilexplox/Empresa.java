@@ -39,8 +39,16 @@ public class Empresa {
         this.nombre = nombre;
         this.rut = rut;
     }
-    public void agregarSucursal(String nombre, String ciudad, String direccion){
+    
+    //retorna true si se pudo agregar ( si no existía otra sucursal con el mismo nombre)
+    public boolean agregarSucursal(String nombre, String ciudad, String direccion){
+        for(int i = 0; i < this.sucursales.size(); i++){
+            if(sucursales.get(i).getNombre().equals(nombre)){
+                return false;
+            }
+        }
         this.sucursales.add(new Sucursal(nombre, ciudad, direccion));
+        return true;
     }
     
     public void nuevaEncomienda(){
@@ -62,7 +70,7 @@ public class Empresa {
     public List<Sucursal> sucursalesEnCiudad(String nombreCiudad){
         List<Sucursal> result = new LinkedList<>();
         for(int i = 0; i < this.sucursales.size(); i++){
-            if(sucursales.get(i).getCiudad() == nombreCiudad){
+            if(sucursales.get(i).getCiudad().equals(nombreCiudad)){
                 result.add(this.sucursales.get(i));
             }
         }
@@ -72,7 +80,7 @@ public class Empresa {
     
     public Sucursal getSucursal(String nombre){
         for(int i = 0; i < this.sucursales.size(); i++){
-            if(sucursales.get(i).getNombre() == nombre){
+            if(sucursales.get(i).getNombre().equals(nombre)){
                 return sucursales.get(i);
             }
         }

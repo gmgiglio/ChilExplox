@@ -14,7 +14,7 @@ public class Mensaje {
     String mensaje;
     Usuario remitente;
     
-    public Mensaje(String nombre, String mensaje, Usuario remitente, Sucursal destinatario){
+    public Mensaje(String nombre, String mensaje, Usuario remitente){
         this.mensaje = mensaje;
         this.nombre = nombre;
         this.remitente = remitente;

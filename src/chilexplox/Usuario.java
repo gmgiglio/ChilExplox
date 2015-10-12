@@ -99,7 +99,8 @@ public class Usuario {
         }
     }
     
-    public void enviarMensaje(Mensaje mensaje, Sucursal sucursal){
+    public void enviarMensaje(String titulo, String texto, Sucursal sucursal){
+        Mensaje mensaje = new Mensaje(titulo, texto, this);
         mensaje.enviar(sucursal);
     }
 }

@@ -13,10 +13,11 @@ public class ChilExplox {
 
     Usuario usr = new Usuario("Tito", "12345678");
     Empresa empresa = Empresa.getInstance();
-    Cliente cliente = new Cliente("Pedro Pablo","Vicuña Maquena 1122", 94556262);
+    Cliente cliente = new Cliente("Pedro Pablo","Vicuña Mackenna 1122", 94556262);
     
     public void casoDeUso1(){
-        usr.crearPedido(empresa.sucursales.get(0), empresa.sucursales.get(1)); 
+        usr.crearPedido(empresa.sucursales.get(0), empresa.sucursales.get(1)); //crear pedido sin datos de cliente
+        
         
         
         

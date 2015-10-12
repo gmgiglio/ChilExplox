@@ -19,7 +19,8 @@ public class Pedido extends Servicio{
     private List<Encomienda> encomiendas = new LinkedList<>();
     private Cliente cliente;
     int estado;
-    
+    private boolean abierto; //establece si el pedido esta abierto a seguir agregandole encomiendas
+            
     public Pedido(Sucursal sucOrigen, Sucursal sucDestino, Cliente cliente){
         Empresa.getInstance().nuevoPedido();
         this.idPedido = Empresa.getInstance().getNroPedidos();
@@ -31,6 +32,25 @@ public class Pedido extends Servicio{
         this.prioridad = 0.0;
         this.cliente = cliente;
         this.estado = 0;
+        abierto = true;
+    }
+    
+    
+    public boolean cerrarPedido(Cliente cliente){
+        this.cliente = cliente;
+        abierto = false;
+        return true;
+    }
+    
+    //devuelve true si se pudo cerrar el pedido (si estan asignados los datos del cliente) y false de lo contrario
+    public boolean cerrarPedido(){
+        if (cliente != null){
+            abierto = false;
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     
     public Sucursal getSucDestino(){
@@ -49,14 +69,16 @@ public class Pedido extends Servicio{
     
     //agregar una encomienda a un pedido con prioridad por orden de llegada
     public void agregarEnc(int peso, int volumen, String dirDestino){
-        Empresa.getInstance().nuevaEncomienda();
-        double prioridad = 1/(Empresa.getInstance().getNroEncomiendas());
-        Encomienda e = new Encomienda(peso, volumen, prioridad, dirDestino);
-        this.encomiendas.add(e);
-        this.peso += peso;
-        this.volumen += volumen;
-        this.costoEnvio += e.costoEnvio;
-        setPrioridad();
+        if (abierto){
+            Empresa.getInstance().nuevaEncomienda();
+            double prioridad = 1/(Empresa.getInstance().getNroEncomiendas());
+            Encomienda e = new Encomienda(peso, volumen, prioridad, dirDestino);
+            this.encomiendas.add(e);
+            this.peso += peso;
+            this.volumen += volumen;
+            this.costoEnvio += e.costoEnvio;
+            setPrioridad();
+            }
         }
   
     //asignar encomienda con prioridadAgregada indicada por el cliente

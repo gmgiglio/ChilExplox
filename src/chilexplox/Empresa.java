@@ -58,4 +58,15 @@ public class Empresa {
     public int getNroPedidos(){
         return this.nroPedidos;
     }
+    
+    public List<Sucursal> sucursalesEnCiudad(String nombreCiudad){
+        List<Sucursal> result = new LinkedList<>();
+        for(int i = 0; i < this.sucursales.size(); i++){
+            if(sucursales.get(i).getCiudad() == nombreCiudad){
+                result.add(this.sucursales.get(i));
+            }
+        }
+        
+        return result;
+    }
 }

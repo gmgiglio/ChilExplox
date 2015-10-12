@@ -101,4 +101,8 @@ public class Sucursal{
     public void recibeMensaje(Mensaje mensaje){
         buzonMensajes.add(mensaje);
     }
+    
+    public String getCiudad(){
+        return this.ciudad;
+    }
 }

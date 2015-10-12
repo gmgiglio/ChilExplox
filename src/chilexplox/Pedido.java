@@ -68,7 +68,8 @@ public class Pedido extends Servicio{
     }
     
     //agregar una encomienda a un pedido con prioridad por orden de llegada
-    public void agregarEnc(int peso, int volumen, String dirDestino){
+    // true si se logra agregar (si esta aun abierto el pedido) y false de lo contrario)
+    public boolean agregarEnc(int peso, int volumen, String dirDestino){
         if (abierto){
             Empresa.getInstance().nuevaEncomienda();
             double prioridad = 1/(Empresa.getInstance().getNroEncomiendas());
@@ -78,20 +79,31 @@ public class Pedido extends Servicio{
             this.volumen += volumen;
             this.costoEnvio += e.costoEnvio;
             setPrioridad();
+            return true;
             }
+        else{
+            return false;
         }
+    }
   
     //asignar encomienda con prioridadAgregada indicada por el cliente
-    public void agregarEnc(int peso, int volumen, int prioridadAgregada, String dirDestino){
-        double prioridadPorDefecto = 1/(Empresa.getInstance().getNroEncomiendas());
-        double prioridadAsignada = prioridadPorDefecto + prioridadAgregada;
-        Encomienda e = new Encomienda(peso, volumen, prioridadAsignada, dirDestino);
-        e.agregarCostoPrioridad(prioridadAgregada);
-        this.encomiendas.add(e);
-        this.peso += peso;
-        this.volumen += volumen;
-        this.costoEnvio += e.costoEnvio;
-        setPrioridad();
+    // true si se logra agregar (si esta aun abierto el pedido) y false de lo contrario)
+    public boolean agregarEnc(int peso, int volumen, int prioridadAgregada, String dirDestino){
+        if (abierto){
+            double prioridadPorDefecto = 1/(Empresa.getInstance().getNroEncomiendas());
+            double prioridadAsignada = prioridadPorDefecto + prioridadAgregada;
+            Encomienda e = new Encomienda(peso, volumen, prioridadAsignada, dirDestino);
+            e.agregarCostoPrioridad(prioridadAgregada);
+            this.encomiendas.add(e);
+            this.peso += peso;
+            this.volumen += volumen;
+            this.costoEnvio += e.costoEnvio;
+            setPrioridad();
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     
     public void setEstado(int i){

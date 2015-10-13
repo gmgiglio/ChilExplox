@@ -35,6 +35,8 @@ public class Pedido extends Servicio{
         abierto = true;
     }
     
+    public boolean getAbierto(){ return this.abierto;}
+    
     
     public boolean cerrarPedido(Cliente cliente){
         this.cliente = cliente;

@@ -26,9 +26,10 @@ public class Usuario {
         sucOrigen.agregarPedido(p);
     }
     
-    public void crearPedido(Sucursal sucOrigen, Sucursal sucDestino){
+    public Pedido crearPedido(Sucursal sucOrigen, Sucursal sucDestino){
         Pedido p = new Pedido(sucOrigen, sucDestino, null);
         sucOrigen.agregarPedido(p);
+        return p;
     }
     
     public void agregarEnc(Pedido p, int peso, int volumen, String dirDestino){
@@ -42,7 +43,21 @@ public class Usuario {
     //Envia el pedido de mayor urgencia en el primer camion disponible en la sucursal.
     //Si existen pedidos pendientes que se dirigen a la misma sucursal y caben en el camion, estos tambien
     //son despachados.
-    public void enviarPedido(Sucursal s){
+    
+    //true si se logro enviar pedido (siempre que el pedido estubiera abierto y el hay camiones disponibles)
+    public boolean enviarPedido(Pedido p){
+        Sucursal origen = p.getSucOrigen();
+        Camion c = origen.getCamionesDisp().get(0);
+        if(!p.getAbierto() && !origen.getCamionesDisp().isEmpty()){
+            c.cargarPedido(p);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    public void enviarPedidoMayorPrioridad(Sucursal s){
         if(s.getPedidosPend() != null){
         Camion camionACargar = s.getCamionesDisp().get(0);
         Pedido primerPed = s.getPedidosPend().get(0);

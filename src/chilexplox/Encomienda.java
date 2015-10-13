@@ -13,6 +13,7 @@ public class Encomienda extends Servicio{
     
     private String direccionDestino;
     
+    //peso y volumen definidos en gramos y cm cubicos
     public Encomienda(int peso, int volumen, double prioridad, String dirDestino){
         super(peso, volumen, prioridad);
         //El costo de envío se calcula sumando mil pesos por kilo y 20000 pesos por metro cubico

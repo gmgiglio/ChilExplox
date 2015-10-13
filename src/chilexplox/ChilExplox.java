@@ -12,11 +12,18 @@ package chilexplox;
 public class ChilExplox {
 
     Usuario usr = new Usuario("Tito", "12345678");
-    Empresa empresa = Empresa.getInstance();
     Cliente cliente = new Cliente("Pedro Pablo","Vicuña Mackenna 1122", 94556262);
     
+    
     public void casoDeUso1(){
-        usr.crearPedido(empresa.sucursales.get(0), empresa.sucursales.get(1)); //crear pedido sin datos de cliente
+        Empresa emp = Empresa.getInstance();
+        Pedido p = usr.crearPedido(emp.getSucursal("San Joaquin"), emp.getSucursal("Valparaiso")); //crear pedido sin datos de cliente
+        usr.agregarEnc(p, 450, 315, "Placeres 2413");//agregar encomiendas sin prioridad
+        usr.agregarEnc(p, 1500, 2300, "Altamirano 1321");
+        usr.agregarEnc(p, 201, 160, 3 , "O'higgins 4045");//agregar encomienda con prioridad
+        
+        
+        
         
         
         
@@ -26,9 +33,9 @@ public class ChilExplox {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        
-        
+ 
+        Empresa.getInstance().agregarSucursal("San Joaquin", "Santiago", "Vicuña Mackenna 4860");
+        Empresa.getInstance().agregarSucursal("Valparaiso", "Valparaiso", "España 2130");
         
         
     }

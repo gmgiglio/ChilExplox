@@ -64,7 +64,7 @@ public class Usuario {
         Sucursal sucDestino = primerPed.getSucDestino();
         for(Pedido p : s.getPedidosPend()){
             if(camionACargar.getPedidos() == null){
-                p.setEstado(1);
+                p.setEstado(Estado.En_transito);
                 camionACargar.cargarPedido(p);
                 s.getPedidosPend().remove(p);
                 sucDestino = p.getSucDestino();
@@ -72,7 +72,7 @@ public class Usuario {
             else{
                 if(primerPed.getSucDestino() == p.getSucDestino()
                         && p.getVol() <= camionACargar.getEspDisp()){
-                    p.setEstado(1);
+                    p.setEstado(Estado.En_transito);
                     camionACargar.cargarPedido(p);
                     s.getPedidosPend().remove(p);
                 }

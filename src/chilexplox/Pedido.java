@@ -18,7 +18,7 @@ public class Pedido extends Servicio{
     private Sucursal sucDestino;
     private List<Encomienda> encomiendas = new LinkedList<>();
     private Cliente cliente;
-    int estado;
+    private Estado estado;
     private boolean abierto; //establece si el pedido esta abierto a seguir agregandole encomiendas
             
     public Pedido(Sucursal sucOrigen, Sucursal sucDestino, Cliente cliente){
@@ -31,7 +31,7 @@ public class Pedido extends Servicio{
         this.costoEnvio = 0;
         this.prioridad = 0.0;
         this.cliente = cliente;
-        this.estado = 0;
+        this.estado = Estado.En_origen;
         abierto = true;
     }
     
@@ -108,8 +108,12 @@ public class Pedido extends Servicio{
         }
     }
     
-    public void setEstado(int i){
-        estado = i;
+    public void setEstado(Estado e){
+        estado = e;
+    }
+    
+    public Estado getEstado(){
+        return estado;
     }
 
     /**

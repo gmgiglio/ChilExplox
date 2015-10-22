@@ -78,7 +78,7 @@ public class Sucursal{
     //Bajar pedido del camion y pasarlo a la lista de pedidos en destino
     public void bajarPedido(Pedido p){
         getPedidosEnDest().add(p);
-        p.setEstado(2);
+        p.setEstado(Estado.En_destino);
     }
 
     /**
@@ -90,12 +90,12 @@ public class Sucursal{
     
     public void pedidoEntregado(Pedido p){
         pedidosEntregados.add(p);
-        p.setEstado(3);
+        p.setEstado(Estado.Entregado);
     }
     
     public void pedidoEquivocado(Pedido p){
         pedidosEquivocados.add(p);
-        p.setEstado(4);
+        p.setEstado(Estado.Equivocado);
     }
     
     public void recibeMensaje(Mensaje mensaje){

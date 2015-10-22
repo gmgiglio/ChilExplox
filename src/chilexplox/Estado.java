@@ -7,8 +7,8 @@ package chilexplox;
 
 /**
  *
- * @author carlossalame
+ * @author gianfrancogiglio
  */
-public enum EstadoPedido {
-    
+public enum Estado {
+    En_origen,En_transito,En_destino,Entregado,Equivocado
 }

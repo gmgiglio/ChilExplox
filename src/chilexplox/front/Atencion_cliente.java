@@ -23,24 +23,17 @@ import static javafx.application.Application.launch;
 public class Atencion_cliente extends Application {
     
     @Override
-    public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
+    public void start(Stage primaryStage) throws Exception{
         
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World!");
+        Parent root = FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"));
+        Scene scene = new Scene(root,1080,980);
+        Text nombreText = (Text) scene.lookup("#nombreUsuario");
+        nombreText.setText("Carlos Salamé");
+        Text sucursalText = (Text) scene.lookup("#nombreSucursal");
+        sucursalText.setText("Alcántara") ;
+        primaryStage.setTitle("ChilExplox");
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

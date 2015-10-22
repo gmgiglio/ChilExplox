@@ -38,9 +38,9 @@
                                  <children>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <BorderPane prefHeight="100.0" prefWidth="82.0">
+                                          <BorderPane prefHeight="100.0" prefWidth="150.0">
                                              <center>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente" BorderPane.alignment="CENTER" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente:" BorderPane.alignment="CENTER" />
                                              </center>
                                           </BorderPane>
                                           <BorderPane prefHeight="98.0" prefWidth="253.0">
@@ -60,6 +60,20 @@
                                                       </Text>
                                                    </children>
                                                 </Pane>
+                                             </center>
+                                          </BorderPane>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <BorderPane prefHeight="100.0" prefWidth="150.0">
+                                             <center>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sucursal de destino:" wrappingWidth="124.34986877441406" BorderPane.alignment="CENTER" />
+                                             </center>
+                                          </BorderPane>
+                                          <BorderPane prefHeight="98.0" prefWidth="253.0">
+                                             <center>
+                                                <ChoiceBox prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
                                              </center>
                                           </BorderPane>
                                        </children>

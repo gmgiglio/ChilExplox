@@ -14,12 +14,16 @@ import java.util.LinkedList;
 public class Camion {
     
     private String patente;
+    
+    
     //Espacio disponible para cargar pedidos [m^3]
     private int espacioDisp;
     private List<Pedido> pedidosCargados = new LinkedList<>();
+    private int capacidad;
     
     public Camion(String patente, int capacidad){
         this.patente = patente;
+        this.capacidad = capacidad;
         this.espacioDisp = capacidad;
     }
     
@@ -31,9 +35,19 @@ public class Camion {
         return this.espacioDisp;
     }
     
+    public int getCapacidad(){
+        return this.capacidad;
+    }
+    
     public void cargarPedido(Pedido p){
         this.pedidosCargados.add(p);
         this.espacioDisp -= p.getVol();
+    }
+    
+    public void cargarPedidos(List<Pedido> pedidos){
+        for(Pedido p : pedidos){
+            cargarPedido(p);
+        }
     }
     
     public List<Pedido> descargarPedios(){

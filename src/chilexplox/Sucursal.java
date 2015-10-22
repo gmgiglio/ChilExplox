@@ -109,4 +109,15 @@ public class Sucursal{
     public String getNombre(){
         return this.nombre;
     }
+    
+    //retorna true si encontró el camion entre sus camiones pendientes y false de lo contrario
+    public boolean descargarCamion (Camion camion){
+        if (this.camionesPend.contains(camion)){
+            this.pedidosEnDest.addAll(camion.descargarPedios());
+            return true;
+        }
+        else return false;
+    }
+    
+    
 }

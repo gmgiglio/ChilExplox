@@ -36,6 +36,12 @@ public class Camion {
         this.espacioDisp -= p.getVol();
     }
     
+    public List<Pedido> descargarPedios(){
+        List<Pedido> result = new LinkedList<Pedido>(this.pedidosCargados);
+        this.pedidosCargados.clear();
+        return result;
+    }
+    
     
     
 }

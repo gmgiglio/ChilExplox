@@ -81,7 +81,7 @@ public class InicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
-<<<<<<< HEAD
+
         /*Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
 =======
         Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");

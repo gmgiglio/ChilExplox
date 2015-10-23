@@ -37,15 +37,37 @@ import javafx.scene.control.SeparatorMenuItem;
 import javafx.stage.WindowEvent;
 
 
+
 /**
  *
  * @author gianfrancogiglio
  */
 
 public class Main extends Application {
-    
-    @Override
+       
+
+    private static Usuario usuarioActual; 
+
+    /**
+     * @return the usuarioActual
+     */
+    public static Usuario getUsuarioActual() {
+        return usuarioActual;
+    }
+
+    /**
+     * @param aUsuarioActual the usuarioActual to set
+     */
+    public static void setUsuarioActual(Usuario aUsuarioActual) {
+        usuarioActual = aUsuarioActual;
+    }
+ 
+
     public void start(Stage primaryStage) throws Exception{
+        
+        Empresa.getInstance().agregarUsuario("hugo", "asasasdasd");
+        
+        usuarioActual = Empresa.getInstance().getUsuarios().get(0);
        
         Parent root = FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"));
         Scene scene = new Scene(root,1080,615);
@@ -69,4 +91,5 @@ public class Main extends Application {
     public void stop(){
        Empresa.serializar("data/empresa.ser");
     }
+
 }

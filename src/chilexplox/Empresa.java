@@ -132,11 +132,11 @@ public class Empresa implements java.io.Serializable {
     
     public boolean agregarUsuario(String nombreUsuario, String contrasena){
         for(int i = 0; i < usuarios.size(); i++){
-            if(usuarios.get(i).getNombre().equals(nombre)){
+            if(usuarios.get(i).getNombreUsuario().equals(nombreUsuario)){
                 return false;
             }
         }
-        sucursales.add(new Sucursal(nombre, ciudad, direccion));
+        usuarios.add(new Usuario(nombreUsuario, contrasena));
         return true;
     }
     public void nuevaEncomienda(){

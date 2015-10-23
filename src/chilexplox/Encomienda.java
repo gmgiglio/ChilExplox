@@ -12,14 +12,16 @@ package chilexplox;
 public class Encomienda extends Servicio implements java.io.Serializable{
     
     private String direccionDestino;
+    private String descripcion;
     
     //peso y volumen definidos en gramos y cm cubicos
-    public Encomienda(int peso, int volumen, double prioridad, String dirDestino){
+    public Encomienda(int peso, int volumen, double prioridad, String dirDestino, String d){
         super(peso, volumen, prioridad);
         //El costo de envío se calcula sumando mil pesos por kilo y 20000 pesos por metro cubico
         //Podemos juntarnos a discutir el precio si quieren
         costoEnvio = 1000*peso + 20000*volumen;
         direccionDestino = dirDestino;
+        descripcion = d;
     }
     
     public void agregarCostoPrioridad(int prioridadAgregada){

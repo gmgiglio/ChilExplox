@@ -121,8 +121,8 @@ public class Empresa implements java.io.Serializable {
     
     //retorna true si se pudo agregar ( si no existía otra sucursal con el mismo nombre)
     public boolean agregarSucursal(String nombre, String ciudad, String direccion){
-        for(int i = 0; i < this.getSucursales().size(); i++){
-            if(getSucursales().get(i).getNombre().equals(nombre)){
+        for(int i = 0; i < sucursales.size(); i++){
+            if(sucursales.get(i).getNombre().equals(nombre)){
                 return false;
             }
         }

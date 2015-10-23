@@ -55,6 +55,13 @@ public class Camion implements java.io.Serializable {
         this.pedidosCargados.clear();
         return result;
     }
+
+    /**
+     * @return the patente
+     */
+    public String getPatente() {
+        return patente;
+    }
     
     
     

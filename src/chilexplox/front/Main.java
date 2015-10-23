@@ -44,10 +44,9 @@ import javafx.stage.WindowEvent;
  */
 
 public class Main extends Application {
-    
-   
+       
 
-    private static Usuario usuarioActual = Empresa.getInstance().getUsuarios().get(0);
+    private static Usuario usuarioActual; 
 
     /**
      * @return the usuarioActual
@@ -64,9 +63,11 @@ public class Main extends Application {
     }
  
 
-    
-    @Override
     public void start(Stage primaryStage) throws Exception{
+        
+        Empresa.getInstance().agregarUsuario("hugo", "asasasdasd");
+        
+        usuarioActual = Empresa.getInstance().getUsuarios().get(0);
        
         Parent root = FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"));
         Scene scene = new Scene(root,1080,615);
@@ -85,11 +86,10 @@ public class Main extends Application {
        
     }
     
+
     @Override
     public void stop(){
        Empresa.serializar("data/empresa.ser");
     }
 
-
-    
 }

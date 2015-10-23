@@ -67,7 +67,7 @@ public class Pedido extends Servicio implements java.io.Serializable{
     private void setPrioridad(){
         double pr = 0;
         for(Encomienda e : encomiendas){
-            pr += e.prioridad;
+            pr += e.getPrioridad();
         }
         pr /= encomiendas.size();
         prioridad = pr;
@@ -75,11 +75,11 @@ public class Pedido extends Servicio implements java.io.Serializable{
     
     //agregar una encomienda a un pedido con prioridad por orden de llegada
     // true si se logra agregar (si esta aun abierto el pedido) y false de lo contrario)
-    public boolean agregarEnc(int peso, int volumen, String dirDestino){
+    public boolean agregarEnc(int peso, int volumen, String dirDestino, String desc){
         if (abierto){
             Empresa.getInstance().nuevaEncomienda();
             double prioridad = 1/(Empresa.getInstance().getNroEncomiendas());
-            Encomienda e = new Encomienda(peso, volumen, prioridad, dirDestino);
+            Encomienda e = new Encomienda(peso, volumen, prioridad, dirDestino, desc);
             this.encomiendas.add(e);
             this.peso += peso;
             this.volumen += volumen;
@@ -94,11 +94,11 @@ public class Pedido extends Servicio implements java.io.Serializable{
   
     //asignar encomienda con prioridadAgregada indicada por el cliente
     // true si se logra agregar (si esta aun abierto el pedido) y false de lo contrario)
-    public boolean agregarEnc(int peso, int volumen, int prioridadAgregada, String dirDestino){
+    public boolean agregarEnc(int peso, int volumen, int prioridadAgregada, String dirDestino, String desc){
         if (abierto){
             double prioridadPorDefecto = 1/(Empresa.getInstance().getNroEncomiendas());
             double prioridadAsignada = prioridadPorDefecto + prioridadAgregada;
-            Encomienda e = new Encomienda(peso, volumen, prioridadAsignada, dirDestino);
+            Encomienda e = new Encomienda(peso, volumen, prioridadAsignada, dirDestino, desc);
             e.agregarCostoPrioridad(prioridadAgregada);
             this.encomiendas.add(e);
             this.peso += peso;

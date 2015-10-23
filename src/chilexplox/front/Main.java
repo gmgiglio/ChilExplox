@@ -27,12 +27,14 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import static javafx.application.Application.launch;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 import javafx.fxml.FXML;
 import javafx.scene.control.SeparatorMenuItem;
+import javafx.stage.WindowEvent;
 
 
 /**
@@ -45,7 +47,10 @@ public class Main extends Application {
    
     
         
-    
+    @FXML
+    public void exitApplication(ActionEvent event) {
+        Platform.exit();
+    }
     
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -56,6 +61,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
+       
     }
 
     /**
@@ -65,5 +71,11 @@ public class Main extends Application {
         launch(args);
        
     }
+    
+    @Override
+    public void stop(){
+       Empresa.serializar("data/empresa.ser");
+    }
+
     
 }

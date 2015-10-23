@@ -8,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxWidth="905.0" prefHeight="918.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AgregarClienteController">
+<AnchorPane maxWidth="562.0" prefHeight="562.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AgregarClienteController">
    <children>
-      <VBox maxWidth="905.0" prefHeight="905.0" prefWidth="567.0">
+      <VBox maxWidth="562.0" prefHeight="562.0" prefWidth="567.0">
          <children>
             <HBox maxHeight="50.0" prefHeight="44.0">
                <children>
@@ -51,6 +51,20 @@
                      <center>
                         <TextField fx:id="apellidosField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
                      </center>
+                  </BorderPane>
+               </children>
+            </HBox>
+            <HBox maxHeight="50.0" prefHeight="44.0">
+               <children>
+                  <BorderPane prefHeight="44.0" prefWidth="119.0" />
+                  <BorderPane prefHeight="100.0" prefWidth="416.0">
+                     <left>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Text>
+                     </left>
                   </BorderPane>
                </children>
             </HBox>
@@ -130,7 +144,7 @@
                   <BorderPane prefHeight="98.0" prefWidth="253.0" />
                   <BorderPane prefHeight="100.0" prefWidth="381.0">
                      <center>
-                        <Button fx:id="agregarCliente" mnemonicParsing="false" prefHeight="26.0" prefWidth="112.0" text="Crear Cliente" BorderPane.alignment="CENTER" />
+                        <Button fx:id="agregarCliente" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="112.0" text="Crear Cliente" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>

@@ -69,8 +69,17 @@ public class InicioController implements Initializable {
         menuUsuario.getItems().add(new MenuItem("Cerrar sesión"));
         menuBar.getMenus().add(menuUsuario);
         Menu menuSucursal = new Menu(sucursales.get(0).getNombre());
+        
+        for(int j=0;j<sucursales.size();j++)
+        {
+                if(j!=0)
+                menuSucursal.getItems().add(new MenuItem(sucursales.get(j).getNombre()));
+          
+        }
+        
    
         menuBar.getMenus().add(menuSucursal);
+        
         for(int i=0;i<menuSucursal.getItems().size();i++)
         {
             menuSucursal.getItems().get(i).setOnAction(new EventHandler<ActionEvent>() {
@@ -80,8 +89,7 @@ public class InicioController implements Initializable {
                String actual = menuSucursal.getText();
                item.setText(actual);
                menuSucursal.setText(presionado);
-               
-                   
+                 
             }
         });      
             
@@ -90,14 +98,29 @@ public class InicioController implements Initializable {
                 @Override
                 public void handle (Event e) {
                  
-                        Alert alert = new Alert(AlertType.INFORMATION);
-                        alert.setTitle("Information Dialog");
-                        alert.setHeaderText("Look, an Information Dialog");
-                        alert.setContentText("I have a great message for you!");
                     
                 }
         
             }); 
+        //Dentro del tab administrar
+        for(int i=0;i<tabs.getTabs().size();i++)
+        {
+        tabs.getTabs().get(i).setOnSelectionChanged(new EventHandler<Event>() {
+                @Override
+                public void handle (Event e) {
+                    Tab t = (Tab)(e.getSource());
+                    if(((Tab)(e.getSource())).isSelected()){
+                    
+                        Alert alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle(t.getText());
+                        
+                        alert.show();
+                    }
+                }
+        
+            }); 
+          }
+
         //Atender
         agregarCliente.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -115,12 +138,7 @@ public class InicioController implements Initializable {
             });
    
         
-        for(int j=0;j<sucursales.size();j++)
-        {
-                if(j!=0)
-                menuSucursal.getItems().add(new MenuItem(sucursales.get(j).getNombre()));
-          
-        }
+       
         
           
         

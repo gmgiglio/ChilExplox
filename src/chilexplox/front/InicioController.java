@@ -18,11 +18,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 
 /**
  * FXML Controller class
@@ -38,6 +40,18 @@ public class InicioController implements Initializable {
     private MenuBar menuBar;
       @FXML
     private AnchorPane agregar;
+      @FXML
+    private Button enviarMensaje;
+      @FXML
+    private Button buzonEntrada;
+      @FXML
+    private Button mensajesEnviados;
+      @FXML
+    private HBox pantallaEnviados;
+      @FXML
+    private HBox pantallaEntrada;
+      @FXML
+    private AnchorPane pantallaNuevo;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.geometry.*?>
@@ -13,7 +14,7 @@
 <FlowPane prefHeight="980.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chilexplox.front.InicioController">
    <children>
       <MenuBar fx:id="menuBar" prefHeight="30.0" prefWidth="1080.0" />
-      <TabPane prefHeight="950.0" prefWidth="1080.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE">
+      <TabPane id="tabs" prefHeight="950.0" prefWidth="1080.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Atender">
             <content>
@@ -43,12 +44,16 @@
                                                          <center>
                                                             <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
                                                                <children>
-                                                                  <Circle id="agregarCliente" fill="DODGERBLUE" layoutX="18.0" layoutY="18.0" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                                   <Text fill="WHITE" layoutX="7.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
                                                                      <font>
                                                                         <Font size="36.0" />
                                                                      </font>
                                                                   </Text>
+                                                                  <Button layoutX="-11.0" layoutY="5.0" mnemonicParsing="false" opacity="0.98" text="Button">
+                                                                     <graphic>
+                                                                        <Circle id="agregarCliente" fill="DODGERBLUE" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+                                                                     </graphic>
+                                                                  </Button>
                                                                </children>
                                                             </Pane>
                                                          </center>
@@ -235,21 +240,21 @@
                      <children>
                         <HBox prefHeight="920.0" prefWidth="1080.0">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="180.0">
+                              <VBox prefHeight="200.0" prefWidth="180.0" style="-fx-background-color: #cccccc;">
                                  <children>
-                                    <Button mnemonicParsing="false" prefWidth="180.0" text="Nuevo Mensaje">
+                                    <Button fx:id="nuevoMensaje" mnemonicParsing="false" prefWidth="180.0" text="Nuevo Mensaje">
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font size="17.0" />
                                        </font>
                                     </Button>
-                                    <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="180.0" text="Buzón de Entrada">
+                                    <Button fx:id="buzonEntrada" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="180.0" text="Buzón de Entrada">
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font size="17.0" />
                                        </font>
                                     </Button>
-                                    <Button layoutX="10.0" layoutY="36.0" mnemonicParsing="false" prefWidth="180.0" text="Enviados">
+                                    <Button fx:id="mensajesEnviados" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" prefWidth="180.0" text="Mensajes Enviados">
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font size="17.0" />
                                        </font>
                                     </Button>
                                  </children>

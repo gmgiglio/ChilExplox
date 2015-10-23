@@ -7,8 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<HBox prefHeight="100.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BuzonEntradaController">
+<HBox fx:id="pantallaEntrada" prefHeight="100.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BuzonEntradaController">
    <children>
       <VBox prefHeight="200.0" prefWidth="300.0">
          <children>

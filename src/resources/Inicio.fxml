@@ -10,11 +10,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<<<<<<< HEAD
-<FlowPane prefHeight="980.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chilexplox.InicioController">
-=======
+
 <FlowPane prefHeight="980.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chilexplox.front.InicioController">
->>>>>>> a4ffbd8cba1f787fd361df9a24601d2f97d769d7
    <children>
       <MenuBar fx:id="menuBar" prefHeight="30.0" prefWidth="1080.0" />
       <TabPane prefHeight="950.0" prefWidth="1080.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE">

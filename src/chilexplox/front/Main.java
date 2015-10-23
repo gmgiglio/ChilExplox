@@ -33,6 +33,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 import javafx.fxml.FXML;
 import javafx.scene.control.SeparatorMenuItem;
+import chilexplox.Empresa;
 
 
 /**
@@ -44,7 +45,7 @@ public class Main extends Application {
     
    
     
-        
+
     
     
     @Override
@@ -65,5 +66,7 @@ public class Main extends Application {
         launch(args);
        
     }
+    
+    
     
 }

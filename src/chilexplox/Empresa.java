@@ -93,21 +93,21 @@ public class Empresa implements java.io.Serializable {
      * @return the sucursales
      */
     public List<Sucursal> getSucursales() {
-        return sucursales;
+        return new LinkedList<>(sucursales);
     }
 
     /**
      * @return the usuarios
      */
     public List<Usuario> getUsuarios() {
-        return usuarios;
+        return new LinkedList<>(usuarios);
     }
 
     /**
      * @return the clientes
      */
     public List<Cliente> getClientes() {
-        return clientes;
+        return new LinkedList<>(clientes);
     }
     
     private static class EmpresaHolder {

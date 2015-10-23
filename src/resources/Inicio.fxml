@@ -36,7 +36,7 @@
                                                 </BorderPane>
                                                 <BorderPane prefHeight="98.0" prefWidth="253.0">
                                                    <center>
-                                                      <ChoiceBox prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
+                                                      <ComboBox id="cbc" fx:id="comboBoxClientes" prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
                                                    </center>
                                                 </BorderPane>
                                                 <BorderPane prefHeight="100.0" prefWidth="82.0">
@@ -65,7 +65,7 @@
                                                 </BorderPane>
                                                 <BorderPane prefHeight="98.0" prefWidth="253.0">
                                                    <center>
-                                                      <ChoiceBox prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
+                                                      <ComboBox fx:id="comboBoxSucursales"  prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
                                                    </center>
                                                 </BorderPane>
                                              </children>
@@ -79,7 +79,7 @@
                                                 </BorderPane>
                                                 <BorderPane prefHeight="98.0" prefWidth="253.0">
                                                    <center>
-                                                      <ChoiceBox prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
+                                                      <ComboBox fx:id="comboBoxEncomiendas" prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
                                                    </center>
                                                 </BorderPane>
                                                 <BorderPane prefHeight="100.0" prefWidth="82.0">
@@ -141,7 +141,7 @@
                               </BorderPane>
                               <BorderPane prefHeight="200.0" prefWidth="200.0">
                                  <bottom>
-                                  <AnchorPane fx:id="agregarPane" minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="522.0" BorderPane.alignment="CENTER" />
+                                  <AnchorPane fx:id="agregarPane" minHeight="0.0" minWidth="0.0" prefHeight="573.0" prefWidth="568.0" BorderPane.alignment="CENTER" />
                                  </bottom>
                               </BorderPane>
                           </items>

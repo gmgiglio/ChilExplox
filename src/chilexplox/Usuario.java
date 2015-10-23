@@ -34,12 +34,12 @@ public class Usuario implements java.io.Serializable {
         return p;
     }
     
-    public void agregarEnc(Pedido p, int peso, int volumen, String dirDestino){
-        p.agregarEnc(peso, volumen, dirDestino);
+    public void agregarEnc(Pedido p, int peso, int volumen, String dirDestino, String desc){
+        p.agregarEnc(peso, volumen, dirDestino, desc);
     }
     
-    public void agregarEnc(Pedido p,int peso, int volumen, int prioridad, String dirDestino){
-        p.agregarEnc(peso, volumen, prioridad, dirDestino);
+    public void agregarEnc(Pedido p,int peso, int volumen, int prioridad, String dirDestino, String desc){
+        p.agregarEnc(peso, volumen, prioridad, dirDestino, desc);
     }
     
     //Envia el pedido de mayor urgencia en el primer camion disponible en la sucursal.

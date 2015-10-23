@@ -27,12 +27,14 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import static javafx.application.Application.launch;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 import javafx.fxml.FXML;
 import javafx.scene.control.SeparatorMenuItem;
+import javafx.stage.WindowEvent;
 
 
 /**
@@ -41,11 +43,6 @@ import javafx.scene.control.SeparatorMenuItem;
  */
 
 public class Main extends Application {
-    
-   
-    
-        
-    
     
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -56,6 +53,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
+       
     }
 
     /**
@@ -66,6 +64,7 @@ public class Main extends Application {
        
     }
     
+<<<<<<< HEAD
     public static Sucursal getSucursalActual(String nombreSucursal){
             Sucursal sucActual = null;
             for(Sucursal s : Empresa.getInstance().getSucursales()){
@@ -75,5 +74,12 @@ public class Main extends Application {
             }
             return sucActual;
     }
+=======
+    @Override
+    public void stop(){
+       Empresa.serializar("data/empresa.ser");
+    }
+
+>>>>>>> 23f0605c76ee99c955652d2c571645034c254a4a
     
 }

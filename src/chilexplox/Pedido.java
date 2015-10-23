@@ -10,7 +10,7 @@ import java.util.LinkedList;
  *
  * @author carlossalame
  */
-public class Pedido extends Servicio{
+public class Pedido extends Servicio implements java.io.Serializable{
     
     
     private int idPedido;

@@ -6,11 +6,13 @@
 package chilexplox;
 import java.util.LinkedList;
 import java.util.List;
+import java.io.*;
+
 /**
  *
  * @author carlossalame
  */
-public class Empresa {
+public class Empresa implements java.io.Serializable {
     
     
     
@@ -24,15 +26,59 @@ public class Empresa {
     //sistema. Este contador corresponde a la prioridad de cada encomienda por defecto.
     private int nroEncomiendas = 0;
     
+    public List<Cliente> clientes = new LinkedList<>();
+    public List<Usuario> usuarios = new LinkedList<>();
+    
     private Empresa() {
     }
+    
+    // true si logra deserializar
+    public static boolean deserializar(String path){
+        try
+      {
+         FileInputStream fileIn = new FileInputStream(path);
+         ObjectInputStream in = new ObjectInputStream(fileIn);
+         EmpresaHolder.INSTANCE = (Empresa) in.readObject();
+         in.close();
+         fileIn.close();
+         return true;
+      }catch(IOException i)
+      {
+         i.printStackTrace();
+         return false;
+      }catch(ClassNotFoundException c)
+      {
+         c.printStackTrace();
+         return false;
+      }
+    }
+    
+    // true si logra serializar
+    public static boolean serializar(String Path){
+        try
+      {
+         FileOutputStream fileOut = new FileOutputStream("data/empresa.ser");
+         ObjectOutputStream out = new ObjectOutputStream(fileOut);
+         out.writeObject(Empresa.getInstance());
+         out.close();
+         fileOut.close();
+         return true;
+      }catch(IOException i)
+      {
+          i.printStackTrace();
+          return false;
+      }
+        
+    }
+    
+    //basado en tutorial http://www.tutorialspoint.com/java/java_serialization.htm
     
     public static Empresa getInstance() {
         return EmpresaHolder.INSTANCE;
     }
     
     private static class EmpresaHolder {
-        private static final Empresa INSTANCE = new Empresa();
+        private static Empresa INSTANCE = new Empresa();
     }
     
     public void setProperties(String nombre, String rut){

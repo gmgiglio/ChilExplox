@@ -9,7 +9,7 @@ package chilexplox;
  *
  * @author gianfrancogiglio
  */
-public class Mensaje {
+public class Mensaje implements java.io.Serializable {
     String nombre;
     String mensaje;
     Usuario remitente;

@@ -93,7 +93,7 @@ public class InicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
-       /*Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
+        /*Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
         Empresa.getInstance().agregarSucursal("Las Condes", "Santiago", "Apoquindo 5000");
         Empresa.getInstance().agregarSucursal("Victoria", "Temuco", "Bernardo Ohiggins 4256");
         
@@ -108,6 +108,7 @@ public class InicioController implements Initializable {
         
         Empresa.getInstance().agregarUsuario("Karl Saleam","112233445");
         actual= Empresa.getInstance().getUsuarios().get(0); ///POR MIENTRAS
+        actual.setSucursalActual(sucursales.get(0));
         //Inicializar Menú
         Menu menuUsuario = new Menu(actual.getNombreUsuario());
         menuUsuario.getItems().add(new MenuItem("Cerrar sesión"));
@@ -139,7 +140,7 @@ public class InicioController implements Initializable {
 
         }
         
-        cargarNombresClientes();
+      //  cargarNombresClientes();
         cargarNombresSucursales();
         
         split.setDividerPositions(1);
@@ -263,7 +264,7 @@ public class InicioController implements Initializable {
             ObservableList nombreSucursales = FXCollections.observableArrayList();
             for (int i=0; i<  Empresa.getInstance().getSucursales().size();i++)
             {
-                if(Empresa.getInstance().getSucursales().get(i).getNombre().equals(actual))
+                if(!Empresa.getInstance().getSucursales().get(i).getNombre().equals(actual.getSucursalActual().getNombre()))
                 nombreSucursales.add(Empresa.getInstance().getSucursales().get(i).getNombre());
             }
             

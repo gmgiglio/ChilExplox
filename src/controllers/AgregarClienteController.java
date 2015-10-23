@@ -36,7 +36,7 @@ public class AgregarClienteController implements Initializable {
     private TextField apellidosField;
       @FXML
     private TextField calleField;
-       @FXML
+      @FXML
     private TextField numeroField;
      @FXML
     private TextField comunaField;

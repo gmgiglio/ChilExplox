@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxWidth="905.0" prefHeight="918.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.AgregarClienteController">
+<AnchorPane maxWidth="905.0" prefHeight="918.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AgregarClienteController">
    <children>
       <VBox maxWidth="905.0" prefHeight="905.0" prefWidth="567.0">
          <children>

@@ -92,6 +92,7 @@
                                                                   <Font size="36.0" />
                                                                </font>
                                                             </Text>
+                                                            <Button fx:id="agregarEncomienda" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
                                                          </children>
                                                       </Pane>
                                                    </center>
@@ -140,7 +141,7 @@
                               </BorderPane>
                               <BorderPane prefHeight="200.0" prefWidth="200.0">
                                  <bottom>
-                                  <AnchorPane fx:id="agregar" minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="522.0" BorderPane.alignment="CENTER" />
+                                  <AnchorPane fx:id="agregarPane" minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="522.0" BorderPane.alignment="CENTER" />
                                  </bottom>
                               </BorderPane>
                           </items>
@@ -257,7 +258,7 @@
                                     </Button>
                                  </children>
                               </VBox>
-                              <AnchorPane fx:id="anchorPaneMensajes" prefHeight="200.0" prefWidth="900.0" />
+                              <AnchorPane fx:id="anchorPaneMensajes" prefHeight="800.0" prefWidth="900.0" />
                            </children>
                         </HBox>
                      </children></AnchorPane>

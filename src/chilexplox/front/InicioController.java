@@ -50,15 +50,17 @@ public class InicioController implements Initializable {
      @FXML
     private MenuBar menuBar;
       @FXML
-    private AnchorPane agregar;
+    private AnchorPane agregarPane;
        @FXML
     private Button agregarCliente;
        @FXML
+    private Button agregarEncomienda;
+       @FXML
     private TabPane tabs;
-<<<<<<< HEAD
+
          @FXML
     private SplitPane split;
-=======
+
        @FXML
     private AnchorPane pantallaNuevoMensaje;
        @FXML
@@ -73,7 +75,6 @@ public class InicioController implements Initializable {
     private Button botonMensajesEnviados;
        @FXML
     private AnchorPane anchorPaneMensajes;
->>>>>>> origin/master
        
        
     
@@ -117,10 +118,9 @@ public class InicioController implements Initializable {
         });      
             
         }
-<<<<<<< HEAD
         
         split.setDividerPositions(1);
-=======
+
         //Tabs
         /*for(int i=0;i<tabs.getTabs().size();i++)
         {
@@ -135,14 +135,30 @@ public class InicioController implements Initializable {
             }); 
           }*/
 
->>>>>>> origin/master
         //Atender
         agregarCliente.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                     
                        try{        
 
-                       agregar.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarCliente.fxml")));
+                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarCliente.fxml")));
+                       split.setDividerPositions(0.4684014869888476);
+                       
+                       }
+                       catch (Exception exc)
+                      {
+                               }
+                     
+                
+                }
+            });
+        
+           agregarEncomienda.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                    
+                       try{        
+
+                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarEncomienda.fxml")));
                        split.setDividerPositions(0.4684014869888476);
                        
                        }
@@ -178,8 +194,8 @@ public class InicioController implements Initializable {
             @Override public void handle(ActionEvent e) {
                     
                        try{
-                        anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/NuevoMensaje.fxml")));
-
+                        anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/Nuevo Mensaje.fxml")));
+                        
                        }
                        catch (Exception exc)
                       {

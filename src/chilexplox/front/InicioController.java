@@ -34,6 +34,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 
 /**
@@ -54,8 +55,25 @@ public class InicioController implements Initializable {
     private Button agregarCliente;
        @FXML
     private TabPane tabs;
+<<<<<<< HEAD
          @FXML
     private SplitPane split;
+=======
+       @FXML
+    private AnchorPane pantallaNuevoMensaje;
+       @FXML
+    private HBox pantallaBuzonEntrada;
+       @FXML
+    private HBox pantallaMensajesEnviados;
+       @FXML
+    private Button botonNuevoMensaje;
+       @FXML
+    private Button botonBuzonEntrada;
+       @FXML
+    private Button botonMensajesEnviados;
+       @FXML
+    private AnchorPane anchorPaneMensajes;
+>>>>>>> origin/master
        
        
     
@@ -99,8 +117,25 @@ public class InicioController implements Initializable {
         });      
             
         }
+<<<<<<< HEAD
         
         split.setDividerPositions(1);
+=======
+        //Tabs
+        /*for(int i=0;i<tabs.getTabs().size();i++)
+        {
+        tabs.getTabs().get(i).setOnSelectionChanged(new EventHandler<Event>() {
+                @Override
+                public void handle (Event e) {
+                    Tab t = (Tab)(e.getSource());
+                    if(((Tab)(e.getSource())).isSelected()){
+                    }
+                }
+        
+            }); 
+          }*/
+
+>>>>>>> origin/master
         //Atender
         agregarCliente.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -136,6 +171,23 @@ public class InicioController implements Initializable {
 
         
    
+        
+        //Mensajes
+        
+        botonNuevoMensaje.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                    
+                       try{
+                        anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/NuevoMensaje.fxml")));
+
+                       }
+                       catch (Exception exc)
+                      {
+                               }
+                     
+                
+                }
+            });
         
        
         

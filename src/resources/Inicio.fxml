@@ -240,24 +240,24 @@
                            <children>
                               <VBox prefHeight="200.0" prefWidth="180.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefWidth="180.0" text="Nuevo Mensaje">
+                                    <Button fx:id="botonNuevoMensaje" mnemonicParsing="false" prefWidth="180.0" text="Nuevo Mensaje">
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font size="17.0" />
                                        </font>
                                     </Button>
-                                    <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="180.0" text="Buzón de Entrada">
+                                    <Button fx:id="botonBuzonEntrada" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="180.0" text="Buzón de Entrada">
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font size="17.0" />
                                        </font>
                                     </Button>
-                                    <Button layoutX="10.0" layoutY="36.0" mnemonicParsing="false" prefWidth="180.0" text="Enviados">
+                                    <Button fx:id="botonMensajesEnviados" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" prefWidth="180.0" text="Mensajes Enviados">
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font size="17.0" />
                                        </font>
                                     </Button>
                                  </children>
                               </VBox>
-                              <AnchorPane prefHeight="200.0" prefWidth="900.0" />
+                              <AnchorPane fx:id="anchorPaneMensajes" prefHeight="200.0" prefWidth="900.0" />
                            </children>
                         </HBox>
                      </children></AnchorPane>

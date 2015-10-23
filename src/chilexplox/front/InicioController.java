@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -52,6 +53,8 @@ public class InicioController implements Initializable {
     private HBox pantallaEntrada;
       @FXML
     private AnchorPane pantallaNuevo;
+      @FXML
+    private TabPane tabs;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

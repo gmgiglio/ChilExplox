@@ -14,7 +14,7 @@
 <FlowPane prefHeight="980.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chilexplox.front.InicioController">
    <children>
       <MenuBar fx:id="menuBar" prefHeight="30.0" prefWidth="1080.0" />
-      <TabPane id="tabs" prefHeight="950.0" prefWidth="1080.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabs" prefHeight="950.0" prefWidth="1080.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Atender">
             <content>

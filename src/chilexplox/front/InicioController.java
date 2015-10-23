@@ -200,7 +200,8 @@ public class InicioController implements Initializable {
                        }
                        catch (Exception exc)
                       {
-                               }
+                       
+                       }
                      
                 
                 }

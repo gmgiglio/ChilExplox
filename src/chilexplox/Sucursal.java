@@ -11,7 +11,7 @@ import java.util.Stack;
  *
  * @author carlossalame
  */
-public class Sucursal{
+public class Sucursal implements java.io.Serializable{
     
     private String nombre;
     private String ciudad;

@@ -9,7 +9,7 @@ package chilexplox;
  *
  * @author carlossalame
  */
-public class Encomienda extends Servicio{
+public class Encomienda extends Servicio implements java.io.Serializable{
     
     private String direccionDestino;
     

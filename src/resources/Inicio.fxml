@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
@@ -9,79 +10,142 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<<<<<<< HEAD
 <FlowPane prefHeight="980.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chilexplox.InicioController">
+=======
+<FlowPane prefHeight="980.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chilexplox.front.InicioController">
+>>>>>>> a4ffbd8cba1f787fd361df9a24601d2f97d769d7
    <children>
-      <HBox prefHeight="30.0" prefWidth="1080.0">
-         <children>
-            <BorderPane prefHeight="30.0" prefWidth="540.0">
-               <center>
-                  <Text id="nombreUsuario" boundsType="LOGICAL_VERTICAL_CENTER" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de usuario" textAlignment="CENTER" wrappingWidth="300.8129119873047" BorderPane.alignment="CENTER" />
-               </center>
-            </BorderPane>
-            <BorderPane prefHeight="30.0" prefWidth="540.0">
-               <center>
-                  <Text id="nombreSucursal" strokeType="OUTSIDE" strokeWidth="0.0" text="Sucursal" textAlignment="CENTER" wrappingWidth="292.17185974121094" BorderPane.alignment="CENTER" />
-               </center>
-            </BorderPane>
-         </children>
-      </HBox>
-      <TabPane prefHeight="950.0" prefWidth="1080.0" tabClosingPolicy="UNAVAILABLE">
+      <MenuBar fx:id="menuBar" prefHeight="30.0" prefWidth="1080.0" />
+      <TabPane prefHeight="950.0" prefWidth="1080.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Atender">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="200.0">
                      <children>
-                        <FlowPane prefHeight="918.0" prefWidth="540.0">
-                           <children>
-                              <VBox prefHeight="917.0" prefWidth="539.0">
+                        <SplitPane dividerPositions="0.48698884758364314" prefHeight="907.0" prefWidth="1078.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <FlowPane prefHeight="918.0" prefWidth="540.0">
                                        <children>
-                                          <BorderPane prefHeight="100.0" prefWidth="150.0">
-                                             <center>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente:" BorderPane.alignment="CENTER" />
-                                             </center>
-                                          </BorderPane>
-                                          <BorderPane prefHeight="98.0" prefWidth="253.0">
-                                             <center>
-                                                <ChoiceBox prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
-                                             </center>
-                                          </BorderPane>
-                                          <BorderPane prefHeight="100.0" prefWidth="82.0">
-                                             <center>
-                                                <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
+                                          <VBox prefHeight="917.0" prefWidth="539.0">
+                                             <children>
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
                                                    <children>
-                                                      <Circle id="agregarCliente" fill="DODGERBLUE" layoutX="18.0" layoutY="18.0" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                      <Text fill="WHITE" layoutX="7.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
-                                                         <font>
-                                                            <Font size="36.0" />
-                                                         </font>
-                                                      </Text>
+                                                      <BorderPane prefHeight="100.0" prefWidth="150.0">
+                                                         <right>
+                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente:" BorderPane.alignment="CENTER" />
+                                                         </right>
+                                                      </BorderPane>
+                                                      <BorderPane prefHeight="98.0" prefWidth="253.0">
+                                                         <center>
+                                                            <ChoiceBox prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
+                                                         </center>
+                                                      </BorderPane>
+                                                      <BorderPane prefHeight="100.0" prefWidth="82.0">
+                                                         <center>
+                                                            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
+                                                               <children>
+                                                                  <Circle id="agregarCliente" fill="DODGERBLUE" layoutX="18.0" layoutY="18.0" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                  <Text fill="WHITE" layoutX="7.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
+                                                                     <font>
+                                                                        <Font size="36.0" />
+                                                                     </font>
+                                                                  </Text>
+                                                               </children>
+                                                            </Pane>
+                                                         </center>
+                                                      </BorderPane>
                                                    </children>
-                                                </Pane>
-                                             </center>
-                                          </BorderPane>
+                                                </HBox>
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <BorderPane prefHeight="100.0" prefWidth="150.0">
+                                                         <right>
+                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sucursal de destino:" wrappingWidth="124.34986877441406" BorderPane.alignment="CENTER" />
+                                                         </right>
+                                                      </BorderPane>
+                                                      <BorderPane prefHeight="98.0" prefWidth="253.0">
+                                                         <center>
+                                                            <ChoiceBox prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
+                                                         </center>
+                                                      </BorderPane>
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <BorderPane prefHeight="100.0" prefWidth="150.0">
+                                                         <right>
+                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Encomiendas:" BorderPane.alignment="CENTER" />
+                                                         </right>
+                                                      </BorderPane>
+                                                      <BorderPane prefHeight="98.0" prefWidth="253.0">
+                                                         <center>
+                                                            <ChoiceBox prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
+                                                         </center>
+                                                      </BorderPane>
+                                                      <BorderPane prefHeight="100.0" prefWidth="82.0">
+                                                         <center>
+                                                            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
+                                                               <children>
+                                                                  <Circle id="agregarPedido" fill="DODGERBLUE" layoutX="18.0" layoutY="18.0" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                  <Text fill="WHITE" layoutX="7.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
+                                                                     <font>
+                                                                        <Font size="36.0" />
+                                                                     </font>
+                                                                  </Text>
+                                                               </children>
+                                                            </Pane>
+                                                         </center>
+                                                      </BorderPane>
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <BorderPane prefHeight="100.0" prefWidth="150.0">
+                                                         <right>
+                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Presupuesto:" wrappingWidth="80.66820526123047" BorderPane.alignment="CENTER" />
+                                                         </right>
+                                                      </BorderPane>
+                                                      <BorderPane prefHeight="98.0" prefWidth="253.0">
+                                                         <center>
+                                                            <Text fill="#1770c3" strokeType="OUTSIDE" strokeWidth="0.0" text="12.340" wrappingWidth="83.30058288574219" BorderPane.alignment="CENTER_LEFT">
+                                                               <font>
+                                                                  <Font size="25.0" />
+                                                               </font>
+                                                            </Text>
+                                                         </center>
+                                                         <left>
+                                                            <Text fill="#1770c3" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" textAlignment="CENTER" wrappingWidth="31.761505126953125" BorderPane.alignment="CENTER">
+                                                               <font>
+                                                                  <Font size="25.0" />
+                                                               </font>
+                                                            </Text>
+                                                         </left>
+                                                      </BorderPane>
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <BorderPane prefHeight="100.0" prefWidth="150.0" />
+                                                      <BorderPane prefHeight="100.0" prefWidth="178.0" />
+                                                      <BorderPane prefHeight="100.0" prefWidth="136.0">
+                                                         <center>
+                                                            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="191.0" text="Cerrar Pedido" BorderPane.alignment="CENTER" />
+                                                         </center>
+                                                      </BorderPane>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
                                        </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0">
-                                       <children>
-                                          <BorderPane prefHeight="100.0" prefWidth="150.0">
-                                             <center>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sucursal de destino:" wrappingWidth="124.34986877441406" BorderPane.alignment="CENTER" />
-                                             </center>
-                                          </BorderPane>
-                                          <BorderPane prefHeight="98.0" prefWidth="253.0">
-                                             <center>
-                                                <ChoiceBox prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
-                                             </center>
-                                          </BorderPane>
-                                       </children>
-                                    </HBox>
+                                    </FlowPane>
                                  </children>
-                              </VBox>
-                           </children>
-                        </FlowPane>
-                        <FlowPane layoutX="540.0" prefHeight="918.0" prefWidth="540.0" />
+                              </AnchorPane>
+                            <AnchorPane id="agregar" minHeight="0.0" minWidth="0.0" prefHeight="905.0" prefWidth="430.0" />
+                          </items>
+                        </SplitPane>
                      </children>
                   </AnchorPane>
             </content>

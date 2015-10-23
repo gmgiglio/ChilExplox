@@ -11,7 +11,7 @@ import java.util.LinkedList;
  *
  * @author carlossalame
  */
-public class Camion {
+public class Camion implements java.io.Serializable {
     
     private String patente;
     

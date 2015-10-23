@@ -27,13 +27,15 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import static javafx.application.Application.launch;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 import javafx.fxml.FXML;
 import javafx.scene.control.SeparatorMenuItem;
-import chilexplox.Empresa;
+import javafx.stage.WindowEvent;
+
 
 
 /**
@@ -44,9 +46,24 @@ import chilexplox.Empresa;
 public class Main extends Application {
     
    
-    
 
-    public static Usuario usuarioActual = Empresa.getInstance().getUsuarios().get(0);
+    private static Usuario usuarioActual = Empresa.getInstance().getUsuarios().get(0);
+
+    /**
+     * @return the usuarioActual
+     */
+    public static Usuario getUsuarioActual() {
+        return usuarioActual;
+    }
+
+    /**
+     * @param aUsuarioActual the usuarioActual to set
+     */
+    public static void setUsuarioActual(Usuario aUsuarioActual) {
+        usuarioActual = aUsuarioActual;
+    }
+ 
+
     
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -57,6 +74,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
+       
     }
 
     /**
@@ -67,6 +85,11 @@ public class Main extends Application {
        
     }
     
-    
+    @Override
+    public void stop(){
+       Empresa.serializar("data/empresa.ser");
+    }
+
+
     
 }

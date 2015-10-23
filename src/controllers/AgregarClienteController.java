@@ -14,7 +14,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TabPane;
@@ -34,6 +36,8 @@ public class AgregarClienteController implements Initializable {
     private TextField apellidosField;
       @FXML
     private TextField calleField;
+       @FXML
+    private TextField numeroField;
      @FXML
     private TextField comunaField;
      @FXML
@@ -42,6 +46,24 @@ public class AgregarClienteController implements Initializable {
     private TextField telefonoField;
      @FXML
     private Button agregarCliente;
+    
+    private ComboBox comboBoxClientes;
+    
+    @FXML
+    private void handleButtonAction(ActionEvent event) {
+
+            Scene scene = telefonoField.getScene();
+            comboBoxClientes = (ComboBox)scene.lookup("#cbc");
+            
+            try{        
+            Empresa.getInstance().agregarCliente(nombreField.getText()+" "+apellidosField.getText(),calleField.getText()+" "+numeroField.getText()+", "+comunaField.getText()+", "+ciudadField.getText(),telefonoField.getText());
+            comboBoxClientes.getItems().add(nombreField.getText()+" "+apellidosField.getText());
+            comboBoxClientes.setPromptText(nombreField.getText()+" "+apellidosField.getText());
+            }
+            catch (Exception exc)
+            {
+            }
+    }
      
      
     /**
@@ -49,22 +71,10 @@ public class AgregarClienteController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        agregarCliente.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                    
-                       try{        
-
-                           
-                        
-                       }
-                       catch (Exception exc)
-                      {
-                               }
-                     
-                
-                }
-            });
-    }    
+      
+    } 
+    public Scene getScene(){
+            return telefonoField.getScene();
+    }
     
 }

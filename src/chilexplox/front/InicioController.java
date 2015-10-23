@@ -11,10 +11,13 @@ import chilexplox.Empresa;
 import chilexplox.Sucursal;
 import chilexplox.Usuario;
 import java.net.URL;
+import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -24,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -76,26 +80,34 @@ public class InicioController implements Initializable {
        @FXML
     private AnchorPane anchorPaneMensajes;
        
+       @FXML
+    private ComboBox comboBoxClientes;
+       @FXML
+    private ComboBox comboBoxSucursales;
+       @FXML
+    private ComboBox comboBoxEncomiendas;
        
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
-        Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
+       /*Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
         Empresa.getInstance().agregarSucursal("Las Condes", "Santiago", "Apoquindo 5000");
         Empresa.getInstance().agregarSucursal("Victoria", "Temuco", "Bernardo Ohiggins 4256");
         
-        Empresa.serializar("data/empresa.ser");
+        Empresa.serializar("data/empresa.ser");*/
         
-        Empresa.deserializar("data/empresa.ser");
+       Empresa.deserializar("data/empresa.ser");
         List<Sucursal> sucursales = Empresa.getInstance().getSucursales();
         
         List<Usuario> usuarios = Empresa.getInstance().getUsuarios();
        
         List<Cliente> clientes = Empresa.getInstance().getClientes();
         
+        Empresa.getInstance().agregarUsuario("Karl Saleam","112233445");
+        Usuario u = Empresa.getInstance().getUsuarios().get(0); ///POR MIENTRAS
         //Inicializar Menú
-        Menu menuUsuario = new Menu("Carlos Salamé");
+        Menu menuUsuario = new Menu(u.getNombreUsuario());
         menuUsuario.getItems().add(new MenuItem("Cerrar sesión"));
         menuBar.getMenus().add(menuUsuario);
         Menu menuSucursal = new Menu(sucursales.get(0).getNombre());
@@ -124,6 +136,8 @@ public class InicioController implements Initializable {
         });      
 
         }
+        
+        cargarNombresClientes();
         
         split.setDividerPositions(1);
 
@@ -154,6 +168,7 @@ public class InicioController implements Initializable {
                        }
                        catch (Exception exc)
                       {
+                          int i=0;
                                }
                      
                 
@@ -227,5 +242,17 @@ public class InicioController implements Initializable {
             }
         });
         
+    }
+    public void cargarNombresClientes(){
+
+            ObservableList nombreClientes = FXCollections.observableArrayList();
+            for (int i=0; i<  Empresa.getInstance().getClientes().size();i++)
+            {
+                nombreClientes.add(Empresa.getInstance().getClientes().get(i).getNombre());
+            }
+            
+            comboBoxClientes.getItems().setAll(nombreClientes);
+            comboBoxClientes.setPromptText(comboBoxClientes.getItems().get(0).toString());
+
     }
 }

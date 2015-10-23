@@ -14,7 +14,7 @@ import java.io.*;
 public class ChilExplox {
 
     Usuario usr = new Usuario("Tito", "12345678");
-    Cliente cliente = new Cliente("Pedro Pablo","Vicuña Mackenna 1122", 94556262);
+    Cliente cliente = new Cliente("Pedro Pablo","Vicuña Mackenna 1122", "94556262");
     
     
     public void casoDeUso1(){

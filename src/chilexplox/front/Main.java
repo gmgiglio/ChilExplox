@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package chilexplox.front;
-
+import chilexplox.*;
+import java.util.List;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
@@ -39,7 +40,7 @@ import javafx.scene.control.SeparatorMenuItem;
  * @author gianfrancogiglio
  */
 
-public class Atencion_cliente extends Application {
+public class Main extends Application {
     
    
     
@@ -48,7 +49,7 @@ public class Atencion_cliente extends Application {
     
     @Override
     public void start(Stage primaryStage) throws Exception{
-        
+       
         Parent root = FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"));
         Scene scene = new Scene(root,1080,980);
       
@@ -63,6 +64,7 @@ public class Atencion_cliente extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+       
     }
     
 }

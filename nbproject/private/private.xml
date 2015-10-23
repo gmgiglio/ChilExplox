@@ -3,10 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/Users/carlossalame/ChilExplox/src/chilexplox/Camion.java</file>
             <file>file:/Users/carlossalame/ChilExplox/src/chilexplox/Usuario.java</file>
             <file>file:/Users/carlossalame/ChilExplox/src/chilexplox/ChilExplox.java</file>
             <file>file:/Users/carlossalame/ChilExplox/src/chilexplox/front/Atencion_cliente.java</file>
+=======
+            <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/Usuario.java</file>
+            <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/Camion.java</file>
+            <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/front/Atencion_cliente.java</file>
+            <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/Pedido.java</file>
+            <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/Sucursal.java</file>
+            <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/Empresa.java</file>
+            <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/Encomienda.java</file>
+            <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/ChilExplox.java</file>
+>>>>>>> 0320c4cf54df62e07f25bc5eebf39ca77821ca56
         </group>
     </open-files>
 </project-private>

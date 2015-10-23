@@ -7,6 +7,7 @@ package chilexplox;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Stack;
+import java.util.Date;
 /**
  *
  * @author carlossalame
@@ -117,6 +118,14 @@ public class Sucursal implements java.io.Serializable{
             return true;
         }
         else return false;
+    }
+    
+    public void revisarPedido(){
+        for(Pedido p : this.pedidosPend){
+            if(p.getTiempoTranscurrido() > Empresa.getInstance().getTiempoLimite()){
+                
+            }
+        }
     }
     
     

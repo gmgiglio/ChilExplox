@@ -3,7 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/Usuario.java</file>
             <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/Camion.java</file>
             <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/front/Atencion_cliente.java</file>
             <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/Pedido.java</file>
@@ -11,12 +11,6 @@
             <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/Empresa.java</file>
             <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/Encomienda.java</file>
             <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/ChilExplox.java</file>
-=======
-            <file>file:/Users/alberto/ChilExplox/src/chilexplox/front/InicioController.java</file>
-            <file>file:/Users/alberto/ChilExplox/src/resources/Inicio.fxml</file>
-            <file>file:/Users/alberto/ChilExplox/src/chilexplox/front/Atencion_cliente.java</file>
-            <file>file:/Users/alberto/ChilExplox/src/resources/AgregarClienteController.java</file>
->>>>>>> origin/master
         </group>
     </open-files>
 </project-private>

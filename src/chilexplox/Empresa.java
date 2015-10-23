@@ -85,7 +85,7 @@ public class Empresa implements java.io.Serializable {
     public long getTiempoLimite(){
         return tiempoLimite;
     }
-    }
+    
     //basado en tutorial http://www.tutorialspoint.com/java/java_serialization.htm
     
     public static Empresa getInstance() {

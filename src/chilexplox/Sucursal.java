@@ -122,7 +122,7 @@ public class Sucursal implements java.io.Serializable{
     
     public void revisarPedido(){
         for(Pedido p : this.pedidosPend){
-            if(p.getTiempoTranscurrido() > Empresa.getInstance().){
+            if(p.getTiempoTranscurrido() > Empresa.getInstance().getTiempoLimite()){
                 
             }
         }

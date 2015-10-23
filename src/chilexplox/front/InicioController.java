@@ -27,6 +27,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
@@ -53,6 +54,8 @@ public class InicioController implements Initializable {
     private Button agregarCliente;
        @FXML
     private TabPane tabs;
+         @FXML
+    private SplitPane split;
        
        
     
@@ -61,7 +64,9 @@ public class InicioController implements Initializable {
    
         Empresa.deserializar("data/empresa.ser");
         List<Sucursal> sucursales = Empresa.getInstance().getSucursales();
+        
         List<Usuario> usuarios = Empresa.getInstance().getUsuarios();
+       
         List<Cliente> clientes = Empresa.getInstance().getClientes();
         
         //Inicializar Menú
@@ -94,40 +99,17 @@ public class InicioController implements Initializable {
         });      
             
         }
-        tabs.getTabs().get(0).setOnSelectionChanged(new EventHandler<Event>() {
-                @Override
-                public void handle (Event e) {
-                 
-                    
-                }
         
-            }); 
-        //Dentro del tab administrar
-        for(int i=0;i<tabs.getTabs().size();i++)
-        {
-        tabs.getTabs().get(i).setOnSelectionChanged(new EventHandler<Event>() {
-                @Override
-                public void handle (Event e) {
-                    Tab t = (Tab)(e.getSource());
-                    if(((Tab)(e.getSource())).isSelected()){
-                    
-                        Alert alert = new Alert(AlertType.INFORMATION);
-                        alert.setTitle(t.getText());
-                        
-                        alert.show();
-                    }
-                }
-        
-            }); 
-          }
-
+        split.setDividerPositions(1);
         //Atender
         agregarCliente.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                     
                        try{        
 
-                    agregar.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarCliente.fxml")));
+                       agregar.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarCliente.fxml")));
+                       split.setDividerPositions(0.4684014869888476);
+                       
                        }
                        catch (Exception exc)
                       {
@@ -136,6 +118,23 @@ public class InicioController implements Initializable {
                 
                 }
             });
+        
+         //Tabs
+       /* for(int i=0;i<tabs.getTabs().size();i++)
+        {
+        tabs.getTabs().get(i).setOnSelectionChanged(new EventHandler<Event>() {
+                @Override
+                public void handle (Event e) {
+                    Tab t = (Tab)(e.getSource());
+                    if(((Tab)(e.getSource())).isSelected()){
+                   
+                    }
+                }
+        
+            }); 
+          }*/
+
+        
    
         
        

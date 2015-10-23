@@ -126,7 +126,17 @@ public class Empresa implements java.io.Serializable {
                 return false;
             }
         }
-        this.getSucursales().add(new Sucursal(nombre, ciudad, direccion));
+        sucursales.add(new Sucursal(nombre, ciudad, direccion));
+        return true;
+    }
+    
+    public boolean agregarUsuario(String nombreUsuario, String contrasena){
+        for(int i = 0; i < usuarios.size(); i++){
+            if(usuarios.get(i).getNombre().equals(nombre)){
+                return false;
+            }
+        }
+        sucursales.add(new Sucursal(nombre, ciudad, direccion));
         return true;
     }
     

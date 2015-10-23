@@ -77,6 +77,12 @@ public class InicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
+        Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
+        Empresa.getInstance().agregarSucursal("Las Condes", "Santiago", "Apoquindo 5000");
+        Empresa.getInstance().agregarSucursal("Victoria", "Temuco", "Bernardo Ohiggins 4256");
+        
+        Empresa.serializar("data/empresa.ser");
+        
         Empresa.deserializar("data/empresa.ser");
         List<Sucursal> sucursales = Empresa.getInstance().getSucursales();
         
@@ -166,23 +172,31 @@ public class InicioController implements Initializable {
         //Mensajes
         
         botonNuevoMensaje.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                    
-                       try{
-                        anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/NuevoMensaje.fxml")));
-
-                       }
-                       catch (Exception exc)
-                      {
-                               }
-                     
-                
+            @Override public void handle(ActionEvent e) {                    
+                try{
+                 anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/Nuevo Mensaje.fxml")));
                 }
-            });
+                catch (Exception exc){} 
+            }
+        });
         
-       
+        botonBuzonEntrada.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {                    
+                try{
+                 anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/BuzonEntrada.fxml")));
+                }
+                catch (Exception exc){} 
+            }
+        });
         
-          
+        botonMensajesEnviados.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {                    
+                try{
+                 anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/Mensajes Enviados.fxml")));
+                }
+                catch (Exception exc){} 
+            }
+        });
         
     }
 }

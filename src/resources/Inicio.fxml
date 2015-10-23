@@ -257,7 +257,7 @@
                                     </Button>
                                  </children>
                               </VBox>
-                              <AnchorPane fx:id="anchorPaneMensajes" prefHeight="200.0" prefWidth="900.0" />
+                              <AnchorPane fx:id="anchorPaneMensajes" prefHeight="800.0" prefWidth="900.0" />
                            </children>
                         </HBox>
                      </children></AnchorPane>

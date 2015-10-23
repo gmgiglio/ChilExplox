@@ -52,7 +52,7 @@
                <center>
                   <TextFlow maxHeight="800.0" maxWidth="500.0" prefHeight="30.0" prefWidth="30.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Text layoutX="10.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contenidoooooooooooooooooooooo \n homsadfmlakdnlfndlfnvlndf" wrappingWidth="103.56966400146484" x="10.0" />
+                        <Text layoutX="10.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mensajes enviados" wrappingWidth="103.56966400146484" x="10.0" />
                      </children>
                   </TextFlow>
                </center>

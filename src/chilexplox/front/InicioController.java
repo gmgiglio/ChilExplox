@@ -33,6 +33,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 
 /**
@@ -53,6 +54,20 @@ public class InicioController implements Initializable {
     private Button agregarCliente;
        @FXML
     private TabPane tabs;
+       @FXML
+    private AnchorPane pantallaNuevoMensaje;
+       @FXML
+    private HBox pantallaBuzonEntrada;
+       @FXML
+    private HBox pantallaMensajesEnviados;
+       @FXML
+    private Button botonNuevoMensaje;
+       @FXML
+    private Button botonBuzonEntrada;
+       @FXML
+    private Button botonMensajesEnviados;
+       @FXML
+    private AnchorPane anchorPaneMensajes;
        
        
     
@@ -94,32 +109,19 @@ public class InicioController implements Initializable {
         });      
             
         }
-        tabs.getTabs().get(0).setOnSelectionChanged(new EventHandler<Event>() {
-                @Override
-                public void handle (Event e) {
-                 
-                    
-                }
-        
-            }); 
-        //Dentro del tab administrar
-        for(int i=0;i<tabs.getTabs().size();i++)
+        //Tabs
+        /*for(int i=0;i<tabs.getTabs().size();i++)
         {
         tabs.getTabs().get(i).setOnSelectionChanged(new EventHandler<Event>() {
                 @Override
                 public void handle (Event e) {
                     Tab t = (Tab)(e.getSource());
                     if(((Tab)(e.getSource())).isSelected()){
-                    
-                        Alert alert = new Alert(AlertType.INFORMATION);
-                        alert.setTitle(t.getText());
-                        
-                        alert.show();
                     }
                 }
         
             }); 
-          }
+          }*/
 
         //Atender
         agregarCliente.setOnAction(new EventHandler<ActionEvent>() {
@@ -137,6 +139,23 @@ public class InicioController implements Initializable {
                 }
             });
    
+        
+        //Mensajes
+        
+        botonNuevoMensaje.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                    
+                       try{
+                        anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/NuevoMensaje.fxml")));
+
+                       }
+                       catch (Exception exc)
+                      {
+                               }
+                     
+                
+                }
+            });
         
        
         

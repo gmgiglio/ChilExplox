@@ -141,7 +141,7 @@
                                     </FlowPane>
                                  </children>
                               </AnchorPane>
-                            <AnchorPane id="agregar" minHeight="0.0" minWidth="0.0" prefHeight="905.0" prefWidth="430.0" />
+                            <AnchorPane fx:id="agregar" minHeight="0.0" minWidth="0.0" prefHeight="905.0" prefWidth="430.0" />
                           </items>
                         </SplitPane>
                      </children>

@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<FlowPane prefHeight="918.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.AgregarClienteController">
+<AnchorPane prefHeight="918.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.AgregarClienteController">
    <children>
       <VBox prefHeight="916.0" prefWidth="567.0">
          <children>
@@ -22,4 +22,4 @@
          </children>
       </VBox>
    </children>
-</FlowPane>
+</AnchorPane>

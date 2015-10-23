@@ -64,11 +64,7 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        Empresa.getInstance().agregarSucursal("Maipú","Santiago","Los almendros 102");
-        Empresa.getInstance().agregarSucursal("Las Condes","Santiago","Apoquindo 3040");
-        Empresa.getInstance().agregarSucursal("Antofagasta","Antofagasta","Oasis 1265");
-        
-        Empresa.serializar("/data/empresa.ser");
+       
     }
     
 }

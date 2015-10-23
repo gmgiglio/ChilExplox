@@ -139,7 +139,6 @@ public class Empresa implements java.io.Serializable {
         sucursales.add(new Sucursal(nombre, ciudad, direccion));
         return true;
     }
-    
     public void nuevaEncomienda(){
         nroEncomiendas++;
     }

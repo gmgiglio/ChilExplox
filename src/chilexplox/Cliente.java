@@ -9,7 +9,7 @@ package chilexplox;
  *
  * @author carlossalame
  */
-public class Cliente {
+public class Cliente implements java.io.Serializable {
     
     private String nombre;
     private String direccion;

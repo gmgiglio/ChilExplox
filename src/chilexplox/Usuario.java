@@ -11,7 +11,7 @@ import java.util.LinkedList;
  *
  * @author carlossalame
  */
-public class Usuario {
+public class Usuario implements java.io.Serializable {
     
     private String nombreUsuario;
     private String contrasena;

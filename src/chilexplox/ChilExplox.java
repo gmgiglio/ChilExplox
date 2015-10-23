@@ -29,14 +29,14 @@ public class ChilExplox {
      */
     public static void main(String[] args) {
  
-        //Empresa.getInstance().agregarSucursal("San Joaquin", "Santiago", "Vicuña Mackenna 4860");
-        //Empresa.getInstance().agregarSucursal("Valparaiso", "Valparaiso", "España 2130");
+        Empresa.getInstance().agregarSucursal("San Joaquin", "Santiago", "Vicuña Mackenna 4860");
+        Empresa.getInstance().agregarSucursal("Valparaiso", "Valparaiso", "España 2130");
         
-        //Empresa.serializar("data/empresa.ser");
+        Empresa.serializar("data/empresa.ser");
         
-        Empresa.deserializar("data/empresa.ser");
+        //Empresa.deserializar("data/empresa.ser");
         
-        System.out.println(Empresa.getInstance().sucursalesEnCiudad("Santiago").get(0).getNombre());
+        //System.out.println(Empresa.getInstance().sucursalesEnCiudad("Santiago").get(0).getNombre());
         
         
                 

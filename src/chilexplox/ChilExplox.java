@@ -18,11 +18,10 @@ public class ChilExplox {
     
     
     public void casoDeUso1(){
-        Empresa emp = Empresa.getInstance();
-        Pedido p = usr.crearPedido(emp.getSucursal("San Joaquin"), emp.getSucursal("Valparaiso")); //crear pedido sin datos de cliente
-        usr.agregarEnc(p, 450, 315, "Placeres 2413");//agregar encomiendas sin prioridad
-        usr.agregarEnc(p, 1500, 2300, "Altamirano 1321");
-        usr.agregarEnc(p, 201, 160, 3 , "O'higgins 4045");//agregar encomienda con prioridad
+        //Pedido p = usr.crearPedido(Empresa.getInstance().getSucursal("San Joaquin"), Empresa.getInstance().getCliente("Valparaiso")); //crear pedido sin datos de cliente
+        //usr.agregarEnc(p, 450, 315, "Placeres 2413");//agregar encomiendas sin prioridad
+        //usr.agregarEnc(p, 1500, 2300, "Altamirano 1321");
+        //usr.agregarEnc(p, 201, 160, 3 , "O'higgins 4045");//agregar encomienda con prioridad
     }
     /**
      * @param args the command line arguments

@@ -57,10 +57,15 @@ public class InicioController implements Initializable {
     private Button agregarEncomienda;
        @FXML
     private TabPane tabs;
+<<<<<<< HEAD
 
          @FXML
     private SplitPane split;
 
+=======
+         @FXML
+    private SplitPane split;
+>>>>>>> origin/master
        @FXML
     private AnchorPane pantallaNuevoMensaje;
        @FXML
@@ -117,10 +122,14 @@ public class InicioController implements Initializable {
             }
         });      
             
+<<<<<<< HEAD
         }
         
         split.setDividerPositions(1);
 
+=======
+        }split.setDividerPositions(1);
+>>>>>>> origin/master
         //Tabs
         /*for(int i=0;i<tabs.getTabs().size();i++)
         {
@@ -134,7 +143,10 @@ public class InicioController implements Initializable {
         
             }); 
           }*/
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
         //Atender
         agregarCliente.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {

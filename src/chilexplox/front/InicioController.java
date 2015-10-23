@@ -6,15 +6,15 @@
 
 package chilexplox.front;
 
-import chilexplox.Cliente;
-import chilexplox.Empresa;
-import chilexplox.Sucursal;
-import chilexplox.Usuario;
+import chilexplox.*;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -24,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -57,11 +58,9 @@ public class InicioController implements Initializable {
     private Button agregarEncomienda;
        @FXML
     private TabPane tabs;
-
        @FXML
     private SplitPane split;
-
-
+       @FXML
     private AnchorPane pantallaNuevoMensaje;
        @FXML
     private HBox pantallaBuzonEntrada;
@@ -75,7 +74,10 @@ public class InicioController implements Initializable {
     private Button botonMensajesEnviados;
        @FXML
     private AnchorPane anchorPaneMensajes;
+       @FXML
+    private ListView pedidosPendientes, pedidosCargados, camionesDisponibles, camionesPorDescargar;
        
+    //public static 
        
     
     @Override
@@ -84,6 +86,14 @@ public class InicioController implements Initializable {
         Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
         Empresa.getInstance().agregarSucursal("Las Condes", "Santiago", "Apoquindo 5000");
         Empresa.getInstance().agregarSucursal("Victoria", "Temuco", "Bernardo Ohiggins 4256");
+        Sucursal maipu = Empresa.getInstance().getSucursal("Maipu");
+        Sucursal victoria = Empresa.getInstance().getSucursal("Victoria");
+        Empresa.getInstance().agregarUsuario("Tulio Triviño", "31minutos");
+        maipu.agregarCamion("BDGH34", 3000);
+        maipu.agregarCamionPend("JUHK87", 2500);
+        Usuario tulio = Empresa.getInstance().getUsuarios().get(0);
+        tulio.setSucursalActual(maipu);
+        tulio.crearPedido(victoria);
         
         Empresa.serializar("data/empresa.ser");
         
@@ -94,7 +104,7 @@ public class InicioController implements Initializable {
        
         List<Cliente> clientes = Empresa.getInstance().getClientes();
         
-        //Inicializar Menú
+        ////////////////////////Inicializar Menú\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         Menu menuUsuario = new Menu("Carlos Salamé");
         menuUsuario.getItems().add(new MenuItem("Cerrar sesión"));
         menuBar.getMenus().add(menuUsuario);
@@ -142,7 +152,7 @@ public class InicioController implements Initializable {
         
             }); 
           }*/
-        //Atender
+        ///////////////////////////////Atender\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         agregarCliente.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                     
@@ -178,24 +188,57 @@ public class InicioController implements Initializable {
             });
         
          //Tabs
-       /* for(int i=0;i<tabs.getTabs().size();i++)
+        for(int i=0;i<tabs.getTabs().size();i++)
         {
         tabs.getTabs().get(i).setOnSelectionChanged(new EventHandler<Event>() {
                 @Override
                 public void handle (Event e) {
                     Tab t = (Tab)(e.getSource());
                     if(((Tab)(e.getSource())).isSelected()){
-                   
+                        switch(t.getText()){
+                            
+                            case "Administrar":
+                                Sucursal sucActual = getSucursalActual(menuSucursal.getText());
+                                ObservableList idsPedPend = FXCollections.observableArrayList();
+                                ObservableList idsPedCamion = FXCollections.observableArrayList();
+                                ObservableList patentesCamDisp = FXCollections.observableArrayList();
+                                ObservableList patentesCamADesc = FXCollections.observableArrayList();
+                                
+                                for(Pedido p : sucActual.getPedidosPend()){
+                                    idsPedPend.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
+                                }
+                                pedidosPendientes.setItems(idsPedPend);
+                                
+                                for(Camion c : sucActual.getCamionesDisp()){
+                                    patentesCamDisp.add(c.getPatente());
+                                }
+                                camionesDisponibles.setItems(patentesCamDisp);
+                                
+                                for(Camion c : sucActual.getCamionesPend()){
+                                    patentesCamADesc.add(c.getPatente());
+                                }
+                                camionesPorDescargar.setItems(patentesCamADesc);
+                                
+                            break;
+                            default:;
+                                break;
+                        }             
                     }
-                }
-        
+                }                 
             }); 
-          }*/
+        }
+           
+           
+           
+        ///////////////////////////ADMINISTRAR\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+        
+        
+        
 
         
    
         
-        //Mensajes
+        /////////////////////////////Mensajes\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         
         botonNuevoMensaje.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -228,4 +271,14 @@ public class InicioController implements Initializable {
         });
         
     }
+    public static Sucursal getSucursalActual(String nombreSucursal){
+            Sucursal sucActual = null;
+            for(Sucursal s : Empresa.getInstance().getSucursales()){
+                if(nombreSucursal == s.getNombre()){
+                    sucActual = s;
+                }
+            }
+            return sucActual;
+        }
 }
+

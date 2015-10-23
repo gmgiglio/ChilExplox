@@ -66,4 +66,14 @@ public class Main extends Application {
        
     }
     
+    public static Sucursal getSucursalActual(String nombreSucursal){
+            Sucursal sucActual = null;
+            for(Sucursal s : Empresa.getInstance().getSucursales()){
+                if(nombreSucursal == s.getNombre()){
+                    sucActual = s;
+                }
+            }
+            return sucActual;
+    }
+    
 }

@@ -39,9 +39,12 @@ public class Sucursal implements java.io.Serializable{
     }
     
     public void agregarPedido(Pedido p){
-        
-        for(int i = 0; i < this.pedidosPend.size(); i++){
-            if(p.prioridad >= this.pedidosPend.get(i).prioridad) this.pedidosPend.add(i, p);
+        if(pedidosPend.size() == 0) pedidosPend.add(p);
+        else{
+            for(int i = 0; i < pedidosPend.size(); i++){
+
+                if(p.getPrioridad() >= pedidosPend.get(i).getPrioridad()) pedidosPend.add(i, p);
+            }
         }
     }
     
@@ -128,5 +131,12 @@ public class Sucursal implements java.io.Serializable{
         }
     }
     
+    public void agregarCamion(String patente, int capacidad){
+        camionesDisp.add(new Camion(patente, capacidad));
+    }
+    
+    public void agregarCamionPend(String patente, int capacidad){
+        camionesPend.add(new Camion(patente, capacidad));
+    }
     
 }

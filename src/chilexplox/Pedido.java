@@ -67,7 +67,7 @@ public class Pedido extends Servicio implements java.io.Serializable{
     private void setPrioridad(){
         double pr = 0;
         for(Encomienda e : encomiendas){
-            pr += e.prioridad;
+            pr += e.getPrioridad();
         }
         pr /= encomiendas.size();
         prioridad = pr;

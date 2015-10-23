@@ -10,16 +10,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<<<<<<< HEAD
 <FlowPane maxHeight="615.0" prefHeight="615.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chilexplox.front.InicioController">
 
+=======
+<FlowPane prefHeight="980.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chilexplox.front.InicioController">
+>>>>>>> origin/master
    <children>
       <MenuBar fx:id="menuBar" prefHeight="30.0" prefWidth="1080.0" />
-      <TabPane prefHeight="600.0" prefWidth="1080.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="950.0" prefWidth="1080.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Atender">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="200.0">
                      <children>
+<<<<<<< HEAD
                         <SplitPane dividerPositions="0.4684014869888476" prefHeight="564.0" prefWidth="1078.0">
                           <items>
                               <BorderPane prefHeight="200.0" prefWidth="200.0">
@@ -27,6 +32,15 @@
                                     <VBox maxWidth="500.0" minWidth="500.0" BorderPane.alignment="CENTER">
                                        <children>
                                           <HBox prefHeight="100.0" prefWidth="200.0">
+=======
+                        <SplitPane dividerPositions="0.48698884758364314" prefHeight="907.0" prefWidth="1078.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <FlowPane prefHeight="918.0" prefWidth="540.0">
+                                       <children>
+                                          <VBox prefHeight="917.0" prefWidth="539.0">
+>>>>>>> origin/master
                                              <children>
                                                 <BorderPane prefHeight="100.0" prefWidth="150.0">
                                                    <right>
@@ -134,6 +148,7 @@
                                              </children>
                                           </HBox>
                                        </children>
+<<<<<<< HEAD
                                     </VBox>
                                  </center>
                               </BorderPane>
@@ -142,6 +157,12 @@
                                   <AnchorPane fx:id="agregar" minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="522.0" BorderPane.alignment="CENTER" />
                                  </bottom>
                               </BorderPane>
+=======
+                                    </FlowPane>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane id="agregar" minHeight="0.0" minWidth="0.0" prefHeight="905.0" prefWidth="430.0" />
+>>>>>>> origin/master
                           </items>
                         </SplitPane>
                      </children>
@@ -233,7 +254,33 @@
           </Tab>
             <Tab text="Mensajes">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox prefHeight="920.0" prefWidth="1080.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="180.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefWidth="180.0" text="Nuevo Mensaje">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="180.0" text="Buzón de Entrada">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="10.0" layoutY="36.0" mnemonicParsing="false" prefWidth="180.0" text="Enviados">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <AnchorPane prefHeight="200.0" prefWidth="900.0" />
+                           </children>
+                        </HBox>
+                     </children></AnchorPane>
                </content>
             </Tab>
         </tabs>

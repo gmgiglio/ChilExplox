@@ -10,24 +10,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<FlowPane prefHeight="980.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chilexplox.front.InicioController">
+<FlowPane prefHeight="615.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chilexplox.front.InicioController">
 
    <children>
       <MenuBar fx:id="menuBar" prefHeight="30.0" prefWidth="1080.0" />
-      <TabPane prefHeight="950.0" prefWidth="1080.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="600.0" prefWidth="1080.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Atender">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="200.0">
                      <children>
-                        <SplitPane dividerPositions="0.48698884758364314" prefHeight="907.0" prefWidth="1078.0">
+                        <SplitPane dividerPositions="0.48698884758364314" prefHeight="564.0" prefWidth="1078.0">
                           <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="667.0" prefWidth="530.0">
                                  <children>
-                                    <FlowPane prefHeight="918.0" prefWidth="540.0">
+                                    <FlowPane prefHeight="476.0" prefWidth="540.0">
                                        <children>
-                                          <VBox prefHeight="917.0" prefWidth="539.0">
+                                          <VBox prefHeight="564.0" prefWidth="539.0">
                                              <children>
                                                 <HBox prefHeight="100.0" prefWidth="200.0">
                                                    <children>
@@ -141,7 +140,7 @@
                                     </FlowPane>
                                  </children>
                               </AnchorPane>
-                            <AnchorPane fx:id="agregar" minHeight="0.0" minWidth="0.0" prefHeight="905.0" prefWidth="430.0" />
+                            <AnchorPane fx:id="agregar" minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="522.0" />
                           </items>
                         </SplitPane>
                      </children>

@@ -6,16 +6,16 @@
 
 package chilexplox.front;
 
-import chilexplox.Cliente;
-import chilexplox.Empresa;
-import chilexplox.Sucursal;
-import chilexplox.Usuario;
+import chilexplox.*;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,22 +24,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TouchEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.shape.Circle;
+import javafx.scene.control.*;
+import javafx.scene.input.*;
+import javafx.scene.layout.*;
+import javafx.scene.shape.*;
 
 /**
  * FXML Controller class
@@ -61,11 +49,9 @@ public class InicioController implements Initializable {
     private Button agregarEncomienda;
        @FXML
     private TabPane tabs;
-
        @FXML
     private SplitPane split;
-
-
+       @FXML
     private AnchorPane pantallaNuevoMensaje;
        @FXML
     private HBox pantallaBuzonEntrada;
@@ -79,7 +65,9 @@ public class InicioController implements Initializable {
     private Button botonMensajesEnviados;
        @FXML
     private AnchorPane anchorPaneMensajes;
-       
+       @FXML
+    private ListView pedidosPendientes, pedidosCargados, camionesDisponibles, camionesPorDescargar;
+
        @FXML
     private ComboBox comboBoxClientes;
        @FXML
@@ -93,11 +81,23 @@ public class InicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
+<<<<<<< HEAD
         /*Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
+=======
+        Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
+>>>>>>> origin/master
         Empresa.getInstance().agregarSucursal("Las Condes", "Santiago", "Apoquindo 5000");
         Empresa.getInstance().agregarSucursal("Victoria", "Temuco", "Bernardo Ohiggins 4256");
+        Sucursal maipu = Empresa.getInstance().getSucursal("Maipu");
+        Sucursal victoria = Empresa.getInstance().getSucursal("Victoria");
+        Empresa.getInstance().agregarUsuario("Tulio Triviño", "31minutos");
+        maipu.agregarCamion("BDGH34", 3000);
+        maipu.agregarCamionPend("JUHK87", 2500);
+        Usuario tulio = Empresa.getInstance().getUsuarios().get(0);
+        tulio.setSucursalActual(maipu);
+        tulio.crearPedido(victoria);
         
-        Empresa.serializar("data/empresa.ser");*/
+        Empresa.serializar("data/empresa.ser");
         
         Empresa.deserializar("data/empresa.ser");
         List<Sucursal> sucursales = Empresa.getInstance().getSucursales();
@@ -106,6 +106,7 @@ public class InicioController implements Initializable {
        
         List<Cliente> clientes = Empresa.getInstance().getClientes();
         
+        ////////////////////////Inicializar Menú\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         Empresa.getInstance().agregarUsuario("Karl Saleam","112233445");
         actual= Empresa.getInstance().getUsuarios().get(0); ///POR MIENTRAS
         actual.setSucursalActual(sucursales.get(0));
@@ -140,7 +141,11 @@ public class InicioController implements Initializable {
 
         }
         
+<<<<<<< HEAD
       //  cargarNombresClientes();
+=======
+       // cargarNombresClientes();
+>>>>>>> origin/master
         cargarNombresSucursales();
         
         split.setDividerPositions(1);
@@ -160,7 +165,7 @@ public class InicioController implements Initializable {
         
             }); 
           }*/
-        //Atender
+        ///////////////////////////////Atender\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         agregarCliente.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                     
@@ -197,24 +202,57 @@ public class InicioController implements Initializable {
             });
         
          //Tabs
-       /* for(int i=0;i<tabs.getTabs().size();i++)
+        for(int i=0;i<tabs.getTabs().size();i++)
         {
         tabs.getTabs().get(i).setOnSelectionChanged(new EventHandler<Event>() {
                 @Override
                 public void handle (Event e) {
                     Tab t = (Tab)(e.getSource());
                     if(((Tab)(e.getSource())).isSelected()){
-                   
+                        switch(t.getText()){
+                            
+                            case "Administrar":
+                                Sucursal sucActual = getSucursalActual(menuSucursal.getText());
+                                ObservableList idsPedPend = FXCollections.observableArrayList();
+                                ObservableList idsPedCamion = FXCollections.observableArrayList();
+                                ObservableList patentesCamDisp = FXCollections.observableArrayList();
+                                ObservableList patentesCamADesc = FXCollections.observableArrayList();
+                                
+                                for(Pedido p : sucActual.getPedidosPend()){
+                                    idsPedPend.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
+                                }
+                                pedidosPendientes.setItems(idsPedPend);
+                                
+                                for(Camion c : sucActual.getCamionesDisp()){
+                                    patentesCamDisp.add(c.getPatente());
+                                }
+                                camionesDisponibles.setItems(patentesCamDisp);
+                                
+                                for(Camion c : sucActual.getCamionesPend()){
+                                    patentesCamADesc.add(c.getPatente());
+                                }
+                                camionesPorDescargar.setItems(patentesCamADesc);
+                                
+                            break;
+                            default:;
+                                break;
+                        }             
                     }
-                }
-        
+                }                 
             }); 
-          }*/
+        }
+           
+           
+           
+        ///////////////////////////ADMINISTRAR\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+        
+        
+        
 
         
    
         
-        //Mensajes
+        /////////////////////////////Mensajes\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         
         botonNuevoMensaje.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -247,6 +285,15 @@ public class InicioController implements Initializable {
         });
         
     }
+    public static Sucursal getSucursalActual(String nombreSucursal){
+            Sucursal sucActual = null;
+            for(Sucursal s : Empresa.getInstance().getSucursales()){
+                if(nombreSucursal == s.getNombre()){
+                    sucActual = s;
+                }
+            }
+            return sucActual;
+        }
     public void cargarNombresClientes(){
 
             ObservableList nombreClientes = FXCollections.observableArrayList();
@@ -272,3 +319,4 @@ public class InicioController implements Initializable {
             comboBoxSucursales.setPromptText(comboBoxSucursales.getItems().get(0).toString());
     }
 }
+

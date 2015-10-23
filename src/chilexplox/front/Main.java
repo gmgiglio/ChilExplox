@@ -64,10 +64,9 @@ public class Main extends Application {
        
     }
     
+
     @Override
     public void stop(){
        Empresa.serializar("data/empresa.ser");
     }
-
-    
 }

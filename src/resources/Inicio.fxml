@@ -160,7 +160,7 @@
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="920.0" prefWidth="360.0">
                                        <children>
-                                          <ListView prefHeight="920.0" prefWidth="360.0" />
+                                          <ListView fx:id="pedidosPendientes" prefHeight="920.0" prefWidth="360.0" />
                                        </children>
                                     </AnchorPane>
                                 </content>
@@ -171,7 +171,7 @@
                                       <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="920.0" prefWidth="360.0">
                                              <children>
-                                                <ListView prefHeight="920.0" prefWidth="360.0" />
+                                                <ListView fx:id="camionesDisponibles" prefHeight="920.0" prefWidth="360.0" />
                                              </children>
                                           </AnchorPane>
                                       </content>
@@ -180,7 +180,7 @@
                                       <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="460.0" prefWidth="360.0">
                                              <children>
-                                                <ListView prefHeight="420.0" prefWidth="360.0" />
+                                                <ListView fx:id="camionesPorDescargar" prefHeight="420.0" prefWidth="360.0" />
                                              </children>
                                           </AnchorPane>
                                       </content>
@@ -221,7 +221,7 @@
                                                       </AnchorPane>
                                                    </children>
                                                 </HBox>
-                                                <ListView prefHeight="800.0" prefWidth="360.0" />
+                                                <ListView fx:id="pedidosCargados" prefHeight="800.0" prefWidth="360.0" />
                                              </children>
                                           </VBox>
                                        </children>

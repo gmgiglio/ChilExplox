@@ -31,6 +31,13 @@ public abstract class Servicio {
     protected int getCostoEnvio(){
         return this.costoEnvio;
     }
+
+    /**
+     * @return the prioridad
+     */
+    public double getPrioridad() {
+        return prioridad;
+    }
     
     
     

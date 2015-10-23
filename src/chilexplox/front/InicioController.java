@@ -50,14 +50,18 @@ public class InicioController implements Initializable {
      @FXML
     private MenuBar menuBar;
       @FXML
-    private AnchorPane agregar;
+    private AnchorPane agregarPane;
        @FXML
     private Button agregarCliente;
        @FXML
-    private TabPane tabs;
-         @FXML
-    private SplitPane split;
+    private Button agregarEncomienda;
        @FXML
+    private TabPane tabs;
+
+       @FXML
+    private SplitPane split;
+
+
     private AnchorPane pantallaNuevoMensaje;
        @FXML
     private HBox pantallaBuzonEntrada;
@@ -118,8 +122,13 @@ public class InicioController implements Initializable {
                  
             }
         });      
-            
-        }split.setDividerPositions(1);
+
+        }
+        
+        split.setDividerPositions(1);
+
+
+     
         //Tabs
         /*for(int i=0;i<tabs.getTabs().size();i++)
         {
@@ -139,7 +148,24 @@ public class InicioController implements Initializable {
                     
                        try{        
 
-                       agregar.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarCliente.fxml")));
+                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarCliente.fxml")));
+                       split.setDividerPositions(0.4684014869888476);
+                       
+                       }
+                       catch (Exception exc)
+                      {
+                               }
+                     
+                
+                }
+            });
+        
+           agregarEncomienda.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                    
+                       try{        
+
+                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarEncomienda.fxml")));
                        split.setDividerPositions(0.4684014869888476);
                        
                        }
@@ -172,12 +198,17 @@ public class InicioController implements Initializable {
         //Mensajes
         
         botonNuevoMensaje.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {                    
-                try{
-                 anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/Nuevo Mensaje.fxml")));
+            @Override public void handle(ActionEvent e) {
+                    
+                       try{
+                        anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/Nuevo Mensaje.fxml")));
+                        
+                       }
+                       catch (Exception exc)
+                      {
+                               }
                 }
-                catch (Exception exc){} 
-            }
+        
         });
         
         botonBuzonEntrada.setOnAction(new EventHandler<ActionEvent>() {

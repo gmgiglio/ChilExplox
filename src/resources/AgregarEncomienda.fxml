@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxWidth="905.0" prefHeight="918.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.AgregarClienteController">
+<AnchorPane maxWidth="905.0" prefHeight="918.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AgregarEncomiendaController">
    <children>
       <VBox maxWidth="905.0" prefHeight="905.0" prefWidth="567.0">
          <children>
@@ -16,7 +16,7 @@
                   <BorderPane prefHeight="100.0" prefWidth="85.0" />
                   <BorderPane prefHeight="100.0" prefWidth="416.0">
                      <center>
-                        <Text fill="#1770c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Nuevo cliente" BorderPane.alignment="CENTER">
+                        <Text fill="#1770c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Nueva encomienda" BorderPane.alignment="CENTER">
                            <font>
                               <Font size="19.0" />
                            </font>
@@ -29,7 +29,7 @@
                <children>
                   <BorderPane prefHeight="100.0" prefWidth="85.0">
                      <right>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:" BorderPane.alignment="CENTER" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Peso:" BorderPane.alignment="CENTER" />
                      </right>
                   </BorderPane>
                   <BorderPane prefHeight="100.0" prefWidth="416.0">
@@ -43,7 +43,7 @@
                <children>
                   <BorderPane prefHeight="100.0" prefWidth="85.0">
                      <right>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos:" BorderPane.alignment="CENTER" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="volumen:" BorderPane.alignment="CENTER" />
                      </right>
                   </BorderPane>
                   <BorderPane prefHeight="100.0" prefWidth="416.0">
@@ -57,13 +57,27 @@
                <children>
                   <BorderPane prefHeight="100.0" prefWidth="85.0">
                      <right>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Calle:" BorderPane.alignment="CENTER" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prioridad:" BorderPane.alignment="CENTER" />
                      </right>
                   </BorderPane>
                   <BorderPane prefHeight="100.0" prefWidth="416.0">
                      <center>
                         <TextField maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
                      </center>
+                  </BorderPane>
+               </children>
+            </HBox>
+            <HBox maxHeight="50.0" prefHeight="44.0">
+               <children>
+                  <BorderPane prefHeight="44.0" prefWidth="119.0" />
+                  <BorderPane prefHeight="100.0" prefWidth="416.0">
+                     <left>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección de destino" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Text>
+                     </left>
                   </BorderPane>
                </children>
             </HBox>
@@ -126,11 +140,11 @@
             <HBox maxHeight="50.0" prefHeight="43.0">
                <children>
                   <BorderPane prefHeight="100.0" prefWidth="150.0" />
-                  <BorderPane prefHeight="98.0" prefWidth="253.0" />
+                  <BorderPane prefHeight="43.0" prefWidth="460.0" />
                   <BorderPane prefHeight="100.0" prefWidth="381.0">
-                     <center>
-                        <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="112.0" text="Crear Cliente" BorderPane.alignment="CENTER" />
-                     </center>
+                     <left>
+                        <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="141.0" text="Crear Encomienda" BorderPane.alignment="CENTER" />
+                     </left>
                   </BorderPane>
                </children>
             </HBox>

@@ -26,8 +26,8 @@ public class Empresa implements java.io.Serializable {
     //sistema. Este contador corresponde a la prioridad de cada encomienda por defecto.
     private int nroEncomiendas = 0;
     
-    public List<Cliente> clientes = new LinkedList<>();
-    public List<Usuario> usuarios = new LinkedList<>();
+    private List<Cliente> clientes = new LinkedList<>();
+    private List<Usuario> usuarios = new LinkedList<>();
     
     private Empresa() {
     }
@@ -76,6 +76,27 @@ public class Empresa implements java.io.Serializable {
     public static Empresa getInstance() {
         return EmpresaHolder.INSTANCE;
     }
+
+    /**
+     * @return the sucursales
+     */
+    public List<Sucursal> getSucursales() {
+        return sucursales;
+    }
+
+    /**
+     * @return the usuarios
+     */
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    /**
+     * @return the clientes
+     */
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
     
     private static class EmpresaHolder {
         private static Empresa INSTANCE = new Empresa();
@@ -88,12 +109,12 @@ public class Empresa implements java.io.Serializable {
     
     //retorna true si se pudo agregar ( si no existía otra sucursal con el mismo nombre)
     public boolean agregarSucursal(String nombre, String ciudad, String direccion){
-        for(int i = 0; i < this.sucursales.size(); i++){
-            if(sucursales.get(i).getNombre().equals(nombre)){
+        for(int i = 0; i < this.getSucursales().size(); i++){
+            if(getSucursales().get(i).getNombre().equals(nombre)){
                 return false;
             }
         }
-        this.sucursales.add(new Sucursal(nombre, ciudad, direccion));
+        this.getSucursales().add(new Sucursal(nombre, ciudad, direccion));
         return true;
     }
     
@@ -115,9 +136,9 @@ public class Empresa implements java.io.Serializable {
     
     public List<Sucursal> sucursalesEnCiudad(String nombreCiudad){
         List<Sucursal> result = new LinkedList<>();
-        for(int i = 0; i < this.sucursales.size(); i++){
-            if(sucursales.get(i).getCiudad().equals(nombreCiudad)){
-                result.add(this.sucursales.get(i));
+        for(int i = 0; i < this.getSucursales().size(); i++){
+            if(getSucursales().get(i).getCiudad().equals(nombreCiudad)){
+                result.add(this.getSucursales().get(i));
             }
         }
         
@@ -125,9 +146,9 @@ public class Empresa implements java.io.Serializable {
     }
     
     public Sucursal getSucursal(String nombre){
-        for(int i = 0; i < this.sucursales.size(); i++){
-            if(sucursales.get(i).getNombre().equals(nombre)){
-                return sucursales.get(i);
+        for(int i = 0; i < this.getSucursales().size(); i++){
+            if(getSucursales().get(i).getNombre().equals(nombre)){
+                return getSucursales().get(i);
             }
         }
         return null;

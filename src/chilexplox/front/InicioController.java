@@ -205,10 +205,8 @@ public class InicioController implements Initializable {
                         
                        }
                        catch (Exception exc)
-                      {
-                               }
-                }
-        
+                      {}
+            }
         });
         
         botonBuzonEntrada.setOnAction(new EventHandler<ActionEvent>() {

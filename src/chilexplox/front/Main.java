@@ -46,7 +46,7 @@ public class Main extends Application {
    
     
 
-    
+    public static Usuario usuarioActual = Empresa.getInstance().getUsuarios().get(0);
     
     @Override
     public void start(Stage primaryStage) throws Exception{

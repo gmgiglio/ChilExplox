@@ -28,6 +28,8 @@ public class Empresa implements java.io.Serializable {
     
     public List<Cliente> clientes = new LinkedList<>();
     public List<Usuario> usuarios = new LinkedList<>();
+    //tiempo limite para mandar para pedidos alta prioridad, 3 dias default
+    private long tiempoLimite = 3*24*60*60*1000; 
     
     private Empresa() {
     }
@@ -71,6 +73,14 @@ public class Empresa implements java.io.Serializable {
         
     }
     
+    public void setTiempoLimite(long milisegundos){
+        tiempoLimite = milisegundos;
+    }
+    
+    public long getTiempoLimite(){
+        return tiempoLimite;
+    }
+    }
     //basado en tutorial http://www.tutorialspoint.com/java/java_serialization.htm
     
     public static Empresa getInstance() {

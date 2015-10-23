@@ -52,7 +52,6 @@ public class Main extends Application {
        
         Parent root = FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"));
         Scene scene = new Scene(root,1080,980);
-      
         primaryStage.setTitle("ChilExplox");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);

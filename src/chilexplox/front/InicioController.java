@@ -26,6 +26,11 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TouchEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.shape.Circle;
 
 /**
  * FXML Controller class
@@ -41,6 +46,7 @@ public class InicioController implements Initializable {
     private MenuBar menuBar;
       @FXML
     private AnchorPane agregar;
+      
       @FXML
     private Button enviarMensaje;
       @FXML
@@ -55,6 +61,8 @@ public class InicioController implements Initializable {
     private AnchorPane pantallaNuevo;
       @FXML
     private TabPane tabs;
+       @FXML
+    private Button agregarCliente;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -70,13 +78,21 @@ public class InicioController implements Initializable {
         menuBar.getMenus().add(menuUsuario);
         Menu menuSucursal = new Menu(sucursales.get(0).getNombre());
         
-        try{
-        
-        agregar.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarCliente.fxml")));
-        }
-        catch(Exception e) {
-        }
-        
+        agregarCliente.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                    
+                       try{        
+
+                    agregar.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarCliente.fxml")));
+                       }
+                       catch (Exception exc)
+                      {
+                               }
+                     
+                
+                }
+            });
+   
         
         for(int j=0;j<sucursales.size();j++)
         {
@@ -103,6 +119,5 @@ public class InicioController implements Initializable {
         }
           
         
-    }    
-    
+    }
 }

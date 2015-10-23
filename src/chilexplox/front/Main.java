@@ -44,14 +44,6 @@ import javafx.stage.WindowEvent;
 
 public class Main extends Application {
     
-   
-    
-        
-    @FXML
-    public void exitApplication(ActionEvent event) {
-        Platform.exit();
-    }
-    
     @Override
     public void start(Stage primaryStage) throws Exception{
        

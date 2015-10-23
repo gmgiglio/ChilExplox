@@ -86,6 +86,8 @@ public class InicioController implements Initializable {
     private ComboBox comboBoxSucursales;
        @FXML
     private ComboBox comboBoxEncomiendas;
+      
+    Usuario actual; 
        
     
     @Override
@@ -97,7 +99,7 @@ public class InicioController implements Initializable {
         
         Empresa.serializar("data/empresa.ser");*/
         
-       Empresa.deserializar("data/empresa.ser");
+        Empresa.deserializar("data/empresa.ser");
         List<Sucursal> sucursales = Empresa.getInstance().getSucursales();
         
         List<Usuario> usuarios = Empresa.getInstance().getUsuarios();
@@ -105,9 +107,9 @@ public class InicioController implements Initializable {
         List<Cliente> clientes = Empresa.getInstance().getClientes();
         
         Empresa.getInstance().agregarUsuario("Karl Saleam","112233445");
-        Usuario u = Empresa.getInstance().getUsuarios().get(0); ///POR MIENTRAS
+        actual= Empresa.getInstance().getUsuarios().get(0); ///POR MIENTRAS
         //Inicializar Menú
-        Menu menuUsuario = new Menu(u.getNombreUsuario());
+        Menu menuUsuario = new Menu(actual.getNombreUsuario());
         menuUsuario.getItems().add(new MenuItem("Cerrar sesión"));
         menuBar.getMenus().add(menuUsuario);
         Menu menuSucursal = new Menu(sucursales.get(0).getNombre());
@@ -138,6 +140,7 @@ public class InicioController implements Initializable {
         }
         
         cargarNombresClientes();
+        cargarNombresSucursales();
         
         split.setDividerPositions(1);
 
@@ -254,5 +257,17 @@ public class InicioController implements Initializable {
             comboBoxClientes.getItems().setAll(nombreClientes);
             comboBoxClientes.setPromptText(comboBoxClientes.getItems().get(0).toString());
 
+    }
+     public void cargarNombresSucursales(){
+
+            ObservableList nombreSucursales = FXCollections.observableArrayList();
+            for (int i=0; i<  Empresa.getInstance().getSucursales().size();i++)
+            {
+                if(Empresa.getInstance().getSucursales().get(i).getNombre().equals(actual))
+                nombreSucursales.add(Empresa.getInstance().getSucursales().get(i).getNombre());
+            }
+            
+            comboBoxSucursales.getItems().setAll(nombreSucursales);
+            comboBoxSucursales.setPromptText(comboBoxSucursales.getItems().get(0).toString());
     }
 }

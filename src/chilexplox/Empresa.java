@@ -28,10 +28,7 @@ public class Empresa implements java.io.Serializable {
     
     private List<Cliente> clientes = new LinkedList<>();
     private List<Usuario> usuarios = new LinkedList<>();
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
     //tiempo limite para mandar para pedidos alta prioridad, 3 dias default
     private long tiempoLimite = 3*24*60*60*1000; 
 

@@ -8,48 +8,26 @@ package chilexplox.front;
 
 import chilexplox.*;
 import java.net.URL;
-<<<<<<< HEAD
 import java.util.LinkedList;
-=======
 import java.util.Collection;
->>>>>>> 23f0605c76ee99c955652d2c571645034c254a4a
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-<<<<<<< HEAD
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
-=======
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
->>>>>>> 23f0605c76ee99c955652d2c571645034c254a4a
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-<<<<<<< HEAD
-import javafx.scene.control.ListView;
-=======
-import javafx.scene.control.ComboBox;
->>>>>>> 23f0605c76ee99c955652d2c571645034c254a4a
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TouchEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.shape.Circle;
+import javafx.scene.control.*;
+import javafx.scene.input.*;
+import javafx.scene.layout.*;
+import javafx.scene.shape.*;
 
 /**
  * FXML Controller class
@@ -89,10 +67,7 @@ public class InicioController implements Initializable {
     private AnchorPane anchorPaneMensajes;
        @FXML
     private ListView pedidosPendientes, pedidosCargados, camionesDisponibles, camionesPorDescargar;
-       
-<<<<<<< HEAD
-    //public static 
-=======
+
        @FXML
     private ComboBox comboBoxClientes;
        @FXML
@@ -101,13 +76,12 @@ public class InicioController implements Initializable {
     private ComboBox comboBoxEncomiendas;
       
     Usuario actual; 
->>>>>>> 23f0605c76ee99c955652d2c571645034c254a4a
        
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
-       /*Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
+        Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
         Empresa.getInstance().agregarSucursal("Las Condes", "Santiago", "Apoquindo 5000");
         Empresa.getInstance().agregarSucursal("Victoria", "Temuco", "Bernardo Ohiggins 4256");
         Sucursal maipu = Empresa.getInstance().getSucursal("Maipu");
@@ -119,7 +93,7 @@ public class InicioController implements Initializable {
         tulio.setSucursalActual(maipu);
         tulio.crearPedido(victoria);
         
-        Empresa.serializar("data/empresa.ser");*/
+        Empresa.serializar("data/empresa.ser");
         
         Empresa.deserializar("data/empresa.ser");
         List<Sucursal> sucursales = Empresa.getInstance().getSucursales();
@@ -128,15 +102,11 @@ public class InicioController implements Initializable {
        
         List<Cliente> clientes = Empresa.getInstance().getClientes();
         
-<<<<<<< HEAD
         ////////////////////////Inicializar Menú\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-        Menu menuUsuario = new Menu("Carlos Salamé");
-=======
         Empresa.getInstance().agregarUsuario("Karl Saleam","112233445");
         actual= Empresa.getInstance().getUsuarios().get(0); ///POR MIENTRAS
         //Inicializar Menú
         Menu menuUsuario = new Menu(actual.getNombreUsuario());
->>>>>>> 23f0605c76ee99c955652d2c571645034c254a4a
         menuUsuario.getItems().add(new MenuItem("Cerrar sesión"));
         menuBar.getMenus().add(menuUsuario);
         Menu menuSucursal = new Menu(sucursales.get(0).getNombre());
@@ -166,7 +136,7 @@ public class InicioController implements Initializable {
 
         }
         
-        cargarNombresClientes();
+       // cargarNombresClientes();
         cargarNombresSucursales();
         
         split.setDividerPositions(1);
@@ -306,7 +276,6 @@ public class InicioController implements Initializable {
         });
         
     }
-<<<<<<< HEAD
     public static Sucursal getSucursalActual(String nombreSucursal){
             Sucursal sucActual = null;
             for(Sucursal s : Empresa.getInstance().getSucursales()){
@@ -316,7 +285,6 @@ public class InicioController implements Initializable {
             }
             return sucActual;
         }
-=======
     public void cargarNombresClientes(){
 
             ObservableList nombreClientes = FXCollections.observableArrayList();
@@ -334,13 +302,12 @@ public class InicioController implements Initializable {
             ObservableList nombreSucursales = FXCollections.observableArrayList();
             for (int i=0; i<  Empresa.getInstance().getSucursales().size();i++)
             {
-                if(Empresa.getInstance().getSucursales().get(i).getNombre().equals(actual))
+                if(!Empresa.getInstance().getSucursales().get(i).getNombre().equals(actual.getSucursalActual().getNombre()))
                 nombreSucursales.add(Empresa.getInstance().getSucursales().get(i).getNombre());
             }
             
             comboBoxSucursales.getItems().setAll(nombreSucursales);
             comboBoxSucursales.setPromptText(comboBoxSucursales.getItems().get(0).toString());
     }
->>>>>>> 23f0605c76ee99c955652d2c571645034c254a4a
 }
 

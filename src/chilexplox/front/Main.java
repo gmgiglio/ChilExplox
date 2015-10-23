@@ -64,22 +64,9 @@ public class Main extends Application {
        
     }
     
-<<<<<<< HEAD
-    public static Sucursal getSucursalActual(String nombreSucursal){
-            Sucursal sucActual = null;
-            for(Sucursal s : Empresa.getInstance().getSucursales()){
-                if(nombreSucursal == s.getNombre()){
-                    sucActual = s;
-                }
-            }
-            return sucActual;
-    }
-=======
+
     @Override
     public void stop(){
        Empresa.serializar("data/empresa.ser");
     }
-
->>>>>>> 23f0605c76ee99c955652d2c571645034c254a4a
-    
 }

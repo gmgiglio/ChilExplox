@@ -31,92 +31,6 @@
                                        <children>
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
-<<<<<<< HEAD
-                                                <HBox prefHeight="100.0" prefWidth="200.0">
-                                                   <children>
-                                                      <BorderPane prefHeight="100.0" prefWidth="150.0">
-                                                         <right>
-                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente:" BorderPane.alignment="CENTER" />
-                                                         </right>
-                                                      </BorderPane>
-                                                      <BorderPane prefHeight="98.0" prefWidth="253.0">
-                                                         <center>
-                                                            <ChoiceBox prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
-                                                         </center>
-                                                      </BorderPane>
-                                                      <BorderPane prefHeight="100.0" prefWidth="82.0">
-                                                         <center>
-                                                            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
-                                                               <children>
-                                                                  <Text fill="WHITE" layoutX="7.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
-                                                                     <font>
-                                                                        <Font size="36.0" />
-                                                                     </font>
-                                                                  </Text>
-                                                                  <Button layoutX="-11.0" layoutY="5.0" mnemonicParsing="false" opacity="0.98" text="Button">
-                                                                     <graphic>
-                                                                        <Circle id="agregarCliente" fill="DODGERBLUE" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
-                                                                     </graphic>
-                                                                  </Button>
-                                                               </children>
-                                                            </Pane>
-                                                         </center>
-                                                      </BorderPane>
-                                                   </children>
-                                                </HBox>
-                                                <HBox prefHeight="100.0" prefWidth="200.0">
-                                                   <children>
-                                                      <BorderPane prefHeight="100.0" prefWidth="150.0">
-                                                         <right>
-                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sucursal de destino:" wrappingWidth="124.34986877441406" BorderPane.alignment="CENTER" />
-                                                         </right>
-                                                      </BorderPane>
-                                                      <BorderPane prefHeight="98.0" prefWidth="253.0">
-                                                         <center>
-                                                            <ChoiceBox prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
-                                                         </center>
-                                                      </BorderPane>
-                                                   </children>
-                                                </HBox>
-                                                <HBox prefHeight="100.0" prefWidth="200.0">
-                                                   <children>
-                                                      <BorderPane prefHeight="100.0" prefWidth="150.0">
-                                                         <right>
-                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Encomiendas:" BorderPane.alignment="CENTER" />
-                                                         </right>
-                                                      </BorderPane>
-                                                      <BorderPane prefHeight="98.0" prefWidth="253.0">
-                                                         <center>
-                                                            <ChoiceBox prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
-                                                         </center>
-                                                      </BorderPane>
-                                                      <BorderPane prefHeight="100.0" prefWidth="82.0">
-                                                         <center>
-                                                            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
-                                                               <children>
-                                                                  <Circle id="agregarPedido" fill="DODGERBLUE" layoutX="18.0" layoutY="18.0" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                                  <Text fill="WHITE" layoutX="7.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
-                                                                     <font>
-                                                                        <Font size="36.0" />
-                                                                     </font>
-                                                                  </Text>
-                                                               </children>
-                                                            </Pane>
-                                                         </center>
-                                                      </BorderPane>
-                                                   </children>
-                                                </HBox>
-                                                <HBox prefHeight="100.0" prefWidth="200.0">
-                                                   <children>
-                                                      <BorderPane prefHeight="100.0" prefWidth="150.0">
-                                                         <right>
-                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Presupuesto:" wrappingWidth="80.66820526123047" BorderPane.alignment="CENTER" />
-                                                         </right>
-                                                      </BorderPane>
-                                                      <BorderPane prefHeight="98.0" prefWidth="253.0">
-                                                         <center>
-                                                            <Text fill="#1770c3" strokeType="OUTSIDE" strokeWidth="0.0" text="12.340" wrappingWidth="83.30058288574219" BorderPane.alignment="CENTER_LEFT">
-=======
                                                 <BorderPane prefHeight="100.0" prefWidth="150.0">
                                                    <right>
                                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente:" BorderPane.alignment="CENTER" />
@@ -133,7 +47,6 @@
                                                          <children>
                                                             <Circle centerX="18.0" centerY="18.0" fill="DODGERBLUE" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
                                                             <Text fill="WHITE" layoutX="7.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
->>>>>>> e4ca61db7ed2bd0081b8a6c29f13d005c329857c
                                                                <font>
                                                                   <Font size="36.0" />
                                                                </font>

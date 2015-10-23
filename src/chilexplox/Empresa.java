@@ -26,8 +26,15 @@ public class Empresa implements java.io.Serializable {
     //sistema. Este contador corresponde a la prioridad de cada encomienda por defecto.
     private int nroEncomiendas = 0;
     
+<<<<<<< HEAD
     private List<Cliente> clientes = new LinkedList<>();
     private List<Usuario> usuarios = new LinkedList<>();
+=======
+    public List<Cliente> clientes = new LinkedList<>();
+    public List<Usuario> usuarios = new LinkedList<>();
+    //tiempo limite para mandar para pedidos alta prioridad, 3 dias default
+    private long tiempoLimite = 3*24*60*60*1000; 
+>>>>>>> origin/master
     
     private Empresa() {
     }
@@ -71,6 +78,14 @@ public class Empresa implements java.io.Serializable {
         
     }
     
+    public void setTiempoLimite(long milisegundos){
+        tiempoLimite = milisegundos;
+    }
+    
+    public long getTiempoLimite(){
+        return tiempoLimite;
+    }
+    }
     //basado en tutorial http://www.tutorialspoint.com/java/java_serialization.htm
     
     public static Empresa getInstance() {

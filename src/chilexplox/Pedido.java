@@ -6,6 +6,7 @@
 package chilexplox;
 import java.util.List;
 import java.util.LinkedList;
+import java.util.Date;
 /**
  *
  * @author carlossalame
@@ -20,6 +21,7 @@ public class Pedido extends Servicio implements java.io.Serializable{
     private Cliente cliente;
     private Estado estado;
     private boolean abierto; //establece si el pedido esta abierto a seguir agregandole encomiendas
+    private Date tiempoCierre; //el momento en el que se cierra el pedido y empieza a correr para temas de prioridad
             
     public Pedido(Sucursal sucOrigen, Sucursal sucDestino, Cliente cliente){
         Empresa.getInstance().nuevoPedido();
@@ -33,21 +35,17 @@ public class Pedido extends Servicio implements java.io.Serializable{
         this.cliente = cliente;
         this.estado = Estado.En_origen;
         abierto = true;
+        
+        
     }
     
     public boolean getAbierto(){ return this.abierto;}
-    
-    
-    public boolean cerrarPedido(Cliente cliente){
-        this.cliente = cliente;
-        abierto = false;
-        return true;
-    }
     
     //devuelve true si se pudo cerrar el pedido (si estan asignados los datos del cliente) y false de lo contrario
     public boolean cerrarPedido(){
         if (cliente != null){
             abierto = false;
+            tiempoCierre = new Date();
             return true;
         }
         else {
@@ -57,6 +55,12 @@ public class Pedido extends Servicio implements java.io.Serializable{
     
     public Sucursal getSucDestino(){
         return sucDestino;
+    }
+    
+    //diferencia de tiempo en milisegundos
+    public long getTiempoTranscurrido(){
+        Date tpoActual = new Date();
+        return tpoActual.getTime() - tiempoCierre.getTime();
     }
     
     //La prioridad del pedido es igual al promedio de las prioridades de todas sus encomiendas

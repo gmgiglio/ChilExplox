@@ -81,11 +81,9 @@ public class InicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
-<<<<<<< HEAD
-        /*Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
-=======
+
         Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
->>>>>>> origin/master
+        Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
         Empresa.getInstance().agregarSucursal("Las Condes", "Santiago", "Apoquindo 5000");
         Empresa.getInstance().agregarSucursal("Victoria", "Temuco", "Bernardo Ohiggins 4256");
         Sucursal maipu = Empresa.getInstance().getSucursal("Maipu");
@@ -140,12 +138,8 @@ public class InicioController implements Initializable {
         });      
 
         }
-        
-<<<<<<< HEAD
-      //  cargarNombresClientes();
-=======
        // cargarNombresClientes();
->>>>>>> origin/master
+
         cargarNombresSucursales();
         
         split.setDividerPositions(1);

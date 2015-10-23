@@ -56,6 +56,25 @@
                                                 </BorderPane>
                                              </children>
                                           </HBox>
+                                          <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <BorderPane prefHeight="93.0" prefWidth="237.0">
+                                                   <right>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID Pedido:" textAlignment="RIGHT" wrappingWidth="61.90853500366211" BorderPane.alignment="CENTER" />
+                                                   </right>
+                                                </BorderPane>
+                                                <BorderPane prefHeight="98.0" prefWidth="253.0">
+                                                   <center>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Haga clic en crear pedido" BorderPane.alignment="CENTER" />
+                                                   </center>
+                                                </BorderPane>
+                                                <BorderPane prefHeight="93.0" prefWidth="265.0">
+                                                   <left>
+                                                      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="132.0" text="Crear Pedido" BorderPane.alignment="CENTER" />
+                                                   </left>
+                                                </BorderPane>
+                                             </children>
+                                          </HBox>
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
                                                 <BorderPane prefHeight="100.0" prefWidth="150.0">
@@ -63,10 +82,13 @@
                                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sucursal de destino:" wrappingWidth="124.34986877441406" BorderPane.alignment="CENTER" />
                                                    </right>
                                                 </BorderPane>
-                                                <BorderPane prefHeight="98.0" prefWidth="253.0">
+                                                <BorderPane prefHeight="94.0" prefWidth="302.0">
                                                    <center>
-                                                      <ComboBox fx:id="comboBoxSucursales"  prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER" />
                                                    </center>
+                                                   <right>
+                                                      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="132.0" text="Modificar" BorderPane.alignment="CENTER" />
+                                                   </right>
                                                 </BorderPane>
                                              </children>
                                           </HBox>
@@ -79,7 +101,7 @@
                                                 </BorderPane>
                                                 <BorderPane prefHeight="98.0" prefWidth="253.0">
                                                    <center>
-                                                      <ComboBox fx:id="comboBoxEncomiendas" prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
+                                                      <ComboBox id="cbe" fx:id="comboBoxEncomiendas" prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
                                                    </center>
                                                 </BorderPane>
                                                 <BorderPane prefHeight="100.0" prefWidth="82.0">
@@ -108,7 +130,7 @@
                                                 </BorderPane>
                                                 <BorderPane prefHeight="98.0" prefWidth="253.0">
                                                    <center>
-                                                      <Text fill="#1770c3" strokeType="OUTSIDE" strokeWidth="0.0" text="12.340" wrappingWidth="83.30058288574219" BorderPane.alignment="CENTER_LEFT">
+                                                      <Text fill="#1770c3" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="83.30058288574219" BorderPane.alignment="CENTER_LEFT">
                                                          <font>
                                                             <Font size="25.0" />
                                                          </font>
@@ -140,9 +162,9 @@
                                  </center>
                               </BorderPane>
                               <BorderPane prefHeight="200.0" prefWidth="200.0">
-                                 <bottom>
+                                 <center>
                                   <AnchorPane fx:id="agregarPane" minHeight="0.0" minWidth="0.0" prefHeight="573.0" prefWidth="568.0" BorderPane.alignment="CENTER" />
-                                 </bottom>
+                                 </center>
                               </BorderPane>
                           </items>
                         </SplitPane>

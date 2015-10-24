@@ -76,22 +76,28 @@ public class InicioController implements Initializable {
        @FXML
     private ComboBox comboBoxEncomiendas;
       
-    Usuario actual; 
+    Usuario actual;
        
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
+<<<<<<< HEAD
         /*Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
+=======
+>>>>>>> origin/master
 
         Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
         Empresa.getInstance().agregarSucursal("Las Condes", "Santiago", "Apoquindo 5000");
         Empresa.getInstance().agregarSucursal("Victoria", "Temuco", "Bernardo Ohiggins 4256");
+        Empresa.getInstance().agregarCliente("Leo", "Las Raíces 1172", "7778899");
+        Cliente leo = Empresa.getInstance().getClientes().get(0);
         Sucursal maipu = Empresa.getInstance().getSucursal("Maipu");
         Sucursal victoria = Empresa.getInstance().getSucursal("Victoria");
         Empresa.getInstance().agregarUsuario("Tulio Triviño", "31minutos");
         maipu.agregarCamion("BDGH34", 3000);
         maipu.agregarCamionPend("JUHK87", 2500);
+        maipu.getCamionesDisp().get(0).cargarPedido(new Pedido(maipu, victoria, leo));
         Usuario tulio = Empresa.getInstance().getUsuarios().get(0);
         tulio.setSucursalActual(maipu);
         tulio.crearPedido(victoria);
@@ -119,6 +125,7 @@ public class InicioController implements Initializable {
         {
                 if(j!=0)
                 menuSucursal.getItems().add(new MenuItem(sucursales.get(j).getNombre()));
+                
           
         }
         
@@ -134,14 +141,22 @@ public class InicioController implements Initializable {
                String actual = menuSucursal.getText();
                item.setText(actual);
                menuSucursal.setText(presionado);
-                 
+               Main.getUsuarioActual().setSucursalActual(Empresa.getInstance().getSucursal(presionado));
+               actualizarPestanaAdm();
             }
         });      
 
         }
+<<<<<<< HEAD
        // cargarNombresClientes();
 
         
+=======
+        
+     // cargarNombresClientes();
+     // cargarNombresClientes();
+        cargarNombresSucursales();
+>>>>>>> origin/master
         
         split.setDividerPositions(1);
 
@@ -227,29 +242,34 @@ public class InicioController implements Initializable {
                     if(((Tab)(e.getSource())).isSelected()){
                         switch(t.getText()){
                             
+                            case "Atender":
+                                break;
+                            
                             case "Administrar":
-                                Sucursal sucActual = getSucursalActual(menuSucursal.getText());
-                                ObservableList idsPedPend = FXCollections.observableArrayList();
-                                ObservableList idsPedCamion = FXCollections.observableArrayList();
-                                ObservableList patentesCamDisp = FXCollections.observableArrayList();
-                                ObservableList patentesCamADesc = FXCollections.observableArrayList();
+                                actualizarPestanaAdm();
                                 
-                                for(Pedido p : sucActual.getPedidosPend()){
-                                    idsPedPend.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
-                                }
-                                pedidosPendientes.setItems(idsPedPend);
+                                camionesDisponibles.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                    @Override
+                                    public void handle(MouseEvent event) {
+                                        Camion camionSelec = null;
+                                        String patenteCamionSelec = (String)camionesDisponibles.getSelectionModel().getSelectedItem();
+                                        ObservableList idsPedCamion = FXCollections.observableArrayList();
+                                        Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
+                                        for(Camion c : sucActual.getCamionesDisp()){
+                                            if(c.getPatente()==patenteCamionSelec) camionSelec = c;
+                                        }
+                                        for(Pedido p : camionSelec.getPedidos()){
+                                            idsPedCamion.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
+                                        }
+                                        pedidosCargados.setItems(idsPedCamion);
+                                    }
+                                });
                                 
-                                for(Camion c : sucActual.getCamionesDisp()){
-                                    patentesCamDisp.add(c.getPatente());
-                                }
-                                camionesDisponibles.setItems(patentesCamDisp);
-                                
-                                for(Camion c : sucActual.getCamionesPend()){
-                                    patentesCamADesc.add(c.getPatente());
-                                }
-                                camionesPorDescargar.setItems(patentesCamADesc);
                                 
                             break;
+                                
+                            case "Mensajes":
+                                    break;
                             default:;
                                 break;
                         }             
@@ -301,15 +321,6 @@ public class InicioController implements Initializable {
         });
         
     }
-    public static Sucursal getSucursalActual(String nombreSucursal){
-            Sucursal sucActual = null;
-            for(Sucursal s : Empresa.getInstance().getSucursales()){
-                if(nombreSucursal == s.getNombre()){
-                    sucActual = s;
-                }
-            }
-            return sucActual;
-        }
     public void cargarNombresClientes(){
 
             ObservableList nombreClientes = FXCollections.observableArrayList();
@@ -322,6 +333,43 @@ public class InicioController implements Initializable {
             comboBoxClientes.setPromptText(comboBoxClientes.getItems().get(0).toString());
 
     }
+<<<<<<< HEAD
      
+=======
+     public void cargarNombresSucursales(){
+
+            ObservableList nombreSucursales = FXCollections.observableArrayList();
+            for (int i=0; i<  Empresa.getInstance().getSucursales().size();i++)
+            {
+                if(!Empresa.getInstance().getSucursales().get(i).getNombre().equals(actual.getSucursalActual().getNombre()))
+                nombreSucursales.add(Empresa.getInstance().getSucursales().get(i).getNombre());
+            }
+            
+            comboBoxSucursales.getItems().setAll(nombreSucursales);
+            comboBoxSucursales.setPromptText(comboBoxSucursales.getItems().get(0).toString());
+    }
+     
+     public void actualizarPestanaAdm(){
+         Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
+         ObservableList idsPedPend = FXCollections.observableArrayList();
+         ObservableList patentesCamDisp = FXCollections.observableArrayList();
+         ObservableList patentesCamADesc = FXCollections.observableArrayList();
+         
+         for(Pedido p : sucActual.getPedidosPend()){
+             idsPedPend.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
+         }
+         pedidosPendientes.setItems(idsPedPend);
+         
+         for(Camion c : sucActual.getCamionesDisp()){
+             patentesCamDisp.add(c.getPatente());
+         }
+         camionesDisponibles.setItems(patentesCamDisp);
+         
+         for(Camion c : sucActual.getCamionesPend()){
+             patentesCamADesc.add(c.getPatente());
+         }
+         camionesPorDescargar.setItems(patentesCamADesc);
+     }
+>>>>>>> origin/master
 }
 

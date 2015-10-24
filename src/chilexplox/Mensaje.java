@@ -24,4 +24,8 @@ public class Mensaje implements java.io.Serializable {
     public void enviar(Sucursal destino){
         destino.recibeMensaje(this);
     }
+    
+    public String getTexto(){
+        return mensaje;
+    }
 }

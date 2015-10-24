@@ -176,9 +176,9 @@ public class Empresa implements java.io.Serializable {
     }
     
     public Sucursal getSucursal(String nombre){
-        for(int i = 0; i < this.getSucursales().size(); i++){
-            if(getSucursales().get(i).getNombre().equals(nombre)){
-                return getSucursales().get(i);
+        for(int i = 0; i < sucursales.size(); i++){
+            if(sucursales.get(i).getNombre().equals(nombre)){
+                return sucursales.get(i);
             }
         }
         return null;

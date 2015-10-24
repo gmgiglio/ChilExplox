@@ -255,6 +255,7 @@ public class InicioController implements Initializable {
         ///////////////////////////ADMINISTRAR\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         // set up Dnd in both directions
         
+        //Fuente: https://bugs.openjdk.java.net/browse/JDK-8094227
         EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 ListView<String> list = (ListView) event.getSource();

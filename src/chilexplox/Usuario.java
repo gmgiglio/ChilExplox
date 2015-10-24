@@ -29,8 +29,8 @@ public class Usuario implements java.io.Serializable {
     }
     
     public Pedido crearPedido(Sucursal sucDestino){
-        Pedido p = new Pedido(getSucursalActual(), sucDestino, null);
-        getSucursalActual().agregarPedido(p);
+        Pedido p = new Pedido(sucursalActual, sucDestino, null);
+        sucursalActual.agregarPedido(p);
         return p;
     }
     

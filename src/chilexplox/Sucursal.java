@@ -30,7 +30,7 @@ public class Sucursal implements java.io.Serializable{
     //Pedidos confirmados con informacion incorrecta
     private List<Pedido> pedidosEquivocados = new LinkedList<>();
     
-    private Stack<Mensaje> buzonMensajes;
+    private Stack<Mensaje> buzonMensajes = new Stack<>();
     
     public Sucursal(String nombre, String ciudad, String direccion){
         this.nombre = nombre;
@@ -40,10 +40,14 @@ public class Sucursal implements java.io.Serializable{
     
     public void agregarPedido(Pedido p){
         if(pedidosPend.size() == 0) pedidosPend.add(p);
-        else{
+        else{   
             for(int i = 0; i < pedidosPend.size(); i++){
 
-                if(p.getPrioridad() >= pedidosPend.get(i).getPrioridad()) pedidosPend.add(i, p);
+                if(p.getPrioridad() >= pedidosPend.get(i).getPrioridad()) {
+                    pedidosPend.add(i, p);
+                    break;
+                }
+                
             }
         }
     }
@@ -139,4 +143,7 @@ public class Sucursal implements java.io.Serializable{
         camionesPend.add(new Camion(patente, capacidad));
     }
     
+    public List<Mensaje> getMensajesEnBuzon(){
+        return new LinkedList<>(this.buzonMensajes);
+    }   
 }

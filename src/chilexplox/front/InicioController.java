@@ -49,15 +49,14 @@ public class InicioController implements Initializable {
     private Button agregarCliente;
        @FXML
     private Button agregarEncomienda;
-<<<<<<< HEAD
+
         @FXML
     private Button crearPedido;
       @FXML
     private Button cerrarPedido;
          @FXML
     private Button modificar;
-=======
->>>>>>> origin/master
+
        @FXML
     private TabPane tabs;
        @FXML
@@ -91,7 +90,7 @@ public class InicioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
    
 
-/*        Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
+   Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
         Empresa.getInstance().agregarSucursal("Las Condes", "Santiago", "Apoquindo 5000");
         Empresa.getInstance().agregarSucursal("Victoria", "Temuco", "Bernardo Ohiggins 4256");
         Empresa.getInstance().agregarCliente("Leo", "Las Raíces 1172", "7778899");
@@ -151,16 +150,7 @@ public class InicioController implements Initializable {
         });      
 
         }
-        
-<<<<<<< HEAD
       cargarNombresClientes();
-     // cargarNombresClientes();
-       
-=======
-     // cargarNombresClientes();
-     // cargarNombresClientes();
-        cargarNombresSucursales();
->>>>>>> origin/master
         
         split.setDividerPositions(1);
 
@@ -395,10 +385,7 @@ public class InicioController implements Initializable {
             comboBoxClientes.setPromptText(comboBoxClientes.getItems().get(0).toString());
 
     }
-<<<<<<< HEAD
-=======
-     public void cargarNombresSucursales(){
->>>>>>> origin/master
+
 
      public void actualizarPestanaAdm(){
          Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
@@ -421,7 +408,7 @@ public class InicioController implements Initializable {
          }
          camionesPorDescargar.setItems(patentesCamADesc);
      }
-<<<<<<< HEAD
+
      public void limpiarAtender(){
      
          crearPedido.setVisible(true);
@@ -439,7 +426,6 @@ public class InicioController implements Initializable {
         
      }
 
-=======
->>>>>>> origin/master
+
 }
 

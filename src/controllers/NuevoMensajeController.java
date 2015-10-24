@@ -6,10 +6,6 @@
 package controllers;
 
 import chilexplox.*;
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 import chilexplox.front.Main;
 import java.net.URL;
 import java.util.ResourceBundle;

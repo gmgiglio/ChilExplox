@@ -84,11 +84,8 @@
                                                 </BorderPane>
                                                 <BorderPane prefHeight="94.0" prefWidth="302.0">
                                                    <center>
-<<<<<<< HEAD
                                                       <ComboBox fx:id="comboBoxSucursales" prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
-=======
                                                       <Text id="stext" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="153.0" BorderPane.alignment="CENTER" />
->>>>>>> 485f22169dc76b9a242cdaadc0bcd64d34bb6493
                                                    </center>
                                                    <right>
                                                       <Button fx:id="modificar" mnemonicParsing="false" prefHeight="26.0" prefWidth="132.0" text="Modificar" visible="false" BorderPane.alignment="CENTER" />

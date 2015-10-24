@@ -10,11 +10,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<FlowPane maxHeight="615.0" prefHeight="615.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chilexplox.front.InicioController">
+<FlowPane maxHeight="570.0" prefHeight="570.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chilexplox.front.InicioController">
 
    <children>
       <MenuBar fx:id="menuBar" prefHeight="30.0" prefWidth="1080.0" />
-      <TabPane fx:id="tabs" prefHeight="950.0" prefWidth="1080.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabs" maxHeight="570.0" prefHeight="950.0" prefWidth="1080.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Atender">
             <content>
@@ -65,7 +65,7 @@
                                                 </BorderPane>
                                                 <BorderPane prefHeight="98.0" prefWidth="253.0">
                                                    <center>
-                                                      <ComboBox fx:id="comboBoxSucursales"  prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
+                                                      <ComboBox fx:id="comboBoxSucursales" prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
                                                    </center>
                                                 </BorderPane>
                                              </children>
@@ -165,28 +165,6 @@
                                     </AnchorPane>
                                 </content>
                               </TitledPane>
-                              <VBox prefHeight="920.0" prefWidth="360.0">
-                                 <children>
-                                    <TitledPane animated="false" prefHeight="460.0" prefWidth="360.0" text="Camiones Disponibles">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="920.0" prefWidth="360.0">
-                                             <children>
-                                                <ListView fx:id="camionesDisponibles" prefHeight="920.0" prefWidth="360.0" />
-                                             </children>
-                                          </AnchorPane>
-                                      </content>
-                                    </TitledPane>
-                                    <TitledPane animated="false" prefHeight="460.0" prefWidth="360.0" text="Camiones por Descargar">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="460.0" prefWidth="360.0">
-                                             <children>
-                                                <ListView fx:id="camionesPorDescargar" prefHeight="420.0" prefWidth="360.0" />
-                                             </children>
-                                          </AnchorPane>
-                                      </content>
-                                    </TitledPane>
-                                 </children>
-                              </VBox>
                               <TitledPane animated="false" prefHeight="920.0" prefWidth="360.0" text="Camion Actual">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="920.0" prefWidth="360.0">
@@ -212,9 +190,9 @@
                                                          <children>
                                                             <VBox prefHeight="80.0" prefWidth="360.0">
                                                                <children>
-                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="BCDF45" />
-                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="999" />
-                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="555" />
+                                                                  <Text fx:id="patenteCamAct" strokeType="OUTSIDE" strokeWidth="0.0" text="BCDF45" />
+                                                                  <Text fx:id="capacidadCamAct" strokeType="OUTSIDE" strokeWidth="0.0" text="999" />
+                                                                  <Text fx:id="espDispCamAct" strokeType="OUTSIDE" strokeWidth="0.0" text="555" />
                                                                </children>
                                                             </VBox>
                                                          </children>
@@ -228,6 +206,28 @@
                                     </AnchorPane>
                                 </content>
                               </TitledPane>
+                              <VBox prefHeight="920.0" prefWidth="360.0">
+                                 <children>
+                                    <TitledPane animated="false" maxHeight="260.0" prefHeight="460.0" prefWidth="360.0" text="Camiones Disponibles">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="920.0" prefWidth="360.0">
+                                             <children>
+                                                <ListView fx:id="camionesDisponibles" maxHeight="250.0" prefHeight="920.0" prefWidth="360.0" />
+                                             </children>
+                                          </AnchorPane>
+                                      </content>
+                                    </TitledPane>
+                                    <TitledPane animated="false" prefHeight="460.0" prefWidth="360.0" text="Camiones por Descargar">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="460.0" prefWidth="360.0">
+                                             <children>
+                                                <ListView fx:id="camionesPorDescargar" prefHeight="420.0" prefWidth="360.0" />
+                                             </children>
+                                          </AnchorPane>
+                                      </content>
+                                    </TitledPane>
+                                 </children>
+                              </VBox>
                            </children>
                         </HBox>
                      </children></AnchorPane>

@@ -28,6 +28,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.*;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -69,11 +70,9 @@ public class InicioController implements Initializable {
     private ListView pedidosPendientes, pedidosCargados, camionesDisponibles, camionesPorDescargar;
 
        @FXML
-    private ComboBox comboBoxClientes;
+    private ComboBox comboBoxClientes, comboBoxSucursales, comboBoxEncomiendas;
        @FXML
-    private ComboBox comboBoxSucursales;
-       @FXML
-    private ComboBox comboBoxEncomiendas;
+    private Text patenteCamAct, capacidadCamAct, espDispCamAct;
       
     Usuario actual;
        
@@ -230,6 +229,11 @@ public class InicioController implements Initializable {
                                             idsPedCamion.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
                                         }
                                         pedidosCargados.setItems(idsPedCamion);
+                                        patenteCamAct.setText(camionSelec.getPatente());
+                                        capacidadCamAct.setText(Integer.toString(camionSelec.getCapacidad()));
+                                        espDispCamAct.setText(Integer.toString(camionSelec.getEspDisp()));
+                                        
+                                        
                                     }
                                 });
                                 
@@ -249,7 +253,63 @@ public class InicioController implements Initializable {
            
            
         ///////////////////////////ADMINISTRAR\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+        // set up Dnd in both directions
         
+        EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                ListView<String> list = (ListView) event.getSource();
+                Dragboard db = list.startDragAndDrop(TransferMode.MOVE);
+
+                ClipboardContent content = new ClipboardContent();
+                content.putString(list.getSelectionModel().getSelectedItem());
+                db.setContent(content);
+
+                event.consume();
+            }
+        };
+        EventHandler<DragEvent> dragOver = new EventHandler<DragEvent>() {
+            public void handle(DragEvent event) {
+                if (event.getGestureSource() != event.getTarget() && event.getDragboard().hasString()) {
+                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                }
+
+                event.consume();
+            }
+        };
+        EventHandler<DragEvent> dragDropped = new EventHandler<DragEvent>() {
+            public void handle(DragEvent event) {
+                ListView<String> list = (ListView) event.getGestureTarget();
+
+                Dragboard db = event.getDragboard();
+                boolean success = false;
+                if (db.hasString()) {
+                    list.getItems().add(db.getString());
+                    success = true;
+                }
+
+                event.setDropCompleted(success);
+                event.consume();
+            }
+        };
+        EventHandler<DragEvent> dragDone = new EventHandler<DragEvent>() {
+            public void handle(DragEvent event) {
+                if (event.getTransferMode() == TransferMode.MOVE) {
+                    ListView<String> list = (ListView) event.getGestureSource();
+                    list.getItems().remove(event.getDragboard().getString());
+                }
+                event.consume();
+            }
+        };
+
+        pedidosPendientes.setOnDragDetected(dragDetected);
+        pedidosPendientes.setOnDragOver(dragOver);
+        pedidosPendientes.setOnDragDropped(dragDropped);
+        pedidosPendientes.setOnDragDone(dragDone);
+
+        pedidosCargados.setOnDragDetected(dragDetected);
+        pedidosCargados.setOnDragOver(dragOver);
+        pedidosCargados.setOnDragDropped(dragDropped);
+        pedidosCargados.setOnDragDone(dragDone);
         
         
 

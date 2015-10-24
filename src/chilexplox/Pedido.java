@@ -81,7 +81,7 @@ public class Pedido extends Servicio implements java.io.Serializable{
             this.encomiendas.add(e);
             this.peso += peso;
             this.volumen += volumen;
-            this.costoEnvio += e.costoEnvio;
+            this.costoEnvio += e.getCostoEnvio();
             setPrioridad();
             return true;
             }
@@ -101,7 +101,7 @@ public class Pedido extends Servicio implements java.io.Serializable{
             this.encomiendas.add(e);
             this.peso += peso;
             this.volumen += volumen;
-            this.costoEnvio += e.costoEnvio;
+            this.costoEnvio += e.getCostoEnvio();
             setPrioridad();
             return true;
         }

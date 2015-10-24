@@ -60,6 +60,18 @@ public class Sucursal implements java.io.Serializable{
         return this.pedidosPend;
     }
     
+    public Pedido getPedido(Integer id){
+        for(int i=0; i<pedidosPend.size();i++)
+        {
+            if(pedidosPend.get(i).getIdPedido()==id)
+                return pedidosPend.get(i);
+        }
+        
+        return null;
+        
+    }
+    
+    
     public void despacharPedido(){
         this.pedidosPend.remove(0);
     }

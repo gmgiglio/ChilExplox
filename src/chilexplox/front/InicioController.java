@@ -24,10 +24,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.*;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -49,6 +51,10 @@ public class InicioController implements Initializable {
     private Button agregarEncomienda;
         @FXML
     private Button crearPedido;
+      @FXML
+    private Button cerrarPedido;
+         @FXML
+    private Button modificar;
        @FXML
     private TabPane tabs;
        @FXML
@@ -82,12 +88,8 @@ public class InicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
-<<<<<<< HEAD
-        /*Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
-=======
->>>>>>> origin/master
 
-        Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
+/*        Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
         Empresa.getInstance().agregarSucursal("Las Condes", "Santiago", "Apoquindo 5000");
         Empresa.getInstance().agregarSucursal("Victoria", "Temuco", "Bernardo Ohiggins 4256");
         Empresa.getInstance().agregarCliente("Leo", "Las Raíces 1172", "7778899");
@@ -147,16 +149,10 @@ public class InicioController implements Initializable {
         });      
 
         }
-<<<<<<< HEAD
-       // cargarNombresClientes();
-
         
-=======
-        
+      cargarNombresClientes();
      // cargarNombresClientes();
-     // cargarNombresClientes();
-        cargarNombresSucursales();
->>>>>>> origin/master
+       
         
         split.setDividerPositions(1);
 
@@ -222,6 +218,23 @@ public class InicioController implements Initializable {
                        agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarEncomienda.fxml")));
                        split.setDividerPositions(0.4684014869888476);
                        
+                       }
+                       catch (Exception exc)
+                      {
+                           int i=0;
+                               }
+                     
+                
+                }
+            });
+           cerrarPedido.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                    
+                       try{     
+                            Scene scene = split.getScene();
+                            Text idPedido = (Text)scene.lookup("#idPedido");
+                            Main.getUsuarioActual().confirmarPedido(Integer.parseInt(idPedido.getText()), true);
+                            limpiarAtender();
                        }
                        catch (Exception exc)
                       {
@@ -333,22 +346,7 @@ public class InicioController implements Initializable {
             comboBoxClientes.setPromptText(comboBoxClientes.getItems().get(0).toString());
 
     }
-<<<<<<< HEAD
-     
-=======
-     public void cargarNombresSucursales(){
 
-            ObservableList nombreSucursales = FXCollections.observableArrayList();
-            for (int i=0; i<  Empresa.getInstance().getSucursales().size();i++)
-            {
-                if(!Empresa.getInstance().getSucursales().get(i).getNombre().equals(actual.getSucursalActual().getNombre()))
-                nombreSucursales.add(Empresa.getInstance().getSucursales().get(i).getNombre());
-            }
-            
-            comboBoxSucursales.getItems().setAll(nombreSucursales);
-            comboBoxSucursales.setPromptText(comboBoxSucursales.getItems().get(0).toString());
-    }
-     
      public void actualizarPestanaAdm(){
          Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
          ObservableList idsPedPend = FXCollections.observableArrayList();
@@ -370,6 +368,22 @@ public class InicioController implements Initializable {
          }
          camionesPorDescargar.setItems(patentesCamADesc);
      }
->>>>>>> origin/master
+     public void limpiarAtender(){
+     
+         crearPedido.setVisible(true);
+         Scene scene = crearPedido.getScene();
+         Text idPedido = (Text) scene.lookup("#idPedido");
+         idPedido.setText("Haga clic en crear pedido");
+         modificar.setVisible(false);
+         Text sucursalText = (Text) scene.lookup("#stext");
+         sucursalText.setText("");
+         comboBoxEncomiendas.getItems().clear();
+         comboBoxEncomiendas.setPromptText("");
+         Text presupuesto = (Text) scene.lookup("#presupuesto");
+         presupuesto.setText("0");
+         split.setDividerPositions(1);
+        
+     }
+
 }
 

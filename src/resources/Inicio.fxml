@@ -130,7 +130,7 @@
                                                 </BorderPane>
                                                 <BorderPane prefHeight="98.0" prefWidth="253.0">
                                                    <center>
-                                                      <Text fx:id="presupuesto" fill="#1770c3" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="83.30058288574219" BorderPane.alignment="CENTER_LEFT">
+                                                      <Text id="presupuesto" fx:id="presupuesto" fill="#1770c3" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="282.3005828857422" BorderPane.alignment="CENTER_LEFT">
                                                          <font>
                                                             <Font size="25.0" />
                                                          </font>

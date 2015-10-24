@@ -24,11 +24,11 @@ public abstract class Servicio {
         this.prioridad = prioridad;
     }
     
-    protected int getVol(){
+    public int getVol(){
         return this.volumen;
     }
     
-    protected int getCostoEnvio(){
+    public int getCostoEnvio(){
         return this.costoEnvio;
     }
 

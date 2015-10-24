@@ -26,29 +26,49 @@ import javafx.scene.text.Text;
  */
 public class AgregarEncomiendaController implements Initializable {
     
-//    @FXML
-//    private TextField descField;
-//      @FXML
-//    private TextField pesoField;
-//      @FXML
-//    private TextField volumenField;
-//     @FXML
-//    private TextField prioridadField;
-//      @FXML
-//    private TextField calleField;
-//      @FXML
-//    private TextField numeroField;
-//     @FXML
-//    private TextField ciudadField;
-//     @FXML
-//    private Button crearEncomienda;
-//    
-//    private ComboBox comboBoxEncomiendas;
-//    
+    @FXML
+    private TextField descField;
+      @FXML
+    private TextField pesoField;
+      @FXML
+    private TextField volumenField;
+     @FXML
+    private TextField prioridadField;
+      @FXML
+    private TextField calleField;
+      @FXML
+    private TextField numeroField;
+      @FXML
+    private TextField comunaField;
+     @FXML
+    private TextField ciudadField;
+     @FXML
+    private Button crearEncomienda;
+    
+    private ComboBox comboBoxEncomiendas;
+    
+    private Text idPedido;
+    
+    private Text presupuesto;
+
+    
     @FXML
     private void handleEncomienda(ActionEvent event) {
-
-            
+            Scene scene = crearEncomienda.getScene();
+            comboBoxEncomiendas = (ComboBox)scene.lookup("#cbe");
+            idPedido = (Text)scene.lookup("#idPedido");
+            presupuesto = (Text)scene.lookup("#presupuesto");
+            try{        
+                Pedido p = Main.getUsuarioActual().getSucursalActual().getPedido(Integer.parseInt(idPedido.getText()));
+                Main.getUsuarioActual().agregarEnc(p, Integer.parseInt(pesoField.getText()), Integer.parseInt(volumenField.getText()),calleField.getText()+" "+numeroField.getText()+", "+comunaField.getText()+", "+ciudadField.getText(), descField.getText());
+                comboBoxEncomiendas.getItems().add( descField.getText());
+                comboBoxEncomiendas.setPromptText( descField.getText());
+                presupuesto.setText(""+p.getCostoEnvio());
+                    
+            }
+            catch (Exception exc)
+            {
+            }    
     }
   
      

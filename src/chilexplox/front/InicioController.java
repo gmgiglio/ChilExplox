@@ -49,12 +49,15 @@ public class InicioController implements Initializable {
     private Button agregarCliente;
        @FXML
     private Button agregarEncomienda;
+<<<<<<< HEAD
         @FXML
     private Button crearPedido;
       @FXML
     private Button cerrarPedido;
          @FXML
     private Button modificar;
+=======
+>>>>>>> origin/master
        @FXML
     private TabPane tabs;
        @FXML
@@ -77,10 +80,9 @@ public class InicioController implements Initializable {
     private ListView pedidosPendientes, pedidosCargados, camionesDisponibles, camionesPorDescargar;
 
        @FXML
-    private ComboBox comboBoxClientes;
-       
+    private ComboBox comboBoxClientes, comboBoxSucursales, comboBoxEncomiendas;
        @FXML
-    private ComboBox comboBoxEncomiendas;
+    private Text patenteCamAct, capacidadCamAct, espDispCamAct;
       
     Usuario actual;
        
@@ -104,7 +106,7 @@ public class InicioController implements Initializable {
         tulio.setSucursalActual(maipu);
         tulio.crearPedido(victoria);
         
-        Empresa.serializar("data/empresa.ser");*/
+        Empresa.serializar("data/empresa.ser");
         
         Empresa.deserializar("data/empresa.ser");
         List<Sucursal> sucursales = Empresa.getInstance().getSucursales();
@@ -115,7 +117,7 @@ public class InicioController implements Initializable {
         
         ////////////////////////Inicializar Menú\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         Empresa.getInstance().agregarUsuario("Karl Saleam","112233445");
-        actual= Main.getUsuarioActual(); ///POR MIENTRAS
+        actual= Empresa.getInstance().getUsuarios().get(0); ///POR MIENTRAS
         actual.setSucursalActual(sucursales.get(0));
         //Inicializar Menú
         Menu menuUsuario = new Menu(actual.getNombreUsuario());
@@ -150,9 +152,15 @@ public class InicioController implements Initializable {
 
         }
         
+<<<<<<< HEAD
       cargarNombresClientes();
      // cargarNombresClientes();
        
+=======
+     // cargarNombresClientes();
+     // cargarNombresClientes();
+        cargarNombresSucursales();
+>>>>>>> origin/master
         
         split.setDividerPositions(1);
 
@@ -184,33 +192,13 @@ public class InicioController implements Initializable {
                        catch (Exception exc)
                       {
                           int i=0;
-     
-                      }
-                     
-                
-                }
-            });
-        
-        crearPedido.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                    
-                       try{        
-
-                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarPedido.fxml")));
-                       split.setDividerPositions(0.4684014869888476);
-                       
-                       }
-                       catch (Exception exc)
-                      {
-                          int i=0;
                                }
                      
                 
                 }
             });
         
-        
-          agregarEncomienda.setOnAction(new EventHandler<ActionEvent>() {
+           agregarEncomienda.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                     
                        try{        
@@ -221,7 +209,6 @@ public class InicioController implements Initializable {
                        }
                        catch (Exception exc)
                       {
-                           int i=0;
                                }
                      
                 
@@ -275,6 +262,11 @@ public class InicioController implements Initializable {
                                             idsPedCamion.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
                                         }
                                         pedidosCargados.setItems(idsPedCamion);
+                                        patenteCamAct.setText(camionSelec.getPatente());
+                                        capacidadCamAct.setText(Integer.toString(camionSelec.getCapacidad()));
+                                        espDispCamAct.setText(Integer.toString(camionSelec.getEspDisp()));
+                                        
+                                        
                                     }
                                 });
                                 
@@ -294,7 +286,64 @@ public class InicioController implements Initializable {
            
            
         ///////////////////////////ADMINISTRAR\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+        // set up Dnd in both directions
         
+        //Fuente: https://bugs.openjdk.java.net/browse/JDK-8094227
+        EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                ListView<String> list = (ListView) event.getSource();
+                Dragboard db = list.startDragAndDrop(TransferMode.MOVE);
+
+                ClipboardContent content = new ClipboardContent();
+                content.putString(list.getSelectionModel().getSelectedItem());
+                db.setContent(content);
+
+                event.consume();
+            }
+        };
+        EventHandler<DragEvent> dragOver = new EventHandler<DragEvent>() {
+            public void handle(DragEvent event) {
+                if (event.getGestureSource() != event.getTarget() && event.getDragboard().hasString()) {
+                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                }
+
+                event.consume();
+            }
+        };
+        EventHandler<DragEvent> dragDropped = new EventHandler<DragEvent>() {
+            public void handle(DragEvent event) {
+                ListView<String> list = (ListView) event.getGestureTarget();
+
+                Dragboard db = event.getDragboard();
+                boolean success = false;
+                if (db.hasString()) {
+                    list.getItems().add(db.getString());
+                    success = true;
+                }
+
+                event.setDropCompleted(success);
+                event.consume();
+            }
+        };
+        EventHandler<DragEvent> dragDone = new EventHandler<DragEvent>() {
+            public void handle(DragEvent event) {
+                if (event.getTransferMode() == TransferMode.MOVE) {
+                    ListView<String> list = (ListView) event.getGestureSource();
+                    list.getItems().remove(event.getDragboard().getString());
+                }
+                event.consume();
+            }
+        };
+
+        pedidosPendientes.setOnDragDetected(dragDetected);
+        pedidosPendientes.setOnDragOver(dragOver);
+        pedidosPendientes.setOnDragDropped(dragDropped);
+        pedidosPendientes.setOnDragDone(dragDone);
+
+        pedidosCargados.setOnDragDetected(dragDetected);
+        pedidosCargados.setOnDragOver(dragOver);
+        pedidosCargados.setOnDragDropped(dragDropped);
+        pedidosCargados.setOnDragDone(dragDone);
         
         
 
@@ -346,6 +395,10 @@ public class InicioController implements Initializable {
             comboBoxClientes.setPromptText(comboBoxClientes.getItems().get(0).toString());
 
     }
+<<<<<<< HEAD
+=======
+     public void cargarNombresSucursales(){
+>>>>>>> origin/master
 
      public void actualizarPestanaAdm(){
          Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
@@ -368,6 +421,7 @@ public class InicioController implements Initializable {
          }
          camionesPorDescargar.setItems(patentesCamADesc);
      }
+<<<<<<< HEAD
      public void limpiarAtender(){
      
          crearPedido.setVisible(true);
@@ -385,5 +439,7 @@ public class InicioController implements Initializable {
         
      }
 
+=======
+>>>>>>> origin/master
 }
 

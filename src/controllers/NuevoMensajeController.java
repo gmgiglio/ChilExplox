@@ -6,7 +6,10 @@
 package controllers;
 
 import chilexplox.*;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 import chilexplox.front.Main;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,11 +28,7 @@ import javafx.scene.text.Text;
 public class NuevoMensajeController implements Initializable {
 
         @FXML
-    private TextField cajaTitulo;
-        @FXML
-    private TextArea cajaMensaje;
-        @FXML
-    private TextField cajaDestinatario;
+    private TextField cajaTitulo, cajaMensaje, cajaDestinatario;
         @FXML
     private Text alerta;
     /**

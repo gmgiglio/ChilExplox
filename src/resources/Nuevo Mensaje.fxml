@@ -52,13 +52,22 @@
                                     <Font size="18.0" />
                                  </font>
                               </Text>
-                              <TextField layoutX="10.0" layoutY="10.0" />
+                              <TextField fx:id="cajaTitulo" layoutX="10.0" layoutY="10.0" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
-                  <TextArea prefHeight="275.0" prefWidth="797.0" />
-                  <Button fx:id="botonEnviar" mnemonicParsing="false" onAction="#handlerBotonEnviar" text="Enviar" />
+                  <TextArea fx:id="cajaMensaje" prefHeight="275.0" prefWidth="797.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="botonEnviar" mnemonicParsing="false" onAction="#handlerBotonEnviar" text="Enviar" />
+                        <Text fx:id="alerta" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="691.8592224121094">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </center>

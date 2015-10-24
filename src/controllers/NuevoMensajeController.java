@@ -6,6 +6,7 @@
 package controllers;
 
 import chilexplox.Empresa;
+import chilexplox.Sucursal;
 import chilexplox.front.Main;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -28,6 +30,8 @@ public class NuevoMensajeController implements Initializable {
     private TextArea cajaMensaje;
         @FXML
     private TextField cajaDestinatario;
+        @FXML
+    private Text alerta;
     /**
      * Initializes the controller class.
      */
@@ -38,7 +42,23 @@ public class NuevoMensajeController implements Initializable {
     
    public void handlerBotonEnviar(ActionEvent event){
        System.out.println("boton enviar apretado");
-       Main.getUsuarioActual().enviarMensaje(cajaTitulo.getText(), cajaMensaje.getText(),Empresa.getInstance().getSucursal(cajaDestinatario.getText()) );
+       String titulo = cajaTitulo.getText();
+       String mensaje = cajaMensaje.getText();
+       Sucursal destino = Empresa.getInstance().getSucursal(cajaDestinatario.getText());
+       try{
+           Main.getUsuarioActual().enviarMensaje(titulo, mensaje, destino);
+           cajaTitulo.setText("");
+           cajaMensaje.setText("");
+           cajaDestinatario.setText("");
+           alerta.setText("Mensaje enviado");
+       }catch(Exception e){
+           alerta.setText("Error al enviar mensaje");
+       }
+       
+       System.out.println(Empresa.getInstance().getSucursal("Maipu").getMensajesEnBuzon().get(0).getTexto());
+       
+       
+       
    }
-    
+
 }

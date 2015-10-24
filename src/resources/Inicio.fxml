@@ -213,9 +213,9 @@
                                                          <children>
                                                             <VBox prefHeight="80.0" prefWidth="360.0">
                                                                <children>
-                                                                  <Text fx:id="patenteCamAct" strokeType="OUTSIDE" strokeWidth="0.0" text="BCDF45" />
-                                                                  <Text fx:id="capacidadCamAct" strokeType="OUTSIDE" strokeWidth="0.0" text="999" />
-                                                                  <Text fx:id="espDispCamAct" strokeType="OUTSIDE" strokeWidth="0.0" text="555" />
+                                                                  <Text fx:id="patenteCamAct" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                                                  <Text fx:id="capacidadCamAct" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                                                  <Text fx:id="espDispCamAct" strokeType="OUTSIDE" strokeWidth="0.0" />
                                                                </children>
                                                             </VBox>
                                                          </children>

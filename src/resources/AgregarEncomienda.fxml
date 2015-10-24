@@ -157,7 +157,7 @@
                   <BorderPane prefHeight="43.0" prefWidth="460.0" />
                   <BorderPane prefHeight="100.0" prefWidth="381.0">
                      <left>
-                        <Button fx:id="crearEncomienda" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="141.0" text="Crear Encomienda" BorderPane.alignment="CENTER" />
+                        <Button fx:id="crearEncomienda" mnemonicParsing="false" onAction="#handleEncomienda" prefHeight="26.0" prefWidth="141.0" text="Crear Encomienda" BorderPane.alignment="CENTER" />
                      </left>
                   </BorderPane>
                </children>

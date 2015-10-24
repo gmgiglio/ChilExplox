@@ -5,7 +5,8 @@
  */
 package controllers;
 
-import chilexplox.Empresa;
+import chilexplox.*;
+import chilexplox.front.Main;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -15,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 
 /**
@@ -24,43 +26,31 @@ import javafx.scene.control.TextField;
  */
 public class AgregarEncomiendaController implements Initializable {
     
+//    @FXML
+//    private TextField descField;
+//      @FXML
+//    private TextField pesoField;
+//      @FXML
+//    private TextField volumenField;
+//     @FXML
+//    private TextField prioridadField;
+//      @FXML
+//    private TextField calleField;
+//      @FXML
+//    private TextField numeroField;
+//     @FXML
+//    private TextField ciudadField;
+//     @FXML
+//    private Button crearEncomienda;
+//    
+//    private ComboBox comboBoxEncomiendas;
+//    
     @FXML
-    private TextField descField;
-      @FXML
-    private TextField pesoField;
-      @FXML
-    private TextField volumenField;
-     @FXML
-    private TextField prioridadField;
-      @FXML
-    private TextField calleField;
-      @FXML
-    private TextField numeroField;
-     @FXML
-    private TextField ciudadField;
-     @FXML
-    private Button crearEncomienda;
-    
-    private ComboBox comboBoxEncomiendas;
-    
-    
-    
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
+    private void handleEncomienda(ActionEvent event) {
 
-            /*Scene scene = ciudadField.getScene();
-            comboBoxEncomiendas = (ComboBox)scene.lookup("#cbe");
             
-             
-            try{        
-            Empresa.getInstance().agregarEncomienda(descField.getText());
-            comboBoxEncomiendas.getItems().add(descField.getText()+" "+apellidosField.getText());
-            comboBoxEncomiendas.setPromptText(descField.getText()+" "+apellidosField.getText());
-            }
-            catch (Exception exc)
-            {
-            }*/
     }
+  
      
 
     /**

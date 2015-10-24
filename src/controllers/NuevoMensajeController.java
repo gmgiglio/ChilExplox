@@ -5,7 +5,7 @@
  */
 package controllers;
 
-import chilexplox.Empresa;
+import chilexplox.*;
 import chilexplox.front.Main;
 import java.net.URL;
 import java.util.ResourceBundle;

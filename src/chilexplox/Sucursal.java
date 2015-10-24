@@ -40,10 +40,14 @@ public class Sucursal implements java.io.Serializable{
     
     public void agregarPedido(Pedido p){
         if(pedidosPend.size() == 0) pedidosPend.add(p);
-        else{
+        else{   
             for(int i = 0; i < pedidosPend.size(); i++){
 
-                if(p.getPrioridad() >= pedidosPend.get(i).getPrioridad()) pedidosPend.add(i, p);
+                if(p.getPrioridad() >= pedidosPend.get(i).getPrioridad()) {
+                    pedidosPend.add(i, p);
+                    break;
+                }
+                
             }
         }
     }

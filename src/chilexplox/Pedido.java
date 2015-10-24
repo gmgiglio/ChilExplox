@@ -24,14 +24,12 @@ public class Pedido extends Servicio implements java.io.Serializable{
     private Date tiempoCierre; //el momento en el que se cierra el pedido y empieza a correr para temas de prioridad
             
     public Pedido(Sucursal sucOrigen, Sucursal sucDestino, Cliente cliente){
+        super(0, 0, 0.0);
         Empresa.getInstance().nuevoPedido();
         this.idPedido = Empresa.getInstance().getNroPedidos();
         this.sucOrigen = sucOrigen;
         this.sucDestino = sucDestino;
-        this.peso = 0;
-        this.volumen = 0;
         this.costoEnvio = 0;
-        this.prioridad = 0.0;
         this.cliente = cliente;
         this.estado = Estado.En_origen;
         abierto = true;

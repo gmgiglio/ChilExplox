@@ -47,6 +47,8 @@ public class InicioController implements Initializable {
     private Button agregarCliente;
        @FXML
     private Button agregarEncomienda;
+        @FXML
+    private Button crearPedido;
        @FXML
     private TabPane tabs;
        @FXML
@@ -70,8 +72,7 @@ public class InicioController implements Initializable {
 
        @FXML
     private ComboBox comboBoxClientes;
-       @FXML
-    private ComboBox comboBoxSucursales;
+       
        @FXML
     private ComboBox comboBoxEncomiendas;
       
@@ -81,13 +82,8 @@ public class InicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
-
-<<<<<<< HEAD
-        Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
-=======
         /*Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
-=======
->>>>>>> origin/master
+
         Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
         Empresa.getInstance().agregarSucursal("Las Condes", "Santiago", "Apoquindo 5000");
         Empresa.getInstance().agregarSucursal("Victoria", "Temuco", "Bernardo Ohiggins 4256");
@@ -100,7 +96,7 @@ public class InicioController implements Initializable {
         tulio.setSucursalActual(maipu);
         tulio.crearPedido(victoria);
         
-        Empresa.serializar("data/empresa.ser");
+        Empresa.serializar("data/empresa.ser");*/
         
         Empresa.deserializar("data/empresa.ser");
         List<Sucursal> sucursales = Empresa.getInstance().getSucursales();
@@ -111,7 +107,7 @@ public class InicioController implements Initializable {
         
         ////////////////////////Inicializar Menú\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         Empresa.getInstance().agregarUsuario("Karl Saleam","112233445");
-        actual= Empresa.getInstance().getUsuarios().get(0); ///POR MIENTRAS
+        actual= Main.getUsuarioActual(); ///POR MIENTRAS
         actual.setSucursalActual(sucursales.get(0));
         //Inicializar Menú
         Menu menuUsuario = new Menu(actual.getNombreUsuario());
@@ -145,7 +141,7 @@ public class InicioController implements Initializable {
         }
        // cargarNombresClientes();
 
-        cargarNombresSucursales();
+        
         
         split.setDividerPositions(1);
 
@@ -177,13 +173,33 @@ public class InicioController implements Initializable {
                        catch (Exception exc)
                       {
                           int i=0;
+     
+                      }
+                     
+                
+                }
+            });
+        
+        crearPedido.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                    
+                       try{        
+
+                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarPedido.fxml")));
+                       split.setDividerPositions(0.4684014869888476);
+                       
+                       }
+                       catch (Exception exc)
+                      {
+                          int i=0;
                                }
                      
                 
                 }
             });
         
-           agregarEncomienda.setOnAction(new EventHandler<ActionEvent>() {
+        
+          agregarEncomienda.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                     
                        try{        
@@ -194,6 +210,7 @@ public class InicioController implements Initializable {
                        }
                        catch (Exception exc)
                       {
+                           int i=0;
                                }
                      
                 
@@ -305,17 +322,6 @@ public class InicioController implements Initializable {
             comboBoxClientes.setPromptText(comboBoxClientes.getItems().get(0).toString());
 
     }
-     public void cargarNombresSucursales(){
-
-            ObservableList nombreSucursales = FXCollections.observableArrayList();
-            for (int i=0; i<  Empresa.getInstance().getSucursales().size();i++)
-            {
-                if(!Empresa.getInstance().getSucursales().get(i).getNombre().equals(actual.getSucursalActual().getNombre()))
-                nombreSucursales.add(Empresa.getInstance().getSucursales().get(i).getNombre());
-            }
-            
-            comboBoxSucursales.getItems().setAll(nombreSucursales);
-            comboBoxSucursales.setPromptText(comboBoxSucursales.getItems().get(0).toString());
-    }
+     
 }
 

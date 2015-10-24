@@ -222,18 +222,33 @@ public class InicioController implements Initializable {
                 
                 }
             });
-           cerrarPedido.setOnAction(new EventHandler<ActionEvent>() {
+            crearPedido.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                     
-                       try{     
-                            Scene scene = split.getScene();
-                            Text idPedido = (Text)scene.lookup("#idPedido");
-                            Main.getUsuarioActual().confirmarPedido(Integer.parseInt(idPedido.getText()), true);
-                            limpiarAtender();
+                       try{        
+
+                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarPedido.fxml")));
+                       split.setDividerPositions(0.4684014869888476);
+                       
                        }
                        catch (Exception exc)
                       {
-                           int i=0;
+                               }
+                     
+                
+                }
+            });
+           agregarEncomienda.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                          
+                       try{        
+
+                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarEncomienda.fxml")));
+                       split.setDividerPositions(0.4684014869888476);
+                       
+                       }
+                       catch (Exception exc)
+                      {
                                }
                      
                 

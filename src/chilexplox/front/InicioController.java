@@ -222,12 +222,12 @@ public class InicioController implements Initializable {
                 
                 }
             });
-            crearPedido.setOnAction(new EventHandler<ActionEvent>() {
+            agregarEncomienda.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                     
                        try{        
 
-                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarPedido.fxml")));
+                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarEncomienda.fxml")));
                        split.setDividerPositions(0.4684014869888476);
                        
                        }
@@ -238,17 +238,19 @@ public class InicioController implements Initializable {
                 
                 }
             });
-           agregarEncomienda.setOnAction(new EventHandler<ActionEvent>() {
+            
+           cerrarPedido.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                          
-                       try{        
-
-                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarEncomienda.fxml")));
-                       split.setDividerPositions(0.4684014869888476);
-                       
+                    
+                       try{     
+                            Scene scene = split.getScene();
+                            Text idPedido = (Text)scene.lookup("#idPedido");
+                            Main.getUsuarioActual().confirmarPedido(Integer.parseInt(idPedido.getText()), true);
+                            limpiarAtender();
                        }
                        catch (Exception exc)
                       {
+                           int i=0;
                                }
                      
                 

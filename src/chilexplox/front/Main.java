@@ -5,36 +5,12 @@
  */
 package chilexplox.front;
 import chilexplox.*;
-import java.util.List;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.MenuBar;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Effect;
-import javafx.scene.effect.Glow;
-import javafx.scene.effect.SepiaTone;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import static javafx.application.Application.launch;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.text.Text;
-import javafx.fxml.FXML;
-import javafx.scene.control.SeparatorMenuItem;
-import javafx.stage.WindowEvent;
 
 
 
@@ -91,6 +67,49 @@ public class Main extends Application {
     @Override
     public void stop(){
        Empresa.serializar("data/empresa.ser");
+    }
+    
+    public static void poblar(){
+        Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
+        Empresa.getInstance().agregarSucursal("Las Condes", "Santiago", "Apoquindo 5000");
+        Empresa.getInstance().agregarSucursal("Victoria", "Temuco", "Bernardo Ohiggins 4256");
+        Empresa.getInstance().agregarCliente("Leo", "Las Raíces 1172", "7778899");
+        Empresa.getInstance().agregarUsuario("Karl Saleam","112233445");
+        
+        Cliente leo = Empresa.getInstance().getClientes().get(0);
+        Sucursal maipu = Empresa.getInstance().getSucursal("Maipu");
+        Sucursal victoria = Empresa.getInstance().getSucursal("Victoria");
+        Empresa.getInstance().agregarUsuario("Tulio Triviño", "31minutos");
+        maipu.agregarCamion("BDGH34", 3000);
+        maipu.agregarCamionPend("JUHK87", 2500);
+        maipu.getCamionesDisp().get(0).cargarPedido(new Pedido(maipu, victoria, leo));
+        Usuario tulio = Empresa.getInstance().getUsuarios().get(0);
+        tulio.setSucursalActual(maipu);
+        tulio.crearPedido(victoria);
+        Main.getUsuarioActual().enviarMensaje("prueba", "esto es una prueba", victoria);
+    }
+    
+    //true si se logro
+    public static boolean deserializar(String path){
+        
+        try{
+            Empresa.deserializar(path);
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
+    }
+    
+    public static void inicioPrueba(){
+        if(!deserializar("data/empresa.ser")){
+            poblar();
+        }
+    }
+    
+    //por implementar
+    public static void inicio(){
+        
     }
 
 }

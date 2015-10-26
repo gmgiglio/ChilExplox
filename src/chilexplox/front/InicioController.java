@@ -90,34 +90,13 @@ public class InicioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
    
 
-   Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
-        Empresa.getInstance().agregarSucursal("Las Condes", "Santiago", "Apoquindo 5000");
-        Empresa.getInstance().agregarSucursal("Victoria", "Temuco", "Bernardo Ohiggins 4256");
-        Empresa.getInstance().agregarCliente("Leo", "Las Raíces 1172", "7778899");
-        Cliente leo = Empresa.getInstance().getClientes().get(0);
-        Sucursal maipu = Empresa.getInstance().getSucursal("Maipu");
-        Sucursal victoria = Empresa.getInstance().getSucursal("Victoria");
-        Empresa.getInstance().agregarUsuario("Tulio Triviño", "31minutos");
-        maipu.agregarCamion("BDGH34", 3000);
-        maipu.agregarCamionPend("JUHK87", 2500);
-        maipu.getCamionesDisp().get(0).cargarPedido(new Pedido(maipu, victoria, leo));
-        Usuario tulio = Empresa.getInstance().getUsuarios().get(0);
-        tulio.setSucursalActual(maipu);
-        tulio.crearPedido(victoria);
-        Main.getUsuarioActual().enviarMensaje("prueba", "esto es una prueba", victoria);
-        
-        
-        Empresa.serializar("data/empresa.ser");
-        
-        Empresa.deserializar("data/empresa.ser");
+   Main.inicioPrueba();
+   
+   
         List<Sucursal> sucursales = Empresa.getInstance().getSucursales();
         
-        List<Usuario> usuarios = Empresa.getInstance().getUsuarios();
-       
-        List<Cliente> clientes = Empresa.getInstance().getClientes();
-        
         ////////////////////////Inicializar Menú\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-        Empresa.getInstance().agregarUsuario("Karl Saleam","112233445");
+        
         actual= Empresa.getInstance().getUsuarios().get(0); ///POR MIENTRAS
         actual.setSucursalActual(sucursales.get(0));
         //Inicializar Menú

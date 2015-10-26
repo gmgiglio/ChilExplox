@@ -10,9 +10,13 @@ import chilexplox.front.Main;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 /**
  * FXML Controller class
@@ -23,6 +27,8 @@ public class BuzonEntradaController implements Initializable {
 
     @FXML
     private VBox listaMensajes;
+    @FXML
+    private TextFlow textoMensaje;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -32,8 +38,28 @@ public class BuzonEntradaController implements Initializable {
         for(Mensaje m : mensajes){
             CajaMensajeResivido cajaM = new CajaMensajeResivido(m);
             listaMensajes.getChildren().add(cajaM);
+            cajaM.setOnAction(botonApretado);
         }
         
-    }    
+    }   
+    
+    EventHandler botonApretado = new EventHandler() {
+
+        @Override
+        public void handle(Event event) {
+           CajaMensajeResivido boton = (CajaMensajeResivido) event.getTarget();
+           String s = boton.getMensaje().getTexto();
+           Text t = new Text(s);
+           textoMensaje.getChildren().clear();
+           textoMensaje.getChildren().add(t);
+           
+           
+        }
+    }
+    
+    
+    public void mostrarMensaje (Mensaje m){
+        
+    }
     
 }

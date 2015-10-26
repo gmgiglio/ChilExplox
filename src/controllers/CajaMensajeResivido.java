@@ -24,7 +24,7 @@ public class CajaMensajeResivido extends Button {
     @FXML
     private Text textoAsunto,textoUsuario;
 
-    
+    private Mensaje mensaje;
 
     public CajaMensajeResivido (Mensaje mensaje){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/CajaMensajeResivido.fxml"));
@@ -37,13 +37,18 @@ public class CajaMensajeResivido extends Button {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+         
+         this.mensaje = mensaje;
         
         textoAsunto.setText(mensaje.getNombre());
         textoUsuario.setText(mensaje.getRemitente().getNombreUsuario());
     } 
-    
-    public void handlerBotonApretado (ActionEvent event){
-        
+
+    /**
+     * @return the mensaje
+     */
+    public Mensaje getMensaje() {
+        return mensaje;
     }
     
 }

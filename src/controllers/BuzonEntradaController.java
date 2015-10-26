@@ -6,9 +6,13 @@
 package controllers;
 
 import chilexplox.*;
+import chilexplox.front.Main;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -17,12 +21,19 @@ import javafx.fxml.Initializable;
  */
 public class BuzonEntradaController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private VBox listaMensajes;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        List<Mensaje> mensajes = Main.getUsuarioActual().getSucursalActual().getMensajesEnBuzon();
+        Usuario u = Main.getUsuarioActual();
+        for(Mensaje m : mensajes){
+            CajaMensajeResivido cajaM = new CajaMensajeResivido(m);
+            listaMensajes.getChildren().add(cajaM);
+        }
+        
     }    
     
 }

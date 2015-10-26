@@ -104,6 +104,8 @@ public class InicioController implements Initializable {
         Usuario tulio = Empresa.getInstance().getUsuarios().get(0);
         tulio.setSucursalActual(maipu);
         tulio.crearPedido(victoria);
+        Main.getUsuarioActual().enviarMensaje("prueba", "esto es una prueba", victoria);
+        
         
         Empresa.serializar("data/empresa.ser");
         

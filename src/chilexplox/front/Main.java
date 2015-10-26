@@ -67,6 +67,7 @@ public class Main extends Application {
         
         Empresa.getInstance().agregarUsuario("hugo", "asasasdasd");
         
+        
         usuarioActual = Empresa.getInstance().getUsuarios().get(0);
        
         Parent root = FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"));

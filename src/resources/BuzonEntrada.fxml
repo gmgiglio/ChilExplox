@@ -7,48 +7,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="800.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BuzonEntradaController">
    <children>
       <HBox fx:id="pantallaBuzonEntrada" layoutY="5.0" prefHeight="100.0" prefWidth="900.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="300.0">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0">
-                     <graphic>
-                        <VBox prefHeight="50.0" prefWidth="80.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario Remitente" />
-                              <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sucursal Remitente" />
-                              <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Asunto" />
-                           </children>
-                        </VBox>
-                     </graphic>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0">
-                     <graphic>
-                        <VBox prefHeight="50.0" prefWidth="80.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario Remitente" />
-                              <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sucursal Remitente" />
-                              <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Asunto" />
-                           </children>
-                        </VBox>
-                     </graphic>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="68.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0">
-                     <graphic>
-                        <VBox prefHeight="50.0" prefWidth="80.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario Remitente" />
-                              <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sucursal Remitente" />
-                              <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Asunto" />
-                           </children>
-                        </VBox>
-                     </graphic>
-                  </Button>
-               </children>
-            </VBox>
+            <VBox fx:id="listaMensajes" prefHeight="200.0" prefWidth="300.0" />
             <AnchorPane prefHeight="200.0" prefWidth="600.0">
                <children>
                   <BorderPane layoutX="-5.0" layoutY="-5.0" prefHeight="920.0" prefWidth="607.0">

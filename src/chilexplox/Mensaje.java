@@ -10,9 +10,9 @@ package chilexplox;
  * @author gianfrancogiglio
  */
 public class Mensaje implements java.io.Serializable {
-    String nombre;
+    private String nombre;
     String mensaje;
-    Usuario remitente;
+    private Usuario remitente;
     
     public Mensaje(String nombre, String mensaje, Usuario remitente){
         this.mensaje = mensaje;
@@ -28,4 +28,27 @@ public class Mensaje implements java.io.Serializable {
     public String getTexto(){
         return mensaje;
     }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the remitente
+     */
+    public Usuario getRemitente() {
+        return remitente;
+    }
+    
+    
 }

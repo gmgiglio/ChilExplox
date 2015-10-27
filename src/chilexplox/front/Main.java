@@ -87,6 +87,8 @@ public class Main extends Application {
         tulio.setSucursalActual(maipu);
         tulio.crearPedido(victoria);
         Main.getUsuarioActual().enviarMensaje("prueba", "esto es una prueba", victoria);
+        Main.getUsuarioActual().enviarMensaje("hola", "te queria mandar saludos", victoria);
+        Main.getUsuarioActual().enviarMensaje("Banana Split", "Esto es un banana split", victoria);
     }
     
     //true si se logro

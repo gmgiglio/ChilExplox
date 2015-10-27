@@ -7,6 +7,7 @@
 package chilexplox.front;
 
 import chilexplox.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.Collection;
@@ -83,7 +84,7 @@ public class InicioController implements Initializable {
        @FXML
     private Text patenteCamAct, capacidadCamAct, espDispCamAct;
       
-    Usuario actual;
+    
        
     
     @Override
@@ -97,40 +98,36 @@ public class InicioController implements Initializable {
         
         ////////////////////////Inicializar Menú\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         
-        actual= Empresa.getInstance().getUsuarios().get(0); ///POR MIENTRAS
-        actual.setSucursalActual(sucursales.get(0));
+        Main.setUsuarioActual( Empresa.getInstance().getUsuarios().get(0));///POR MIENTRAS
+        Main.getUsuarioActual().setSucursalActual(sucursales.get(0));
+        
         //Inicializar Menú
-        Menu menuUsuario = new Menu(actual.getNombreUsuario());
+        Menu menuUsuario = new Menu(Main.getUsuarioActual().getNombreUsuario());
         menuUsuario.getItems().add(new MenuItem("Cerrar sesión"));
         menuBar.getMenus().add(menuUsuario);
-        Menu menuSucursal = new Menu(sucursales.get(0).getNombre());
+        ItemSucursalMenu i = new ItemSucursalMenu(Main.getUsuarioActual().getSucursalActual());
+        Menu menuSucursal = new Menu(Main.getUsuarioActual().getSucursalActual().getNombre());
         
-        for(int j=0;j<sucursales.size();j++)
-        {
-                if(j!=0)
-                menuSucursal.getItems().add(new MenuItem(sucursales.get(j).getNombre()));
+        //agregar sucursales al menu de sucursales
+        LinkedList<Sucursal> sucEnLista = new LinkedList(sucursales);
+        sucEnLista.remove(Main.getUsuarioActual().getSucursalActual());
+        for(Sucursal s : sucEnLista){
+                ItemSucursalMenu item = new ItemSucursalMenu(s);
+                menuSucursal.getItems().add(item); 
                 
-          
+                item.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override public void handle(ActionEvent e) {
+                       ItemSucursalMenu item = (ItemSucursalMenu)e.getSource();
+                       Sucursal suc = item.getSucursal();
+                       menuSucursal.setText(suc.getNombre());
+                       Main.getUsuarioActual().setSucursalActual(suc);
+                       actualizarPestanaAdm();
+                    }
+                });    
+                
         }
-        
-   
         menuBar.getMenus().add(menuSucursal);
         
-        for(int i=0;i<menuSucursal.getItems().size();i++)
-        {
-            menuSucursal.getItems().get(i).setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-               MenuItem item = (MenuItem)e.getSource();
-               String presionado = item.textProperty().get();
-               String actual = menuSucursal.getText();
-               item.setText(actual);
-               menuSucursal.setText(presionado);
-               Main.getUsuarioActual().setSucursalActual(Empresa.getInstance().getSucursal(presionado));
-               actualizarPestanaAdm();
-            }
-        });      
-
-        }
       cargarNombresClientes();
         
         split.setDividerPositions(1);
@@ -239,9 +236,9 @@ public class InicioController implements Initializable {
             });
         
          //Tabs
-        for(int i=0;i<tabs.getTabs().size();i++)
+        for(int j=0;j<tabs.getTabs().size();j++)
         {
-        tabs.getTabs().get(i).setOnSelectionChanged(new EventHandler<Event>() {
+        tabs.getTabs().get(j).setOnSelectionChanged(new EventHandler<Event>() {
                 @Override
                 public void handle (Event e) {
                     Tab t = (Tab)(e.getSource());
@@ -440,6 +437,20 @@ public class InicioController implements Initializable {
          presupuesto.setText("0");
          split.setDividerPositions(1);
         
+     }
+     
+     private class ItemSucursalMenu extends MenuItem{
+         private Sucursal sucursal;
+         
+         public ItemSucursalMenu(Sucursal sucursal){
+             this.sucursal = sucursal;
+             this.setText(sucursal.getNombre());
+             
+         }
+         
+         public Sucursal getSucursal(){
+             return sucursal;
+         }
      }
 
 

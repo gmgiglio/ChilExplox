@@ -89,13 +89,16 @@ public class InicioController implements Initializable {
         
         ////////////////////////Inicializar Menú\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         
-        Main.setUsuarioActual( Empresa.getUsuarios().get(0));///POR MIENTRAS
-        Main.getUsuarioActual().setSucursalActual(sucursales.get(0));
-        
         //Inicializar Menú
         Menu menuUsuario = new Menu(Main.getUsuarioActual().getNombreUsuario());
-        menuUsuario.getItems().add(new MenuItem("Cerrar sesión"));
+        
+        MenuItem itemCerrarSesion = new MenuItem("Cerrar sesión");
+        itemCerrarSesion.setOnAction((ActionEvent e) -> {
+            Main.cerrarSesion();
+        });
+        menuUsuario.getItems().add(itemCerrarSesion);
         menuBar.getMenus().add(menuUsuario);
+        Main.getUsuarioActual().setSucursalActual(Empresa.getSucursales().get(0));
         ItemSucursalMenu i = new ItemSucursalMenu(Main.getUsuarioActual().getSucursalActual());
         menuSucursal = new Menu(Main.getUsuarioActual().getSucursalActual().getNombre());
         
@@ -430,7 +433,7 @@ public class InicioController implements Initializable {
          split.setDividerPositions(1);
         
      }
-     
+          
      private class ItemSucursalMenu extends MenuItem{
          private Sucursal sucursal;
          

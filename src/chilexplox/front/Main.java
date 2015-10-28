@@ -40,18 +40,18 @@ public class Main extends Application {
     public static void setUsuarioActual(Usuario aUsuarioActual) {
         usuarioActual = aUsuarioActual;
     }
+    
  
-    private ElegirUsuario pantallaElegirUsuario;
+    private static Stage escenarioPrincipal;
+    private static Scene escenaElegirUsuario;
+    
     @Override
     public void start(Stage primaryStage) throws Exception{
         
         poblar(); //CAMBIAR A INICIO
-        
-        
-        usuarioActual = Empresa.getUsuarios().get(0);
        
         //Parent root = FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"));
-        pantallaElegirUsuario = new ElegirUsuario();
+        ElegirUsuario pantallaElegirUsuario = new ElegirUsuario();
         
         pantallaElegirUsuario.setHandlerUsuarioElegido((EventHandler) (Event event) -> {
             Usuario u = pantallaElegirUsuario.getUsuario();
@@ -59,16 +59,19 @@ public class Main extends Application {
                 usuarioActual = u;
                 try{
                     primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"))));
-                }catch(Exception e){}
+                }catch(Exception e){ 
+                    throw new RuntimeException(e);
+                           }
             }
         });
         
         Parent root = pantallaElegirUsuario;
-        Scene scene = new Scene(root,1080,615);
+        escenaElegirUsuario = new Scene(root,1080,615);
         primaryStage.setTitle("ChilExplox");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(escenaElegirUsuario);
         primaryStage.setResizable(false);
         primaryStage.show();
+        escenarioPrincipal = primaryStage;
        
     }
 
@@ -135,5 +138,11 @@ public class Main extends Application {
     public static void inicio(){
         
     }
+    
+    public static void cerrarSesion(){
+        escenarioPrincipal.setScene(escenaElegirUsuario);
+        usuarioActual = null;
+    }
+        
 
 }

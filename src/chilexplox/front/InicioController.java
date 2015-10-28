@@ -7,16 +7,10 @@
 package chilexplox.front;
 
 import chilexplox.*;
-import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
-import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
-import javafx.collections.FXCollections;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,7 +23,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
-import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 
 /**
@@ -91,11 +84,11 @@ public class InicioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
    
    
-        List<Sucursal> sucursales = Empresa.getInstance().getSucursales();
+        List<Sucursal> sucursales = Empresa.getSucursales();
         
         ////////////////////////Inicializar Menú\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         
-        Main.setUsuarioActual( Empresa.getInstance().getUsuarios().get(0));///POR MIENTRAS
+        Main.setUsuarioActual( Empresa.getUsuarios().get(0));///POR MIENTRAS
         Main.getUsuarioActual().setSucursalActual(sucursales.get(0));
         
         //Inicializar Menú
@@ -112,14 +105,12 @@ public class InicioController implements Initializable {
                 ItemSucursalMenu item = new ItemSucursalMenu(s);
                 menuSucursal.getItems().add(item); 
                 
-                item.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override public void handle(ActionEvent e) {
-                       ItemSucursalMenu item = (ItemSucursalMenu)e.getSource();
-                       Sucursal suc = item.getSucursal();
-                       menuSucursal.setText(suc.getNombre());
-                       Main.getUsuarioActual().setSucursalActual(suc);
-                       actualizarPestanaAdm();
-                    }
+                item.setOnAction((ActionEvent e) -> {
+                    ItemSucursalMenu item1 = (ItemSucursalMenu)e.getSource();
+                    Sucursal suc = item1.getSucursal();
+                    menuSucursal.setText(suc.getNombre());
+                    Main.getUsuarioActual().setSucursalActual(suc);
+                    actualizarPestanaAdm();
                 });    
                 
         }
@@ -386,9 +377,9 @@ public class InicioController implements Initializable {
     public void cargarNombresClientes(){
 
             ObservableList nombreClientes = FXCollections.observableArrayList();
-            for (int i=0; i<  Empresa.getInstance().getClientes().size();i++)
+            for (int i=0; i<  Empresa.getClientes().size();i++)
             {
-                nombreClientes.add(Empresa.getInstance().getClientes().get(i).getNombre());
+                nombreClientes.add(Empresa.getClientes().get(i).getNombre());
             }
             
             comboBoxClientes.getItems().setAll(nombreClientes);

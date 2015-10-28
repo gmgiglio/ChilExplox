@@ -43,19 +43,13 @@ public class BuzonEntradaController implements Initializable {
         
     }   
     
-    EventHandler botonApretado = new EventHandler() {
-
-        @Override
-        public void handle(Event event) {
-           CajaMensajeResivido boton = (CajaMensajeResivido) event.getTarget();
-           String s = boton.getMensaje().getTexto();
-           Text t = new Text(s);
-           textoMensaje.getChildren().clear();
-           textoMensaje.getChildren().add(t);
-           
-           
-        }
-    }
+    EventHandler botonApretado = (EventHandler) (Event event) -> {
+        CajaMensajeResivido boton = (CajaMensajeResivido) event.getTarget();
+        String s = boton.getMensaje().getTexto();
+        Text t = new Text(s);
+        textoMensaje.getChildren().clear();
+        textoMensaje.getChildren().add(t);
+    };
     
     
     public void mostrarMensaje (Mensaje m){

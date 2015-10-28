@@ -42,27 +42,24 @@ public class Main extends Application {
     }
  
     private ElegirUsuario pantallaElegirUsuario;
+    @Override
     public void start(Stage primaryStage) throws Exception{
         
         poblar(); //CAMBIAR A INICIO
         
         
-        usuarioActual = Empresa.getInstance().getUsuarios().get(0);
+        usuarioActual = Empresa.getUsuarios().get(0);
        
         //Parent root = FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"));
         pantallaElegirUsuario = new ElegirUsuario();
         
-        pantallaElegirUsuario.setHandlerUsuarioElegido(new EventHandler() {
-
-            @Override
-            public void handle(Event event) {
-                Usuario u = pantallaElegirUsuario.getUsuario();
-                if(u != null){
-                    usuarioActual = u;
-                    try{
-                        primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"))));
-                    }catch(Exception e){}
-                }
+        pantallaElegirUsuario.setHandlerUsuarioElegido((EventHandler) (Event event) -> {
+            Usuario u = pantallaElegirUsuario.getUsuario();
+            if(u != null){
+                usuarioActual = u;
+                try{
+                    primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"))));
+                }catch(Exception e){}
             }
         });
         
@@ -90,27 +87,27 @@ public class Main extends Application {
     }
     
     public static void poblar(){
-        Empresa.getInstance().agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
-        Empresa.getInstance().agregarSucursal("Las Condes", "Santiago", "Apoquindo 5000");
-        Empresa.getInstance().agregarSucursal("Victoria", "Temuco", "Bernardo Ohiggins 4256");
-        Empresa.getInstance().agregarCliente("Leo", "Las Raíces 1172", "7778899");
-        Empresa.getInstance().agregarUsuario("Karl Saleam","112233445");
+        Empresa.agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
+        Empresa.agregarSucursal("Las Condes", "Santiago", "Apoquindo 5000");
+        Empresa.agregarSucursal("Victoria", "Temuco", "Bernardo Ohiggins 4256");
+        Empresa.agregarCliente("Leo", "Las Raíces 1172", "7778899");
+        Empresa.agregarUsuario("Karl Saleam","112233445");
         
-        Cliente leo = Empresa.getInstance().getClientes().get(0);
-        Sucursal maipu = Empresa.getInstance().getSucursal("Maipu");
-        Sucursal victoria = Empresa.getInstance().getSucursal("Victoria");
+        Cliente leo = Empresa.getClientes().get(0);
+        Sucursal maipu = Empresa.getSucursal("Maipu");
+        Sucursal victoria = Empresa.getSucursal("Victoria");
         
-        Empresa.getInstance().agregarUsuario("Tulio Triviño", "31minutos");
-        Empresa.getInstance().agregarUsuario("a" , "locopoco");
+        Empresa.agregarUsuario("Tulio Triviño", "31minutos");
+        Empresa.agregarUsuario("a" , "locopoco");
         
         maipu.agregarCamion("BDGH34", 3000);
         maipu.agregarCamionPend("JUHK87", 2500);
         maipu.getCamionesDisp().get(0).cargarPedido(new Pedido(maipu, victoria, leo));
-        Usuario tulio = Empresa.getInstance().getUsuarios().get(0);
+        Usuario tulio = Empresa.getUsuarios().get(0);
         tulio.setSucursalActual(maipu);
         tulio.crearPedido(victoria);
         
-        Usuario a = Empresa.getInstance().getUsuario("a");
+        Usuario a = Empresa.getUsuario("a");
         a.enviarMensaje("prueba", "esto es una prueba", victoria);
         a.enviarMensaje("hola", "te queria mandar saludos", victoria);
         a.enviarMensaje("Banana Split", "Esto es un banana split", victoria);

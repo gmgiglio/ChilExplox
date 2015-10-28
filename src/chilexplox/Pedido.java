@@ -25,8 +25,8 @@ public class Pedido extends Servicio implements java.io.Serializable{
             
     public Pedido(Sucursal sucOrigen, Sucursal sucDestino, Cliente cliente){
         super(0, 0, 0.0);
-        Empresa.getInstance().nuevoPedido();
-        this.idPedido = Empresa.getInstance().getNroPedidos();
+        Empresa.nuevoPedido();
+        this.idPedido = Empresa.getNroPedidos();
         this.sucOrigen = sucOrigen;
         this.sucDestino = sucDestino;
         this.costoEnvio = 0;
@@ -75,8 +75,8 @@ public class Pedido extends Servicio implements java.io.Serializable{
     // true si se logra agregar (si esta aun abierto el pedido) y false de lo contrario)
     public boolean agregarEnc(int peso, int volumen, String dirDestino, String desc){
         if (abierto){
-            Empresa.getInstance().nuevaEncomienda();
-            double prioridad = 1/(Empresa.getInstance().getNroEncomiendas());
+            Empresa.nuevaEncomienda();
+            double prioridad = 1/(Empresa.getNroEncomiendas());
             Encomienda e = new Encomienda(peso, volumen, prioridad, dirDestino, desc);
             this.encomiendas.add(e);
             this.peso += peso;
@@ -94,7 +94,7 @@ public class Pedido extends Servicio implements java.io.Serializable{
     // true si se logra agregar (si esta aun abierto el pedido) y false de lo contrario)
     public boolean agregarEnc(int peso, int volumen, int prioridadAgregada, String dirDestino, String desc){
         if (abierto){
-            double prioridadPorDefecto = 1/(Empresa.getInstance().getNroEncomiendas());
+            double prioridadPorDefecto = 1/(Empresa.getNroEncomiendas());
             double prioridadAsignada = prioridadPorDefecto + prioridadAgregada;
             Encomienda e = new Encomienda(peso, volumen, prioridadAsignada, dirDestino, desc);
             e.agregarCostoPrioridad(prioridadAgregada);

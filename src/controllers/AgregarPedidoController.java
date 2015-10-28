@@ -18,7 +18,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.SplitPane;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 /**
@@ -52,7 +51,7 @@ public class AgregarPedidoController implements Initializable {
             idPedido= (Text)scene.lookup("#idPedido");
             splitPane = (SplitPane)scene.lookup("#splitPane");
             try{  
-            Sucursal s = Empresa.getInstance().getSucursal((String)(comboBoxSucursales.getSelectionModel().getSelectedItem()));
+            Sucursal s = Empresa.getSucursal((String)(comboBoxSucursales.getSelectionModel().getSelectedItem()));
             Pedido p = Main.getUsuarioActual().crearPedido(s);
             sucursalText.setText((String)(comboBoxSucursales.getSelectionModel().getSelectedItem())) ;
             idPedido.setText(""+p.getIdPedido());
@@ -74,10 +73,10 @@ public class AgregarPedidoController implements Initializable {
     public void cargarNombresSucursales(){
 
             ObservableList nombreSucursales = FXCollections.observableArrayList();
-            for (int i=0; i<  Empresa.getInstance().getSucursales().size();i++)
+            for (int i=0; i<  Empresa.getSucursales().size();i++)
             {
-                if(!Empresa.getInstance().getSucursales().get(i).getNombre().equals(Main.getUsuarioActual().getSucursalActual().getNombre()))
-                nombreSucursales.add(Empresa.getInstance().getSucursales().get(i).getNombre());
+                if(!Empresa.getSucursales().get(i).getNombre().equals(Main.getUsuarioActual().getSucursalActual().getNombre()))
+                nombreSucursales.add(Empresa.getSucursales().get(i).getNombre());
             }
             
             comboBoxSucursales.getItems().setAll(nombreSucursales);

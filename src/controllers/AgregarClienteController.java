@@ -9,19 +9,12 @@ import chilexplox.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -56,7 +49,7 @@ public class AgregarClienteController implements Initializable {
             comboBoxClientes = (ComboBox)scene.lookup("#cbc");
             
             try{        
-            Empresa.getInstance().agregarCliente(nombreField.getText()+" "+apellidosField.getText(),calleField.getText()+" "+numeroField.getText()+", "+comunaField.getText()+", "+ciudadField.getText(),telefonoField.getText());
+            Empresa.agregarCliente(nombreField.getText()+" "+apellidosField.getText(),calleField.getText()+" "+numeroField.getText()+", "+comunaField.getText()+", "+ciudadField.getText(),telefonoField.getText());
             comboBoxClientes.getItems().add(nombreField.getText()+" "+apellidosField.getText());
             comboBoxClientes.setPromptText(nombreField.getText()+" "+apellidosField.getText());
             }
@@ -68,6 +61,8 @@ public class AgregarClienteController implements Initializable {
      
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

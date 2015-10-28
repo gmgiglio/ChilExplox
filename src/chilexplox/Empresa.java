@@ -63,7 +63,7 @@ public class Empresa implements java.io.Serializable {
       {
          FileOutputStream fileOut = new FileOutputStream("data/empresa.ser");
          ObjectOutputStream out = new ObjectOutputStream(fileOut);
-         out.writeObject(Empresa.getInstance());
+         out.writeObject(getInstance());
          out.close();
          fileOut.close();
          return true;
@@ -72,120 +72,121 @@ public class Empresa implements java.io.Serializable {
           i.printStackTrace();
           return false;
       }
-        
+     
+     //basado en tutorial http://www.tutorialspoint.com/java/java_serialization.htm  
     }
     
-    public void setTiempoLimite(long milisegundos){
-        tiempoLimite = milisegundos;
+    public static void setTiempoLimite(long milisegundos){
+        getInstance().tiempoLimite = milisegundos;
     }
     
-    public long getTiempoLimite(){
-        return tiempoLimite;
+    public static long getTiempoLimite(){
+        return getInstance().tiempoLimite;
     }
     
-    //basado en tutorial http://www.tutorialspoint.com/java/java_serialization.htm
     
-    public static Empresa getInstance() {
+    
+    private static Empresa getInstance() {
         return EmpresaHolder.INSTANCE;
     }
 
     /**
      * @return the sucursales
      */
-    public List<Sucursal> getSucursales() {
-        return new LinkedList<>(sucursales);
+    public static List<Sucursal> getSucursales() {
+        return new LinkedList<>(getInstance().sucursales);
     }
 
     /**
      * @return the usuarios
      */
-    public List<Usuario> getUsuarios() {
-        return new LinkedList<>(usuarios);
+    public static List<Usuario> getUsuarios() {
+        return new LinkedList<>(getInstance().usuarios);
     }
 
     /**
      * @return the clientes
      */
-    public List<Cliente> getClientes() {
-        return new LinkedList<>(clientes);
+    public static List<Cliente> getClientes() {
+        return new LinkedList<>(getInstance().clientes);
     }
     
     private static class EmpresaHolder {
         private static Empresa INSTANCE = new Empresa();
     }
     
-    public void setProperties(String nombre, String rut){
-        this.nombre = nombre;
-        this.rut = rut;
+    public static void setProperties(String nombre, String rut){
+        getInstance().nombre = nombre;
+        getInstance().rut = rut;
     }
     
     //retorna true si se pudo agregar ( si no existía otra sucursal con el mismo nombre)
-    public boolean agregarSucursal(String nombre, String ciudad, String direccion){
-        for(int i = 0; i < sucursales.size(); i++){
-            if(sucursales.get(i).getNombre().equals(nombre)){
+    public static boolean agregarSucursal(String nombre, String ciudad, String direccion){
+        for(int i = 0; i < getInstance().sucursales.size(); i++){
+            if(getInstance().sucursales.get(i).getNombre().equals(nombre)){
                 return false;
             }
         }
-        sucursales.add(new Sucursal(nombre, ciudad, direccion));
+        getInstance().sucursales.add(new Sucursal(nombre, ciudad, direccion));
         return true;
     }
     
-    public boolean agregarUsuario(String nombreUsuario, String contrasena){
-        for(int i = 0; i < usuarios.size(); i++){
-            if(usuarios.get(i).getNombreUsuario().equals(nombreUsuario)){
+    public static boolean agregarUsuario(String nombreUsuario, String contrasena){
+        for(int i = 0; i <  getInstance().usuarios.size(); i++){
+            if( getInstance().usuarios.get(i).getNombreUsuario().equals(nombreUsuario)){
                 return false;
             }
         }
-        usuarios.add(new Usuario(nombreUsuario, contrasena));
+         getInstance().usuarios.add(new Usuario(nombreUsuario, contrasena));
         return true;
     }
-    public boolean agregarCliente(String nombreCliente, String direccion, String telefono){
-        for(int i = 0; i < clientes.size(); i++){
-            if(clientes.get(i).getNombre().equals(nombreCliente)){
+    public static boolean agregarCliente(String nombreCliente, String direccion, String telefono){
+        for(int i = 0; i <  getInstance().clientes.size(); i++){
+            if( getInstance().clientes.get(i).getNombre().equals(nombreCliente)){
                 return false;
             }
         }
-        clientes.add(new Cliente(nombreCliente, direccion, telefono));
+         getInstance().clientes.add(new Cliente(nombreCliente, direccion, telefono));
         return true;
     }
-    public void nuevaEncomienda(){
-        nroEncomiendas++;
+    public static void nuevaEncomienda(){
+         getInstance().nroEncomiendas++;
     }
     
-    public void nuevoPedido(){
-        this.nroPedidos++;
+    public static void nuevoPedido(){
+         getInstance().nroPedidos++;
     }
     
-    public int getNroEncomiendas(){
-        return nroEncomiendas;
+    public static int getNroEncomiendas(){
+        return  getInstance().nroEncomiendas;
     }
     
-    public int getNroPedidos(){
-        return this.nroPedidos;
+    public static int getNroPedidos(){
+        return  getInstance().nroPedidos;
     }
     
-    public List<Sucursal> sucursalesEnCiudad(String nombreCiudad){
+    public static List<Sucursal> sucursalesEnCiudad(String nombreCiudad){
         List<Sucursal> result = new LinkedList<>();
-        for(int i = 0; i < this.getSucursales().size(); i++){
+        for(int i = 0; i <  getInstance().getSucursales().size(); i++){
             if(getSucursales().get(i).getCiudad().equals(nombreCiudad)){
-                result.add(this.getSucursales().get(i));
+                result.add( getInstance().getSucursales().get(i));
             }
         }
         
         return result;
     }
     
-    public Sucursal getSucursal(String nombre){
-        for(int i = 0; i < sucursales.size(); i++){
-            if(sucursales.get(i).getNombre().equals(nombre)){
-                return sucursales.get(i);
+    public static Sucursal getSucursal(String nombre){
+        for(int i = 0; i <  getInstance().sucursales.size(); i++){
+            if( getInstance().sucursales.get(i).getNombre().equals(nombre)){
+                return  getInstance().sucursales.get(i);
             }
         }
         return null;
     }
     
-    public Usuario getUsuario(String nombre){
-        for (Usuario u : usuarios){
+    public static Usuario getUsuario(String nombre){
+        for (Usuario u :  getInstance().usuarios){
             if(nombre.equals(u.getNombreUsuario())) return u;
         }
         return null;

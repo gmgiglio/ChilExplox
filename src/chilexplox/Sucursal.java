@@ -18,19 +18,19 @@ public class Sucursal implements java.io.Serializable{
     private String ciudad;
     private String direccion;
     //Camiones disponibles para asignar pedidos
-    private List<Camion> camionesDisp = new LinkedList<>();
+    private final List<Camion> camionesDisp = new LinkedList<>();
     //Camiones pendientes que esperan ser descargados
-    private List<Camion> camionesPend = new LinkedList<>();
+    private final List<Camion> camionesPend = new LinkedList<>();
     //Pedidos pendientes asignados a ningun camion
-    private List<Pedido> pedidosPend = new LinkedList<>();
+    private final List<Pedido> pedidosPend = new LinkedList<>();
     //Pedidos que ya se descargaron del camion y que esperan ser "revisados manualmente"
-    private List<Pedido> pedidosEnDest = new LinkedList<>();
+    private final List<Pedido> pedidosEnDest = new LinkedList<>();
     //Pedidos confirmados con informacion correcta
-    private List<Pedido> pedidosEntregados = new LinkedList<>();
+    private final List<Pedido> pedidosEntregados = new LinkedList<>();
     //Pedidos confirmados con informacion incorrecta
-    private List<Pedido> pedidosEquivocados = new LinkedList<>();
+    private final List<Pedido> pedidosEquivocados = new LinkedList<>();
     
-    private Stack<Mensaje> buzonMensajes = new Stack<>();
+    private final Stack<Mensaje> buzonMensajes = new Stack<>();
     
     public Sucursal(String nombre, String ciudad, String direccion){
         this.nombre = nombre;
@@ -39,7 +39,7 @@ public class Sucursal implements java.io.Serializable{
     }
     
     public void agregarPedido(Pedido p){
-        if(pedidosPend.size() == 0) pedidosPend.add(p);
+        if(pedidosPend.isEmpty()) pedidosPend.add(p);
         else{   
             for(int i = 0; i < pedidosPend.size(); i++){
 
@@ -141,7 +141,7 @@ public class Sucursal implements java.io.Serializable{
     
     public void revisarPedido(){
         for(Pedido p : this.pedidosPend){
-            if(p.getTiempoTranscurrido() > Empresa.getInstance().getTiempoLimite()){
+            if(p.getTiempoTranscurrido() > Empresa.getTiempoLimite()){
                 
             }
         }

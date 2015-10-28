@@ -12,7 +12,6 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
@@ -29,6 +28,8 @@ public class NuevoMensajeController implements Initializable {
     private Text alerta;
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -39,7 +40,7 @@ public class NuevoMensajeController implements Initializable {
        System.out.println("boton enviar apretado");
        String titulo = cajaTitulo.getText();
        String mensaje = cajaMensaje.getText();
-       Sucursal destino = Empresa.getInstance().getSucursal(cajaDestinatario.getText());
+       Sucursal destino = Empresa.getSucursal(cajaDestinatario.getText());
        try{
            Main.getUsuarioActual().enviarMensaje(titulo, mensaje, destino);
            cajaTitulo.setText("");
@@ -50,7 +51,7 @@ public class NuevoMensajeController implements Initializable {
            alerta.setText("Error al enviar mensaje");
        }
        
-       System.out.println(Empresa.getInstance().getSucursal("Maipu").getMensajesEnBuzon().get(0).getTexto());
+       System.out.println(Empresa.getSucursal("Maipu").getMensajesEnBuzon().get(0).getTexto());
        
        
        

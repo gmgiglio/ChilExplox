@@ -78,8 +78,9 @@ public class InicioController implements Initializable {
     private Text patenteCamAct, capacidadCamAct, espDispCamAct;
       
     
-       
-    
+   private Menu menuSucursal;
+   
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
@@ -96,7 +97,7 @@ public class InicioController implements Initializable {
         menuUsuario.getItems().add(new MenuItem("Cerrar sesión"));
         menuBar.getMenus().add(menuUsuario);
         ItemSucursalMenu i = new ItemSucursalMenu(Main.getUsuarioActual().getSucursalActual());
-        Menu menuSucursal = new Menu(Main.getUsuarioActual().getSucursalActual().getNombre());
+        menuSucursal = new Menu(Main.getUsuarioActual().getSucursalActual().getNombre());
         
         //agregar sucursales al menu de sucursales
         LinkedList<Sucursal> sucEnLista = new LinkedList(sucursales);
@@ -109,7 +110,10 @@ public class InicioController implements Initializable {
                     ItemSucursalMenu item1 = (ItemSucursalMenu)e.getSource();
                     Sucursal suc = item1.getSucursal();
                     menuSucursal.setText(suc.getNombre());
+                    ItemSucursalMenu item2 = new ItemSucursalMenu(Main.getUsuarioActual().getSucursalActual());
                     Main.getUsuarioActual().setSucursalActual(suc);
+                    menuSucursal.getItems().remove(item1);
+                    menuSucursal.getItems().add(item2);
                     actualizarPestanaAdm();
                 });    
                 

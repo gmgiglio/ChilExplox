@@ -90,9 +90,6 @@ public class InicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
-
-   Main.inicioPrueba();
-   
    
         List<Sucursal> sucursales = Empresa.getInstance().getSucursales();
         
@@ -359,7 +356,7 @@ public class InicioController implements Initializable {
             @Override public void handle(ActionEvent e) {
                     
                        try{
-                        anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/Nuevo Mensaje.fxml")));
+                        anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/NuevoMensaje.fxml")));
                         
                        }
                        catch (Exception exc)
@@ -379,7 +376,7 @@ public class InicioController implements Initializable {
         botonMensajesEnviados.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {                    
                 try{
-                 anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/Mensajes Enviados.fxml")));
+                 anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/MensajesEnviados.fxml")));
                 }
                 catch (Exception exc){} 
             }

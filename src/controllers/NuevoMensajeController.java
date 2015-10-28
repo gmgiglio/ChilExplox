@@ -32,7 +32,7 @@ public class NuevoMensajeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        int a = 0;
     }   
     
    public void handlerBotonEnviar(ActionEvent event){

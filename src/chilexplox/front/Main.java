@@ -5,10 +5,13 @@
  */
 package chilexplox.front;
 import chilexplox.*;
+import controllers.ElegirUsuario;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import static javafx.application.Application.launch;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
@@ -22,7 +25,7 @@ import javafx.scene.Parent;
 public class Main extends Application {
        
 
-    private static Usuario usuarioActual; 
+    private static Usuario usuarioActual;
 
     /**
      * @return the usuarioActual
@@ -38,15 +41,32 @@ public class Main extends Application {
         usuarioActual = aUsuarioActual;
     }
  
-
+    private ElegirUsuario pantallaElegirUsuario;
     public void start(Stage primaryStage) throws Exception{
         
-        Empresa.getInstance().agregarUsuario("hugo", "asasasdasd");
+        poblar(); //CAMBIAR A INICIO
         
         
         usuarioActual = Empresa.getInstance().getUsuarios().get(0);
        
-        Parent root = FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"));
+        pantallaElegirUsuario = new ElegirUsuario();
+        
+        pantallaElegirUsuario.setHandlerUsuarioElegido(new EventHandler() {
+
+            @Override
+            public void handle(Event event) {
+                Usuario u = pantallaElegirUsuario.getUsuario();
+                if(u != null){
+                    usuarioActual = u;
+                    try{
+                        primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"))));
+                    }catch(Exception e){}
+                }
+            }
+        });
+        
+        Parent root = pantallaElegirUsuario;
         Scene scene = new Scene(root,1080,615);
         primaryStage.setTitle("ChilExplox");
         primaryStage.setScene(scene);
@@ -79,16 +99,21 @@ public class Main extends Application {
         Cliente leo = Empresa.getInstance().getClientes().get(0);
         Sucursal maipu = Empresa.getInstance().getSucursal("Maipu");
         Sucursal victoria = Empresa.getInstance().getSucursal("Victoria");
+        
         Empresa.getInstance().agregarUsuario("Tulio Triviño", "31minutos");
+        Empresa.getInstance().agregarUsuario("a" , "locopoco");
+        
         maipu.agregarCamion("BDGH34", 3000);
         maipu.agregarCamionPend("JUHK87", 2500);
         maipu.getCamionesDisp().get(0).cargarPedido(new Pedido(maipu, victoria, leo));
         Usuario tulio = Empresa.getInstance().getUsuarios().get(0);
         tulio.setSucursalActual(maipu);
         tulio.crearPedido(victoria);
-        Main.getUsuarioActual().enviarMensaje("prueba", "esto es una prueba", victoria);
-        Main.getUsuarioActual().enviarMensaje("hola", "te queria mandar saludos", victoria);
-        Main.getUsuarioActual().enviarMensaje("Banana Split", "Esto es un banana split", victoria);
+        
+        Usuario a = Empresa.getInstance().getUsuario("a");
+        a.enviarMensaje("prueba", "esto es una prueba", victoria);
+        a.enviarMensaje("hola", "te queria mandar saludos", victoria);
+        a.enviarMensaje("Banana Split", "Esto es un banana split", victoria);
     }
     
     //true si se logro

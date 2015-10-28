@@ -183,4 +183,11 @@ public class Empresa implements java.io.Serializable {
         }
         return null;
     }
+    
+    public Usuario getUsuario(String nombre){
+        for (Usuario u : usuarios){
+            if(nombre.equals(u.getNombreUsuario())) return u;
+        }
+        return null;
+    }
 }

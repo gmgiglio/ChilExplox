@@ -13,7 +13,10 @@
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" />
                   <TextField fx:id="textFieldUsuario" onAction="#handlerTextFieldUsuario" prefHeight="27.0" prefWidth="420.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Clave" />
+                  <TextField fx:id="textFieldClave" onAction="#handlerTextFieldUsuario" />
                   <Text fx:id="textAlerta" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="386.21875" />
                </children>
             </VBox>

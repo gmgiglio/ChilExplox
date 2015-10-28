@@ -140,4 +140,8 @@ public class Usuario implements java.io.Serializable {
     public Sucursal getSucursalActual() {
         return sucursalActual;
     }
+    
+    public boolean contrasenaCorrecta(String clave){
+        return contrasena.equals(clave);
+    }
 }

@@ -48,9 +48,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         
-        poblar(); //CAMBIAR A INICIO
-       
-        //Parent root = FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"));
+        inicioPrueba(); //CAMBIAR A INICIO
+  
         ElegirUsuario pantallaElegirUsuario = new ElegirUsuario();
         
         pantallaElegirUsuario.setHandlerUsuarioElegido((EventHandler) (Event event) -> {
@@ -99,7 +98,7 @@ public class Main extends Application {
         Sucursal victoria = Empresa.getSucursal("Victoria");
         
         Empresa.agregarUsuario("Tulio Triviño", "31minutos");
-        Empresa.agregarUsuario("a" , "locopoco");
+        Empresa.agregarUsuario("a" , "a");
         
         maipu.agregarCamion("BDGH34", 3000);
         maipu.agregarCamionPend("JUHK87", 2500);

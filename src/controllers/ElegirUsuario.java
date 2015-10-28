@@ -25,13 +25,12 @@ import javafx.scene.text.Text;
 public class ElegirUsuario extends AnchorPane{
 
     @FXML
-    private TextField textFieldUsuario;
+    private TextField textFieldUsuario, textFieldClave;
     @FXML
     private Text textAlerta;
             
     public ElegirUsuario(){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/ElegirUsuario.fxml"));
-        URL url = getClass().getResource("/resources/ElegirUsuario.fxml");
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
         
@@ -49,11 +48,15 @@ public class ElegirUsuario extends AnchorPane{
     }
     
     public void handlerTextFieldUsuario(ActionEvent event){
-        if(getUsuario() != null){
+        Usuario u = getUsuario();
+        if(u != null && u.contrasenaCorrecta(textFieldClave.getText()) ){
             handlerUsuarioElegido.handle(event);
+            textFieldUsuario.setText("");
+            textFieldClave.setText("");
+            textAlerta.setText("");
         }
         else {
-            textAlerta.setText("El usuario no exsiste");
+            textAlerta.setText("El usuario no exsiste o la contraseña es incorrecta");
         }
     }
     
@@ -61,5 +64,6 @@ public class ElegirUsuario extends AnchorPane{
         System.out.println(textFieldUsuario.getText());
         return Empresa.getUsuario(textFieldUsuario.getText());
     }
+    
     
 }

@@ -46,13 +46,9 @@ public class Empresa implements java.io.Serializable {
          in.close();
          fileIn.close();
          return true;
-      }catch(IOException i)
-      {
-         i.printStackTrace();
-         return false;
-      }catch(ClassNotFoundException c)
-      {
-         c.printStackTrace();
+      }catch(Exception i){
+         
+         System.out.println("Empresa: no se pudo deserializar");
          return false;
       }
     }
@@ -66,10 +62,11 @@ public class Empresa implements java.io.Serializable {
          out.writeObject(getInstance());
          out.close();
          fileOut.close();
+         System.out.println("Empresa: Serializacion exitosa");
          return true;
       }catch(IOException i)
       {
-          i.printStackTrace();
+          System.out.println("Empresa: No se pudo serializar");
           return false;
       }
      

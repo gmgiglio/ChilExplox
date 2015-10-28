@@ -54,7 +54,7 @@ public class Main extends Application {
         ElegirUsuario pantallaElegirUsuario = new ElegirUsuario();
         
         pantallaElegirUsuario.setHandlerUsuarioElegido((EventHandler) (Event event) -> {
-            Usuario u = pantallaElegirUsuario.getUsuario();
+            usuarioActual = pantallaElegirUsuario.getUsuario();
             try{
                 primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"))));
             }catch(Exception e){ 

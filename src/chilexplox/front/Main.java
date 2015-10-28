@@ -55,14 +55,12 @@ public class Main extends Application {
         
         pantallaElegirUsuario.setHandlerUsuarioElegido((EventHandler) (Event event) -> {
             Usuario u = pantallaElegirUsuario.getUsuario();
-            if(u != null){
-                usuarioActual = u;
-                try{
-                    primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"))));
-                }catch(Exception e){ 
-                    throw new RuntimeException(e);
-                           }
-            }
+            try{
+                primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"))));
+            }catch(Exception e){ 
+                throw new RuntimeException(e);
+                      }
+            
         });
         
         Parent root = pantallaElegirUsuario;

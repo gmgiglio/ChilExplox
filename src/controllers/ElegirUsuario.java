@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -25,6 +26,8 @@ public class ElegirUsuario extends AnchorPane{
 
     @FXML
     private TextField textFieldUsuario;
+    @FXML
+    private Text textAlerta;
             
     public ElegirUsuario(){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/ElegirUsuario.fxml"));
@@ -46,7 +49,12 @@ public class ElegirUsuario extends AnchorPane{
     }
     
     public void handlerTextFieldUsuario(ActionEvent event){
-        handlerUsuarioElegido.handle(event);
+        if(getUsuario() != null){
+            handlerUsuarioElegido.handle(event);
+        }
+        else {
+            textAlerta.setText("El usuario no exsiste");
+        }
     }
     
     public Usuario getUsuario(){

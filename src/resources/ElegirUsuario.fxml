@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -8,6 +9,15 @@
 
 <fx:root id="AnchorPane" prefHeight="400.0" prefWidth="600.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField fx:id="textFieldUsuario" layoutX="179.0" layoutY="159.0" onAction="#handlerTextFieldUsuario" prefHeight="27.0" prefWidth="243.0" />
+      <BorderPane prefHeight="402.0" prefWidth="601.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="150.0">
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="textFieldUsuario" onAction="#handlerTextFieldUsuario" prefHeight="27.0" prefWidth="420.0" />
+                  <Text fx:id="textAlerta" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="386.21875" />
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
    </children>
 </fx:root>

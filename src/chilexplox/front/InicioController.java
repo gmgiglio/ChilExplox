@@ -99,6 +99,7 @@ public class InicioController implements Initializable {
         Main.getUsuarioActual().setSucursalActual(Empresa.getSucursales().get(0));
         ItemSucursalMenu i = new ItemSucursalMenu(Main.getUsuarioActual().getSucursalActual());
         menuSucursal = new Menu(Main.getUsuarioActual().getSucursalActual().getNombre());
+        Main.getUsuarioActual().getSucursalActual().revisarTiempoPedidos();
         
         //agregar sucursales al menu de sucursales
         LinkedList<Sucursal> sucEnLista = new LinkedList(sucursales);
@@ -115,6 +116,7 @@ public class InicioController implements Initializable {
                     Main.getUsuarioActual().setSucursalActual(suc);
                     menuSucursal.getItems().remove(item1);
                     menuSucursal.getItems().add(item2);
+                    suc.revisarTiempoPedidos();
                     actualizarPestanaAdm();
                 });    
                 
@@ -444,6 +446,7 @@ public class InicioController implements Initializable {
          public Sucursal getSucursal(){
              return sucursal;
          }
+         
      }
 
 

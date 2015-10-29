@@ -61,7 +61,6 @@ public class ElegirUsuario extends AnchorPane{
     }
     
     public Usuario getUsuario(){
-        System.out.println(textFieldUsuario.getText());
         return Empresa.getUsuario(textFieldUsuario.getText());
     }
     

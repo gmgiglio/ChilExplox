@@ -30,7 +30,10 @@ public class Empresa implements java.io.Serializable {
     private List<Usuario> usuarios = new LinkedList<>();
 
     //tiempo limite para mandar para pedidos alta prioridad, 3 dias default
-    private long tiempoLimite = 3*24*60*60*1000; 
+    private long tiempoLimite = 0; //3*24*60*60*1000;
+    private int altaPrioridad = 5;
+    
+    
 
     
     private Empresa() {
@@ -45,6 +48,7 @@ public class Empresa implements java.io.Serializable {
          EmpresaHolder.INSTANCE = (Empresa) in.readObject();
          in.close();
          fileIn.close();
+         System.out.println("Empresa: Deserializacion exitosa");
          return true;
       }catch(Exception i){
          
@@ -106,6 +110,20 @@ public class Empresa implements java.io.Serializable {
      */
     public static List<Cliente> getClientes() {
         return new LinkedList<>(getInstance().clientes);
+    }
+
+    /**
+     * @return the altaPrioridad
+     */
+    public static int getAltaPrioridad() {
+        return getInstance().altaPrioridad;
+    }
+
+    /**
+     * @param altaPrioridad the altaPrioridad to set
+     */
+    public static void setAltaPrioridad(int altaPrioridad) {
+        getInstance().altaPrioridad = altaPrioridad;
     }
     
     private static class EmpresaHolder {

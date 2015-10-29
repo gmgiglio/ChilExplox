@@ -48,7 +48,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         
-        inicioPrueba(); //CAMBIAR A INICIO
+        poblar(); //CAMBIAR A INICIO
   
         ElegirUsuario pantallaElegirUsuario = new ElegirUsuario();
         

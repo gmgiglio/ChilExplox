@@ -4,10 +4,13 @@
  * and open the template in the editor.
  */
 package chilexplox;
+import java.util.EventObject;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Stack;
-import java.util.Date;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 /**
  *
  * @author carlossalame
@@ -32,10 +35,13 @@ public class Sucursal implements java.io.Serializable{
     
     private final Stack<Mensaje> buzonMensajes = new Stack<>();
     
+    private final Usuario autoRobot;
+    
     public Sucursal(String nombre, String ciudad, String direccion){
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.direccion = direccion;
+        this.autoRobot = new Usuario("AutoRobot sucursal " + nombre, nombre);
     }
     
     public void agregarPedido(Pedido p){
@@ -139,13 +145,22 @@ public class Sucursal implements java.io.Serializable{
         else return false;
     }
     
-    public void revisarPedido(){
+    private EventHandler handlerPedidoAtrasado;
+    
+    public void setHandlerPedidoAtrasado(EventHandler e){
+        handlerPedidoAtrasado = e;
+    }
+   
+            
+    public void revisarTiempoPedidos(){
         for(Pedido p : this.pedidosPend){
-            if(p.getTiempoTranscurrido() > Empresa.getTiempoLimite()){
-                
+            if(p.getPrioridad() >= Empresa.getAltaPrioridad() && p.getTiempoTranscurrido() > Empresa.getTiempoLimite()){
+                handlerPedidoAtrasado.handle(new ActionEvent(p,null));
+                String texto = "Se notifica que se ha detectado un atrazo en pedido id: " + p.getIdPedido() + " de alta prioridad. ";
+                autoRobot.enviarMensaje("Notificación pedido atrasado",texto, this);
             }
         }
-    }
+    } 
     
     public void agregarCamion(String patente, int capacidad){
         camionesDisp.add(new Camion(patente, capacidad));

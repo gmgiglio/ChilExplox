@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
@@ -22,18 +23,15 @@ import javafx.scene.text.Text;
  */
 public class NuevoMensajeController implements Initializable {
 
-        @FXML
-    private TextField cajaTitulo, cajaMensaje, cajaDestinatario;
-        @FXML
+    @FXML
+    private TextField cajaTitulo, cajaDestinatario;
+    @FXML
+    private TextArea cajaMensaje;
+    @FXML
     private Text alerta;
-    /**
-     * Initializes the controller class.
-     * @param url
-     * @param rb
-     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        int a = 0;
     }   
     
    public void handlerBotonEnviar(ActionEvent event){
@@ -52,9 +50,7 @@ public class NuevoMensajeController implements Initializable {
        }
        
        System.out.println(Empresa.getSucursal("Maipu").getMensajesEnBuzon().get(0).getTexto());
-       
-       
-       
+  
    }
 
 }

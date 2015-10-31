@@ -379,8 +379,9 @@ public class InicioController implements Initializable {
                         anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/NuevoMensaje.fxml")));
                         
                        }
-                       catch (Exception exc)
-                      {}
+                       catch (Exception exc){
+                           System.out.println("InicioController: No se cargó NuevoMensaje.fxml ");
+                      }
             }
         });
         
@@ -404,7 +405,7 @@ public class InicioController implements Initializable {
         
     }
     
-    EventHandler eventoSucusal = new EventHandler() {
+    private EventHandler eventoSucusal = new EventHandler() {
 
          public void handle(Event e) {
              ItemSucursalMenu item1 = (ItemSucursalMenu)e.getSource();

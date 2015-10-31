@@ -38,6 +38,9 @@
                                                    <center>
                                                       <ComboBox id="cbc" fx:id="comboBoxClientes" prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
                                                    </center>
+                                                   <bottom>
+                                                      <Text fx:id="advertencia" fill="#dd0b0b" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="27.21875" BorderPane.alignment="CENTER" />
+                                                   </bottom>
                                                 </BorderPane>
                                                 <BorderPane prefHeight="100.0" prefWidth="82.0">
                                                    <center>
@@ -181,9 +184,10 @@
                            <children>
                               <TitledPane animated="false" prefHeight="920.0" prefWidth="360.0" text="Pedidos Pendientes">
                                 <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="920.0" prefWidth="360.0">
+                                  <AnchorPane fx:id="anchorEjemplo" minHeight="0.0" minWidth="0.0" prefHeight="920.0" prefWidth="360.0">
                                        <children>
                                           <ListView fx:id="pedidosPendientes" prefHeight="920.0" prefWidth="360.0" />
+                                          <TreeView fx:id="treeEjemplo" layoutX="34.0" layoutY="85.0" prefHeight="200.0" prefWidth="200.0" />
                                        </children>
                                     </AnchorPane>
                                 </content>
@@ -194,15 +198,16 @@
                                        <children>
                                           <VBox prefHeight="920.0" prefWidth="360.0">
                                              <children>
-                                                <HBox prefHeight="80.0" prefWidth="360.0">
+                                                <HBox prefHeight="100.0" prefWidth="360.0">
                                                    <children>
-                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0" prefWidth="250.0">
+                                                      <AnchorPane maxHeight="150.0" minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="250.0">
                                                          <children>
                                                             <VBox prefHeight="80.0" prefWidth="100.0">
                                                                <children>
                                                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patente:" />
                                                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Capacidad:" />
                                                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Espacio Disponible:" />
+                                                                  <Text layoutX="10.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado: " />
                                                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" />
                                                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pedidos Cargados:" />
                                                                </children>
@@ -211,18 +216,19 @@
                                                       </AnchorPane>
                                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0" prefWidth="360.0">
                                                          <children>
-                                                            <VBox prefHeight="80.0" prefWidth="360.0">
+                                                            <VBox prefHeight="80.0" prefWidth="237.0">
                                                                <children>
                                                                   <Text fx:id="patenteCamAct" strokeType="OUTSIDE" strokeWidth="0.0" />
                                                                   <Text fx:id="capacidadCamAct" strokeType="OUTSIDE" strokeWidth="0.0" />
                                                                   <Text fx:id="espDispCamAct" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                                                  <Text fx:id="estadoCamAct" layoutX="10.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                                                                </children>
                                                             </VBox>
                                                          </children>
                                                       </AnchorPane>
                                                    </children>
                                                 </HBox>
-                                                <ListView fx:id="pedidosCargados" prefHeight="800.0" prefWidth="360.0" />
+                                                <ListView fx:id="pedidosCargados" prefHeight="433.0" prefWidth="360.0" />
                                              </children>
                                           </VBox>
                                        </children>

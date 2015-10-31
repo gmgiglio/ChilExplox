@@ -27,15 +27,14 @@ public class Usuario implements java.io.Serializable {
         sucursalActual = null;
     }
     
-    public void crearPedido(Sucursal sucDestino, Cliente cliente){
-        Pedido p = new Pedido(getSucursalActual(), sucDestino, cliente);
-        getSucursalActual().agregarPedido(p);
+    public Pedido crearPedido(Sucursal sucDestino, Cliente cliente){
+        sucursalActual.setPedidoAbierto(new Pedido(sucursalActual, sucDestino, cliente));
+        return sucursalActual.getPedidoAbierto();
     }
     
     public Pedido crearPedido(Sucursal sucDestino){
-        Pedido p = new Pedido(sucursalActual, sucDestino, null);
-        sucursalActual.agregarPedido(p);
-        return p;
+        sucursalActual.setPedidoAbierto(new Pedido(sucursalActual, sucDestino, null));
+        return sucursalActual.getPedidoAbierto();
     }
     
     public void agregarEnc(Pedido p, int peso, int volumen, String dirDestino, String desc){
@@ -45,6 +44,16 @@ public class Usuario implements java.io.Serializable {
     public void agregarEnc(Pedido p,int peso, int volumen, int prioridad, String dirDestino, String desc){
         p.agregarEnc(peso, volumen, prioridad, dirDestino, desc);
     }
+    
+    public boolean cerrarPed(){
+        if(sucursalActual.getPedidoAbierto().cerrarPedido()){
+            sucursalActual.agregarPedido(sucursalActual.getPedidoAbierto());
+            
+            return true;
+        }
+        return false;
+    }
+    
     
     //Envia el pedido de mayor urgencia en el primer camion disponible en la sucursal.
     //Si existen pedidos pendientes que se dirigen a la misma sucursal y caben en el camion, estos tambien

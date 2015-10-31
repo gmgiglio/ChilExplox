@@ -32,7 +32,7 @@ public class Sucursal implements java.io.Serializable{
     private final List<Pedido> pedidosEntregados = new LinkedList<>();
     //Pedidos confirmados con informacion incorrecta
     private final List<Pedido> pedidosEquivocados = new LinkedList<>();
-    
+    private Pedido pedidoAbierto = null;
     private final Stack<Mensaje> buzonMensajes = new Stack<>();
     
     private final Usuario autoRobot;
@@ -153,11 +153,13 @@ public class Sucursal implements java.io.Serializable{
    
             
     public void revisarTiempoPedidos(){
-        for(Pedido p : this.pedidosPend){
-            if(p.getPrioridad() >= Empresa.getAltaPrioridad() && p.getTiempoTranscurrido() > Empresa.getTiempoLimite()){
-                handlerPedidoAtrasado.handle(new ActionEvent(p,null));
-                String texto = "Se notifica que se ha detectado un atrazo en pedido id: " + p.getIdPedido() + " de alta prioridad. ";
-                autoRobot.enviarMensaje("Notificación pedido atrasado",texto, this);
+        if(pedidosPend.size()>0){
+            for(Pedido p : this.pedidosPend){
+                if(p.getPrioridad() >= Empresa.getAltaPrioridad() && p.getTiempoTranscurrido() > Empresa.getTiempoLimite()){
+                    handlerPedidoAtrasado.handle(new ActionEvent(p,null));
+                    String texto = "Se notifica que se ha detectado un atrazo en pedido id: " + p.getIdPedido() + " de alta prioridad. ";
+                    autoRobot.enviarMensaje("Notificación pedido atrasado",texto, this);
+                }
             }
         }
     } 
@@ -173,4 +175,18 @@ public class Sucursal implements java.io.Serializable{
     public List<Mensaje> getMensajesEnBuzon(){
         return new LinkedList<>(this.buzonMensajes);
     }   
+
+    /**
+     * @return the pedidoAbierto
+     */
+    public Pedido getPedidoAbierto() {
+        return pedidoAbierto;
+    }
+
+    /**
+     * @param pedidoAbierto the pedidoAbierto to set
+     */
+    public void setPedidoAbierto(Pedido pedidoAbierto) {
+        this.pedidoAbierto = pedidoAbierto;
+    }
 }

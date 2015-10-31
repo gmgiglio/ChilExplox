@@ -43,7 +43,8 @@ public class InicioController implements Initializable {
     private Button agregarCliente;
        @FXML
     private Button agregarEncomienda;
-       
+       @FXML
+    private Text advertencia;
         @FXML
     private Button crearPedido;
       @FXML
@@ -75,7 +76,11 @@ public class InicioController implements Initializable {
        @FXML
     private ComboBox comboBoxClientes, comboBoxSucursales, comboBoxEncomiendas;
        @FXML
-    private Text patenteCamAct, capacidadCamAct, espDispCamAct;
+    private Text patenteCamAct, capacidadCamAct, espDispCamAct, estadoCamAct;
+       @FXML
+    private TreeView<String> treeEjemplo;
+       @FXML
+    private AnchorPane anchorEjemplo;
       
     
    private Menu menuSucursal;
@@ -214,12 +219,16 @@ public class InicioController implements Initializable {
             
            cerrarPedido.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                    
-                       try{     
-                            Scene scene = split.getScene();
-                            Text idPedido = (Text)scene.lookup("#idPedido");
-                            Main.getUsuarioActual().confirmarPedido(Integer.parseInt(idPedido.getText()), true);
-                            limpiarAtender();
+                    String nombreCliente = (String)comboBoxClientes.getItems().get(0);
+                       try{
+                            if(nombreCliente != null){
+                                Scene scene = split.getScene();
+                                Text idPedido = (Text)scene.lookup("#idPedido");
+                                Main.getUsuarioActual().getSucursalActual().getPedidoAbierto().setCliente(nombreCliente);
+                                Main.getUsuarioActual().cerrarPed();
+                                limpiarAtender();
+                           }
+                            else advertencia.setText("Debe seleccionar un cliente");
                        }
                        catch (Exception exc)
                       {
@@ -253,7 +262,31 @@ public class InicioController implements Initializable {
                                         String patenteCamionSelec = (String)camionesDisponibles.getSelectionModel().getSelectedItem();
                                         ObservableList idsPedCamion = FXCollections.observableArrayList();
                                         Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
+                                        
                                         for(Camion c : sucActual.getCamionesDisp()){
+                                            if(c.getPatente()==patenteCamionSelec) camionSelec = c;
+                                        }
+                                        for(Pedido p : camionSelec.getPedidos()){
+                                            idsPedCamion.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
+                                            
+                                        }
+                                        pedidosCargados.setItems(idsPedCamion);
+                                        patenteCamAct.setText(camionSelec.getPatente());
+                                        capacidadCamAct.setText(Integer.toString(camionSelec.getCapacidad()));
+                                        espDispCamAct.setText(Integer.toString(camionSelec.getEspDisp()));
+                                        estadoCamAct.setText("DISPONIBLE");
+                                        
+                                    }
+                                });
+                                
+                                camionesPorDescargar.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                    @Override
+                                    public void handle(MouseEvent event) {
+                                        Camion camionSelec = null;
+                                        String patenteCamionSelec = (String)camionesPorDescargar.getSelectionModel().getSelectedItem();
+                                        ObservableList idsPedCamion = FXCollections.observableArrayList();
+                                        Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
+                                        for(Camion c : sucActual.getCamionesPend()){
                                             if(c.getPatente()==patenteCamionSelec) camionSelec = c;
                                         }
                                         for(Pedido p : camionSelec.getPedidos()){
@@ -263,7 +296,7 @@ public class InicioController implements Initializable {
                                         patenteCamAct.setText(camionSelec.getPatente());
                                         capacidadCamAct.setText(Integer.toString(camionSelec.getCapacidad()));
                                         espDispCamAct.setText(Integer.toString(camionSelec.getEspDisp()));
-                                        
+                                        estadoCamAct.setText("POR DESCARGAR");
                                         
                                     }
                                 });
@@ -400,10 +433,30 @@ public class InicioController implements Initializable {
          ObservableList idsPedPend = FXCollections.observableArrayList();
          ObservableList patentesCamDisp = FXCollections.observableArrayList();
          ObservableList patentesCamADesc = FXCollections.observableArrayList();
+         TreeItem<String> dummyRoot = new TreeItem<>("root");
+         TreeItem<String> sucDestPed;
+         TreeItem<String> clientePed;
+         TreeItem<String> pesoPed;
+         TreeItem<String> volumenPed;
+         TreeItem<String> priorPed;
          
          for(Pedido p : sucActual.getPedidosPend()){
-             idsPedPend.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
+             //idsPedPend.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
+             TreeItem<String> child = new TreeItem<>("Pedido #" + Integer.toString(p.getIdPedido()));
+             child.getChildren().add(new TreeItem<>("Prioridad: " + p.getPrioridad()));
+             child.getChildren().add(new TreeItem<>("Sucursal de Destino: " + p.getSucDestino().getNombre()));
+             child.getChildren().add(new TreeItem<>("Cliente: " + p.getCliente().getNombre()));
+             child.getChildren().add(new TreeItem<>("Peso: " + p.getPeso() + " g"));
+             child.getChildren().add(new TreeItem<>("Volumen aprox.: " + p.getVol()+ "cm^3"));
+             
+             dummyRoot.getChildren().add(child);
          }
+         
+         TreeView<String> pedPend = new TreeView<>(dummyRoot);
+         pedPend.setPrefWidth(anchorEjemplo.getPrefWidth());
+         pedPend.setShowRoot(false);
+        anchorEjemplo.getChildren().add(pedPend);
+         
          pedidosPendientes.setItems(idsPedPend);
          
          for(Camion c : sucActual.getCamionesDisp()){

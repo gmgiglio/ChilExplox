@@ -38,6 +38,13 @@ public abstract class Servicio {
     public double getPrioridad() {
         return prioridad;
     }
+
+    /**
+     * @return the peso
+     */
+    public int getPeso() {
+        return peso;
+    }
     
     
     

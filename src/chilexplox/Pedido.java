@@ -41,7 +41,7 @@ public class Pedido extends Servicio implements java.io.Serializable{
     
     //devuelve true si se pudo cerrar el pedido (si estan asignados los datos del cliente) y false de lo contrario
     public boolean cerrarPedido(){
-        if (cliente != null){
+        if (getCliente() != null){
             abierto = false;
             tiempoCierre = new Date();
             return true;
@@ -130,5 +130,23 @@ public class Pedido extends Servicio implements java.io.Serializable{
      */
     public int getIdPedido() {
         return idPedido;
+    }
+
+    /**
+     * @return the cliente
+     */
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(String nombre) {
+        for(Cliente c : Empresa.getClientes()){
+            if(c.getNombre() == nombre){
+                cliente = c;
+            }
+        }
     }
 }

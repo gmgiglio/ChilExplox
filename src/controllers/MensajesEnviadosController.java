@@ -6,9 +6,17 @@
 package controllers;
 
 import chilexplox.*;
+import chilexplox.front.Main;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 /**
  * FXML Controller class
@@ -17,12 +25,32 @@ import javafx.fxml.Initializable;
  */
 public class MensajesEnviadosController implements Initializable {
 
+    
+    @FXML
+    private VBox listaMensajes;
+    @FXML
+    private TextFlow textoMensaje;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        List<RegistroMensaje> registroMensajes = Main.getUsuarioActual().getRegistroMensajesEnviados();
+        Usuario u = Main.getUsuarioActual();
+        for(RegistroMensaje r : registroMensajes){
+            CajaMensajeEnviado cajaM = new CajaMensajeEnviado(r);
+            listaMensajes.getChildren().add(cajaM);
+            cajaM.setOnAction(botonApretado);
+        }
     }    
+    
+    EventHandler botonApretado = (EventHandler) (Event event) -> {
+        CajaMensajeEnviado boton = (CajaMensajeEnviado) event.getTarget();
+        String s = boton.getMensaje().getTexto();
+        Text t = new Text(s);
+        textoMensaje.getChildren().clear();
+        textoMensaje.getChildren().add(t);
+    };
     
 }

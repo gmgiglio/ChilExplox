@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/controllers/MensajesEnviadosController.java</file>
             <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/Usuario.java</file>
+            <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/controllers/BuzonEntradaController.java</file>
+            <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/controllers/CajaMensajeResivido.java</file>
             <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/controllers/ElegirUsuario.java</file>
-            <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/Sucursal.java</file>
-            <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/Empresa.java</file>
-            <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/front/InicioController.java</file>
+            <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/controllers/CajaMensajeEnviado.java</file>
             <file>file:/Users/gianfrancogiglio/Desktop/Universidad/Ingenieria%20de%20Software/proyecto/Codigo/ChilExplox/src/chilexplox/front/Main.java</file>
         </group>
     </open-files>

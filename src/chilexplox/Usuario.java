@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package chilexplox;
+import java.util.Date;
 import java.util.List;
 import java.util.LinkedList;
+import static javafx.scene.input.KeyCode.I;
 
 /**
  *
@@ -16,6 +18,8 @@ public class Usuario implements java.io.Serializable {
     private String nombreUsuario;
     private String contrasena;
     private Sucursal sucursalActual;
+    
+    private final List<RegistroMensaje> registroMensajesEnviados = new LinkedList();
     
     public Usuario(String nombreUsuario, String contrasena){
         this.nombreUsuario = nombreUsuario;
@@ -117,7 +121,11 @@ public class Usuario implements java.io.Serializable {
     
     public void enviarMensaje(String titulo, String texto, Sucursal sucursal){
         Mensaje mensaje = new Mensaje(titulo, texto, this);
-        mensaje.enviar(sucursal);
+        registroMensajesEnviados.add(mensaje.enviar(sucursal));
+    }
+    
+    public List<RegistroMensaje> getRegistroMensajesEnviados(){
+        return new LinkedList(registroMensajesEnviados);
     }
 
     /**

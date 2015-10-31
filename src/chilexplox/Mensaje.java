@@ -5,6 +5,8 @@
  */
 package chilexplox;
 
+import java.util.Date;
+
 /**
  *
  * @author gianfrancogiglio
@@ -21,8 +23,9 @@ public class Mensaje implements java.io.Serializable {
         
     }
     
-    public void enviar(Sucursal destino){
+    public RegistroMensaje enviar(Sucursal destino){   
         destino.recibeMensaje(this);
+        return new RegistroMensaje(this,destino,new Date());
     }
     
     public String getTexto(){
@@ -50,5 +53,5 @@ public class Mensaje implements java.io.Serializable {
         return remitente;
     }
     
-    
+       
 }

@@ -6,9 +6,8 @@
 package controllers;
 
 import chilexplox.Mensaje;
+import chilexplox.RegistroMensaje;
 import java.io.IOException;
-import java.net.URL;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -19,15 +18,18 @@ import javafx.scene.text.Text;
  *
  * @author gianfrancogiglio
  */
-public class CajaMensajeResivido extends Button {
+public class CajaMensajeEnviado extends Button {
+
     
     @FXML
-    private Text textoAsunto,textoUsuario;
-
-    private Mensaje mensaje;
-
-    public CajaMensajeResivido (Mensaje mensaje){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/CajaMensajeResivido.fxml"));
+    private Text textoAsunto,textoSucursal;
+    
+    private RegistroMensaje registro;
+    
+    public CajaMensajeEnviado(RegistroMensaje registro){
+        this.registro = registro;
+        
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/CajaMensajeEnviado.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
         
@@ -37,17 +39,12 @@ public class CajaMensajeResivido extends Button {
             throw new RuntimeException(exception);
         }
          
-         this.mensaje = mensaje;
-        
-        textoAsunto.setText(mensaje.getNombre());
-        textoUsuario.setText(mensaje.getRemitente().getNombreUsuario());
+          textoAsunto.setText(registro.getMensaje().getNombre());
+          textoSucursal.setText(registro.getDestino().getNombre());
     } 
-
-    /**
-     * @return the mensaje
-     */
-    public Mensaje getMensaje() {
-        return mensaje;
+    
+    public Mensaje getMensaje(){
+        return registro.getMensaje();
     }
     
 }

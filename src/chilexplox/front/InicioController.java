@@ -112,18 +112,7 @@ public class InicioController implements Initializable {
         for(Sucursal s : sucEnLista){
                 ItemSucursalMenu item = new ItemSucursalMenu(s);
                 menuSucursal.getItems().add(item); 
-                
-                item.setOnAction((ActionEvent e) -> {
-                    ItemSucursalMenu item1 = (ItemSucursalMenu)e.getSource();
-                    Sucursal suc = item1.getSucursal();
-                    menuSucursal.setText(suc.getNombre());
-                    ItemSucursalMenu item2 = new ItemSucursalMenu(Main.getUsuarioActual().getSucursalActual());
-                    Main.getUsuarioActual().setSucursalActual(suc);
-                    menuSucursal.getItems().remove(item1);
-                    menuSucursal.getItems().add(item2);
-                    suc.revisarTiempoPedidos();
-                    actualizarPestanaAdm();
-                });    
+                item.setOnAction(eventoSucusal);  
                 
         }
         menuBar.getMenus().addAll(menuUsuario,menuSucursal);
@@ -414,6 +403,23 @@ public class InicioController implements Initializable {
         });
         
     }
+    
+    EventHandler eventoSucusal = new EventHandler() {
+
+         public void handle(Event e) {
+             ItemSucursalMenu item1 = (ItemSucursalMenu)e.getSource();
+             Sucursal suc = item1.getSucursal();
+             menuSucursal.setText(suc.getNombre());
+             ItemSucursalMenu item2 = new ItemSucursalMenu(Main.getUsuarioActual().getSucursalActual());
+             item2.setOnAction(eventoSucusal);
+             Main.getUsuarioActual().setSucursalActual(suc);
+             menuSucursal.getItems().remove(item1);
+             menuSucursal.getItems().add(item2);
+             suc.revisarTiempoPedidos();
+             actualizarPestanaAdm();
+         }
+     };   
+    
     public void cargarNombresClientes(){
 
             ObservableList nombreClientes = FXCollections.observableArrayList();

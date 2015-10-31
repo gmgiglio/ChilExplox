@@ -48,7 +48,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         
-        poblar(); //CAMBIAR A INICIO
+        inicioPrueba(); //CAMBIAR A INICIO
   
         ElegirUsuario pantallaElegirUsuario = new ElegirUsuario();
         
@@ -113,27 +113,16 @@ public class Main extends Application {
         a.enviarMensaje("Banana Split", "Esto es un banana split", victoria);
     }
     
-    //true si se logro
-    public static boolean deserializar(String path){
-        
-        try{
-            Empresa.deserializar(path);
-            return true;
-        }
-        catch(Exception e){
-            return false;
-        }
-    }
     
     public static void inicioPrueba(){
-        if(!deserializar("data/empresa.ser")){
+        if(!Empresa.deserializar("data/empresa.ser")){
             poblar();
         }
     }
     
     //por implementar
     public static void inicio(){
-        
+        Empresa.deserializar("data/empresa.ser");
     }
     
     public static void cerrarSesion(){

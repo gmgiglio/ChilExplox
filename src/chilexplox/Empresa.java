@@ -63,6 +63,8 @@ public class Empresa implements java.io.Serializable {
       {
          FileOutputStream fileOut = new FileOutputStream("data/empresa.ser");
          ObjectOutputStream out = new ObjectOutputStream(fileOut);
+         Empresa e = getInstance();
+         //Empresa.setProperties(Path, Path);
          out.writeObject(getInstance());
          out.close();
          fileOut.close();

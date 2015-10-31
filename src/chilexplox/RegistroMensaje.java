@@ -13,7 +13,7 @@ import java.util.Date;
  */
 
 
-public class RegistroMensaje {
+public class RegistroMensaje implements java.io.Serializable {
     private Mensaje mensaje;
     private Sucursal destino;
     private Date tiempoEnvio;

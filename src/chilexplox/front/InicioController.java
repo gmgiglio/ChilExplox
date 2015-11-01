@@ -161,13 +161,6 @@ public class InicioController implements Initializable {
                 }
             });
             
-            if(agregarEncomiendaCon != null){
-                agregarEncomiendaCon.setHandlerEncomienda((Event e) -> {
-                    
-                    agregarEncomienda(agregarEncomiendaCon.getPeso(),agregarEncomiendaCon.getVolumen(),
-                            agregarEncomiendaCon.getPrioridad(),agregarEncomiendaCon.getDirDestino(),agregarEncomiendaCon.getDescr());
-                });
-            }
             
            cerrarPedido.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {

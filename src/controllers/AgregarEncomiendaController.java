@@ -6,8 +6,6 @@
 package controllers;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -15,7 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 
@@ -24,16 +22,16 @@ import javafx.scene.text.Text;
  *
  * @author alberto
  */
-public class AgregarEncomiendaController extends AnchorPane {
+public class AgregarEncomiendaController extends VBox {
     
     @FXML
     private TextField descField,pesoField,volumenField,prioridadField,calleField,numeroField,comunaField,ciudadField;
      @FXML
     private Button crearEncomienda;
-    
+    @FXML
     private ComboBox comboBoxEncomiendas;
-    
-    private Text idPedido,presupuesto;
+    @FXML
+    private Text idPedido,presupuesto,textoAlertaPeso,textoAlertaVolumen,textoAlertaPrioridad;
 
     /*
     @FXML
@@ -58,7 +56,14 @@ public class AgregarEncomiendaController extends AnchorPane {
     */
     
     public void botonApretado(ActionEvent event) {
-        handlerEncomienda.handle(new ActionEvent(this,null));
+        boolean error = false;
+        try{ Integer.parseInt(pesoField.getText());} 
+        catch(Exception e){ textoAlertaPeso.setText("Peso invalido"); error = true;}
+        try{ Integer.parseInt(volumenField.getText());}
+        catch(Exception e){ textoAlertaVolumen.setText("Volumen invalido"); error = true;}
+        try{ Integer.parseInt(prioridadField.getText());}
+        catch(Exception e){ textoAlertaPrioridad.setText("Prioridad invalida"); error = true;}
+        if(!error) handlerEncomienda.handle(new ActionEvent(this,null));
     }
     
     private EventHandler handlerEncomienda;
@@ -100,6 +105,5 @@ public class AgregarEncomiendaController extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-    }
-    
+    }    
 }

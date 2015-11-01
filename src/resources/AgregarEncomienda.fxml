@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root maxHeight="568.0" prefHeight="537.0" prefWidth="567.0" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+         <children>
+            <HBox maxHeight="50.0" prefHeight="44.0">
+               <children>
+                  <BorderPane prefHeight="100.0" prefWidth="85.0" />
+                  <BorderPane prefHeight="100.0" prefWidth="416.0">
+                     <center>
+                        <Text fill="#1770c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Nueva encomienda" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Text>
+                     </center>
+                  </BorderPane>
+               </children>
+            </HBox>
+            <HBox maxHeight="50.0" prefHeight="42.0">
+               <children>
+                  <BorderPane prefHeight="100.0" prefWidth="85.0">
+                     <right>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción:" BorderPane.alignment="CENTER" />
+                     </right>
+                  </BorderPane>
+                  <BorderPane prefHeight="100.0" prefWidth="416.0">
+                     <center>
+                        <TextField fx:id="descField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </children>
+            </HBox>
+            <HBox maxHeight="50.0" prefHeight="42.0">
+               <children>
+                  <BorderPane prefHeight="100.0" prefWidth="85.0">
+                     <right>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Peso:" BorderPane.alignment="CENTER" />
+                     </right>
+                  </BorderPane>
+                  <BorderPane prefHeight="100.0" prefWidth="416.0">
+                     <center>
+                        <TextField fx:id="pesoField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </children>
+            </HBox>
+      <HBox prefHeight="19.0" prefWidth="567.0">
+         <children>
+            <Pane prefHeight="38.0" prefWidth="122.0" />
+            <Text fx:id="textoAlertaPeso" fill="#e70707" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="335.0" />
+         </children>
+      </HBox>
+            <HBox maxHeight="50.0" prefHeight="32.0" prefWidth="567.0">
+               <children>
+                  <BorderPane prefHeight="100.0" prefWidth="85.0">
+                     <right>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="volumen:" BorderPane.alignment="CENTER" />
+                     </right>
+                  </BorderPane>
+                  <BorderPane prefHeight="39.0" prefWidth="416.0">
+                     <center>
+                        <TextField fx:id="volumenField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </children>
+            </HBox>
+      <HBox prefHeight="19.0" prefWidth="567.0">
+         <children>
+            <Pane prefHeight="38.0" prefWidth="122.0" />
+            <Text fx:id="textoAlertaVolumen" fill="#e70707" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="324.0" />
+         </children>
+      </HBox>
+            <HBox maxHeight="50.0" prefHeight="36.0" prefWidth="567.0">
+               <children>
+                  <BorderPane prefHeight="100.0" prefWidth="85.0">
+                     <right>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prioridad:" BorderPane.alignment="CENTER" />
+                     </right>
+                  </BorderPane>
+                  <BorderPane prefHeight="100.0" prefWidth="416.0">
+                     <center>
+                        <TextField fx:id="prioridadField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </children>
+            </HBox>
+      <HBox prefHeight="19.0" prefWidth="567.0">
+         <children>
+            <Pane prefHeight="38.0" prefWidth="122.0" />
+            <Text fx:id="textoAlertaPrioridad" fill="#e70707" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="330.0" />
+         </children>
+      </HBox>
+            <HBox maxHeight="50.0" prefHeight="30.0" prefWidth="567.0">
+               <children>
+                  <BorderPane prefHeight="44.0" prefWidth="119.0" />
+                  <BorderPane prefHeight="100.0" prefWidth="416.0">
+                     <left>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección de destino" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Text>
+                     </left>
+                  </BorderPane>
+               </children>
+            </HBox>
+            <HBox maxHeight="50.0" prefHeight="100.0">
+               <children>
+                  <BorderPane prefHeight="100.0" prefWidth="85.0">
+                     <right>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Calle:" BorderPane.alignment="CENTER" />
+                     </right>
+                  </BorderPane>
+                  <BorderPane prefHeight="100.0" prefWidth="416.0">
+                     <center>
+                        <TextField fx:id="calleField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </children>
+            </HBox>
+            <HBox maxHeight="50.0" prefHeight="100.0">
+               <children>
+                  <BorderPane prefHeight="100.0" prefWidth="85.0">
+                     <right>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Número:" BorderPane.alignment="CENTER" />
+                     </right>
+                  </BorderPane>
+                  <BorderPane prefHeight="100.0" prefWidth="416.0">
+                     <center>
+                        <TextField fx:id="numeroField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </children>
+            </HBox>
+            <HBox maxHeight="50.0" prefHeight="100.0">
+               <children>
+                  <BorderPane prefHeight="100.0" prefWidth="85.0">
+                     <right>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Comuna:" BorderPane.alignment="CENTER" />
+                     </right>
+                  </BorderPane>
+                  <BorderPane prefHeight="100.0" prefWidth="416.0">
+                     <center>
+                        <TextField fx:id="comunaField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </children>
+            </HBox>
+            <HBox maxHeight="50.0" prefHeight="100.0">
+               <children>
+                  <BorderPane prefHeight="100.0" prefWidth="85.0">
+                     <right>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ciudad:" BorderPane.alignment="CENTER" />
+                     </right>
+                  </BorderPane>
+                  <BorderPane prefHeight="100.0" prefWidth="416.0">
+                     <center>
+                        <TextField fx:id="ciudadField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </children>
+            </HBox>
+            <HBox maxHeight="50.0" prefHeight="33.0" prefWidth="567.0">
+               <children>
+                  <BorderPane prefHeight="100.0" prefWidth="150.0" />
+                  <BorderPane prefHeight="43.0" prefWidth="460.0" />
+                  <BorderPane prefHeight="100.0" prefWidth="381.0">
+                     <left>
+                        <Button fx:id="crearEncomienda" mnemonicParsing="false" onAction="#botonApretado" prefHeight="26.0" prefWidth="141.0" text="Crear Encomienda" BorderPane.alignment="CENTER" />
+                     </left>
+                  </BorderPane>
+               </children>
+            </HBox>
+         </children>
+</fx:root>

@@ -120,7 +120,6 @@ public class Main extends Application {
         }
     }
     
-    //por implementar
     public static void inicio(){
         Empresa.deserializar("data/empresa.ser");
     }

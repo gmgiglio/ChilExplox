@@ -7,6 +7,7 @@
 package chilexplox.front;
 
 import chilexplox.*;
+import controllers.AgregarEncomiendaController;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
@@ -37,53 +38,29 @@ public class InicioController implements Initializable {
      */
      @FXML
     private MenuBar menuBar;
-      @FXML
-    private AnchorPane agregarPane;
        @FXML
-    private Button agregarCliente;
-       @FXML
-    private Button agregarEncomienda;
-       @FXML
-    private Text advertencia;
-        @FXML
-    private Button crearPedido;
-      @FXML
-    private Button cerrarPedido;
-         @FXML
-    private Button modificar;
-
+    private Button agregarCliente,botonAgregarEncomienda,crearPedido,cerrarPedido,modificar,botonNuevoMensaje,
+               botonBuzonEntrada,botonMensajesEnviados;
        @FXML
     private TabPane tabs;
        @FXML
     private SplitPane split;
        @FXML
-    private AnchorPane pantallaNuevoMensaje;
+    private AnchorPane pantallaNuevoMensaje,anchorPaneMensajes,anchorEjemplo,agregarPane;
        @FXML
-    private HBox pantallaBuzonEntrada;
-       @FXML
-    private HBox pantallaMensajesEnviados;
-       @FXML
-    private Button botonNuevoMensaje;
-       @FXML
-    private Button botonBuzonEntrada;
-       @FXML
-    private Button botonMensajesEnviados;
-       @FXML
-    private AnchorPane anchorPaneMensajes;
+    private HBox pantallaBuzonEntrada,pantallaMensajesEnviados;
        @FXML
     private ListView pedidosPendientes, pedidosCargados, camionesDisponibles, camionesPorDescargar;
-
        @FXML
     private ComboBox comboBoxClientes, comboBoxSucursales, comboBoxEncomiendas;
        @FXML
-    private Text patenteCamAct, capacidadCamAct, espDispCamAct, estadoCamAct;
+    private Text patenteCamAct, capacidadCamAct, espDispCamAct, estadoCamAct,advertencia,presupuesto;
        @FXML
     private TreeView<String> treeEjemplo;
-       @FXML
-    private AnchorPane anchorEjemplo;
       
     
    private Menu menuSucursal;
+   private AgregarEncomiendaController agregarEncomiendaCon;
    
    
     @Override
@@ -93,8 +70,7 @@ public class InicioController implements Initializable {
         List<Sucursal> sucursales = Empresa.getSucursales();
         
         ////////////////////////Inicializar Menú\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-        
-        //Inicializar Menúes
+       
         Menu menuUsuario = new Menu(Main.getUsuarioActual().getNombreUsuario());
         MenuItem itemCerrarSesion = new MenuItem("Cerrar sesión");
         itemCerrarSesion.setOnAction((ActionEvent e) -> {
@@ -121,41 +97,13 @@ public class InicioController implements Initializable {
         
         split.setDividerPositions(1);
 
-
-     
-        //Tabs
-        /*for(int i=0;i<tabs.getTabs().size();i++)
-        {
-        tabs.getTabs().get(i).setOnSelectionChanged(new EventHandler<Event>() {
-                @Override
-                public void handle (Event e) {
-                    Tab t = (Tab)(e.getSource());
-                    if(((Tab)(e.getSource())).isSelected()){
-                    }
-                }
         
-            }); 
-          }*/
-        ///////////////////////////////Atender\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+        ///////////////////////////////Atender\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\      
+         
+        
+        
+        
         agregarCliente.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                    
-                       try{        
-
-                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarCliente.fxml")));
-                       split.setDividerPositions(0.4684014869888476);
-                       
-                       }
-                       catch (Exception exc)
-                      {
-                          int i=0;
-                               }
-                     
-                
-                }
-            });
-        
-         agregarCliente.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                     
                        try{        
@@ -189,22 +137,37 @@ public class InicioController implements Initializable {
                 
                 }
             });
-            agregarEncomienda.setOnAction(new EventHandler<ActionEvent>() {
+           
+            botonAgregarEncomienda.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                     
                        try{        
-
-                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarEncomienda.fxml")));
-                       split.setDividerPositions(0.4684014869888476);
+                            agregarEncomiendaCon = new AgregarEncomiendaController();
+                            agregarEncomiendaCon.setHandlerEncomienda((Event e2) -> {
+                                agregarEncomienda(agregarEncomiendaCon.getPeso(),agregarEncomiendaCon.getVolumen(),
+                                agregarEncomiendaCon.getPrioridad(),agregarEncomiendaCon.getDirDestino(),agregarEncomiendaCon.getDescr());
+                            });
+                            agregarPane.getChildren().setAll(agregarEncomiendaCon);
+                            split.setDividerPositions(0.4684014869888476);
                        
                        }
                        catch (Exception exc)
                       {
+                          System.out.println("InicioController: No se pudo cargar AgregarEncomiendaController");
+                          throw new RuntimeException(exc);
                                }
                      
                 
                 }
             });
+            
+            if(agregarEncomiendaCon != null){
+                agregarEncomiendaCon.setHandlerEncomienda((Event e) -> {
+                    
+                    agregarEncomienda(agregarEncomiendaCon.getPeso(),agregarEncomiendaCon.getVolumen(),
+                            agregarEncomiendaCon.getPrioridad(),agregarEncomiendaCon.getDirDestino(),agregarEncomiendaCon.getDescr());
+                });
+            }
             
            cerrarPedido.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -221,7 +184,6 @@ public class InicioController implements Initializable {
                        }
                        catch (Exception exc)
                       {
-                           int i=0;
                                }
                      
                 
@@ -493,6 +455,13 @@ public class InicioController implements Initializable {
          split.setDividerPositions(1);
         
      }
+     
+     private void agregarEncomienda(int peso, int volumen,int prioridad, String dirDestino,String descr){
+         Main.getUsuarioActual().getSucursalActual().getPedidoAbierto().agregarEnc(peso, volumen,prioridad, dirDestino,descr);
+         comboBoxEncomiendas.getItems().add(descr);
+         comboBoxEncomiendas.setPromptText(descr);
+         presupuesto.setText(""+Main.getUsuarioActual().getSucursalActual().getPedidoAbierto().getCostoEnvio());
+     }
           
      private class ItemSucursalMenu extends MenuItem{
          private Sucursal sucursal;
@@ -508,6 +477,8 @@ public class InicioController implements Initializable {
          }
          
      }
+     
+     
 
 
 }

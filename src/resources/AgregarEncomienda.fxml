@@ -7,8 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="568.0" prefHeight="568.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AgregarEncomiendaController">
-   <children>
+<fx:root type= "javafx.scene.layout.AnchorPane" maxHeight="568.0" prefHeight="568.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
       <VBox maxHeight="568.0" prefHeight="568.0" prefWidth="567.0">
          <children>
             <HBox maxHeight="50.0" prefHeight="44.0">
@@ -157,12 +156,11 @@
                   <BorderPane prefHeight="43.0" prefWidth="460.0" />
                   <BorderPane prefHeight="100.0" prefWidth="381.0">
                      <left>
-                        <Button fx:id="crearEncomienda" mnemonicParsing="false" onAction="#handleEncomienda" prefHeight="26.0" prefWidth="141.0" text="Crear Encomienda" BorderPane.alignment="CENTER" />
+                        <Button fx:id="crearEncomienda" mnemonicParsing="false" onAction="#botonApretado" prefHeight="26.0" prefWidth="141.0" text="Crear Encomienda" BorderPane.alignment="CENTER" />
                      </left>
                   </BorderPane>
                </children>
             </HBox>
          </children>
       </VBox>
-   </children>
-</AnchorPane>
+</fx:root>

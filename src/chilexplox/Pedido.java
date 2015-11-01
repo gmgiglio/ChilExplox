@@ -94,7 +94,9 @@ public class Pedido extends Servicio implements java.io.Serializable{
     // true si se logra agregar (si esta aun abierto el pedido) y false de lo contrario)
     public boolean agregarEnc(int peso, int volumen, int prioridadAgregada, String dirDestino, String desc){
         if (abierto){
-            double prioridadPorDefecto = 1/(Empresa.getNroEncomiendas());
+            double prioridadPorDefecto;
+            if(Empresa.getNroEncomiendas() == 0) prioridadPorDefecto = 1;
+            else prioridadPorDefecto = 1/(Empresa.getNroEncomiendas());
             double prioridadAsignada = prioridadPorDefecto + prioridadAgregada;
             Encomienda e = new Encomienda(peso, volumen, prioridadAsignada, dirDestino, desc);
             e.agregarCostoPrioridad(prioridadAgregada);

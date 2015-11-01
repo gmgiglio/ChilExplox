@@ -118,7 +118,7 @@
                                                                   <Font size="36.0" />
                                                                </font>
                                                             </Text>
-                                                            <Button fx:id="agregarEncomienda" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+                                                            <Button fx:id="botonAgregarEncomienda" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
                                                          </children>
                                                       </Pane>
                                                    </center>

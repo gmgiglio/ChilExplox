@@ -64,10 +64,10 @@ public class Pedido extends Servicio implements java.io.Serializable{
     //La prioridad del pedido es igual al promedio de las prioridades de todas sus encomiendas
     private void setPrioridad(){
         double pr = 0;
-        for(Encomienda e : encomiendas){
+        for(Encomienda e : getEncomiendas()){
             pr += e.getPrioridad();
         }
-        pr /= encomiendas.size();
+        pr /= getEncomiendas().size();
         prioridad = pr;
     }
     
@@ -78,7 +78,7 @@ public class Pedido extends Servicio implements java.io.Serializable{
             Empresa.nuevaEncomienda();
             double prioridad = 1/(Empresa.getNroEncomiendas());
             Encomienda e = new Encomienda(peso, volumen, prioridad, dirDestino, desc);
-            this.encomiendas.add(e);
+            this.getEncomiendas().add(e);
             this.peso += peso;
             this.volumen += volumen;
             this.costoEnvio += e.getCostoEnvio();
@@ -100,7 +100,7 @@ public class Pedido extends Servicio implements java.io.Serializable{
             double prioridadAsignada = prioridadPorDefecto + prioridadAgregada;
             Encomienda e = new Encomienda(peso, volumen, prioridadAsignada, dirDestino, desc);
             e.agregarCostoPrioridad(prioridadAgregada);
-            this.encomiendas.add(e);
+            this.getEncomiendas().add(e);
             this.peso += peso;
             this.volumen += volumen;
             this.costoEnvio += e.getCostoEnvio();
@@ -150,5 +150,12 @@ public class Pedido extends Servicio implements java.io.Serializable{
                 cliente = c;
             }
         }
+    }
+
+    /**
+     * @return the encomiendas
+     */
+    public List<Encomienda> getEncomiendas() {
+        return encomiendas;
     }
 }

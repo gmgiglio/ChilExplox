@@ -27,5 +27,19 @@ public class Encomienda extends Servicio implements java.io.Serializable{
     public void agregarCostoPrioridad(int prioridadAgregada){
         costoEnvio += 1000*prioridadAgregada;
     }
+
+    /**
+     * @return the descripcion
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * @return the direccionDestino
+     */
+    public String getDireccionDestino() {
+        return direccionDestino;
+    }
     
 }

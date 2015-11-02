@@ -200,6 +200,15 @@ public class Empresa implements java.io.Serializable {
         return null;
     }
     
+    public static Cliente getCliente(String nombre){
+        for(int i = 0; i <  getInstance().clientes.size(); i++){
+            if( getInstance().clientes.get(i).getNombre().equals(nombre)){
+                return  getInstance().clientes.get(i);
+            }
+        }
+        return null;
+    }
+    
     public static Usuario getUsuario(String nombre){
         for (Usuario u :  getInstance().usuarios){
             if(nombre.equals(u.getNombreUsuario())) return u;

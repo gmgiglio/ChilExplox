@@ -184,7 +184,7 @@
                            <children>
                               <TitledPane animated="false" prefHeight="920.0" prefWidth="360.0" text="Pedidos Pendientes">
                                 <content>
-                                  <AnchorPane fx:id="anchorEjemplo" minHeight="0.0" minWidth="0.0" prefHeight="920.0" prefWidth="360.0">
+                                  <AnchorPane fx:id="anchorPedPend" minHeight="0.0" minWidth="0.0" prefHeight="920.0" prefWidth="360.0">
                                        <children>
                                           <ListView fx:id="pedidosPendientes" prefHeight="920.0" prefWidth="360.0" />
                                           <TreeView fx:id="treeEjemplo" layoutX="34.0" layoutY="85.0" prefHeight="200.0" prefWidth="200.0" />
@@ -228,7 +228,11 @@
                                                       </AnchorPane>
                                                    </children>
                                                 </HBox>
-                                                <ListView fx:id="pedidosCargados" prefHeight="433.0" prefWidth="360.0" />
+                                                <AnchorPane fx:id="anchorPedCar">
+                                                   <children>
+                                                      <ListView fx:id="pedidosCargados" prefHeight="433.0" prefWidth="360.0" />
+                                                   </children>
+                                                </AnchorPane>
                                              </children>
                                           </VBox>
                                        </children>

@@ -189,4 +189,27 @@ public class Sucursal implements java.io.Serializable{
     public void setPedidoAbierto(Pedido pedidoAbierto) {
         this.pedidoAbierto = pedidoAbierto;
     }
+    
+    public Camion getCamion(String patente){
+        for(Camion c : camionesDisp){
+            if(c.getPatente() == patente){
+                return c;
+            }
+        }
+        for(Camion c : camionesPend){
+            if(c.getPatente() == patente){
+                return c;
+            }
+        }
+        return null;
+    }
+    
+    public void cargarPedido(int id){
+        for(Pedido p : pedidosPend){
+            if(p.getIdPedido() == id ){
+                p.setEstado(Estado.En_transito);
+                pedidosPend.remove(p);
+            }
+        }
+    }
 }

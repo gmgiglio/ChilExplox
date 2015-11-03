@@ -111,6 +111,8 @@ public class Main extends Application {
         a.enviarMensaje("prueba", "esto es una prueba", victoria);
         a.enviarMensaje("hola", "te queria mandar saludos", victoria);
         a.enviarMensaje("Banana Split", "Esto es un banana split", victoria);
+        
+        
     }
     
     
@@ -118,15 +120,24 @@ public class Main extends Application {
         if(!Empresa.deserializar("data/empresa.ser")){
             poblar();
         }
+        revisarTpoPedidos();
     }
     
     public static void inicio(){
         Empresa.deserializar("data/empresa.ser");
+        revisarTpoPedidos();
     }
     
     public static void cerrarSesion(){
         escenarioPrincipal.setScene(escenaElegirUsuario);
         usuarioActual = null;
+    }
+    
+    //en todas las sucursales
+    public static void revisarTpoPedidos(){
+        for(Sucursal s : Empresa.getSucursales()){
+            s.revisarTiempoPedidos();
+        }
     }
         
 

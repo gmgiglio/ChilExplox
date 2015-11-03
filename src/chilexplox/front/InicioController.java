@@ -56,21 +56,16 @@ public class InicioController implements Initializable {
        @FXML
     private Text patenteCamAct, capacidadCamAct, espDispCamAct, estadoCamAct,advertencia,presupuesto;
        @FXML
-<<<<<<< Updated upstream
     private TreeView<String> treeEjemplo;
       
     
-   private Menu menuSucursal;
-   private AgregarEncomiendaController agregarEncomiendaCon;
-=======
+    private Menu menuSucursal;
+    private AgregarEncomiendaController agregarEncomiendaCon;
     private AnchorPane anchorPedPend, anchorPedCar;
       
-    
-   private Menu menuSucursal;
    private TreeView<String> pedidosPend = new TreeView<String>(), pedidosCar = new TreeView<String>();
    private TreeItem aMover;
->>>>>>> Stashed changes
-   
+
    private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 //ListView<String> list = (ListView) event.getSource();
@@ -149,7 +144,7 @@ public class InicioController implements Initializable {
         Main.getUsuarioActual().setSucursalActual(Empresa.getSucursales().get(0));
         ItemSucursalMenu i = new ItemSucursalMenu(Main.getUsuarioActual().getSucursalActual());
         menuSucursal = new Menu(Main.getUsuarioActual().getSucursalActual().getNombre());
-        Main.getUsuarioActual().getSucursalActual().revisarTiempoPedidos();
+        //Main.getUsuarioActual().getSucursalActual().revisarTiempoPedidos();
         
         //agregar sucursales al menu de sucursales
         LinkedList<Sucursal> sucEnLista = new LinkedList(sucursales);
@@ -410,7 +405,7 @@ public class InicioController implements Initializable {
              Main.getUsuarioActual().setSucursalActual(suc);
              menuSucursal.getItems().remove(item1);
              menuSucursal.getItems().add(item2);
-             suc.revisarTiempoPedidos();
+             //suc.revisarTiempoPedidos();
              actualizarPestanaAdm();
          }
      };   

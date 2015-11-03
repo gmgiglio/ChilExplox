@@ -31,7 +31,7 @@ public class Empresa implements java.io.Serializable {
 
     //tiempo limite para mandar para pedidos alta prioridad, 3 dias default
     private long tiempoLimite = 0; //3*24*60*60*1000;
-    private int altaPrioridad = 5;
+    private int altaPrioridad = 0; //5;
     
     
 
@@ -82,7 +82,11 @@ public class Empresa implements java.io.Serializable {
     }
     
     public static long getTiempoLimite(){
-        return getInstance().tiempoLimite;
+        return getInstance().getITiempoLimite();
+    }
+    
+    private long getITiempoLimite(){
+        return tiempoLimite;
     }
     
     
@@ -116,7 +120,12 @@ public class Empresa implements java.io.Serializable {
      * @return the altaPrioridad
      */
     public static int getAltaPrioridad() {
-        return getInstance().altaPrioridad;
+        Empresa e = getInstance();
+        return getInstance().getIAltaPrioridad();
+    }
+    
+    private int getIAltaPrioridad(){
+        return altaPrioridad;
     }
 
     /**

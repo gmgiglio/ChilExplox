@@ -134,6 +134,24 @@ public class Empresa implements java.io.Serializable {
     public static void setAltaPrioridad(int altaPrioridad) {
         getInstance().altaPrioridad = altaPrioridad;
     }
+
+
+    private String getINombre() {
+        return nombre;
+    }
+    
+    public static String getNombre(){
+        return getInstance().getINombre();
+    }
+
+
+    private String getIRut() {
+        return rut;
+    }
+    
+    public static String getRut(){
+        return getInstance().getIRut();
+    }
     
     private static class EmpresaHolder {
         private static Empresa INSTANCE = new Empresa();

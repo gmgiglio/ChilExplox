@@ -53,5 +53,8 @@ public class Mensaje implements java.io.Serializable {
         return remitente;
     }
     
-       
+    public void agregarParrafo(String parrafo){
+        if (mensaje == null) mensaje = "";
+        mensaje = mensaje + System.lineSeparator() + System.lineSeparator() + parrafo;
+    }
 }

@@ -145,20 +145,31 @@ public class Sucursal implements java.io.Serializable{
         else return false;
     }
     
+    public boolean cerrarPedido(){
+        if(pedidoAbierto.cerrarPedido()){
+            pedidosPend.add(pedidoAbierto);
+            pedidoAbierto = null;
+            return true;
+        }
+        else return false;
+    }
+    
+    
     private EventHandler handlerPedidoAtrasado;
     
     public void setHandlerPedidoAtrasado(EventHandler e){
         handlerPedidoAtrasado = e;
     }
-   
             
     public void revisarTiempoPedidos(){
         if(pedidosPend.size()>0){
             for(Pedido p : this.pedidosPend){
                 if(p.getPrioridad() >= Empresa.getAltaPrioridad() && p.getTiempoTranscurrido() >= Empresa.getTiempoLimite()){
                     if(handlerPedidoAtrasado != null) handlerPedidoAtrasado.handle(new ActionEvent(p,null));
-                    String texto = "Se notifica que se ha detectado un atrazo en pedido id: " + p.getIdPedido() + " de alta prioridad. ";
-                    autoRobot.enviarMensaje("Notificación pedido atrasado",texto, this);
+                    else{
+                        String texto = "Se notifica que se ha detectado un atrazo en pedido id: " + p.getIdPedido() + " de alta prioridad. ";
+                        autoRobot.enviarMensaje("Notificación pedido atrasado",texto, this);
+                    }
                 }
             }
         }

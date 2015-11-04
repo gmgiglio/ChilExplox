@@ -46,12 +46,7 @@ public class Usuario implements java.io.Serializable {
     }
     
     public boolean cerrarPed(){
-        if(sucursalActual.getPedidoAbierto().cerrarPedido()){
-            sucursalActual.agregarPedido(sucursalActual.getPedidoAbierto());
-            
-            return true;
-        }
-        return false;
+        return sucursalActual.cerrarPedido();
     }
     
     

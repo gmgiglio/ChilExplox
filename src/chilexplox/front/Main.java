@@ -41,7 +41,6 @@ public class Main extends Application {
         usuarioActual = aUsuarioActual;
     }
     
- 
     private static Stage escenarioPrincipal;
     private static Scene escenaElegirUsuario;
     
@@ -49,6 +48,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         
         inicioPrueba(); //CAMBIAR A INICIO
+        
   
         ElegirUsuario pantallaElegirUsuario = new ElegirUsuario();
         
@@ -121,6 +121,7 @@ public class Main extends Application {
             poblar();
         }
         revisarTpoPedidos();
+        enviarReportePrueba();
     }
     
     public static void inicio(){
@@ -138,6 +139,11 @@ public class Main extends Application {
         for(Sucursal s : Empresa.getSucursales()){
             s.revisarTiempoPedidos();
         }
+    }
+    
+    private static void enviarReportePrueba(){
+        Mensaje m = GeneradorReporte.generarReporte();
+        m.enviar(Empresa.getSucursal("Maipu"));
     }
         
 

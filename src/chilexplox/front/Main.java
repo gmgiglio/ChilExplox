@@ -83,6 +83,7 @@ public class Main extends Application {
 
     @Override
     public void stop(){
+       enviarReportePrueba();
        Empresa.serializar("data/empresa.ser");
     }
     

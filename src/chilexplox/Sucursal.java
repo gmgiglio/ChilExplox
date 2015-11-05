@@ -21,17 +21,17 @@ public class Sucursal implements java.io.Serializable{
     private String ciudad;
     private String direccion;
     //Camiones disponibles para asignar pedidos
-    private final List<Camion> camionesDisp = new LinkedList<>();
+    private final LinkedList<Camion> camionesDisp = new LinkedList<>();
     //Camiones pendientes que esperan ser descargados
-    private final List<Camion> camionesPend = new LinkedList<>();
+    private final LinkedList<Camion> camionesPend = new LinkedList<>();
     //Pedidos pendientes asignados a ningun camion
-    private final List<Pedido> pedidosPend = new LinkedList<>();
+    private final LinkedList<Pedido> pedidosPend = new LinkedList<>();
     //Pedidos que ya se descargaron del camion y que esperan ser "revisados manualmente"
-    private final List<Pedido> pedidosEnDest = new LinkedList<>();
+    private final LinkedList<Pedido> pedidosEnDest = new LinkedList<>();
     //Pedidos confirmados con informacion correcta
-    private final List<Pedido> pedidosEntregados = new LinkedList<>();
+    private final LinkedList<Pedido> pedidosEntregados = new LinkedList<>();
     //Pedidos confirmados con informacion incorrecta
-    private final List<Pedido> pedidosEquivocados = new LinkedList<>();
+    private final LinkedList<Pedido> pedidosEquivocados = new LinkedList<>();
     private Pedido pedidoAbierto = null;
     private final Stack<Mensaje> buzonMensajes = new Stack<>();
     
@@ -63,7 +63,15 @@ public class Sucursal implements java.io.Serializable{
     }
     
     public List<Pedido> getPedidosPend(){
-        return this.pedidosPend;
+        return new LinkedList(pedidosPend);
+    }
+    
+    public List<Pedido> getPedidosEntregados(){
+        return new LinkedList(pedidosEntregados);
+    }
+    
+    public List<Pedido> getPedidosEquivocados(){
+        return new LinkedList(pedidosEquivocados);
     }
     
     public Pedido getPedido(Integer id){
@@ -111,7 +119,7 @@ public class Sucursal implements java.io.Serializable{
      * @return the pedidosEnDest
      */
     public List<Pedido> getPedidosEnDest() {
-        return pedidosEnDest;
+        return new LinkedList(pedidosEnDest);
     }
     
     public void pedidoEntregado(Pedido p){

@@ -9,7 +9,7 @@ package chilexplox;
  *
  * @author carlossalame
  */
-public abstract class Servicio {
+public abstract class Servicio implements java.io.Serializable {
     
     protected int peso;
     protected int volumen;

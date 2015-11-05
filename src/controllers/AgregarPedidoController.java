@@ -50,18 +50,14 @@ public class AgregarPedidoController implements Initializable {
             crearP = (Button)scene.lookup("#crearP");
             idPedido= (Text)scene.lookup("#idPedido");
             splitPane = (SplitPane)scene.lookup("#splitPane");
-            try{  
+                    
             Sucursal s = Empresa.getSucursal((String)(comboBoxSucursales.getSelectionModel().getSelectedItem()));
             Pedido p = Main.getUsuarioActual().crearPedido(s);
             sucursalText.setText((String)(comboBoxSucursales.getSelectionModel().getSelectedItem())) ;
             idPedido.setText(""+p.getIdPedido());
             crearP.setVisible(false);
             splitPane.setDividerPositions(1);
-            }
-            catch (Exception exc)
-            {
-                int i = 0;
-            }
+
     }
     
     

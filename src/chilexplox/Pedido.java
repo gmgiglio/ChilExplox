@@ -17,7 +17,7 @@ public class Pedido extends Servicio implements java.io.Serializable{
     private int idPedido;
     private Sucursal sucOrigen;
     private Sucursal sucDestino;
-    private List<Encomienda> encomiendas = new LinkedList<>();
+    private LinkedList<Encomienda> encomiendas = new LinkedList<>();
     private Cliente cliente;
     private Estado estado;
     private boolean abierto; //establece si el pedido esta abierto a seguir agregandole encomiendas
@@ -39,9 +39,9 @@ public class Pedido extends Servicio implements java.io.Serializable{
     
     public boolean getAbierto(){ return this.abierto;}
     
-    //devuelve true si se pudo cerrar el pedido (si estan asignados los datos del cliente) y false de lo contrario
+    //devuelve true si se pudo cerrar el pedido (si estan asignados los datos del cliente y hay al menos una encomienda) y false de lo contrario
     public boolean cerrarPedido(){
-        if (getCliente() != null){
+        if (getCliente() != null && !encomiendas.isEmpty()){
             abierto = false;
             tiempoCierre = new Date();
             return true;
@@ -78,7 +78,7 @@ public class Pedido extends Servicio implements java.io.Serializable{
             Empresa.nuevaEncomienda();
             double prioridad = 1/(Empresa.getNroEncomiendas());
             Encomienda e = new Encomienda(peso, volumen, prioridad, dirDestino, desc);
-            this.getEncomiendas().add(e);
+            encomiendas.add(e);
             this.peso += peso;
             this.volumen += volumen;
             this.costoEnvio += e.getCostoEnvio();
@@ -100,7 +100,7 @@ public class Pedido extends Servicio implements java.io.Serializable{
             double prioridadAsignada = prioridadPorDefecto + prioridadAgregada;
             Encomienda e = new Encomienda(peso, volumen, prioridadAsignada, dirDestino, desc);
             e.agregarCostoPrioridad(prioridadAgregada);
-            this.getEncomiendas().add(e);
+            encomiendas.add(e);
             this.peso += peso;
             this.volumen += volumen;
             this.costoEnvio += e.getCostoEnvio();
@@ -155,7 +155,7 @@ public class Pedido extends Servicio implements java.io.Serializable{
     /**
      * @return the encomiendas
      */
-    public List<Encomienda> getEncomiendas() {
-        return encomiendas;
+    public LinkedList<Encomienda> getEncomiendas() {
+        return new LinkedList(encomiendas);
     }
 }

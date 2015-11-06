@@ -25,6 +25,8 @@ public class CajaMensajeResivido extends Button {
     private Text textoAsunto,textoUsuario;
 
     private Mensaje mensaje;
+            
+    private int largoMaxAsunto = 40;
 
     public CajaMensajeResivido (Mensaje mensaje){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/CajaMensajeResivido.fxml"));
@@ -39,7 +41,7 @@ public class CajaMensajeResivido extends Button {
          
          this.mensaje = mensaje;
         
-        textoAsunto.setText(mensaje.getNombre());
+        setTextoAsunto(mensaje.getNombre());
         textoUsuario.setText(mensaje.getRemitente().getNombreUsuario());
     } 
 
@@ -48,6 +50,13 @@ public class CajaMensajeResivido extends Button {
      */
     public Mensaje getMensaje() {
         return mensaje;
+    }
+    
+    private void setTextoAsunto(String s){
+        if (s.length() > largoMaxAsunto){
+            textoAsunto.setText(s.substring(0, largoMaxAsunto) + "...");
+        }
+        else textoAsunto.setText(s);
     }
     
 }

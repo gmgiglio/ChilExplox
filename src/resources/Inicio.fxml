@@ -270,9 +270,9 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <HBox prefHeight="920.0" prefWidth="1080.0">
+                        <HBox prefHeight="540.0" prefWidth="1080.0">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="180.0">
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="540.0" prefWidth="180.0">
                                  <children>
                                     <Button fx:id="botonNuevoMensaje" mnemonicParsing="false" prefWidth="180.0" text="Nuevo Mensaje">
                                        <font>
@@ -291,7 +291,7 @@
                                     </Button>
                                  </children>
                               </VBox>
-                              <AnchorPane fx:id="anchorPaneMensajes" prefHeight="800.0" prefWidth="900.0" />
+                              <AnchorPane fx:id="anchorPaneMensajes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="900.0" />
                            </children>
                         </HBox>
                      </children></AnchorPane>

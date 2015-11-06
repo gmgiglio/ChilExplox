@@ -405,8 +405,7 @@ public class InicioController implements Initializable {
              Main.getUsuarioActual().setSucursalActual(suc);
              menuSucursal.getItems().remove(item1);
              menuSucursal.getItems().add(item2);
-             //suc.revisarTiempoPedidos();
-             actualizarPestanaAdm();
+             //actualizarPestanaAdm();
          }
      };   
     

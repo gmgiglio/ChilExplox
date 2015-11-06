@@ -47,7 +47,7 @@
                   </BorderPane>
                   <BorderPane prefHeight="100.0" prefWidth="416.0">
                      <center>
-                        <TextField fx:id="pesoField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                        <TextField fx:id="pesoField" maxWidth="350.0" onAction="#actualizarPresupuesto" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>
@@ -67,7 +67,7 @@
                   </BorderPane>
                   <BorderPane prefHeight="39.0" prefWidth="416.0">
                      <center>
-                        <TextField fx:id="volumenField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                        <TextField fx:id="volumenField" maxWidth="350.0" onAction="#actualizarPresupuesto" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>
@@ -87,7 +87,7 @@
                   </BorderPane>
                   <BorderPane prefHeight="100.0" prefWidth="416.0">
                      <center>
-                        <TextField fx:id="prioridadField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                        <TextField fx:id="prioridadField" maxWidth="350.0" onAction="#actualizarPresupuesto" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>
@@ -171,7 +171,21 @@
             <HBox maxHeight="50.0" prefHeight="33.0" prefWidth="567.0">
                <children>
                   <BorderPane prefHeight="100.0" prefWidth="150.0" />
-                  <BorderPane prefHeight="43.0" prefWidth="460.0" />
+                  <BorderPane prefHeight="43.0" prefWidth="460.0">
+               <center>
+                  <Text fx:id="textPresupuesto" fill="#1770c3" strokeType="OUTSIDE" strokeWidth="0.0" text="0" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+               </center>
+               <left>
+                  <Text fill="#1772c2" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+               </left></BorderPane>
                   <BorderPane prefHeight="100.0" prefWidth="381.0">
                      <left>
                         <Button fx:id="crearEncomienda" mnemonicParsing="false" onAction="#botonApretado" prefHeight="26.0" prefWidth="141.0" text="Crear Encomienda" BorderPane.alignment="CENTER" />

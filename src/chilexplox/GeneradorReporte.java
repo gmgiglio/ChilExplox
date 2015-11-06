@@ -39,7 +39,6 @@ public class GeneradorReporte {
     private static double gananciasTotales(){
         double total=0;
         for(Sucursal s : Empresa.getSucursales()){
-<<<<<<< HEAD
             LinkedList<Pedido> pedidosTotales = s.getPedidosEnDest();
             pedidosTotales.addAll(s.getPedidosPend());
             pedidosTotales.addAll(s.getPedidosEntregados());
@@ -48,9 +47,7 @@ public class GeneradorReporte {
                 System.out.println(p.getIdPedido() + " " + p.getCostoEnvio());
                 total += p.getCostoEnvio();
             }
-=======
             total += gananciasSucursal(s);
->>>>>>> origin/master
         }
         return total;
     }

@@ -431,8 +431,8 @@ public class InicioController implements Initializable {
          ObservableList patentesCamADesc = FXCollections.observableArrayList();
          
         pedidosPend = listarPedidos(sucActual.getPedidosPend());
-        anchorPedPend.getChildren().add(pedidosPend);
-        pedidosPend.setPrefWidth(anchorPedPend.getPrefWidth());
+        //anchorPedPend.getChildren().add(pedidosPend);
+        //pedidosPend.setPrefWidth(anchorPedPend.getPrefWidth());
         
         
         //pedidosPendientes.setItems(idsPedPend);

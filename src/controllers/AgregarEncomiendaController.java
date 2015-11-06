@@ -38,14 +38,16 @@ public class AgregarEncomiendaController extends VBox {
     public void botonApretado(ActionEvent event) {
         boolean error = false;
         try{ getPeso();} 
-        catch(Exception e){ textoAlertaPeso.setText("Peso invalido"); error = true;}
+        catch(Exception e){ 
+            textoAlertaPeso.setText("Peso invalido"); error = true;
+        }
         try{ getVolumen();}
         catch(Exception e){ textoAlertaVolumen.setText("Volumen invalido"); error = true;}
         try{ getPrioridad();}
         catch(Exception e){ textoAlertaPrioridad.setText("Prioridad invalida"); error = true;}
         if(!error) {
-            limpiar();
             handlerEncomienda.handle(new ActionEvent(this,null));
+            limpiar();
         }
     }
     

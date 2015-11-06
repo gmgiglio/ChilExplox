@@ -48,6 +48,7 @@ public class GeneradorReporte {
                 System.out.println(p.getIdPedido() + " " + p.getCostoEnvio());
                 total += p.getCostoEnvio();
             }
+
     total += gananciasSucursal(s);
 
         }

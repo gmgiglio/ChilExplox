@@ -58,19 +58,19 @@ public class Sucursal implements java.io.Serializable{
         }
     }
     
-    public List<Camion> getCamionesDisp(){
+    public LinkedList<Camion> getCamionesDisp(){
         return this.camionesDisp;
     }
     
-    public List<Pedido> getPedidosPend(){
+    public LinkedList<Pedido> getPedidosPend(){
         return new LinkedList(pedidosPend);
     }
     
-    public List<Pedido> getPedidosEntregados(){
+    public LinkedList<Pedido> getPedidosEntregados(){
         return new LinkedList(pedidosEntregados);
     }
     
-    public List<Pedido> getPedidosEquivocados(){
+    public LinkedList<Pedido> getPedidosEquivocados(){
         return new LinkedList(pedidosEquivocados);
     }
     
@@ -93,7 +93,7 @@ public class Sucursal implements java.io.Serializable{
     /**
      * @return the camionesPend
      */
-    public List<Camion> getCamionesPend() {
+    public LinkedList<Camion> getCamionesPend() {
         return camionesPend;
     }
     
@@ -118,7 +118,7 @@ public class Sucursal implements java.io.Serializable{
     /**
      * @return the pedidosEnDest
      */
-    public List<Pedido> getPedidosEnDest() {
+    public LinkedList<Pedido> getPedidosEnDest() {
         return new LinkedList(pedidosEnDest);
     }
     
@@ -155,7 +155,7 @@ public class Sucursal implements java.io.Serializable{
     
     public boolean cerrarPedido(){
         if(pedidoAbierto.cerrarPedido()){
-            pedidosPend.add(pedidoAbierto);
+            agregarPedido(pedidoAbierto);
             pedidoAbierto = null;
             return true;
         }
@@ -191,7 +191,7 @@ public class Sucursal implements java.io.Serializable{
         camionesPend.add(new Camion(patente, capacidad));
     }
     
-    public List<Mensaje> getMensajesEnBuzon(){
+    public LinkedList<Mensaje> getMensajesEnBuzon(){
         return new LinkedList<>(this.buzonMensajes);
     }   
 

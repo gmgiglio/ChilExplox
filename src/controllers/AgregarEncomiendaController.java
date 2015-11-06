@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import chilexplox.Encomienda;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,39 +32,42 @@ public class AgregarEncomiendaController extends VBox {
     @FXML
     private ComboBox comboBoxEncomiendas;
     @FXML
-    private Text idPedido,presupuesto,textoAlertaPeso,textoAlertaVolumen,textoAlertaPrioridad;
+    private Text idPedido,presupuesto,textoAlertaPeso,textoAlertaVolumen,textoAlertaPrioridad,textPresupuesto;
 
-    /*
-    @FXML
-    private void handleEncomienda(ActionEvent event) {
-            Scene scene = crearEncomienda.getScene();
-            comboBoxEncomiendas = (ComboBox)scene.lookup("#cbe");
-            idPedido = (Text)scene.lookup("#idPedido");
-            presupuesto = (Text)scene.lookup("#presupuesto");
-            try{        
-                Pedido p = Main.getUsuarioActual().getSucursalActual().getPedido(Integer.parseInt(idPedido.getText()));
-                Main.getUsuarioActual().agregarEnc(p, Integer.parseInt(pesoField.getText()), Integer.parseInt(volumenField.getText()),calleField.getText()+" "+numeroField.getText()+", "+comunaField.getText()+", "+ciudadField.getText(), descField.getText());
-                comboBoxEncomiendas.getItems().add( descField.getText());
-                comboBoxEncomiendas.setPromptText( descField.getText());
-                presupuesto.setText(""+p.getCostoEnvio());
-                    
-            }
-            catch (Exception exc)
-            {
-            }    
-    }
-    
-    */
     
     public void botonApretado(ActionEvent event) {
         boolean error = false;
-        try{ Integer.parseInt(pesoField.getText());} 
-        catch(Exception e){ textoAlertaPeso.setText("Peso invalido"); error = true;}
-        try{ Integer.parseInt(volumenField.getText());}
+        try{ getPeso();} 
+        catch(Exception e){ 
+            textoAlertaPeso.setText("Peso invalido"); error = true;
+        }
+        try{ getVolumen();}
         catch(Exception e){ textoAlertaVolumen.setText("Volumen invalido"); error = true;}
-        try{ Integer.parseInt(prioridadField.getText());}
+        try{ getPrioridad();}
         catch(Exception e){ textoAlertaPrioridad.setText("Prioridad invalida"); error = true;}
-        if(!error) handlerEncomienda.handle(new ActionEvent(this,null));
+        if(!error) {
+            handlerEncomienda.handle(new ActionEvent(this,null));
+            limpiar();
+        }
+    }
+    
+    private void limpiar(){
+       descField.setText("");
+       pesoField.setText("");   
+       volumenField.setText("");
+       prioridadField.setText("");
+       calleField.setText("");
+       numeroField.setText("");
+       comunaField.setText("");
+       ciudadField.setText(""); 
+       
+       limpiarAlertas();
+    }
+    
+    private void limpiarAlertas(){
+        textoAlertaPeso.setText("");
+        textoAlertaVolumen.setText("");
+        textoAlertaPrioridad.setText("");
     }
     
     private EventHandler handlerEncomienda;
@@ -105,5 +109,15 @@ public class AgregarEncomiendaController extends VBox {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-    }    
+    }   
+    
+    public void actualizarPresupuesto(ActionEvent e){
+        
+        try{ 
+            int p = Encomienda.calcularPresupuesto(getPeso(), getVolumen(), getPrioridad());
+            textPresupuesto.setText(Integer.toString(p));
+        }
+        catch(Exception ex){ }
+    }
+    
 }

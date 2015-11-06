@@ -14,18 +14,22 @@ public class Encomienda extends Servicio implements java.io.Serializable{
     private String direccionDestino;
     private String descripcion;
     
+    private static int precioPorGramo = 10;
+    private static int precioPorCc = 10;
+    private static int precioPorPrioridad = 1000;
+    
     //peso y volumen definidos en gramos y cm cubicos
     public Encomienda(int peso, int volumen, double prioridad, String dirDestino, String d){
         super(peso, volumen, prioridad);
         //El costo de envío se calcula sumando mil pesos por kilo y 20000 pesos por metro cubico
         //Podemos juntarnos a discutir el precio si quieren
-        costoEnvio = 1000*peso + 20000*volumen;
+        costoEnvio = precioPorGramo*peso + precioPorCc*volumen;
         direccionDestino = dirDestino;
         descripcion = d;
     }
     
     public void agregarCostoPrioridad(int prioridadAgregada){
-        costoEnvio += 1000*prioridadAgregada;
+        costoEnvio += precioPorPrioridad*prioridadAgregada;
     }
 
     /**
@@ -40,6 +44,10 @@ public class Encomienda extends Servicio implements java.io.Serializable{
      */
     public String getDireccionDestino() {
         return direccionDestino;
+    }
+    
+    public static int calcularPresupuesto(int peso, int volumen,int prioridad){
+        return precioPorGramo*peso + precioPorCc*volumen + precioPorPrioridad*prioridad;
     }
     
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package chilexplox.front;
 
@@ -62,7 +57,11 @@ public class InicioController implements Initializable {
     
     private Menu menuSucursal;
     private AgregarEncomiendaController agregarEncomiendaCon;
+<<<<<<< HEAD
     private AgregarClienteController agregarClienteCon;
+=======
+        @FXML
+>>>>>>> origin/master
     private AnchorPane anchorPedPend, anchorPedCar;
       
    private TreeView<String> pedidosPend = new TreeView<String>(), pedidosCar = new TreeView<String>();
@@ -190,7 +189,7 @@ public class InicioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
    
    
-        List<Sucursal> sucursales = Empresa.getSucursales();
+        LinkedList<Sucursal> sucursales = Empresa.getSucursales();
         
         ////////////////////////Inicializar Menú\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
        
@@ -491,14 +490,15 @@ public class InicioController implements Initializable {
 
      public void actualizarPestanaAdm(){
          Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
-//         ObservableList idsPedPend = FXCollections.observableArrayList();
+         //ObservableList idsPedPend = FXCollections.observableArrayList();
          ObservableList patentesCamDisp = FXCollections.observableArrayList();
          ObservableList patentesCamADesc = FXCollections.observableArrayList();
          
-        pedidosPend = listarPedidos(sucActual.getPedidosPend());
-        //anchorPedPend.getChildren().add(pedidosPend);
-        //pedidosPend.setPrefWidth(anchorPedPend.getPrefWidth());
-        
+         pedidosPend = listarPedidos(sucActual.getPedidosPend());
+         
+         anchorPedPend.getChildren().add(pedidosPend);
+         pedidosPend.setPrefWidth(anchorPedPend.getPrefWidth());
+         
         
         //pedidosPendientes.setItems(idsPedPend);
          
@@ -513,7 +513,7 @@ public class InicioController implements Initializable {
          camionesPorDescargar.setItems(patentesCamADesc);
      }
      
-     public TreeView<String> listarPedidos(List<Pedido> pedidos){
+     public TreeView<String> listarPedidos(LinkedList<Pedido> pedidos){
          TreeItem<String> dummyRoot = new TreeItem<>("root");
          TreeItem<String> encomiendas = new TreeItem<>("Encomiendas");
          
@@ -552,7 +552,6 @@ public class InicioController implements Initializable {
      }
 
      public void limpiarAtender(){
-     
          crearPedido.setVisible(true);
          Scene scene = crearPedido.getScene();
          Text idPedido = (Text) scene.lookup("#idPedido");
@@ -565,7 +564,6 @@ public class InicioController implements Initializable {
          Text presupuesto = (Text) scene.lookup("#presupuesto");
          presupuesto.setText("0");
          split.setDividerPositions(1);
-        
      }
      
      private void agregarEncomienda(int peso, int volumen,int prioridad, String dirDestino,String descr){

@@ -16,7 +16,7 @@
                   <BorderPane prefHeight="100.0" prefWidth="85.0" />
                   <BorderPane prefHeight="100.0" prefWidth="416.0">
                      <center>
-                        <Text fill="#1770c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Crear Pedido" BorderPane.alignment="CENTER">
+                        <Text fill="#0049ba" strokeType="OUTSIDE" strokeWidth="0.0" text="Crear Pedido" BorderPane.alignment="CENTER">
                            <font>
                               <Font size="19.0" />
                            </font>
@@ -45,7 +45,7 @@
                   <BorderPane prefHeight="43.0" prefWidth="460.0" />
                   <BorderPane prefHeight="100.0" prefWidth="381.0">
                      <left>
-                        <Button fx:id="crearPedido" mnemonicParsing="false" onAction="#handlePedido" prefHeight="26.0" prefWidth="141.0" text="Crear Pedido" BorderPane.alignment="CENTER" />
+                        <Button fx:id="crearPedido" mnemonicParsing="false" onAction="#handlePedido" prefHeight="26.0" prefWidth="141.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Crear Pedido" BorderPane.alignment="CENTER" />
                      </left>
                   </BorderPane>
                </children>

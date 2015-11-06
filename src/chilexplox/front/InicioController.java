@@ -418,7 +418,7 @@ public class InicioController implements Initializable {
             }
             
             comboBoxClientes.getItems().setAll(nombreClientes);
-            comboBoxClientes.setPromptText(comboBoxClientes.getItems().get(0).toString());
+            comboBoxClientes.setPromptText("");
 
     }
 

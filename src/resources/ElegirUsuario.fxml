@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,20 +9,64 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root id="AnchorPane" prefHeight="400.0" prefWidth="600.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="AnchorPane" prefHeight="269.0" prefWidth="400.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane prefHeight="402.0" prefWidth="601.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="150.0">
-         <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" />
-                  <TextField fx:id="textFieldUsuario" onAction="#handlerTextFieldUsuario" prefHeight="27.0" prefWidth="420.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Clave" />
-                  <TextField fx:id="textFieldClave" onAction="#handlerTextFieldUsuario" />
-                  <Text fx:id="textAlerta" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="386.21875" />
-               </children>
-            </VBox>
-         </center>
-      </BorderPane>
+      <VBox layoutX="2.0" layoutY="58.0" prefHeight="218.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <BorderPane prefHeight="113.0" prefWidth="400.0">
+               <center>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@images/ChilExploxLogoPequeño.png" />
+                     </image>
+                  </ImageView>
+               </center>
+               <bottom>
+                  <BorderPane prefHeight="28.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+                     <center>
+                        <Text fill="#0232ac" strokeType="OUTSIDE" strokeWidth="0.0" text="Iniciar Sesión" wrappingWidth="146.29315185546875" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </center>
+                  </BorderPane>
+               </bottom>
+            </BorderPane>
+            <BorderPane prefHeight="78.0" prefWidth="600.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="150.0">
+               <center>
+                  <VBox maxWidth="400.0" minHeight="128.0" minWidth="400.0" prefHeight="128.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <BorderPane prefHeight="50.0" prefWidth="400.0">
+                           <center>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="29.0" prefWidth="400.0">
+                           <top>
+                              <TextField fx:id="textFieldUsuario" maxWidth="200.0" onAction="#handlerTextFieldUsuario" prefHeight="26.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+                           </top>
+                        </BorderPane>
+                        <BorderPane prefHeight="50.0" prefWidth="400.0">
+                           <center>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="50.0" prefWidth="400.0">
+                           <top>
+                              <TextField fx:id="textFieldClave" maxWidth="200.0" onAction="#handlerTextFieldUsuario" BorderPane.alignment="CENTER" />
+                           </top>
+                        </BorderPane>
+                     </children>
+                  </VBox>
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="0.0" prefWidth="400.0">
+               <bottom>
+                  <Text fx:id="textAlerta" fill="#d12e11" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER" />
+               </bottom>
+            </BorderPane>
+         </children>
+      </VBox>
    </children>
 </fx:root>

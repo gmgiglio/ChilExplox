@@ -6,6 +6,7 @@
 package chilexplox.front;
 import chilexplox.*;
 import controllers.ElegirUsuario;
+import java.awt.geom.Rectangle2D;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -14,6 +15,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.stage.Screen;
 
 
 
@@ -55,7 +57,12 @@ public class Main extends Application {
         pantallaElegirUsuario.setHandlerUsuarioElegido((EventHandler) (Event event) -> {
             usuarioActual = pantallaElegirUsuario.getUsuario();
             try{
+      
                 primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"))));
+                
+                javafx.geometry.Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
+                primaryStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
             }catch(Exception e){ 
                 throw new RuntimeException(e);
                       }
@@ -63,7 +70,7 @@ public class Main extends Application {
         });
         
         Parent root = pantallaElegirUsuario;
-        escenaElegirUsuario = new Scene(root,1080,615);
+        escenaElegirUsuario = new Scene(root,400,269);
         primaryStage.setTitle("ChilExplox");
         primaryStage.setScene(escenaElegirUsuario);
         primaryStage.setResizable(false);

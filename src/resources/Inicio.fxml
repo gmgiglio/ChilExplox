@@ -34,19 +34,16 @@
                                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente:" BorderPane.alignment="CENTER" />
                                                    </right>
                                                 </BorderPane>
-                                                <BorderPane prefHeight="98.0" prefWidth="253.0">
-                                                   <center>
+                                                <BorderPane prefHeight="19.0" prefWidth="253.0">
+                                                   <right>
                                                       <ComboBox id="cbc" fx:id="comboBoxClientes" prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
-                                                   </center>
-                                                   <bottom>
-                                                      <Text fx:id="advertencia" fill="#dd0b0b" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="27.21875" BorderPane.alignment="CENTER" />
-                                                   </bottom>
+                                                   </right>
                                                 </BorderPane>
                                                 <BorderPane prefHeight="100.0" prefWidth="82.0">
                                                    <center>
                                                       <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
                                                          <children>
-                                                            <Circle centerX="18.0" centerY="18.0" fill="DODGERBLUE" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+                                                            <Circle centerX="18.0" centerY="18.0" fill="#0049ba" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
                                                             <Text fill="WHITE" layoutX="7.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
                                                                <font>
                                                                   <Font size="36.0" />
@@ -59,21 +56,26 @@
                                                 </BorderPane>
                                              </children>
                                           </HBox>
+                                          <BorderPane prefHeight="22.0" prefWidth="500.0">
+                                             <center>
+                                                <Text fx:id="advertencia" fill="#dd0b0b" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="49.21875" BorderPane.alignment="CENTER" />
+                                             </center>
+                                          </BorderPane>
                                           <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <BorderPane prefHeight="93.0" prefWidth="237.0">
+                                                <BorderPane prefHeight="91.0" prefWidth="220.0">
                                                    <right>
                                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID Pedido:" textAlignment="RIGHT" wrappingWidth="61.90853500366211" BorderPane.alignment="CENTER" />
                                                    </right>
                                                 </BorderPane>
-                                                <BorderPane prefHeight="98.0" prefWidth="253.0">
+                                                <BorderPane prefHeight="91.0" prefWidth="253.0">
                                                    <center>
                                                       <Text id="idPedido" strokeType="OUTSIDE" strokeWidth="0.0" text="Haga clic en crear pedido" wrappingWidth="153.69308471679688" BorderPane.alignment="CENTER" />
                                                    </center>
                                                 </BorderPane>
-                                                <BorderPane prefHeight="93.0" prefWidth="265.0">
+                                                <BorderPane prefHeight="91.0" prefWidth="235.0">
                                                    <left>
-                                                      <Button id="crearP" fx:id="crearPedido" mnemonicParsing="false" prefHeight="26.0" prefWidth="132.0" text="Crear Pedido" BorderPane.alignment="CENTER" />
+                                                      <Button id="crearP" fx:id="crearPedido" mnemonicParsing="false" prefHeight="39.0" prefWidth="135.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Crear Pedido" BorderPane.alignment="CENTER" />
                                                    </left>
                                                 </BorderPane>
                                              </children>
@@ -91,7 +93,7 @@
                                                       <Text id="stext" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="153.0" BorderPane.alignment="CENTER" />
                                                    </center>
                                                    <right>
-                                                      <Button fx:id="modificar" mnemonicParsing="false" prefHeight="26.0" prefWidth="132.0" text="Modificar" visible="false" BorderPane.alignment="CENTER" />
+                                                      <Button fx:id="modificar" mnemonicParsing="false" prefHeight="26.0" prefWidth="132.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Modificar" visible="false" BorderPane.alignment="CENTER" />
                                                    </right>
                                                 </BorderPane>
                                              </children>
@@ -112,7 +114,7 @@
                                                    <center>
                                                       <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
                                                          <children>
-                                                            <Circle id="agregarPedido" fill="DODGERBLUE" layoutX="18.0" layoutY="18.0" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                            <Circle id="agregarPedido" fill="#0049ba" layoutX="18.0" layoutY="18.0" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                             <Text fill="WHITE" layoutX="7.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
                                                                <font>
                                                                   <Font size="36.0" />
@@ -134,14 +136,14 @@
                                                 </BorderPane>
                                                 <BorderPane prefHeight="98.0" prefWidth="253.0">
                                                    <center>
-                                                      <Text id="presupuesto" fx:id="presupuesto" fill="#1770c3" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="282.3005828857422" BorderPane.alignment="CENTER_LEFT">
+                                                      <Text id="presupuesto" fx:id="presupuesto" fill="#0049ba" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="282.3005828857422" BorderPane.alignment="CENTER_LEFT">
                                                          <font>
                                                             <Font size="25.0" />
                                                          </font>
                                                       </Text>
                                                    </center>
                                                    <left>
-                                                      <Text fill="#1770c3" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" textAlignment="CENTER" wrappingWidth="31.761505126953125" BorderPane.alignment="CENTER">
+                                                      <Text fill="#0049ba" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" textAlignment="CENTER" wrappingWidth="31.761505126953125" BorderPane.alignment="CENTER">
                                                          <font>
                                                             <Font size="25.0" />
                                                          </font>
@@ -153,11 +155,11 @@
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
                                                 <BorderPane prefHeight="100.0" prefWidth="150.0" />
-                                                <BorderPane prefHeight="100.0" prefWidth="178.0" />
-                                                <BorderPane prefHeight="100.0" prefWidth="136.0">
-                                                   <center>
-                                                      <Button fx:id="cerrarPedido" mnemonicParsing="false" prefHeight="26.0" prefWidth="191.0" text="Cerrar Pedido" BorderPane.alignment="CENTER" />
-                                                   </center>
+                                                <BorderPane prefHeight="91.0" prefWidth="165.0" />
+                                                <BorderPane prefHeight="94.0" prefWidth="210.0">
+                                                   <top>
+                                                      <Button fx:id="cerrarPedido" mnemonicParsing="false" prefHeight="39.0" prefWidth="139.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Cerrar Pedido" BorderPane.alignment="CENTER" />
+                                                   </top>
                                                 </BorderPane>
                                              </children>
                                           </HBox>

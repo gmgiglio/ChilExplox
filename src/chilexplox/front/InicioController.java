@@ -451,22 +451,22 @@ public class InicioController implements Initializable {
          for(Pedido p : pedidos){
              //idsPedPend.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
              TreeItem<String> child = new TreeItem<>("Pedido #" + Integer.toString(p.getIdPedido()));
-//             child.getChildren().add(new TreeItem<>("Prioridad: " + p.getPrioridad()));
-//             child.getChildren().add(new TreeItem<>("Costo de Envío: $" + p.getCostoEnvio()));
-//             child.getChildren().add(new TreeItem<>("Sucursal de Destino: " + p.getSucDestino().getNombre()));
-//             child.getChildren().add(new TreeItem<>("Cliente: " + p.getCliente().getNombre()));
-//             child.getChildren().add(new TreeItem<>("Peso: " + p.getPeso() + " g"));
-//             child.getChildren().add(new TreeItem<>("Volumen aprox.: " + p.getVol()+ " cm^3"));
-//             child.getChildren().add(encomiendas);
-//             for(Encomienda e : p.getEncomiendas()){
-//                 TreeItem<String> encomienda = new TreeItem<>(e.getDescripcion());
-//                 encomienda.getChildren().add(new TreeItem<>("Prioridad: " + e.getPrioridad()));
-//                 encomienda.getChildren().add(new TreeItem<>("Costo de Envío: $" + e.getCostoEnvio()));
-//                 encomienda.getChildren().add(new TreeItem<>("Peso: " + e.getPeso() + " g"));
-//                 encomienda.getChildren().add(new TreeItem<>("Volumen aprox.: " + e.getVol()+ " cm^3"));
-//                 encomienda.getChildren().add(new TreeItem<>("Dirección de Destino: " + e.getDireccionDestino()));
-//                 encomiendas.getChildren().add(encomienda);
-//             }
+             child.getChildren().add(new TreeItem<>("Prioridad: " + p.getPrioridad()));
+             child.getChildren().add(new TreeItem<>("Costo de Envío: $" + p.getCostoEnvio()));
+             child.getChildren().add(new TreeItem<>("Sucursal de Destino: " + p.getSucDestino().getNombre()));
+             child.getChildren().add(new TreeItem<>("Cliente: " + p.getCliente().getNombre()));
+             child.getChildren().add(new TreeItem<>("Peso: " + p.getPeso() + " g"));
+             child.getChildren().add(new TreeItem<>("Volumen aprox.: " + p.getVol()+ " cm^3"));
+             child.getChildren().add(encomiendas);
+             for(Encomienda e : p.getEncomiendas()){
+                 TreeItem<String> encomienda = new TreeItem<>(e.getDescripcion());
+                 encomienda.getChildren().add(new TreeItem<>("Prioridad: " + e.getPrioridad()));
+                 encomienda.getChildren().add(new TreeItem<>("Costo de Envío: $" + e.getCostoEnvio()));
+                 encomienda.getChildren().add(new TreeItem<>("Peso: " + e.getPeso() + " g"));
+                 encomienda.getChildren().add(new TreeItem<>("Volumen aprox.: " + e.getVol()+ " cm^3"));
+                 encomienda.getChildren().add(new TreeItem<>("Dirección de Destino: " + e.getDireccionDestino()));
+                 encomiendas.getChildren().add(encomienda);
+             }
              dummyRoot.getChildren().add(child);
          }
          

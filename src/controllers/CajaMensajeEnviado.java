@@ -26,6 +26,8 @@ public class CajaMensajeEnviado extends Button {
     
     private RegistroMensaje registro;
     
+    private int largoMaxAsunto = 40;
+    
     public CajaMensajeEnviado(RegistroMensaje registro){
         this.registro = registro;
         
@@ -39,12 +41,19 @@ public class CajaMensajeEnviado extends Button {
             throw new RuntimeException(exception);
         }
          
-          textoAsunto.setText(registro.getMensaje().getNombre());
+          setTextoAsunto(registro.getMensaje().getNombre());
           textoSucursal.setText(registro.getDestino().getNombre());
     } 
     
     public Mensaje getMensaje(){
         return registro.getMensaje();
+    }
+    
+     private void setTextoAsunto(String s){
+        if (s.length() > largoMaxAsunto){
+            textoAsunto.setText(s.substring(0, largoMaxAsunto) + "...");
+        }
+        else textoAsunto.setText(s);
     }
     
 }

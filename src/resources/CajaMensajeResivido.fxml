@@ -7,12 +7,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root fx:id="boton" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" type="javafx.scene.control.Button" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="boton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" type="javafx.scene.control.Button" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <graphic>
       <VBox prefHeight="50.0" prefWidth="80.0">
          <children>
             <Text fx:id="textoUsuario" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario Remitente" />
-            <Text fx:id="textoAsunto" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Asunto" />
+            <Text fx:id="textoAsunto" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Asunto" wrappingWidth="296.14501953125" />
          </children>
       </VBox>
    </graphic>

@@ -101,12 +101,12 @@ public class Main extends Application {
         Empresa.agregarUsuario("Tulio Triviño", "31minutos");
         Empresa.agregarUsuario("a" , "a");
         
+        
         maipu.agregarCamion("BDGH34", 3000);
         maipu.agregarCamionPend("JUHK87", 2500);
         maipu.getCamionesDisp().get(0).cargarPedido(new Pedido(maipu, victoria, leo));
         Usuario tulio = Empresa.getUsuarios().get(0);
         tulio.setSucursalActual(maipu);
-        tulio.crearPedido(victoria);
         
         Usuario a = Empresa.getUsuario("a");
         a.enviarMensaje("prueba", "esto es una prueba", victoria);

@@ -7,6 +7,7 @@ package chilexplox;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -30,7 +31,7 @@ public class GeneradorReporte {
     private static double gananciasTotales(){
         double total=0;
         for(Sucursal s : Empresa.getSucursales()){
-            List<Pedido> pedidosTotales = s.getPedidosEnDest();
+            LinkedList<Pedido> pedidosTotales = s.getPedidosEnDest();
             pedidosTotales.addAll(s.getPedidosPend());
             pedidosTotales.addAll(s.getPedidosEntregados());
             pedidosTotales.addAll(s.getPedidosEquivocados());

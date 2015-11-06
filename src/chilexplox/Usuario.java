@@ -19,7 +19,7 @@ public class Usuario implements java.io.Serializable {
     private String contrasena;
     private Sucursal sucursalActual;
     
-    private final List<RegistroMensaje> registroMensajesEnviados = new LinkedList();
+    private final LinkedList<RegistroMensaje> registroMensajesEnviados = new LinkedList();
     
     public Usuario(String nombreUsuario, String contrasena){
         this.nombreUsuario = nombreUsuario;
@@ -97,7 +97,7 @@ public class Usuario implements java.io.Serializable {
     public void recibirPedido(){
         if(getSucursalActual().getCamionesPend() != null){
             //Pedidos dentro del camion a descargar
-            List<Pedido> pedidosADesc = getSucursalActual().getCamionesPend().get(0).getPedidos();
+            LinkedList<Pedido> pedidosADesc = getSucursalActual().getCamionesPend().get(0).getPedidos();
             Sucursal sucOrigen = pedidosADesc.get(0).getSucOrigen();
             for(Pedido p : pedidosADesc){
                 getSucursalActual().bajarPedido(p);
@@ -110,7 +110,7 @@ public class Usuario implements java.io.Serializable {
     }
     
     public void confirmarPedido(int idPedido, boolean correcto){
-        List<Pedido> pedidosEnDest = getSucursalActual().getPedidosEnDest();
+        LinkedList<Pedido> pedidosEnDest = getSucursalActual().getPedidosEnDest();
         for(Pedido p : pedidosEnDest){
             if(idPedido == p.getIdPedido()){
                 if(correcto){
@@ -128,7 +128,7 @@ public class Usuario implements java.io.Serializable {
         registroMensajesEnviados.add(mensaje.enviar(sucursal));
     }
     
-    public List<RegistroMensaje> getRegistroMensajesEnviados(){
+    public LinkedList<RegistroMensaje> getRegistroMensajesEnviados(){
         return new LinkedList(registroMensajesEnviados);
     }
 

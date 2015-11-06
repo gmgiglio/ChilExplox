@@ -18,7 +18,7 @@ public class Camion implements java.io.Serializable {
     
     //Espacio disponible para cargar pedidos [m^3]
     private int espacioDisp;
-    private List<Pedido> pedidosCargados = new LinkedList<>();
+    private LinkedList<Pedido> pedidosCargados = new LinkedList<>();
     private int capacidad;
     
     public Camion(String patente, int capacidad){
@@ -27,7 +27,7 @@ public class Camion implements java.io.Serializable {
         this.espacioDisp = capacidad;
     }
     
-    public List<Pedido> getPedidos(){
+    public LinkedList<Pedido> getPedidos(){
         return this.pedidosCargados;
     }
     
@@ -44,14 +44,14 @@ public class Camion implements java.io.Serializable {
         this.espacioDisp -= p.getVol();
     }
     
-    public void cargarPedidos(List<Pedido> pedidos){
+    public void cargarPedidos(LinkedList<Pedido> pedidos){
         for(Pedido p : pedidos){
             cargarPedido(p);
         }
     }
     
-    public List<Pedido> descargarPedios(){
-        List<Pedido> result = new LinkedList<Pedido>(this.pedidosCargados);
+    public LinkedList<Pedido> descargarPedios(){
+        LinkedList<Pedido> result = new LinkedList<Pedido>(this.pedidosCargados);
         this.pedidosCargados.clear();
         return result;
     }

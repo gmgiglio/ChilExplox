@@ -18,7 +18,7 @@ public class Empresa implements java.io.Serializable {
     
     private String nombre;
     private String rut;
-    private List<Sucursal> sucursales = new LinkedList<>();
+    private LinkedList<Sucursal> sucursales = new LinkedList<>();
     //Indica el numero de pedidos que se han ingresado a la empresa. Este número será asignado a cada
     //pedido como su idPedido, único para cada uno de ellos.
     private int nroPedidos = 0;
@@ -26,8 +26,8 @@ public class Empresa implements java.io.Serializable {
     //sistema. Este contador corresponde a la prioridad de cada encomienda por defecto.
     private int nroEncomiendas = 0;
     
-    private List<Cliente> clientes = new LinkedList<>();
-    private List<Usuario> usuarios = new LinkedList<>();
+    private LinkedList<Cliente> clientes = new LinkedList<>();
+    private LinkedList<Usuario> usuarios = new LinkedList<>();
 
     //tiempo limite para mandar para pedidos alta prioridad, 3 dias default
     private long tiempoLimite = 0; //3*24*60*60*1000;
@@ -98,21 +98,21 @@ public class Empresa implements java.io.Serializable {
     /**
      * @return the sucursales
      */
-    public static List<Sucursal> getSucursales() {
+    public static LinkedList<Sucursal> getSucursales() {
         return new LinkedList<>(getInstance().sucursales);
     }
 
     /**
      * @return the usuarios
      */
-    public static List<Usuario> getUsuarios() {
+    public static LinkedList<Usuario> getUsuarios() {
         return new LinkedList<>(getInstance().usuarios);
     }
 
     /**
      * @return the clientes
      */
-    public static List<Cliente> getClientes() {
+    public static LinkedList<Cliente> getClientes() {
         return new LinkedList<>(getInstance().clientes);
     }
 
@@ -207,8 +207,8 @@ public class Empresa implements java.io.Serializable {
         return  getInstance().nroPedidos;
     }
     
-    public static List<Sucursal> sucursalesEnCiudad(String nombreCiudad){
-        List<Sucursal> result = new LinkedList<>();
+    public static LinkedList<Sucursal> sucursalesEnCiudad(String nombreCiudad){
+        LinkedList<Sucursal> result = new LinkedList<>();
         for(int i = 0; i <  getInstance().getSucursales().size(); i++){
             if(getSucursales().get(i).getCiudad().equals(nombreCiudad)){
                 result.add( getInstance().getSucursales().get(i));

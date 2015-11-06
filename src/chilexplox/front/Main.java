@@ -63,7 +63,7 @@ public class Main extends Application {
         });
         
         Parent root = pantallaElegirUsuario;
-        escenaElegirUsuario = new Scene(root,1080,615);
+        escenaElegirUsuario = new Scene(root,400,269);
         primaryStage.setTitle("ChilExplox");
         primaryStage.setScene(escenaElegirUsuario);
         primaryStage.setResizable(false);

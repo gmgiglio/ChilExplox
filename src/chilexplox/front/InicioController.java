@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package chilexplox.front;
 
@@ -61,6 +56,7 @@ public class InicioController implements Initializable {
     
     private Menu menuSucursal;
     private AgregarEncomiendaController agregarEncomiendaCon;
+        @FXML
     private AnchorPane anchorPedPend, anchorPedCar;
       
    private TreeView<String> pedidosPend = new TreeView<String>(), pedidosCar = new TreeView<String>();
@@ -131,7 +127,7 @@ public class InicioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
    
    
-        List<Sucursal> sucursales = Empresa.getSucursales();
+        LinkedList<Sucursal> sucursales = Empresa.getSucursales();
         
         ////////////////////////Inicializar Menú\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
        
@@ -425,14 +421,15 @@ public class InicioController implements Initializable {
 
      public void actualizarPestanaAdm(){
          Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
-//         ObservableList idsPedPend = FXCollections.observableArrayList();
+         //ObservableList idsPedPend = FXCollections.observableArrayList();
          ObservableList patentesCamDisp = FXCollections.observableArrayList();
          ObservableList patentesCamADesc = FXCollections.observableArrayList();
          
-        pedidosPend = listarPedidos(sucActual.getPedidosPend());
-        //anchorPedPend.getChildren().add(pedidosPend);
-        //pedidosPend.setPrefWidth(anchorPedPend.getPrefWidth());
-        
+         pedidosPend = listarPedidos(sucActual.getPedidosPend());
+         
+         anchorPedPend.getChildren().add(pedidosPend);
+         pedidosPend.setPrefWidth(anchorPedPend.getPrefWidth());
+         
         
         //pedidosPendientes.setItems(idsPedPend);
          
@@ -447,29 +444,29 @@ public class InicioController implements Initializable {
          camionesPorDescargar.setItems(patentesCamADesc);
      }
      
-     public TreeView<String> listarPedidos(List<Pedido> pedidos){
+     public TreeView<String> listarPedidos(LinkedList<Pedido> pedidos){
          TreeItem<String> dummyRoot = new TreeItem<>("root");
          TreeItem<String> encomiendas = new TreeItem<>("Encomiendas");
          
          for(Pedido p : pedidos){
              //idsPedPend.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
              TreeItem<String> child = new TreeItem<>("Pedido #" + Integer.toString(p.getIdPedido()));
-             child.getChildren().add(new TreeItem<>("Prioridad: " + p.getPrioridad()));
-             child.getChildren().add(new TreeItem<>("Costo de Envío: $" + p.getCostoEnvio()));
-             child.getChildren().add(new TreeItem<>("Sucursal de Destino: " + p.getSucDestino().getNombre()));
-             child.getChildren().add(new TreeItem<>("Cliente: " + p.getCliente().getNombre()));
-             child.getChildren().add(new TreeItem<>("Peso: " + p.getPeso() + " g"));
-             child.getChildren().add(new TreeItem<>("Volumen aprox.: " + p.getVol()+ " cm^3"));
-             child.getChildren().add(encomiendas);
-             for(Encomienda e : p.getEncomiendas()){
-                 TreeItem<String> encomienda = new TreeItem<>(e.getDescripcion());
-                 encomienda.getChildren().add(new TreeItem<>("Prioridad: " + e.getPrioridad()));
-                 encomienda.getChildren().add(new TreeItem<>("Costo de Envío: $" + e.getCostoEnvio()));
-                 encomienda.getChildren().add(new TreeItem<>("Peso: " + e.getPeso() + " g"));
-                 encomienda.getChildren().add(new TreeItem<>("Volumen aprox.: " + e.getVol()+ " cm^3"));
-                 encomienda.getChildren().add(new TreeItem<>("Dirección de Destino: " + e.getDireccionDestino()));
-                 encomiendas.getChildren().add(encomienda);
-             }
+//             child.getChildren().add(new TreeItem<>("Prioridad: " + p.getPrioridad()));
+//             child.getChildren().add(new TreeItem<>("Costo de Envío: $" + p.getCostoEnvio()));
+//             child.getChildren().add(new TreeItem<>("Sucursal de Destino: " + p.getSucDestino().getNombre()));
+//             child.getChildren().add(new TreeItem<>("Cliente: " + p.getCliente().getNombre()));
+//             child.getChildren().add(new TreeItem<>("Peso: " + p.getPeso() + " g"));
+//             child.getChildren().add(new TreeItem<>("Volumen aprox.: " + p.getVol()+ " cm^3"));
+//             child.getChildren().add(encomiendas);
+//             for(Encomienda e : p.getEncomiendas()){
+//                 TreeItem<String> encomienda = new TreeItem<>(e.getDescripcion());
+//                 encomienda.getChildren().add(new TreeItem<>("Prioridad: " + e.getPrioridad()));
+//                 encomienda.getChildren().add(new TreeItem<>("Costo de Envío: $" + e.getCostoEnvio()));
+//                 encomienda.getChildren().add(new TreeItem<>("Peso: " + e.getPeso() + " g"));
+//                 encomienda.getChildren().add(new TreeItem<>("Volumen aprox.: " + e.getVol()+ " cm^3"));
+//                 encomienda.getChildren().add(new TreeItem<>("Dirección de Destino: " + e.getDireccionDestino()));
+//                 encomiendas.getChildren().add(encomienda);
+//             }
              dummyRoot.getChildren().add(child);
          }
          
@@ -486,7 +483,6 @@ public class InicioController implements Initializable {
      }
 
      public void limpiarAtender(){
-     
          crearPedido.setVisible(true);
          Scene scene = crearPedido.getScene();
          Text idPedido = (Text) scene.lookup("#idPedido");
@@ -499,7 +495,6 @@ public class InicioController implements Initializable {
          Text presupuesto = (Text) scene.lookup("#presupuesto");
          presupuesto.setText("0");
          split.setDividerPositions(1);
-        
      }
      
      private void agregarEncomienda(int peso, int volumen,int prioridad, String dirDestino,String descr){

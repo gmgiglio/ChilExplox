@@ -2,6 +2,7 @@
 package chilexplox.front;
 
 import chilexplox.*;
+import controllers.AgregarClienteController;
 import controllers.AgregarEncomiendaController;
 import java.net.URL;
 import java.util.LinkedList;
@@ -56,6 +57,9 @@ public class InicioController implements Initializable {
     
     private Menu menuSucursal;
     private AgregarEncomiendaController agregarEncomiendaCon;
+
+    private AgregarClienteController agregarClienteCon;
+
         @FXML
     private AnchorPane anchorPedPend, anchorPedCar;
       
@@ -63,7 +67,66 @@ public class InicioController implements Initializable {
            pedidosCar = new TreeView<String>();
    private TreeItem aMover;
    
+<<<<<<< HEAD
    
+=======
+   private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                
+                TreeView<String> tree = (TreeView) event.getSource();
+                Dragboard dragBoard = tree.startDragAndDrop(TransferMode.MOVE);
+                    ClipboardContent content = new ClipboardContent();
+                    content.put(DataFormat.PLAIN_TEXT, tree.getSelectionModel().getSelectedItem().toString());
+                    dragBoard.setContent(content);
+                    event.consume();
+            }
+        };
+   
+     private EventHandler<DragEvent> dragOver = new EventHandler<DragEvent>() {
+            public void handle(DragEvent event) {
+                TreeView<String> tree = (TreeView) event.getSource();
+                 if (event.getDragboard().hasString()) {
+                        String valueToMove = event.getDragboard().getString();
+                        if (valueToMove.equals(tree.getSelectionModel().getSelectedItem().toString())) {
+                            // We accept the transfer!!!!!
+                            event.acceptTransferModes(TransferMode.MOVE);
+                        }
+                    }
+                    event.consume();
+            }
+        };
+     private EventHandler<DragEvent> dragDropped = new EventHandler<DragEvent>() {
+            public void handle(DragEvent event) {
+                
+                TreeView<String> tree = (TreeView) event.getGestureTarget();
+
+                   String valueToMove = event.getDragboard().getString();
+                    TreeItem<String> itemToMove = search(pedidosPend.getRoot(), valueToMove);
+                    // Remove from former parent.
+                    itemToMove.getParent().getChildren().remove(itemToMove);
+                    // Add to new parent.
+                    pedidosCar.getRoot().getChildren().add(itemToMove);
+                    pedidosCar.getRoot().setExpanded(true);
+                    event.consume();
+            }
+        };
+     private TreeItem<String> search(final TreeItem<String> currentNode, final String valueToSearch) {
+            TreeItem<String> result = null;
+            if (currentNode.getValue().toString().equals(valueToSearch) ){
+                result = currentNode;
+            } else if (!currentNode.isLeaf()) {
+                for (TreeItem<String> child : currentNode.getChildren()) {
+                    result = search(child, valueToSearch);
+                    if (result != null) {
+                        break;
+                    }
+                }
+            }
+            return result;
+        }
+      
+/*
+>>>>>>> origin/master
    private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
         public void handle(MouseEvent event) {
             //ListView<String> list = (ListView) event.getSource();
@@ -193,6 +256,10 @@ public class InicioController implements Initializable {
             }
         };
    */
+<<<<<<< HEAD
+=======
+   
+>>>>>>> origin/master
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
@@ -237,15 +304,22 @@ public class InicioController implements Initializable {
             @Override public void handle(ActionEvent e) {
                     
                        try{        
-
-                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarCliente.fxml")));
-                       split.setDividerPositions(0.4684014869888476);
+                            agregarClienteCon = new AgregarClienteController();
+                            agregarClienteCon.setHandlerEncomienda((Event e2) -> {
+                                Empresa.agregarCliente(agregarClienteCon.getNombre()+" "+agregarClienteCon.getApellidos(),agregarClienteCon.getCalle()+" "+agregarClienteCon.getNumero()+", "+agregarClienteCon.getComuna()+", "+agregarClienteCon.getCiudad(),agregarClienteCon.getTelefono());
+                                comboBoxClientes.getItems().add(agregarClienteCon.getNombre()+" "+agregarClienteCon.getApellidos());
+                                comboBoxClientes.setPromptText(agregarClienteCon.getNombre()+" "+agregarClienteCon.getApellidos());
+                                split.setDividerPositions(1);
+                            });
+                            agregarPane.getChildren().setAll(agregarClienteCon);
+                            split.setDividerPositions(0.4684014869888476);
                        
                        }
                        catch (Exception exc)
                       {
-                          int i=0;
-                               }
+                          System.out.println("InicioController: No se pudo cargar AgregarClienteController");
+                          throw new RuntimeException(exc);
+                      }
                      
                 
                 }
@@ -547,7 +621,7 @@ public class InicioController implements Initializable {
         pedidosTree.setOnDragDetected(dragDetected);
         pedidosTree.setOnDragOver(dragOver);
         pedidosTree.setOnDragDropped(dragDropped);
-        pedidosTree.setOnDragDone(dragDone);
+        //pedidosTree.setOnDragDone(dragDone);
         
          return pedidosTree;
      }

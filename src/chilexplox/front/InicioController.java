@@ -57,11 +57,10 @@ public class InicioController implements Initializable {
     
     private Menu menuSucursal;
     private AgregarEncomiendaController agregarEncomiendaCon;
-<<<<<<< HEAD
+
     private AgregarClienteController agregarClienteCon;
-=======
+
         @FXML
->>>>>>> origin/master
     private AnchorPane anchorPedPend, anchorPedCar;
       
    private TreeView<String> pedidosPend = new TreeView<String>(), pedidosCar = new TreeView<String>();

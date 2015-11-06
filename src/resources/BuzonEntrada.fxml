@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,16 +8,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BuzonEntradaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BuzonEntradaController">
    <children>
-      <HBox fx:id="pantallaBuzonEntrada" layoutY="5.0" prefHeight="100.0" prefWidth="900.0">
+      <HBox fx:id="pantallaBuzonEntrada" layoutX="-0.0" layoutY="-0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="900.0">
          <children>
-            <VBox fx:id="listaMensajes" prefHeight="200.0" prefWidth="300.0" />
-            <AnchorPane prefHeight="200.0" prefWidth="600.0">
+            <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="300.0">
+               <content>
+                  <VBox fx:id="listaMensajes" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="335.0" />
+               </content>
+            </ScrollPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="600.0">
                <children>
-                  <BorderPane layoutX="-5.0" layoutY="-5.0" prefHeight="920.0" prefWidth="607.0">
+                  <BorderPane layoutX="-5.0" layoutY="-5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="607.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                      <center>
-                        <TextFlow fx:id="textoMensaje" maxHeight="800.0" maxWidth="500.0" prefHeight="659.0" prefWidth="500.0" BorderPane.alignment="CENTER" />
+                        <TextFlow fx:id="textoMensaje" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="540.0" prefWidth="568.0" BorderPane.alignment="CENTER">
+                           <rotationAxis>
+                              <Point3D />
+                           </rotationAxis></TextFlow>
                      </center>
                   </BorderPane>
                </children>

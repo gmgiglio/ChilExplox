@@ -24,13 +24,22 @@ public class GeneradorReporte {
         Mensaje reporte = new Mensaje(nombreReporte , "", autoRobot);
         
         reporte.agregarParrafo("Numero de pedidos: " + Empresa.getNroPedidos());
-        reporte.agregarParrafo("Ganancias Totales: " + gananciasTotales());
+        reporte.agregarParrafo("Ganancias Totales: $" + gananciasTotales());
+        
+        //ganancias sucursales
+        String parrGanSuc = "Ganancias sucursales:" + System.lineSeparator();
+        for(Sucursal s : Empresa.getSucursales()){
+            parrGanSuc += "          " + s.getNombre() + ": $" + gananciasSucursal(s) + System.lineSeparator();
+        }
+        reporte.agregarParrafo(parrGanSuc);
+        
         return reporte;
     }
     
     private static double gananciasTotales(){
         double total=0;
         for(Sucursal s : Empresa.getSucursales()){
+<<<<<<< HEAD
             LinkedList<Pedido> pedidosTotales = s.getPedidosEnDest();
             pedidosTotales.addAll(s.getPedidosPend());
             pedidosTotales.addAll(s.getPedidosEntregados());
@@ -39,8 +48,26 @@ public class GeneradorReporte {
                 System.out.println(p.getIdPedido() + " " + p.getCostoEnvio());
                 total += p.getCostoEnvio();
             }
+=======
+            total += gananciasSucursal(s);
+>>>>>>> origin/master
         }
         return total;
     }
+    
+    private static double gananciasSucursal(Sucursal s){
+        double total = 0;
+        List<Pedido> pedidosTotales = s.getPedidosEnDest();
+        pedidosTotales.addAll(s.getPedidosPend());
+        pedidosTotales.addAll(s.getPedidosEntregados());
+        pedidosTotales.addAll(s.getPedidosEquivocados());
+        for (Pedido p : pedidosTotales){
+            total += p.getCostoEnvio();
+        }
+        
+        return total;
+    }
+    
+    
     
 }

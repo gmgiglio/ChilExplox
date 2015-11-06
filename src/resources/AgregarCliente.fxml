@@ -17,7 +17,7 @@
                   <BorderPane prefHeight="100.0" prefWidth="85.0" />
                   <BorderPane prefHeight="100.0" prefWidth="416.0">
                      <center>
-                        <Text fill="#1770c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Nuevo cliente" BorderPane.alignment="CENTER">
+                        <Text fill="#0049ba" strokeType="OUTSIDE" strokeWidth="0.0" text="Nuevo cliente" BorderPane.alignment="CENTER">
                            <font>
                               <Font size="19.0" />
                            </font>
@@ -141,10 +141,10 @@
             <HBox maxHeight="50.0" prefHeight="43.0">
                <children>
                   <BorderPane prefHeight="100.0" prefWidth="150.0" />
-                  <BorderPane prefHeight="98.0" prefWidth="253.0" />
-                  <BorderPane prefHeight="100.0" prefWidth="381.0">
+                  <BorderPane prefHeight="43.0" prefWidth="153.0" />
+                  <BorderPane prefHeight="43.0" prefWidth="349.0">
                      <center>
-                        <Button fx:id="agregarCliente" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="112.0" text="Crear Cliente" BorderPane.alignment="CENTER" />
+                        <Button fx:id="agregarCliente" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Crear Cliente" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>

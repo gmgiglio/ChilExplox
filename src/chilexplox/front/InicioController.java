@@ -401,8 +401,7 @@ public class InicioController implements Initializable {
              Main.getUsuarioActual().setSucursalActual(suc);
              menuSucursal.getItems().remove(item1);
              menuSucursal.getItems().add(item2);
-             //suc.revisarTiempoPedidos();
-             actualizarPestanaAdm();
+             //actualizarPestanaAdm();
          }
      };   
     
@@ -415,7 +414,7 @@ public class InicioController implements Initializable {
             }
             
             comboBoxClientes.getItems().setAll(nombreClientes);
-            comboBoxClientes.setPromptText(comboBoxClientes.getItems().get(0).toString());
+            comboBoxClientes.setPromptText("");
 
     }
 

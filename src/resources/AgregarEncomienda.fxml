@@ -171,7 +171,6 @@
             <HBox maxHeight="50.0" prefHeight="33.0" prefWidth="567.0">
                <children>
                   <BorderPane prefHeight="100.0" prefWidth="150.0" />
-<<<<<<< HEAD
                   <BorderPane prefHeight="43.0" prefWidth="460.0">
                <center>
                   <Text fx:id="textPresupuesto" fill="#1770c3" strokeType="OUTSIDE" strokeWidth="0.0" text="0" BorderPane.alignment="CENTER">
@@ -187,9 +186,8 @@
                      </font>
                   </Text>
                </left></BorderPane>
-=======
                   <BorderPane prefHeight="39.0" prefWidth="397.0" />
->>>>>>> origin/master
+
                   <BorderPane prefHeight="100.0" prefWidth="381.0">
                      <left>
                         <Button fx:id="crearEncomienda" mnemonicParsing="false" onAction="#botonApretado" prefHeight="39.0" prefWidth="163.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Crear Encomienda" BorderPane.alignment="CENTER" />

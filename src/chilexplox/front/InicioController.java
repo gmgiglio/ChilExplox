@@ -63,9 +63,17 @@ public class InicioController implements Initializable {
         @FXML
     private AnchorPane anchorPedPend, anchorPedCar;
       
+<<<<<<< HEAD
    private TreeView<String> pedidosPend = new TreeView<String>(),treeOrigen = new TreeView<String>(),pedidosCar = new TreeView<String>();
+=======
+   private TreeView<String> treeOrigen = new TreeView<String>(), pedidosPend = new TreeView<String>(),
+           pedidosCar = new TreeView<String>();
+>>>>>>> origin/master
    private TreeItem aMover;
    
+<<<<<<< HEAD
+   
+=======
    private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                  treeOrigen = (TreeView) event.getSource();
@@ -124,21 +132,90 @@ public class InicioController implements Initializable {
         }
       
 /*
+>>>>>>> origin/master
    private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-                //ListView<String> list = (ListView) event.getSource();
-                TreeView<String> tree = (TreeView) event.getSource();
-                //Dragboard db = list.startDragAndDrop(TransferMode.MOVE);
-                Dragboard db = tree.startDragAndDrop(TransferMode.MOVE);
-                ClipboardContent content = new ClipboardContent();
-                //content.putString(list.getSelectionModel().getSelectedItem());
-                content.putString(tree.getSelectionModel().getSelectedItem().getValue());
-                aMover = tree.getSelectionModel().getSelectedItem();
-                db.setContent(content);
+        public void handle(MouseEvent event) {
+            //ListView<String> list = (ListView) event.getSource();
+            TreeView<String> tree = (TreeView) event.getSource();
+            tree = treeOrigen;
+            //Dragboard db = list.startDragAndDrop(TransferMode.MOVE);
+            Dragboard db = tree.startDragAndDrop(TransferMode.MOVE);
+            ClipboardContent content = new ClipboardContent();
+            //content.putString(list.getSelectionModel().getSelectedItem());
+            content.putString(tree.getSelectionModel().getSelectedItem().getValue());
+            aMover = tree.getSelectionModel().getSelectedItem();
+            db.setContent(content);
+
+            event.consume();
+        }
+    };
+    private EventHandler<DragEvent> dragOver = new EventHandler<DragEvent>() {
+            public void handle(DragEvent event) {
+                if (event.getGestureSource() != event.getTarget() && event.getDragboard().hasString()) {
+                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                }
 
                 event.consume();
             }
         };
+    private EventHandler<DragEvent> dragDropped = new EventHandler<DragEvent>() {
+            public void handle(DragEvent event) {
+                //ListView<String> list = (ListView) event.getGestureTarget();
+                TreeView<String> tree = (TreeView) event.getGestureTarget();
+
+                Dragboard db = event.getDragboard();
+                boolean success = false;
+                if (db.hasString()) {
+                    //list.getItems().add(db.getString());
+                    tree.getRoot().getChildren().add(aMover);
+//                    for(TreeItem ti : treeOrigen.getRoot().getChildren()){
+//                        if(ti.toString() == aMover.toString()){
+//                            tree.getRoot().getChildren().add(ti);
+//                        }
+//                    }
+                    success = true;
+                }
+
+                event.setDropCompleted(success);
+                event.consume();
+            }
+        };
+    private EventHandler<DragEvent> dragDone = new EventHandler<DragEvent>() {
+            public void handle(DragEvent event) {
+                if (event.getTransferMode() == TransferMode.MOVE) {
+                    //ListView<String> list = (ListView) event.getGestureSource();
+                    TreeView<String> tree = (TreeView) event.getGestureSource();
+                    //list.getItems().remove(event.getDragboard().getString());
+                    tree.getRoot().getChildren().remove(aMover);
+                    String idString =(String)aMover.getValue();
+                    int id = Integer.parseInt(idString.substring(8));
+                    Main.getUsuarioActual().getSucursalActual().cargarPedido(id);
+                    Sucursal origen = Main.getUsuarioActual().getSucursalActual();
+                    Sucursal destino = Empresa.getSucursal(aMover.getChildren().get(2).toString().substring(8));
+                    Cliente cliente = Empresa.getCliente(aMover.getChildren().get(3).toString().substring(9));
+                    Pedido p = new Pedido(origen, destino, cliente);
+                    Main.getUsuarioActual().getSucursalActual().getCamion(patenteCamAct.getText()).cargarPedido(p);
+                }
+                event.consume();
+            }
+        };
+   
+/*
+    private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
+        public void handle(MouseEvent event) {
+            //ListView<String> list = (ListView) event.getSource();
+            TreeView<String> tree = (TreeView) event.getSource();
+            //Dragboard db = list.startDragAndDrop(TransferMode.MOVE);
+            Dragboard db = tree.startDragAndDrop(TransferMode.MOVE);
+            ClipboardContent content = new ClipboardContent();
+            //content.putString(list.getSelectionModel().getSelectedItem());
+            content.putString(tree.getSelectionModel().getSelectedItem().getValue());
+            aMover = tree.getSelectionModel().getSelectedItem();
+            db.setContent(content);
+
+            event.consume();
+        }
+    };
     private EventHandler<DragEvent> dragOver = new EventHandler<DragEvent>() {
             public void handle(DragEvent event) {
                 if (event.getGestureSource() != event.getTarget() && event.getDragboard().hasString()) {
@@ -185,7 +262,10 @@ public class InicioController implements Initializable {
             }
         };
    */
+<<<<<<< HEAD
+=======
    
+>>>>>>> origin/master
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    

@@ -63,16 +63,17 @@ public class InicioController implements Initializable {
         @FXML
     private AnchorPane anchorPedPend, anchorPedCar;
       
-   private TreeView<String> pedidosPend = new TreeView<String>(), pedidosCar = new TreeView<String>();
+   private TreeView<String> pedidosPend = new TreeView<String>(),treeOrigen = new TreeView<String>(),pedidosCar = new TreeView<String>();
    private TreeItem aMover;
    
    private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
-                
-                TreeView<String> tree = (TreeView) event.getSource();
-                Dragboard dragBoard = tree.startDragAndDrop(TransferMode.MOVE);
+                 treeOrigen = (TreeView) event.getSource();
+                //TreeView<String> tree = (TreeView) event.getSource();
+          
+                Dragboard dragBoard = treeOrigen.startDragAndDrop(TransferMode.MOVE);
                     ClipboardContent content = new ClipboardContent();
-                    content.put(DataFormat.PLAIN_TEXT, tree.getSelectionModel().getSelectedItem().toString());
+                    content.put(DataFormat.PLAIN_TEXT, treeOrigen.getSelectionModel().getSelectedItem().toString());
                     dragBoard.setContent(content);
                     event.consume();
             }
@@ -80,35 +81,36 @@ public class InicioController implements Initializable {
    
      private EventHandler<DragEvent> dragOver = new EventHandler<DragEvent>() {
             public void handle(DragEvent event) {
-                TreeView<String> tree = (TreeView) event.getSource();
+                /*TreeView<String> tree = (TreeView) event.getSource();
                  if (event.getDragboard().hasString()) {
                         String valueToMove = event.getDragboard().getString();
                         if (valueToMove.equals(tree.getSelectionModel().getSelectedItem().toString())) {
                             // We accept the transfer!!!!!
                             event.acceptTransferModes(TransferMode.MOVE);
                         }
-                    }
+                    }*/
+                 event.acceptTransferModes(TransferMode.MOVE);
                     event.consume();
             }
         };
      private EventHandler<DragEvent> dragDropped = new EventHandler<DragEvent>() {
             public void handle(DragEvent event) {
-                
-                TreeView<String> tree = (TreeView) event.getGestureTarget();
+                   
+                    TreeView<String> treeDestino = (TreeView) event.getGestureTarget();
 
                    String valueToMove = event.getDragboard().getString();
-                    TreeItem<String> itemToMove = search(pedidosPend.getRoot(), valueToMove);
+                    TreeItem<String> itemToMove = search(treeOrigen.getRoot(), valueToMove);
                     // Remove from former parent.
-                    itemToMove.getParent().getChildren().remove(itemToMove);
+                    treeOrigen.getRoot().getChildren().remove(itemToMove);
                     // Add to new parent.
-                    pedidosCar.getRoot().getChildren().add(itemToMove);
-                    pedidosCar.getRoot().setExpanded(true);
+                    treeDestino.getRoot().getChildren().add(itemToMove);
+                    treeDestino.getRoot().setExpanded(true);
                     event.consume();
             }
         };
      private TreeItem<String> search(final TreeItem<String> currentNode, final String valueToSearch) {
             TreeItem<String> result = null;
-            if (currentNode.getValue().toString().equals(valueToSearch) ){
+            if (currentNode.toString().equals(valueToSearch) ){
                 result = currentNode;
             } else if (!currentNode.isLeaf()) {
                 for (TreeItem<String> child : currentNode.getChildren()) {

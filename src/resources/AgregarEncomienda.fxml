@@ -33,7 +33,7 @@
                   </BorderPane>
                   <BorderPane prefHeight="0.0" prefWidth="416.0">
                      <center>
-                        <TextField fx:id="descField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                        <TextField fx:id="descField" maxWidth="350.0" onAction="#handlerEnterTextField" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>
@@ -53,7 +53,7 @@
                   </BorderPane>
                   <BorderPane prefHeight="69.0" prefWidth="416.0">
                      <center>
-                        <TextField fx:id="pesoField" maxWidth="350.0" onAction="#actualizarPresupuesto" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                        <TextField fx:id="pesoField" maxWidth="350.0" onAction="#handlerEnterTextField" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>
@@ -73,7 +73,7 @@
                   </BorderPane>
                   <BorderPane prefHeight="39.0" prefWidth="416.0">
                      <center>
-                        <TextField fx:id="volumenField" maxWidth="350.0" onAction="#actualizarPresupuesto" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                        <TextField fx:id="volumenField" maxWidth="350.0" onAction="#handlerEnterTextField" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>
@@ -93,7 +93,7 @@
                   </BorderPane>
                   <BorderPane prefHeight="100.0" prefWidth="416.0">
                      <center>
-                        <TextField fx:id="prioridadField" maxWidth="350.0" onAction="#actualizarPresupuesto" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                        <TextField fx:id="prioridadField" maxWidth="350.0" onAction="#handlerEnterTextField" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>
@@ -127,7 +127,7 @@
                   </BorderPane>
                   <BorderPane prefHeight="100.0" prefWidth="416.0">
                      <center>
-                        <TextField fx:id="calleField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                        <TextField fx:id="calleField" maxWidth="350.0" onAction="#handlerEnterTextField" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>
@@ -141,7 +141,7 @@
                   </BorderPane>
                   <BorderPane prefHeight="100.0" prefWidth="416.0">
                      <center>
-                        <TextField fx:id="numeroField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                        <TextField fx:id="numeroField" maxWidth="350.0" onAction="#handlerEnterTextField" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>
@@ -155,7 +155,7 @@
                   </BorderPane>
                   <BorderPane prefHeight="100.0" prefWidth="416.0">
                      <center>
-                        <TextField fx:id="comunaField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                        <TextField fx:id="comunaField" maxWidth="350.0" onAction="#handlerEnterTextField" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>
@@ -169,7 +169,7 @@
                   </BorderPane>
                   <BorderPane prefHeight="100.0" prefWidth="416.0">
                      <center>
-                        <TextField fx:id="ciudadField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                        <TextField fx:id="ciudadField" maxWidth="350.0" onAction="#handlerEnterTextField" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>

@@ -7,6 +7,8 @@ package controllers;
 
 import chilexplox.Encomienda;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -39,18 +41,20 @@ public class AgregarEncomiendaController extends VBox {
         limpiarAlertas();
         boolean error = false;
         try{ getPeso();} 
-        catch(Exception e){ 
-            textoAlertaPeso.setText("Peso invalido"); error = true;
-        }
+        catch(Exception e){ aPeso(); error = true; }
         try{ getVolumen();}
-        catch(Exception e){ textoAlertaVolumen.setText("Volumen invalido"); error = true;}
+        catch(Exception e){  aVol(); error = true;}
         try{ getPrioridad();}
-        catch(Exception e){ textoAlertaPrioridad.setText("Prioridad invalida"); error = true;}
+        catch(Exception e){ aPri(); error = true;}
         if(!error) {
             handlerEncomienda.handle(new ActionEvent(this,null));
             limpiar();
         }
     }
+    
+    private void aPeso(){ textoAlertaPeso.setText("Peso invalido"); }
+    private void aVol(){ textoAlertaVolumen.setText("Volumen invalido"); }
+    private void aPri(){ textoAlertaPrioridad.setText("Prioridad invalida");}
     
     private void limpiar(){
        descField.setText("");
@@ -99,6 +103,7 @@ public class AgregarEncomiendaController extends VBox {
          
     }
      
+    List<TextField> fields;
 
     public AgregarEncomiendaController(){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/AgregarEncomienda.fxml"));
@@ -110,15 +115,31 @@ public class AgregarEncomiendaController extends VBox {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+         
+        TextField[] f = {descField,pesoField,volumenField,prioridadField,calleField,numeroField,comunaField,ciudadField};
+        fields = Arrays.asList(f);
     }   
     
-    public void actualizarPresupuesto(ActionEvent e){
+    
+    public void actualizarPresupuesto(){
         
         try{ 
             int p = Encomienda.calcularPresupuesto(getPeso(), getVolumen(), getPrioridad());
             textPresupuesto.setText(Integer.toString(p));
         }
         catch(Exception ex){ }
+    }
+    
+    
+    
+    
+    public void handlerEnterTextField(ActionEvent e){
+        actualizarPresupuesto();
+          
+        TextField fieldActual = (TextField) e.getSource();
+        int index = fields.indexOf(fieldActual) + 1;
+        if(index < fields.size()) fields.get(index).requestFocus();
+        else crearEncomienda.requestFocus();
     }
     
 }

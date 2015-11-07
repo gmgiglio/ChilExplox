@@ -91,7 +91,7 @@ public class Main extends Application {
 
     @Override
     public void stop(){
-       enviarReportePrueba();
+       cerrarSesion();
        Empresa.serializar("data/empresa.ser");
     }
     
@@ -140,6 +140,7 @@ public class Main extends Application {
     
     public static void cerrarSesion(){
         escenarioPrincipal.setScene(escenaElegirUsuario);
+        usuarioActual.getSucursalActual().setPedidoAbierto(null);
         usuarioActual = null;
     }
     

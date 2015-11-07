@@ -238,15 +238,16 @@ public class InicioController implements Initializable {
             botonAgregarEncomienda.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                     
-                       try{        
-                            agregarEncomiendaCon = new AgregarEncomiendaController();
-                            agregarEncomiendaCon.setHandlerEncomienda((Event e2) -> {
-                                agregarEncomienda(new Encomienda(agregarEncomiendaCon.getPeso(),agregarEncomiendaCon.getVolumen(),
-                                agregarEncomiendaCon.getPrioridad(),agregarEncomiendaCon.getDirDestino(),agregarEncomiendaCon.getDescr()));
-                            });
-                            agregarPane.getChildren().setAll(agregarEncomiendaCon);
-                            split.setDividerPositions(0.4684014869888476);
-                       
+                       try{       
+                            if(Main.getUsuarioActual().getSucursalActual().getPedidoAbierto() != null){
+                                agregarEncomiendaCon = new AgregarEncomiendaController();
+                                agregarEncomiendaCon.setHandlerEncomienda((Event e2) -> {
+                                    agregarEncomienda(new Encomienda(agregarEncomiendaCon.getPeso(),agregarEncomiendaCon.getVolumen(),
+                                    agregarEncomiendaCon.getPrioridad(),agregarEncomiendaCon.getDirDestino(),agregarEncomiendaCon.getDescr()));
+                                });
+                                agregarPane.getChildren().setAll(agregarEncomiendaCon);
+                                split.setDividerPositions(0.4684014869888476);
+                            }
                        }
                        catch (Exception exc)
                       {

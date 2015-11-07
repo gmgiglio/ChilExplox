@@ -72,7 +72,6 @@ public class InicioController implements Initializable {
                 
                  treeOrigen = (TreeView) event.getSource();
                  if(treeOrigen.getSelectionModel().getSelectedItem().getParent().equals(treeOrigen.getRoot())){
-                //TreeView<String> tree = (TreeView) event.getSource();
                 Dragboard dragBoard = treeOrigen.startDragAndDrop(TransferMode.MOVE);
                 Image img = new Image(Main.class.getResourceAsStream("/resources/images/pedidoIcon.png"));
                         dragBoard.setDragView(img);
@@ -87,14 +86,6 @@ public class InicioController implements Initializable {
    
      private EventHandler<DragEvent> dragOver = new EventHandler<DragEvent>() {
             public void handle(DragEvent event) {
-                /*TreeView<String> tree = (TreeView) event.getSource();
-                 if (event.getDragboard().hasString()) {
-                        String valueToMove = event.getDragboard().getString();
-                        if (valueToMove.equals(tree.getSelectionModel().getSelectedItem().toString())) {
-                            // We accept the transfer!!!!!
-                            event.acceptTransferModes(TransferMode.MOVE);
-                        }
-                    }*/
                 if(treeOrigen.getSelectionModel().getSelectedItem().getParent().equals(treeOrigen.getRoot()))
                 {
                  event.acceptTransferModes(TransferMode.MOVE);
@@ -139,7 +130,7 @@ public class InicioController implements Initializable {
    
         LinkedList<Sucursal> sucursales = Empresa.getSucursales();
         
-        ////////////////////////Inicializar Menú\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+////////////////////////////////////////////Inicializar Menú\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
        
         Menu menuUsuario = new Menu(Main.getUsuarioActual().getNombreUsuario());
         MenuItem itemCerrarSesion = new MenuItem("Cerrar sesión");
@@ -150,7 +141,6 @@ public class InicioController implements Initializable {
         Main.getUsuarioActual().setSucursalActual(Empresa.getSucursales().get(0));
         ItemSucursalMenu i = new ItemSucursalMenu(Main.getUsuarioActual().getSucursalActual());
         menuSucursal = new Menu(Main.getUsuarioActual().getSucursalActual().getNombre());
-        //Main.getUsuarioActual().getSucursalActual().revisarTiempoPedidos();
         
         //agregar sucursales al menu de sucursales
         LinkedList<Sucursal> sucEnLista = new LinkedList(sucursales);
@@ -158,7 +148,7 @@ public class InicioController implements Initializable {
         for(Sucursal s : sucEnLista){
                 ItemSucursalMenu item = new ItemSucursalMenu(s);
                 menuSucursal.getItems().add(item); 
-                item.setOnAction(eventoSucusal);  
+                item.setOnAction(eventoSucursal);  
                 
         }
         menuBar.getMenus().addAll(menuUsuario,menuSucursal);
@@ -168,7 +158,7 @@ public class InicioController implements Initializable {
         split.setDividerPositions(1);
 
         
-        ///////////////////////////////Atender\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\      
+///////////////////////////////////////////////////ATENDER\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\     
          
         
         botonCancelar.setOnAction(new EventHandler<ActionEvent>() {
@@ -292,7 +282,7 @@ public class InicioController implements Initializable {
            
            
         
-         //Tabs
+//////////////////////////////////////////////TABS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         for(int j=0;j<tabs.getTabs().size();j++)
         {
         tabs.getTabs().get(j).setOnSelectionChanged(new EventHandler<Event>() {
@@ -308,14 +298,11 @@ public class InicioController implements Initializable {
                             case "Administrar":
                                 actualizarPestanaAdm();
                                 
-                                
-                                
-                                camionesDisponibles.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                camionesDisp.setOnMouseClicked(new EventHandler<MouseEvent>() {
                                     @Override
                                     public void handle(MouseEvent event) {
                                         Camion camionSelec = null;
-                                        String patenteCamionSelec = (String)camionesDisponibles.getSelectionModel().getSelectedItem();
-                                        ObservableList idsPedCamion = FXCollections.observableArrayList();
+                                        String patenteCamionSelec = (String)camionesDisp.getSelectionModel().getSelectedItem().getValue();
                                         Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
                                         
                                         for(Camion c : sucActual.getCamionesDisp()){
@@ -323,20 +310,9 @@ public class InicioController implements Initializable {
                                         }
                                         
                                         if(camionSelec.getPedidos() != null){
-                                        pedidosCar = new TreeView<>(listarPedidos(camionSelec.getPedidos()));
+                                            pedidosCar = new TreeView<>(listarPedidos(camionSelec.getPedidos()));
                                             amononarTreeView(anchorPedCar, pedidosCar);
-//                                        pedidosCar.setShowRoot(false);
-//                                        pedidosCar.setOnDragDetected(dragDetected);
-//                                        pedidosCar.setOnDragOver(dragOver);
-//                                        pedidosCar.setOnDragDropped(dragDropped);
-//                                        anchorPedCar.getChildren().add(pedidosCar);
-//                                        pedidosCar.setPrefWidth(anchorPedCar.getPrefWidth());
                                         }
-                                        
-//                                        for(Pedido p : camionSelec.getPedidos()){
-//                                            idsPedCamion.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
-//                                        }
-//                                        pedidosCargados.setItems(idsPedCamion);
                                         patenteCamAct.setText(camionSelec.getPatente());
                                         capacidadCamAct.setText(Integer.toString(camionSelec.getCapacidad()));
                                         espDispCamAct.setText(Integer.toString(camionSelec.getEspDisp()));
@@ -345,39 +321,28 @@ public class InicioController implements Initializable {
                                     }
                                 });
                                 
-                                camionesPorDescargar.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                camionesDesc.setOnMouseClicked(new EventHandler<MouseEvent>() {
                                     @Override
                                     public void handle(MouseEvent event) {
                                         Camion camionSelec = null;
-                                        String patenteCamionSelec = (String)camionesPorDescargar.getSelectionModel().getSelectedItem();
-                                        ObservableList idsPedCamion = FXCollections.observableArrayList();
+                                        String patenteCamionSelec = (String)camionesDesc.getSelectionModel().getSelectedItem().getValue();
                                         Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
+                                        
                                         for(Camion c : sucActual.getCamionesPend()){
                                             if(c.getPatente()==patenteCamionSelec) camionSelec = c;
                                         }
-                                        for(Pedido p : camionSelec.getPedidos()){
-                                            idsPedCamion.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
+                                        
+                                        if(camionSelec.getPedidos() != null){
+                                            pedidosCar = new TreeView<>(listarPedidos(camionSelec.getPedidos()));
+                                            amononarTreeView(anchorPedCar, pedidosCar);
                                         }
-                                        pedidosCargados.setItems(idsPedCamion);
-                                        
-                                        TreeView<String> pedCar = new TreeView<>(listarPedidos(camionSelec.getPedidos()));
-                                        amononarTreeView(anchorPedCar, pedCar);
-//                                        pedCar.setShowRoot(false);
-//                                        pedCar.setOnDragDetected(dragDetected);
-//                                        pedCar.setOnDragOver(dragOver);
-//                                        pedCar.setOnDragDropped(dragDropped);
-//                                        anchorPedCar.getChildren().add(pedCar);
-//                                        pedCar.setPrefWidth(anchorPedCar.getPrefWidth());
-                                        
                                         patenteCamAct.setText(camionSelec.getPatente());
                                         capacidadCamAct.setText(Integer.toString(camionSelec.getCapacidad()));
                                         espDispCamAct.setText(Integer.toString(camionSelec.getEspDisp()));
-                                        estadoCamAct.setText("POR DESCARGAR");
+                                        estadoCamAct.setText("DISPONIBLE");
                                         
                                     }
                                 });
-                                
-                                
                             break;
                                 
                             case "Mensajes":
@@ -392,30 +357,10 @@ public class InicioController implements Initializable {
            
            
            
-        ///////////////////////////ADMINISTRAR\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-        // set up Dnd in both directions
-        
-        //Fuente: https://bugs.openjdk.java.net/browse/JDK-8094227
+///////////////////////////////////////////////////ADMINISTRAR\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         
         
-        
-
-//        pedidosPendientes.setOnDragDetected(dragDetected);
-//        pedidosPendientes.setOnDragOver(dragOver);
-//        pedidosPendientes.setOnDragDropped(dragDropped);
-//        pedidosPendientes.setOnDragDone(dragDone);
-//
-//        pedidosCargados.setOnDragDetected(dragDetected);
-//        pedidosCargados.setOnDragOver(dragOver);
-//        pedidosCargados.setOnDragDropped(dragDropped);
-//        pedidosCargados.setOnDragDone(dragDone);
-        
-        
-
-        
-   
-        
-        /////////////////////////////Mensajes\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+/////////////////////////////////////////////////////MENSAJES\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         
         botonNuevoMensaje.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -450,14 +395,14 @@ public class InicioController implements Initializable {
         
     }
     
-    private EventHandler eventoSucusal = new EventHandler() {
+    private EventHandler eventoSucursal = new EventHandler() {
 
         public void handle(Event e) {
             ItemSucursalMenu item1 = (ItemSucursalMenu)e.getSource();
             Sucursal suc = item1.getSucursal();
             menuSucursal.setText(suc.getNombre());
             ItemSucursalMenu item2 = new ItemSucursalMenu(Main.getUsuarioActual().getSucursalActual());
-            item2.setOnAction(eventoSucusal);
+            item2.setOnAction(eventoSucursal);
             Main.getUsuarioActual().setSucursalActual(suc);
             menuSucursal.getItems().remove(item1);
             menuSucursal.getItems().add(item2);
@@ -481,34 +426,33 @@ public class InicioController implements Initializable {
 
      public void actualizarPestanaAdm(){
         Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
-        //ObservableList idsPedPend = FXCollections.observableArrayList();
         ObservableList patentesCamDisp = FXCollections.observableArrayList();
         ObservableList patentesCamADesc = FXCollections.observableArrayList();
         
-        TreeView<String> pedidosPend = new TreeView<>(listarPedidos(sucActual.getPedidosPend()));
+        pedidosPend = new TreeView<>(listarPedidos(sucActual.getPedidosPend()));
         amononarTreeView(anchorPedPend, pedidosPend);
         
-        TreeView<String> camionesDisp = new TreeView<>(listarCamiones(sucActual.getCamionesDisp()));
+        camionesDisp = new TreeView<>(listarCamiones(sucActual.getCamionesDisp()));
         amononarTreeView(anchorCamDisp, camionesDisp);
         
-        TreeView<String> camionesDesc = new TreeView<>(listarCamiones(sucActual.getCamionesPend()));
-         amononarTreeView(anchorCamDesc, camionesDesc);
+        camionesDesc = new TreeView<>(listarCamiones(sucActual.getCamionesPend()));
+        amononarTreeView(anchorCamDesc, camionesDesc);
          
-         for(Camion c : sucActual.getCamionesDisp()){
-             patentesCamDisp.add(c.getPatente());
-         }
-         camionesDisponibles.setItems(patentesCamDisp);
-         
-         for(Camion c : sucActual.getCamionesPend()){
-             patentesCamADesc.add(c.getPatente());
-         }
-         camionesPorDescargar.setItems(patentesCamADesc);
+        for(Camion c : sucActual.getCamionesDisp()){
+            patentesCamDisp.add(c.getPatente());
+        }
+        camionesDisponibles.setItems(patentesCamDisp);
+        
+        for(Camion c : sucActual.getCamionesPend()){
+            patentesCamADesc.add(c.getPatente());
+        }
+        camionesPorDescargar.setItems(patentesCamADesc);
      }
      
      public TreeItem<String> listarCamiones(LinkedList<Camion> camiones){
          TreeItem<String> dummyRoot = new TreeItem<>("root");
          for(Camion c : camiones){
-             TreeItem<String> camionView = new TreeItem<>("Camión de Patente " + c.getPatente());
+             TreeItem<String> camionView = new TreeItem<>(c.getPatente());
              camionView.getChildren().add(new TreeItem("Capacidad total: " + c.getCapacidad() + " cm^3"));
              camionView.getChildren().add(new TreeItem("Espacio Disponible: " + c.getEspDisp() + "cm^3"));
              dummyRoot.getChildren().add(camionView);
@@ -522,7 +466,6 @@ public class InicioController implements Initializable {
          TreeItem<String> encomiendas = new TreeItem<>("Encomiendas");
          
          for(Pedido p : pedidos){
-             //idsPedPend.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
              TreeItem<String> child = new TreeItem<>("Pedido #" + Integer.toString(p.getIdPedido()));
              child.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/pedidoIconView.png"))));
 

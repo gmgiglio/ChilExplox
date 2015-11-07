@@ -312,6 +312,10 @@ public class InicioController implements Initializable {
                                         if(camionSelec.getPedidos() != null){
                                             pedidosCar = new TreeView<>(listarPedidos(camionSelec.getPedidos()));
                                             amononarTreeView(anchorPedCar, pedidosCar);
+                                            pedidosCar.setOnDragDetected(dragDetected);
+                                            pedidosCar.setOnDragOver(dragOver);
+                                            pedidosCar.setOnDragDropped(dragDropped);
+                                            
                                         }
                                         patenteCamAct.setText(camionSelec.getPatente());
                                         capacidadCamAct.setText(Integer.toString(camionSelec.getCapacidad()));
@@ -335,6 +339,10 @@ public class InicioController implements Initializable {
                                         if(camionSelec.getPedidos() != null){
                                             pedidosCar = new TreeView<>(listarPedidos(camionSelec.getPedidos()));
                                             amononarTreeView(anchorPedCar, pedidosCar);
+                                            pedidosCar.setOnDragDetected(dragDetected);
+                                            pedidosCar.setOnDragOver(dragOver);
+                                            pedidosCar.setOnDragDropped(dragDropped);
+                                            
                                         }
                                         patenteCamAct.setText(camionSelec.getPatente());
                                         capacidadCamAct.setText(Integer.toString(camionSelec.getCapacidad()));
@@ -431,6 +439,9 @@ public class InicioController implements Initializable {
         
         pedidosPend = new TreeView<>(listarPedidos(sucActual.getPedidosPend()));
         amononarTreeView(anchorPedPend, pedidosPend);
+        pedidosPend.setOnDragDetected(dragDetected);
+        pedidosPend.setOnDragOver(dragOver);
+        pedidosPend.setOnDragDropped(dragDropped);
         
         camionesDisp = new TreeView<>(listarCamiones(sucActual.getCamionesDisp()));
         amononarTreeView(anchorCamDisp, camionesDisp);
@@ -492,9 +503,6 @@ public class InicioController implements Initializable {
 
      public void amononarTreeView (AnchorPane ap, TreeView<String> tv){
         tv.setShowRoot(false);
-        tv.setOnDragDetected(dragDetected);
-        tv.setOnDragOver(dragOver);
-        tv.setOnDragDropped(dragDropped);
         ap.getChildren().add(tv);
         tv.setPrefWidth(ap.getPrefWidth());
      }

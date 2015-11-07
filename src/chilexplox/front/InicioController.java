@@ -526,7 +526,6 @@ public class InicioController implements Initializable {
              //idsPedPend.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
              TreeItem<String> child = new TreeItem<>("Pedido #" + Integer.toString(p.getIdPedido()));
              child.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/pedidoIconView.png"))));
-
              child.getChildren().add(new TreeItem<>("Prioridad: " + p.getPrioridad()));
              child.getChildren().add(new TreeItem<>("Costo de Envío: $" + p.getCostoEnvio()));
              child.getChildren().add(new TreeItem<>("Sucursal de Destino: " + p.getSucDestino().getNombre()));

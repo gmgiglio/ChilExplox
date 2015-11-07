@@ -66,6 +66,8 @@ public class InicioController implements Initializable {
            camionesDesc = new TreeView<String>(), treeDestino=new TreeView<String>();
 
     private TreeItem aMover;
+    
+    private Camion camionActual;
   
     private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
@@ -302,25 +304,23 @@ public class InicioController implements Initializable {
                                 camionesDisp.setOnMouseClicked(new EventHandler<MouseEvent>() {
                                     @Override
                                     public void handle(MouseEvent event) {
-                                        Camion camionSelec = null;
-                                        String patenteCamionSelec = (String)camionesDisp.getSelectionModel().getSelectedItem().getValue();
+                                        camionActual = null;
+                                        String patenteCamionActual = (String)camionesDisp.getSelectionModel().getSelectedItem().getValue();
                                         Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
                                         
                                         for(Camion c : sucActual.getCamionesDisp()){
-                                            if(c.getPatente()==patenteCamionSelec) camionSelec = c;
+                                            if(c.getPatente()==patenteCamionActual) camionActual = c;
                                         }
                                         
-                                        if(camionSelec.getPedidos() != null){
-                                            pedidosCar = new TreeView<>(listarPedidos(camionSelec.getPedidos()));
-                                            amononarTreeView(anchorPedCar, pedidosCar);
-                                            pedidosCar.setOnDragDetected(dragDetected);
-                                            pedidosCar.setOnDragOver(dragOver);
-                                            pedidosCar.setOnDragDropped(dragDropped);
+                                        pedidosCar = new TreeView<>(listarPedidos(camionActual.getPedidos()));
+                                        amononarTreeView(anchorPedCar, pedidosCar);
+                                        pedidosCar.setOnDragDetected(dragDetected);
+                                        pedidosCar.setOnDragOver(dragOver);
+                                        pedidosCar.setOnDragDropped(dragDropped);
                                             
-                                        }
-                                        patenteCamAct.setText(camionSelec.getPatente());
-                                        capacidadCamAct.setText(Integer.toString(camionSelec.getCapacidad()));
-                                        espDispCamAct.setText(Integer.toString(camionSelec.getEspDisp()));
+                                        patenteCamAct.setText(camionActual.getPatente());
+                                        capacidadCamAct.setText(Integer.toString(camionActual.getCapacidad()));
+                                        espDispCamAct.setText(Integer.toString(camionActual.getEspDisp()));
                                         estadoCamAct.setText("DISPONIBLE");
                                         
                                     }
@@ -415,7 +415,7 @@ public class InicioController implements Initializable {
             Main.getUsuarioActual().setSucursalActual(suc);
             menuSucursal.getItems().remove(item1);
             menuSucursal.getItems().add(item2);
-            //actualizarPestanaAdm();
+            actualizarPestanaAdm();
         }
      };
     
@@ -434,6 +434,16 @@ public class InicioController implements Initializable {
 
 
      public void actualizarPestanaAdm(){
+         
+        camionActual = null;
+        patenteCamAct.setText("");
+        capacidadCamAct.setText("");
+        espDispCamAct.setText("");
+        estadoCamAct.setText("");
+        pedidosCar = new TreeView<>(new TreeItem<>("empty"));
+        pedidosCar.setShowRoot(false);
+        anchorPedCar.getChildren().add(pedidosCar);
+         
         Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
         ObservableList patentesCamDisp = FXCollections.observableArrayList();
         ObservableList patentesCamADesc = FXCollections.observableArrayList();

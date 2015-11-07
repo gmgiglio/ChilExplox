@@ -227,9 +227,9 @@ public class Empresa implements java.io.Serializable {
         return null;
     }
     
-    public static Cliente getCliente(String nombre){
+    public static Cliente getCliente(String nombre, String telefono){
         for(int i = 0; i <  getInstance().clientes.size(); i++){
-            if( getInstance().clientes.get(i).getNombre().equals(nombre)){
+            if( getInstance().clientes.get(i).getNombre().replace(" ", "").equals(nombre.replace(" ",""))&&getInstance().clientes.get(i).getTelefono().replace(" ","").equals(telefono.replace(" ", ""))){
                 return  getInstance().clientes.get(i);
             }
         }

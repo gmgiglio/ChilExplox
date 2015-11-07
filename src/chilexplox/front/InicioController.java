@@ -37,7 +37,7 @@ public class InicioController implements Initializable {
      @FXML
     private MenuBar menuBar;
        @FXML
-    private Button agregarCliente,botonAgregarEncomienda,crearPedido,cerrarPedido,modificar,botonNuevoMensaje,
+    private Button agregarCliente,botonAgregarEncomienda,crearPedido,botonCancelar,cerrarPedido,modificar,botonNuevoMensaje,
                botonBuzonEntrada,botonMensajesEnviados;
        @FXML
     private TabPane tabs;
@@ -314,7 +314,20 @@ public class InicioController implements Initializable {
         ///////////////////////////////Atender\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\      
          
         
-        
+        botonCancelar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                       try{
+                                limpiarAtender();
+
+                          
+                       }
+                       catch (Exception exc)
+                      {
+                               }
+                     
+                
+                }
+            });
         
         agregarCliente.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -402,6 +415,8 @@ public class InicioController implements Initializable {
                 
                 }
             });
+           
+           
         
          //Tabs
         for(int j=0;j<tabs.getTabs().size();j++)
@@ -653,6 +668,9 @@ public class InicioController implements Initializable {
          sucursalText.setText("");
          comboBoxEncomiendas.getItems().clear();
          comboBoxEncomiendas.setPromptText("");
+         comboBoxClientes.getItems().clear();
+         cargarNombresClientes();
+
          Text presupuesto = (Text) scene.lookup("#presupuesto");
          presupuesto.setText("0");
          split.setDividerPositions(1);

@@ -62,8 +62,17 @@ public class AgregarClienteController extends VBox {
           textoAlertaTelefono.setText("Este campo es requerido"); 
             error = true;
         } 
+        if(!(Empresa.getCliente(nombreField.getText()+" "+apellidosField.getText(), telefonoField.getText())==null)){
+            textoAlertaTelefono.setText("Ya existe el cliente"); 
+            error = true;
+         }
+                
+        if(telefonoField.getText().equals("")){
+          textoAlertaTelefono.setText("Este campo es requerido"); 
+            error = true;
+        } 
         else{
-        try{ Integer.parseInt(telefonoField.getText());}
+        try{ Integer.parseInt(telefonoField.getText().replace(" ", ""));}
         catch(Exception e){ textoAlertaTelefono.setText("Teléfono inválido"); error = true;}
         }
         if(!error) handlerEncomienda.handle(new ActionEvent(this,null));

@@ -86,8 +86,17 @@ public class Sucursal implements java.io.Serializable{
     }
     
     
-    public void cargarPedido(){
-        this.pedidosPend.remove(0);
+    public void cargarPedido(Pedido p){
+        pedidosPend.remove(p);
+    }
+    
+    public void cargarPedido(int id){
+        for(Pedido p : pedidosPend){
+            if(p.getIdPedido() == id ){
+                p.setEstado(Estado.En_transito);
+                pedidosPend.remove(p);
+            }
+        }
     }
 
     /**
@@ -221,14 +230,5 @@ public class Sucursal implements java.io.Serializable{
             }
         }
         return null;
-    }
-    
-    public void cargarPedido(int id){
-        for(Pedido p : pedidosPend){
-            if(p.getIdPedido() == id ){
-                p.setEstado(Estado.En_transito);
-                pedidosPend.remove(p);
-            }
-        }
     }
 }

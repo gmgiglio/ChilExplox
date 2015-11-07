@@ -14,8 +14,6 @@ import java.util.LinkedList;
 public class Camion implements java.io.Serializable {
     
     private String patente;
-    
-    
     //Espacio disponible para cargar pedidos [m^3]
     private int espacioDisp;
     private LinkedList<Pedido> pedidosCargados = new LinkedList<>();
@@ -40,8 +38,9 @@ public class Camion implements java.io.Serializable {
     }
     
     public void cargarPedido(Pedido p){
-        this.pedidosCargados.add(p);
-        this.espacioDisp -= p.getVol();
+        p.setEstado(Estado.En_transito);
+        pedidosCargados.add(p);
+        espacioDisp -= p.getVol();
     }
     
     public void cargarPedidos(LinkedList<Pedido> pedidos){

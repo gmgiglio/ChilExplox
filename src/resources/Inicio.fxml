@@ -237,20 +237,12 @@
                                  <children>
                                     <TitledPane animated="false" collapsible="false" maxHeight="260.0" prefHeight="460.0" prefWidth="360.0" text="Camiones Disponibles">
                                       <content>
-                                        <AnchorPane fx:id="anchorCamDisp" minHeight="0.0" minWidth="0.0" prefHeight="920.0" prefWidth="360.0">
-                                             <children>
-                                                <ListView fx:id="camionesDisponibles" maxHeight="250.0" prefHeight="250.0" prefWidth="360.0" />
-                                             </children>
-                                          </AnchorPane>
+                                        <AnchorPane fx:id="anchorCamDisp" minHeight="0.0" minWidth="0.0" prefHeight="920.0" prefWidth="360.0" />
                                       </content>
                                     </TitledPane>
                                     <TitledPane animated="false" collapsible="false" prefHeight="460.0" prefWidth="360.0" text="Camiones por Descargar">
                                       <content>
-                                        <AnchorPane fx:id="anchorCamDesc" minHeight="0.0" minWidth="0.0" prefHeight="460.0" prefWidth="360.0">
-                                             <children>
-                                                <ListView fx:id="camionesPorDescargar" prefHeight="256.0" prefWidth="360.0" />
-                                             </children>
-                                          </AnchorPane>
+                                        <AnchorPane fx:id="anchorCamDesc" minHeight="0.0" minWidth="0.0" prefHeight="460.0" prefWidth="360.0" />
                                       </content>
                                     </TitledPane>
                                  </children>

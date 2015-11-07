@@ -49,8 +49,9 @@ public class Usuario implements java.io.Serializable {
         return sucursalActual.cerrarPedido();
     }
     
-    public void cargarPed(Camion c){
-        
+    public void cargarPed(Camion c, Pedido p){
+        sucursalActual.cargarPedido(p);
+        c.cargarPedido(p);
     }
     
     

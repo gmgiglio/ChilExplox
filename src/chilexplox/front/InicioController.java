@@ -36,8 +36,13 @@ public class InicioController implements Initializable {
      */
         @FXML
     private MenuBar menuBar;
+<<<<<<< HEAD
         @FXML
     private Button agregarCliente,botonAgregarEncomienda,crearPedido,cerrarPedido,modificar,botonNuevoMensaje,
+=======
+       @FXML
+    private Button agregarCliente,botonAgregarEncomienda,crearPedido,botonCancelar,cerrarPedido,modificar,botonNuevoMensaje,
+>>>>>>> origin/master
                botonBuzonEntrada,botonMensajesEnviados;
         @FXML
     private TabPane tabs;
@@ -61,6 +66,7 @@ public class InicioController implements Initializable {
 
     private AgregarClienteController agregarClienteCon;
 
+<<<<<<< HEAD
     private TreeView<String> treeOrigen = new TreeView<String>(), pedidosPend = new TreeView<String>(),
         pedidosCar = new TreeView<String>(), camionesDisp = new TreeView<String>(),
         camionesDesc = new TreeView<String>(), treeDestino = new TreeView<String>();
@@ -68,6 +74,18 @@ public class InicioController implements Initializable {
     private TreeItem aMover;
     private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
         public void handle(MouseEvent event) {
+=======
+        
+      
+   private TreeView<String> treeOrigen = new TreeView<String>(), pedidosPend = new TreeView<String>(),
+           pedidosCar = new TreeView<String>(), camionesDisp = new TreeView<String>(),
+           camionesDesc = new TreeView<String>(), treeDestino=new TreeView<String>();
+
+   private TreeItem aMover;
+  
+   private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+>>>>>>> origin/master
                 
                  treeOrigen = (TreeView) event.getSource();
                  if(treeOrigen.getSelectionModel().getSelectedItem().getParent().equals(treeOrigen.getRoot())){
@@ -132,7 +150,11 @@ public class InicioController implements Initializable {
             }
             return result;
         }
+<<<<<<< HEAD
      
+=======
+
+>>>>>>> origin/master
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
@@ -171,7 +193,20 @@ public class InicioController implements Initializable {
         ///////////////////////////////Atender\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\      
          
         
-        
+        botonCancelar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                       try{
+                                limpiarAtender();
+
+                          
+                       }
+                       catch (Exception exc)
+                      {
+                               }
+                     
+                
+                }
+            });
         
         agregarCliente.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -205,6 +240,23 @@ public class InicioController implements Initializable {
 
                        agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarPedido.fxml")));
                        split.setDividerPositions(0.4684014869888476);
+                       
+                       }
+                       catch (Exception exc)
+                      {
+                               }
+                     
+                
+                }
+            });
+            modificar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                    
+                       try{        
+
+                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarPedido.fxml")));
+                       split.setDividerPositions(0.4684014869888476);
+                       modificar.setVisible(false);
                        
                        }
                        catch (Exception exc)
@@ -259,6 +311,8 @@ public class InicioController implements Initializable {
                 
                 }
             });
+           
+           
         
          //Tabs
         for(int j=0;j<tabs.getTabs().size();j++)
@@ -459,8 +513,20 @@ public class InicioController implements Initializable {
         TreeView<String> camionesDisp = new TreeView<>(listarCamiones(sucActual.getCamionesDisp()));
         amononarTreeView(anchorCamDisp, camionesDisp);
         
+<<<<<<< HEAD
         TreeView<String> camionesDesc = new TreeView<>(listarCamiones(sucActual.getCamionesPend()));
          amononarTreeView(anchorCamDesc, camionesDesc);
+=======
+//        pedidosPend.setShowRoot(false);
+//        pedidosPend.setOnDragDetected(dragDetected);
+//        pedidosPend.setOnDragOver(dragOver);
+//        pedidosPend.setOnDragDropped(dragDropped);
+//        anchorPedPend.getChildren().add(pedidosPend);
+//        pedidosPend.setPrefWidth(anchorPedPend.getPrefWidth());
+         
+        
+        //pedidosPendientes.setItems(idsPedPend);
+>>>>>>> origin/master
          
          for(Camion c : sucActual.getCamionesDisp()){
              patentesCamDisp.add(c.getPatente());
@@ -534,6 +600,9 @@ public class InicioController implements Initializable {
          sucursalText.setText("");
          comboBoxEncomiendas.getItems().clear();
          comboBoxEncomiendas.setPromptText("");
+         comboBoxClientes.getItems().clear();
+         cargarNombresClientes();
+
          Text presupuesto = (Text) scene.lookup("#presupuesto");
          presupuesto.setText("0");
          split.setDividerPositions(1);

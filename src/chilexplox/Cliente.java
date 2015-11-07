@@ -27,6 +27,13 @@ public class Cliente implements java.io.Serializable {
     public String getNombre() {
         return nombre;
     }
+
+    /**
+     * @return the telefono
+     */
+    public String getTelefono() {
+        return telefono;
+    }
     
     
 }

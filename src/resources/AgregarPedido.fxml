@@ -39,6 +39,12 @@
                   </BorderPane>
                </children>
             </HBox>
+            <HBox prefHeight="19.0" prefWidth="567.0">
+               <children>
+                  <Pane prefHeight="38.0" prefWidth="122.0" />
+                  <Text fx:id="textoAlertaSucursal" fill="#e70707" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="324.0" />
+               </children>
+            </HBox>
             <HBox maxHeight="50.0" prefHeight="43.0">
                <children>
                   <BorderPane prefHeight="100.0" prefWidth="150.0" />

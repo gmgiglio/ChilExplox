@@ -35,28 +35,37 @@ public class AgregarPedidoController implements Initializable {
      
       @FXML
     private ComboBox comboBoxSucursales;
+       @FXML
+    private Text textoAlertaSucursal;
     
     private Text sucursalText;
     private Button crearP;
     private Text idPedido;
     private SplitPane splitPane;
+    private Button mod;
+    
 //    
     @FXML
     private void handlePedido(ActionEvent event) {
-
             Scene scene = crearPedido.getScene();
             
             sucursalText = (Text)scene.lookup("#stext");
             crearP = (Button)scene.lookup("#crearP");
             idPedido= (Text)scene.lookup("#idPedido");
             splitPane = (SplitPane)scene.lookup("#splitPane");
-                    
+            mod =(Button)scene.lookup("#modificar");
+            if(!(comboBoxSucursales.getSelectionModel().getSelectedItem()==null)){
+          
             Sucursal s = Empresa.getSucursal((String)(comboBoxSucursales.getSelectionModel().getSelectedItem()));
             Pedido p = Main.getUsuarioActual().crearPedido(s);
             sucursalText.setText((String)(comboBoxSucursales.getSelectionModel().getSelectedItem())) ;
             idPedido.setText(""+p.getIdPedido());
             crearP.setVisible(false);
             splitPane.setDividerPositions(1);
+            mod.setVisible(true);
+            } else {
+                textoAlertaSucursal.setText("Por favor seleccione una sucursal");
+            }
 
     }
     

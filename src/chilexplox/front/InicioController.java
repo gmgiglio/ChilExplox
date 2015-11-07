@@ -505,6 +505,7 @@ public class InicioController implements Initializable {
         tv.setShowRoot(false);
         ap.getChildren().add(tv);
         tv.setPrefWidth(ap.getPrefWidth());
+        tv.setPrefHeight(ap.getPrefHeight());
      }
      
      public void limpiarAtender(){

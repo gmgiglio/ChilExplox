@@ -36,14 +36,9 @@ public class InicioController implements Initializable {
      */
         @FXML
     private MenuBar menuBar;
-<<<<<<< HEAD
-        @FXML
-    private Button agregarCliente,botonAgregarEncomienda,crearPedido,cerrarPedido,modificar,botonNuevoMensaje,
-=======
        @FXML
-    private Button agregarCliente,botonAgregarEncomienda,crearPedido,botonCancelar,cerrarPedido,modificar,botonNuevoMensaje,
->>>>>>> origin/master
-               botonBuzonEntrada,botonMensajesEnviados;
+    private Button agregarCliente,botonAgregarEncomienda,crearPedido,botonCancelar,cerrarPedido,modificar,
+               botonNuevoMensaje, botonBuzonEntrada,botonMensajesEnviados;
         @FXML
     private TabPane tabs;
         @FXML
@@ -66,26 +61,14 @@ public class InicioController implements Initializable {
 
     private AgregarClienteController agregarClienteCon;
 
-<<<<<<< HEAD
     private TreeView<String> treeOrigen = new TreeView<String>(), pedidosPend = new TreeView<String>(),
-        pedidosCar = new TreeView<String>(), camionesDisp = new TreeView<String>(),
-        camionesDesc = new TreeView<String>(), treeDestino = new TreeView<String>();
-
-    private TreeItem aMover;
-    private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
-        public void handle(MouseEvent event) {
-=======
-        
-      
-   private TreeView<String> treeOrigen = new TreeView<String>(), pedidosPend = new TreeView<String>(),
            pedidosCar = new TreeView<String>(), camionesDisp = new TreeView<String>(),
            camionesDesc = new TreeView<String>(), treeDestino=new TreeView<String>();
 
-   private TreeItem aMover;
+    private TreeItem aMover;
   
-   private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
+    private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
->>>>>>> origin/master
                 
                  treeOrigen = (TreeView) event.getSource();
                  if(treeOrigen.getSelectionModel().getSelectedItem().getParent().equals(treeOrigen.getRoot())){
@@ -150,11 +133,6 @@ public class InicioController implements Initializable {
             }
             return result;
         }
-<<<<<<< HEAD
-     
-=======
-
->>>>>>> origin/master
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
@@ -513,20 +491,8 @@ public class InicioController implements Initializable {
         TreeView<String> camionesDisp = new TreeView<>(listarCamiones(sucActual.getCamionesDisp()));
         amononarTreeView(anchorCamDisp, camionesDisp);
         
-<<<<<<< HEAD
         TreeView<String> camionesDesc = new TreeView<>(listarCamiones(sucActual.getCamionesPend()));
          amononarTreeView(anchorCamDesc, camionesDesc);
-=======
-//        pedidosPend.setShowRoot(false);
-//        pedidosPend.setOnDragDetected(dragDetected);
-//        pedidosPend.setOnDragOver(dragOver);
-//        pedidosPend.setOnDragDropped(dragDropped);
-//        anchorPedPend.getChildren().add(pedidosPend);
-//        pedidosPend.setPrefWidth(anchorPedPend.getPrefWidth());
-         
-        
-        //pedidosPendientes.setItems(idsPedPend);
->>>>>>> origin/master
          
          for(Camion c : sucActual.getCamionesDisp()){
              patentesCamDisp.add(c.getPatente());

@@ -453,6 +453,7 @@ public class InicioController implements Initializable {
          TreeItem<String> dummyRoot = new TreeItem<>("root");
          for(Camion c : camiones){
              TreeItem<String> camionView = new TreeItem<>(c.getPatente());
+             camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckIcon.png"))));
              camionView.getChildren().add(new TreeItem("Capacidad total: " + c.getCapacidad() + " cm^3"));
              camionView.getChildren().add(new TreeItem("Espacio Disponible: " + c.getEspDisp() + "cm^3"));
              dummyRoot.getChildren().add(camionView);
@@ -468,7 +469,6 @@ public class InicioController implements Initializable {
          for(Pedido p : pedidos){
              TreeItem<String> child = new TreeItem<>("Pedido #" + Integer.toString(p.getIdPedido()));
              child.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/pedidoIconView.png"))));
-
              child.getChildren().add(new TreeItem<>("Prioridad: " + p.getPrioridad()));
              child.getChildren().add(new TreeItem<>("Costo de Envío: $" + p.getCostoEnvio()));
              child.getChildren().add(new TreeItem<>("Sucursal de Destino: " + p.getSucDestino().getNombre()));

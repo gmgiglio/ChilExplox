@@ -509,6 +509,7 @@ public class InicioController implements Initializable {
          TreeItem<String> dummyRoot = new TreeItem<>("root");
          for(Camion c : camiones){
              TreeItem<String> camionView = new TreeItem<>("Camión de Patente " + c.getPatente());
+             camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckIcon.png"))));
              camionView.getChildren().add(new TreeItem("Capacidad total: " + c.getCapacidad() + " cm^3"));
              camionView.getChildren().add(new TreeItem("Espacio Disponible: " + c.getEspDisp() + "cm^3"));
              dummyRoot.getChildren().add(camionView);

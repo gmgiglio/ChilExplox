@@ -40,7 +40,7 @@ public class NuevoMensajeController implements Initializable {
        String mensaje = cajaMensaje.getText();
        Sucursal destino = Empresa.getSucursal(cajaDestinatario.getText());
        try{
-           Main.getUsuarioActual().enviarMensaje(titulo, mensaje, destino);
+           Main.getUsuarioActual().enviarMens(titulo, mensaje, destino);
            cajaTitulo.setText("");
            cajaMensaje.setText("");
            cajaDestinatario.setText("");

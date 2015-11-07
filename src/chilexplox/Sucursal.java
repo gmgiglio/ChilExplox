@@ -86,7 +86,7 @@ public class Sucursal implements java.io.Serializable{
     }
     
     
-    public void despacharPedido(){
+    public void cargarPedido(){
         this.pedidosPend.remove(0);
     }
 
@@ -176,7 +176,7 @@ public class Sucursal implements java.io.Serializable{
                     if(handlerPedidoAtrasado != null) handlerPedidoAtrasado.handle(new ActionEvent(p,null));
                     else{
                         String texto = "Se notifica que se ha detectado un atrazo en pedido id: " + p.getIdPedido() + " de alta prioridad. ";
-                        autoRobot.enviarMensaje("Notificación pedido atrasado",texto, this);
+                        autoRobot.enviarMens("Notificación pedido atrasado",texto, this);
                     }
                 }
             }

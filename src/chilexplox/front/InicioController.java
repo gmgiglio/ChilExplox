@@ -140,13 +140,13 @@ public class InicioController implements Initializable {
             Main.cerrarSesion();
         });
         menuUsuario.getItems().add(itemCerrarSesion);
-        Main.getUsuarioActual().setSucursalActual(Empresa.getSucursales().get(0));
-        ItemSucursalMenu i = new ItemSucursalMenu(Main.getUsuarioActual().getSucursalActual());
-        menuSucursal = new Menu(Main.getUsuarioActual().getSucursalActual().getNombre());
+        Main.getUsuarioActual().setSucActual(Empresa.getSucursales().get(0));
+        ItemSucursalMenu i = new ItemSucursalMenu(Main.getUsuarioActual().getSucActual());
+        menuSucursal = new Menu(Main.getUsuarioActual().getSucActual().getNombre());
         
         //agregar sucursales al menu de sucursales
         LinkedList<Sucursal> sucEnLista = new LinkedList(sucursales);
-        sucEnLista.remove(Main.getUsuarioActual().getSucursalActual());
+        sucEnLista.remove(Main.getUsuarioActual().getSucActual());
         for(Sucursal s : sucEnLista){
                 ItemSucursalMenu item = new ItemSucursalMenu(s);
                 menuSucursal.getItems().add(item); 
@@ -241,7 +241,7 @@ public class InicioController implements Initializable {
             @Override public void handle(ActionEvent e) {
                     
                        try{       
-                            if(Main.getUsuarioActual().getSucursalActual().getPedidoAbierto() != null){
+                            if(Main.getUsuarioActual().getSucActual().getPedidoAbierto() != null){
                                 agregarEncomiendaCon = new AgregarEncomiendaController();
                                 agregarEncomiendaCon.setHandlerEncomienda((Event e2) -> {
                                     agregarEncomienda(new Encomienda(agregarEncomiendaCon.getPeso(),agregarEncomiendaCon.getVolumen(),
@@ -269,7 +269,7 @@ public class InicioController implements Initializable {
                             if(nombreCliente != null){
                                 Scene scene = split.getScene();
                                 Text idPedido = (Text)scene.lookup("#idPedido");
-                                Main.getUsuarioActual().getSucursalActual().getPedidoAbierto().setCliente(nombreCliente);
+                                Main.getUsuarioActual().getSucActual().getPedidoAbierto().setCliente(nombreCliente);
                                 Main.getUsuarioActual().cerrarPed();
                                 limpiarAtender();
                            }
@@ -306,7 +306,7 @@ public class InicioController implements Initializable {
                                     public void handle(MouseEvent event) {
                                         camionActual = null;
                                         String patenteCamionActual = (String)camionesDisp.getSelectionModel().getSelectedItem().getValue();
-                                        Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
+                                        Sucursal sucActual = Main.getUsuarioActual().getSucActual();
                                         
                                         for(Camion c : sucActual.getCamionesDisp()){
                                             if(c.getPatente()==patenteCamionActual) camionActual = c;
@@ -331,7 +331,7 @@ public class InicioController implements Initializable {
                                     public void handle(MouseEvent event) {
                                         Camion camionSelec = null;
                                         String patenteCamionSelec = (String)camionesDesc.getSelectionModel().getSelectedItem().getValue();
-                                        Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
+                                        Sucursal sucActual = Main.getUsuarioActual().getSucActual();
                                         
                                         for(Camion c : sucActual.getCamionesPend()){
                                             if(c.getPatente()==patenteCamionSelec) camionSelec = c;
@@ -410,9 +410,9 @@ public class InicioController implements Initializable {
             ItemSucursalMenu item1 = (ItemSucursalMenu)e.getSource();
             Sucursal suc = item1.getSucursal();
             menuSucursal.setText(suc.getNombre());
-            ItemSucursalMenu item2 = new ItemSucursalMenu(Main.getUsuarioActual().getSucursalActual());
+            ItemSucursalMenu item2 = new ItemSucursalMenu(Main.getUsuarioActual().getSucActual());
             item2.setOnAction(eventoSucursal);
-            Main.getUsuarioActual().setSucursalActual(suc);
+            Main.getUsuarioActual().setSucActual(suc);
             menuSucursal.getItems().remove(item1);
             menuSucursal.getItems().add(item2);
             actualizarPestanaAdm();
@@ -444,7 +444,7 @@ public class InicioController implements Initializable {
         pedidosCar.setShowRoot(false);
         anchorPedCar.getChildren().add(pedidosCar);
          
-        Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
+        Sucursal sucActual = Main.getUsuarioActual().getSucActual();
         ObservableList patentesCamDisp = FXCollections.observableArrayList();
         ObservableList patentesCamADesc = FXCollections.observableArrayList();
         
@@ -538,17 +538,17 @@ public class InicioController implements Initializable {
      }
      
      private void agregarEncomienda(Encomienda encomienda){
-         Main.getUsuarioActual().getSucursalActual().getPedidoAbierto().agregarEnc(encomienda);
+         Main.getUsuarioActual().getSucActual().getPedidoAbierto().agregarEnc(encomienda);
          CajaEncomienda c = new CajaEncomienda(encomienda);
          c.setHandlerEliminar((Event e) -> {
              CajaEncomienda caja = (CajaEncomienda) e.getSource();
              Encomienda enc = caja.getEncomienda();
-             Main.getUsuarioActual().getSucursalActual().getPedidoAbierto().eliminarEncomienda(enc);
+             Main.getUsuarioActual().getSucActual().getPedidoAbierto().eliminarEncomienda(enc);
              comboBoxEncomiendas.getItems().remove(caja);
          });
          comboBoxEncomiendas.getItems().add(c);
          comboBoxEncomiendas.setPromptText(encomienda.getDescripcion());
-         presupuesto.setText(""+Main.getUsuarioActual().getSucursalActual().getPedidoAbierto().getCostoEnvio());
+         presupuesto.setText(""+Main.getUsuarioActual().getSucActual().getPedidoAbierto().getCostoEnvio());
      }
             
      private class ItemSucursalMenu extends MenuItem{

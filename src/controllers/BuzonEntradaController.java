@@ -33,7 +33,7 @@ public class BuzonEntradaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        List<Mensaje> mensajes = Main.getUsuarioActual().getSucursalActual().getMensajesEnBuzon();
+        List<Mensaje> mensajes = Main.getUsuarioActual().getSucActual().getMensajesEnBuzon();
         Usuario u = Main.getUsuarioActual();
         for(Mensaje m : mensajes){
             CajaMensajeResivido cajaM = new CajaMensajeResivido(m);

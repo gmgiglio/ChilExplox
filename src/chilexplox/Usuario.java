@@ -27,12 +27,12 @@ public class Usuario implements java.io.Serializable {
         sucursalActual = null;
     }
     
-    public Pedido crearPedido(Sucursal sucDestino, Cliente cliente){
+    public Pedido crearPed(Sucursal sucDestino, Cliente cliente){
         sucursalActual.setPedidoAbierto(new Pedido(sucursalActual, sucDestino, cliente));
         return sucursalActual.getPedidoAbierto();
     }
     
-    public Pedido crearPedido(Sucursal sucDestino){
+    public Pedido crearPed(Sucursal sucDestino){
         sucursalActual.setPedidoAbierto(new Pedido(sucursalActual, sucDestino, null));
         return sucursalActual.getPedidoAbierto();
     }
@@ -49,14 +49,18 @@ public class Usuario implements java.io.Serializable {
         return sucursalActual.cerrarPedido();
     }
     
+    public void cargarPed(Camion c){
+        
+    }
+    
     
     //Envia el pedido de mayor urgencia en el primer camion disponible en la sucursal.
     //Si existen pedidos pendientes que se dirigen a la misma sucursal y caben en el camion, estos tambien
     //son despachados.
     
     //true si se logro enviar pedido (siempre que el pedido estubiera abierto y el hay camiones disponibles)
-    public boolean enviarPedido(Pedido p){
-        Camion c = getSucursalActual().getCamionesDisp().get(0);
+    public boolean enviarPed(Pedido p){
+        Camion c = getSucActual().getCamionesDisp().get(0);
         if(!p.getAbierto() && !sucursalActual.getCamionesDisp().isEmpty()){
             c.cargarPedido(p);
             return true;
@@ -66,16 +70,16 @@ public class Usuario implements java.io.Serializable {
         }
     }
     
-    public void enviarPedidoMayorPrioridad(){
-        if(getSucursalActual().getPedidosPend() != null){
-            Camion camionACargar = getSucursalActual().getCamionesDisp().get(0);
-            Pedido primerPed = getSucursalActual().getPedidosPend().get(0);
+    public void enviarPedMayorPrioridad(){
+        if(getSucActual().getPedidosPend() != null){
+            Camion camionACargar = getSucActual().getCamionesDisp().get(0);
+            Pedido primerPed = getSucActual().getPedidosPend().get(0);
             Sucursal sucDestino = primerPed.getSucDestino();
-            for(Pedido p : getSucursalActual().getPedidosPend()){
+            for(Pedido p : getSucActual().getPedidosPend()){
                 if(camionACargar.getPedidos() == null){
                     p.setEstado(Estado.En_transito);
                     camionACargar.cargarPedido(p);
-                    getSucursalActual().getPedidosPend().remove(p);
+                    getSucActual().getPedidosPend().remove(p);
                     sucDestino = p.getSucDestino();
                 }
             else{
@@ -83,7 +87,7 @@ public class Usuario implements java.io.Serializable {
                         && p.getVol() <= camionACargar.getEspDisp()){
                     p.setEstado(Estado.En_transito);
                     camionACargar.cargarPedido(p);
-                        getSucursalActual().getPedidosPend().remove(p);
+                        getSucActual().getPedidosPend().remove(p);
                 }
             }
         }
@@ -94,41 +98,41 @@ public class Usuario implements java.io.Serializable {
         }
     }
     
-    public void recibirPedido(){
-        if(getSucursalActual().getCamionesPend() != null){
+    public void recibirPed(){
+        if(getSucActual().getCamionesPend() != null){
             //Pedidos dentro del camion a descargar
-            LinkedList<Pedido> pedidosADesc = getSucursalActual().getCamionesPend().get(0).getPedidos();
+            LinkedList<Pedido> pedidosADesc = getSucActual().getCamionesPend().get(0).getPedidos();
             Sucursal sucOrigen = pedidosADesc.get(0).getSucOrigen();
             for(Pedido p : pedidosADesc){
-                getSucursalActual().bajarPedido(p);
+                getSucActual().bajarPedido(p);
             }
-            Camion camionDescargado = getSucursalActual().getCamionesPend().get(0);
-            getSucursalActual().despacharCamion();
+            Camion camionDescargado = getSucActual().getCamionesPend().get(0);
+            getSucActual().despacharCamion();
             sucOrigen.recibirCamionDescargado(camionDescargado);
             
         }
     }
     
-    public void confirmarPedido(int idPedido, boolean correcto){
-        LinkedList<Pedido> pedidosEnDest = getSucursalActual().getPedidosEnDest();
+    public void confirmarPed(int idPedido, boolean correcto){
+        LinkedList<Pedido> pedidosEnDest = getSucActual().getPedidosEnDest();
         for(Pedido p : pedidosEnDest){
             if(idPedido == p.getIdPedido()){
                 if(correcto){
-                    getSucursalActual().pedidoEntregado(p);
+                    getSucActual().pedidoEntregado(p);
                 }
                 else{
-                    getSucursalActual().pedidoEquivocado(p);
+                    getSucActual().pedidoEquivocado(p);
                 }
             }
         }
     }
     
-    public void enviarMensaje(String titulo, String texto, Sucursal sucursal){
+    public void enviarMens(String titulo, String texto, Sucursal sucursal){
         Mensaje mensaje = new Mensaje(titulo, texto, this);
         registroMensajesEnviados.add(mensaje.enviar(sucursal));
     }
     
-    public LinkedList<RegistroMensaje> getRegistroMensajesEnviados(){
+    public LinkedList<RegistroMensaje> getRegistroMensEnviados(){
         return new LinkedList(registroMensajesEnviados);
     }
 
@@ -142,14 +146,14 @@ public class Usuario implements java.io.Serializable {
     /**
      * @param sucursalActual the sucursalActual to set
      */
-    public void setSucursalActual(Sucursal sucursalActual) {
+    public void setSucActual(Sucursal sucursalActual) {
         this.sucursalActual = sucursalActual;
     }
 
     /**
      * @return the sucursalActual
      */
-    public Sucursal getSucursalActual() {
+    public Sucursal getSucActual() {
         return sucursalActual;
     }
     

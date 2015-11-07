@@ -87,14 +87,16 @@
                                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sucursal de destino:" wrappingWidth="124.34986877441406" BorderPane.alignment="CENTER" />
                                                    </right>
                                                 </BorderPane>
-                                                <BorderPane prefHeight="94.0" prefWidth="302.0">
+                                                <BorderPane prefHeight="91.0" prefWidth="186.0">
                                                    <center>
                                                       <ComboBox fx:id="comboBoxSucursales" prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
                                                       <Text id="stext" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="153.0" BorderPane.alignment="CENTER" />
                                                    </center>
-                                                   <right>
-                                                      <Button fx:id="modificar" mnemonicParsing="false" prefHeight="26.0" prefWidth="132.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Modificar" visible="false" BorderPane.alignment="CENTER" />
-                                                   </right>
+                                                </BorderPane>
+                                                <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                                   <center>
+                                                      <Button id="modificar" fx:id="modificar" mnemonicParsing="false" prefHeight="39.0" prefWidth="126.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Modificar" visible="false" BorderPane.alignment="CENTER" />
+                                                   </center>
                                                 </BorderPane>
                                              </children>
                                           </HBox>

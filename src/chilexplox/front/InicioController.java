@@ -230,6 +230,23 @@ public class InicioController implements Initializable {
                 
                 }
             });
+            modificar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                    
+                       try{        
+
+                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarPedido.fxml")));
+                       split.setDividerPositions(0.4684014869888476);
+                       modificar.setVisible(false);
+                       
+                       }
+                       catch (Exception exc)
+                      {
+                               }
+                     
+                
+                }
+            });
            
             botonAgregarEncomienda.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {

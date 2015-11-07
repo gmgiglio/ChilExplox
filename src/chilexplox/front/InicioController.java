@@ -52,28 +52,21 @@ public class InicioController implements Initializable {
        @FXML
     private Text patenteCamAct, capacidadCamAct, espDispCamAct, estadoCamAct,advertencia,presupuesto;
        @FXML
-    private TreeView<String> treeEjemplo;
-      
+    private AnchorPane anchorPedPend, anchorPedCar;
     
     private Menu menuSucursal;
     private AgregarEncomiendaController agregarEncomiendaCon;
 
     private AgregarClienteController agregarClienteCon;
 
-        @FXML
-    private AnchorPane anchorPedPend, anchorPedCar;
+        
       
-<<<<<<< HEAD
-   private TreeView<String> pedidosPend = new TreeView<String>(),treeOrigen = new TreeView<String>(),pedidosCar = new TreeView<String>();
-=======
    private TreeView<String> treeOrigen = new TreeView<String>(), pedidosPend = new TreeView<String>(),
-           pedidosCar = new TreeView<String>();
->>>>>>> origin/master
+           pedidosCar = new TreeView<String>(), camionesDisp = new TreeView<String>(),
+           camionesDesc = new TreeView<String>();
+
    private TreeItem aMover;
    
-<<<<<<< HEAD
-   
-=======
    private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                  treeOrigen = (TreeView) event.getSource();
@@ -130,142 +123,7 @@ public class InicioController implements Initializable {
             }
             return result;
         }
-      
-/*
->>>>>>> origin/master
-   private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
-        public void handle(MouseEvent event) {
-            //ListView<String> list = (ListView) event.getSource();
-            TreeView<String> tree = (TreeView) event.getSource();
-            tree = treeOrigen;
-            //Dragboard db = list.startDragAndDrop(TransferMode.MOVE);
-            Dragboard db = tree.startDragAndDrop(TransferMode.MOVE);
-            ClipboardContent content = new ClipboardContent();
-            //content.putString(list.getSelectionModel().getSelectedItem());
-            content.putString(tree.getSelectionModel().getSelectedItem().getValue());
-            aMover = tree.getSelectionModel().getSelectedItem();
-            db.setContent(content);
-
-            event.consume();
-        }
-    };
-    private EventHandler<DragEvent> dragOver = new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
-                if (event.getGestureSource() != event.getTarget() && event.getDragboard().hasString()) {
-                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-                }
-
-                event.consume();
-            }
-        };
-    private EventHandler<DragEvent> dragDropped = new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
-                //ListView<String> list = (ListView) event.getGestureTarget();
-                TreeView<String> tree = (TreeView) event.getGestureTarget();
-
-                Dragboard db = event.getDragboard();
-                boolean success = false;
-                if (db.hasString()) {
-                    //list.getItems().add(db.getString());
-                    tree.getRoot().getChildren().add(aMover);
-//                    for(TreeItem ti : treeOrigen.getRoot().getChildren()){
-//                        if(ti.toString() == aMover.toString()){
-//                            tree.getRoot().getChildren().add(ti);
-//                        }
-//                    }
-                    success = true;
-                }
-
-                event.setDropCompleted(success);
-                event.consume();
-            }
-        };
-    private EventHandler<DragEvent> dragDone = new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
-                if (event.getTransferMode() == TransferMode.MOVE) {
-                    //ListView<String> list = (ListView) event.getGestureSource();
-                    TreeView<String> tree = (TreeView) event.getGestureSource();
-                    //list.getItems().remove(event.getDragboard().getString());
-                    tree.getRoot().getChildren().remove(aMover);
-                    String idString =(String)aMover.getValue();
-                    int id = Integer.parseInt(idString.substring(8));
-                    Main.getUsuarioActual().getSucursalActual().cargarPedido(id);
-                    Sucursal origen = Main.getUsuarioActual().getSucursalActual();
-                    Sucursal destino = Empresa.getSucursal(aMover.getChildren().get(2).toString().substring(8));
-                    Cliente cliente = Empresa.getCliente(aMover.getChildren().get(3).toString().substring(9));
-                    Pedido p = new Pedido(origen, destino, cliente);
-                    Main.getUsuarioActual().getSucursalActual().getCamion(patenteCamAct.getText()).cargarPedido(p);
-                }
-                event.consume();
-            }
-        };
-   
-/*
-    private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
-        public void handle(MouseEvent event) {
-            //ListView<String> list = (ListView) event.getSource();
-            TreeView<String> tree = (TreeView) event.getSource();
-            //Dragboard db = list.startDragAndDrop(TransferMode.MOVE);
-            Dragboard db = tree.startDragAndDrop(TransferMode.MOVE);
-            ClipboardContent content = new ClipboardContent();
-            //content.putString(list.getSelectionModel().getSelectedItem());
-            content.putString(tree.getSelectionModel().getSelectedItem().getValue());
-            aMover = tree.getSelectionModel().getSelectedItem();
-            db.setContent(content);
-
-            event.consume();
-        }
-    };
-    private EventHandler<DragEvent> dragOver = new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
-                if (event.getGestureSource() != event.getTarget() && event.getDragboard().hasString()) {
-                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-                }
-
-                event.consume();
-            }
-        };
-    private EventHandler<DragEvent> dragDropped = new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
-                //ListView<String> list = (ListView) event.getGestureTarget();
-                TreeView<String> tree = (TreeView) event.getGestureTarget();
-
-                Dragboard db = event.getDragboard();
-                boolean success = false;
-                if (db.hasString()) {
-                    //list.getItems().add(db.getString());
-                    tree.getRoot().getChildren().add(aMover);
-                    success = true;
-                }
-
-                event.setDropCompleted(success);
-                event.consume();
-            }
-        };
-    private EventHandler<DragEvent> dragDone = new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
-                if (event.getTransferMode() == TransferMode.MOVE) {
-                    //ListView<String> list = (ListView) event.getGestureSource();
-                    TreeView<String> tree = (TreeView) event.getGestureSource();
-                    //list.getItems().remove(event.getDragboard().getString());
-                    tree.getRoot().getChildren().remove(aMover);
-                    String idString =(String)aMover.getValue();
-                    int id = Integer.parseInt(idString.substring(8));
-                    Main.getUsuarioActual().getSucursalActual().cargarPedido(id);
-                    Sucursal origen = Main.getUsuarioActual().getSucursalActual();
-                    Sucursal destino = Empresa.getSucursal(aMover.getChildren().get(2).toString().substring(8));
-                    Cliente cliente = Empresa.getCliente(aMover.getChildren().get(3).toString().substring(9));
-                    Pedido p = new Pedido(origen, destino, cliente);
-                    Main.getUsuarioActual().getSucursalActual().getCamion(patenteCamAct.getText()).cargarPedido(p);
-                }
-                event.consume();
-            }
-        };
-   */
-<<<<<<< HEAD
-=======
-   
->>>>>>> origin/master
+     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
@@ -424,9 +282,15 @@ public class InicioController implements Initializable {
                                         }
                                         
                                         if(camionSelec.getPedidos() != null){
-                                        pedidosCar = listarPedidos(camionSelec.getPedidos());
-                                        anchorPedCar.getChildren().add(pedidosCar);
-                                        pedidosCar.setPrefWidth(anchorPedCar.getPrefWidth());}
+                                        pedidosCar = new TreeView<>(listarPedidos(camionSelec.getPedidos()));
+                                            amononarTreeView(anchorPedCar, pedidosCar);
+//                                        pedidosCar.setShowRoot(false);
+//                                        pedidosCar.setOnDragDetected(dragDetected);
+//                                        pedidosCar.setOnDragOver(dragOver);
+//                                        pedidosCar.setOnDragDropped(dragDropped);
+//                                        anchorPedCar.getChildren().add(pedidosCar);
+//                                        pedidosCar.setPrefWidth(anchorPedCar.getPrefWidth());
+                                        }
                                         
 //                                        for(Pedido p : camionSelec.getPedidos()){
 //                                            idsPedCamion.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
@@ -455,9 +319,14 @@ public class InicioController implements Initializable {
                                         }
                                         pedidosCargados.setItems(idsPedCamion);
                                         
-                                        TreeView<String> pedCar = listarPedidos(camionSelec.getPedidos());
-                                        anchorPedCar.getChildren().add(pedCar);
-                                        pedCar.setPrefWidth(anchorPedCar.getPrefWidth());
+                                        TreeView<String> pedCar = new TreeView<>(listarPedidos(camionSelec.getPedidos()));
+                                        amononarTreeView(anchorPedCar, pedCar);
+//                                        pedCar.setShowRoot(false);
+//                                        pedCar.setOnDragDetected(dragDetected);
+//                                        pedCar.setOnDragOver(dragOver);
+//                                        pedCar.setOnDragDropped(dragDropped);
+//                                        anchorPedCar.getChildren().add(pedCar);
+//                                        pedCar.setPrefWidth(anchorPedCar.getPrefWidth());
                                         
                                         patenteCamAct.setText(camionSelec.getPatente());
                                         capacidadCamAct.setText(Integer.toString(camionSelec.getCapacidad()));
@@ -570,15 +439,21 @@ public class InicioController implements Initializable {
 
 
      public void actualizarPestanaAdm(){
-         Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
-         //ObservableList idsPedPend = FXCollections.observableArrayList();
-         ObservableList patentesCamDisp = FXCollections.observableArrayList();
-         ObservableList patentesCamADesc = FXCollections.observableArrayList();
-         
-         pedidosPend = listarPedidos(sucActual.getPedidosPend());
-         
-         anchorPedPend.getChildren().add(pedidosPend);
-         pedidosPend.setPrefWidth(anchorPedPend.getPrefWidth());
+        Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
+        //ObservableList idsPedPend = FXCollections.observableArrayList();
+        ObservableList patentesCamDisp = FXCollections.observableArrayList();
+        ObservableList patentesCamADesc = FXCollections.observableArrayList();
+        
+        TreeView<String> pedidosPend = new TreeView<>(listarPedidos(sucActual.getPedidosPend()));
+        amononarTreeView(anchorPedPend, pedidosPend);
+        
+        
+//        pedidosPend.setShowRoot(false);
+//        pedidosPend.setOnDragDetected(dragDetected);
+//        pedidosPend.setOnDragOver(dragOver);
+//        pedidosPend.setOnDragDropped(dragDropped);
+//        anchorPedPend.getChildren().add(pedidosPend);
+//        pedidosPend.setPrefWidth(anchorPedPend.getPrefWidth());
          
         
         //pedidosPendientes.setItems(idsPedPend);
@@ -594,7 +469,19 @@ public class InicioController implements Initializable {
          camionesPorDescargar.setItems(patentesCamADesc);
      }
      
-     public TreeView<String> listarPedidos(LinkedList<Pedido> pedidos){
+     public TreeItem<String> listarCamiones(LinkedList<Camion> camiones){
+         TreeItem<String> dummyRoot = new TreeItem<>("root");
+         TreeItem<String> pedidos = new TreeItem<>("Pedidos Cargados");
+         for(Camion c : camiones){
+             TreeItem<String> camionView = new TreeItem<>("Camión de Patente " + c.getPatente());
+             camionView.getChildren().add(new TreeItem("Capacidad total: " + c.getCapacidad() + " cm^3"));
+             camionView.getChildren().add(new TreeItem("Espacio Disponible: " + c.getEspDisp() + "cm^3"));
+         }
+         
+         return dummyRoot;
+     }
+     
+     public TreeItem<String> listarPedidos(LinkedList<Pedido> pedidos){
          TreeItem<String> dummyRoot = new TreeItem<>("root");
          TreeItem<String> encomiendas = new TreeItem<>("Encomiendas");
          
@@ -620,18 +507,21 @@ public class InicioController implements Initializable {
              dummyRoot.getChildren().add(child);
          }
          
-         TreeView<String> pedidosTree = new TreeView<>(dummyRoot);
-         
-        pedidosTree.setShowRoot(false);
         
-        pedidosTree.setOnDragDetected(dragDetected);
-        pedidosTree.setOnDragOver(dragOver);
-        pedidosTree.setOnDragDropped(dragDropped);
         //pedidosTree.setOnDragDone(dragDone);
         
-         return pedidosTree;
+         return dummyRoot;
      }
 
+     public void amononarTreeView (AnchorPane ap, TreeView<String> tv){
+        tv.setShowRoot(false);
+        tv.setOnDragDetected(dragDetected);
+        tv.setOnDragOver(dragOver);
+        tv.setOnDragDropped(dragDropped);
+        ap.getChildren().add(tv);
+        tv.setPrefWidth(ap.getPrefWidth());
+     }
+     
      public void limpiarAtender(){
          crearPedido.setVisible(true);
          Scene scene = crearPedido.getScene();

@@ -18,6 +18,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
@@ -64,7 +66,7 @@ public class InicioController implements Initializable {
     private AnchorPane anchorPedPend, anchorPedCar;
       
 
-   private TreeView<String> pedidosPend = new TreeView<String>(),treeOrigen = new TreeView<String>(),pedidosCar = new TreeView<String>();
+   private TreeView<String> pedidosPend = new TreeView<String>(),treeDestino=new TreeView<String>(),treeOrigen = new TreeView<String>(),pedidosCar = new TreeView<String>();
 
 
    private TreeItem aMover;
@@ -72,11 +74,14 @@ public class InicioController implements Initializable {
 
    private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
+                
                  treeOrigen = (TreeView) event.getSource();
                  if(treeOrigen.getSelectionModel().getSelectedItem().getParent().equals(treeOrigen.getRoot())){
                 //TreeView<String> tree = (TreeView) event.getSource();
-          
                 Dragboard dragBoard = treeOrigen.startDragAndDrop(TransferMode.MOVE);
+                Image img = new Image(Main.class.getResourceAsStream("/resources/images/pedidoIcon.png"));
+                        dragBoard.setDragView(img);
+          
                     ClipboardContent content = new ClipboardContent();
                     content.put(DataFormat.PLAIN_TEXT, treeOrigen.getSelectionModel().getSelectedItem().toString());
                     dragBoard.setContent(content);
@@ -105,7 +110,7 @@ public class InicioController implements Initializable {
      private EventHandler<DragEvent> dragDropped = new EventHandler<DragEvent>() {
             public void handle(DragEvent event) {
                    
-                    TreeView<String> treeDestino = (TreeView) event.getGestureTarget();
+                    treeDestino = (TreeView) event.getGestureTarget();
 
                    String valueToMove = event.getDragboard().getString();
                     TreeItem<String> itemToMove = search(treeOrigen.getRoot(), valueToMove);
@@ -113,7 +118,9 @@ public class InicioController implements Initializable {
                     treeOrigen.getRoot().getChildren().remove(itemToMove);
                     // Add to new parent.
                     treeDestino.getRoot().getChildren().add(itemToMove);
+
                     treeDestino.getRoot().setExpanded(true);
+
                     event.consume();
             }
         };
@@ -131,7 +138,13 @@ public class InicioController implements Initializable {
             }
             return result;
         }
-      
+      /*private EventHandler<DragEvent> dragDone = new EventHandler<DragEvent>() {
+            public void handle(DragEvent event) {
+               treeDestino.getSelectionModel().getSelectedItem().setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/pedidoIconView.png"))));
+                event.consume();
+            }
+        };
+      */
 /*
 >>>>>>> origin/master
    private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
@@ -573,7 +586,6 @@ public class InicioController implements Initializable {
          ObservableList patentesCamADesc = FXCollections.observableArrayList();
          
          pedidosPend = listarPedidos(sucActual.getPedidosPend());
-         
          anchorPedPend.getChildren().add(pedidosPend);
          pedidosPend.setPrefWidth(anchorPedPend.getPrefWidth());
          
@@ -598,6 +610,8 @@ public class InicioController implements Initializable {
          for(Pedido p : pedidos){
              //idsPedPend.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
              TreeItem<String> child = new TreeItem<>("Pedido #" + Integer.toString(p.getIdPedido()));
+             child.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/pedidoIconView.png"))));
+
              child.getChildren().add(new TreeItem<>("Prioridad: " + p.getPrioridad()));
              child.getChildren().add(new TreeItem<>("Costo de Envío: $" + p.getCostoEnvio()));
              child.getChildren().add(new TreeItem<>("Sucursal de Destino: " + p.getSucDestino().getNombre()));
@@ -624,7 +638,7 @@ public class InicioController implements Initializable {
         pedidosTree.setOnDragDetected(dragDetected);
         pedidosTree.setOnDragOver(dragOver);
         pedidosTree.setOnDragDropped(dragDropped);
-        //pedidosTree.setOnDragDone(dragDone);
+       // pedidosTree.setOnDragDone(dragDone);
         
          return pedidosTree;
      }

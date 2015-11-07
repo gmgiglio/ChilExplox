@@ -54,17 +54,23 @@ public class InicioController implements Initializable {
        @FXML
     private Text patenteCamAct, capacidadCamAct, espDispCamAct, estadoCamAct,advertencia,presupuesto;
        @FXML
-    private TreeView<String> treeEjemplo;
-      
+    private AnchorPane anchorPedPend, anchorPedCar;
     
     private Menu menuSucursal;
     private AgregarEncomiendaController agregarEncomiendaCon;
 
     private AgregarClienteController agregarClienteCon;
 
-        @FXML
-    private AnchorPane anchorPedPend, anchorPedCar;
+        
       
+<<<<<<< HEAD
+   private TreeView<String> treeOrigen = new TreeView<String>(), pedidosPend = new TreeView<String>(),
+           pedidosCar = new TreeView<String>(), camionesDisp = new TreeView<String>(),
+           camionesDesc = new TreeView<String>();
+
+   private TreeItem aMover;
+   
+=======
 
    private TreeView<String> pedidosPend = new TreeView<String>(),treeDestino=new TreeView<String>(),treeOrigen = new TreeView<String>(),pedidosCar = new TreeView<String>();
 
@@ -72,6 +78,7 @@ public class InicioController implements Initializable {
    private TreeItem aMover;
    
 
+>>>>>>> origin/master
    private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 
@@ -138,6 +145,9 @@ public class InicioController implements Initializable {
             }
             return result;
         }
+<<<<<<< HEAD
+     
+=======
       /*private EventHandler<DragEvent> dragDone = new EventHandler<DragEvent>() {
             public void handle(DragEvent event) {
                treeDestino.getSelectionModel().getSelectedItem().setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/pedidoIconView.png"))));
@@ -276,6 +286,7 @@ public class InicioController implements Initializable {
             }
         };
    */
+>>>>>>> origin/master
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
@@ -449,9 +460,15 @@ public class InicioController implements Initializable {
                                         }
                                         
                                         if(camionSelec.getPedidos() != null){
-                                        pedidosCar = listarPedidos(camionSelec.getPedidos());
-                                        anchorPedCar.getChildren().add(pedidosCar);
-                                        pedidosCar.setPrefWidth(anchorPedCar.getPrefWidth());}
+                                        pedidosCar = new TreeView<>(listarPedidos(camionSelec.getPedidos()));
+                                            amononarTreeView(anchorPedCar, pedidosCar);
+//                                        pedidosCar.setShowRoot(false);
+//                                        pedidosCar.setOnDragDetected(dragDetected);
+//                                        pedidosCar.setOnDragOver(dragOver);
+//                                        pedidosCar.setOnDragDropped(dragDropped);
+//                                        anchorPedCar.getChildren().add(pedidosCar);
+//                                        pedidosCar.setPrefWidth(anchorPedCar.getPrefWidth());
+                                        }
                                         
 //                                        for(Pedido p : camionSelec.getPedidos()){
 //                                            idsPedCamion.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
@@ -480,9 +497,14 @@ public class InicioController implements Initializable {
                                         }
                                         pedidosCargados.setItems(idsPedCamion);
                                         
-                                        TreeView<String> pedCar = listarPedidos(camionSelec.getPedidos());
-                                        anchorPedCar.getChildren().add(pedCar);
-                                        pedCar.setPrefWidth(anchorPedCar.getPrefWidth());
+                                        TreeView<String> pedCar = new TreeView<>(listarPedidos(camionSelec.getPedidos()));
+                                        amononarTreeView(anchorPedCar, pedCar);
+//                                        pedCar.setShowRoot(false);
+//                                        pedCar.setOnDragDetected(dragDetected);
+//                                        pedCar.setOnDragOver(dragOver);
+//                                        pedCar.setOnDragDropped(dragDropped);
+//                                        anchorPedCar.getChildren().add(pedCar);
+//                                        pedCar.setPrefWidth(anchorPedCar.getPrefWidth());
                                         
                                         patenteCamAct.setText(camionSelec.getPatente());
                                         capacidadCamAct.setText(Integer.toString(camionSelec.getCapacidad()));
@@ -595,6 +617,23 @@ public class InicioController implements Initializable {
 
 
      public void actualizarPestanaAdm(){
+<<<<<<< HEAD
+        Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
+        //ObservableList idsPedPend = FXCollections.observableArrayList();
+        ObservableList patentesCamDisp = FXCollections.observableArrayList();
+        ObservableList patentesCamADesc = FXCollections.observableArrayList();
+        
+        TreeView<String> pedidosPend = new TreeView<>(listarPedidos(sucActual.getPedidosPend()));
+        amononarTreeView(anchorPedPend, pedidosPend);
+        
+        
+//        pedidosPend.setShowRoot(false);
+//        pedidosPend.setOnDragDetected(dragDetected);
+//        pedidosPend.setOnDragOver(dragOver);
+//        pedidosPend.setOnDragDropped(dragDropped);
+//        anchorPedPend.getChildren().add(pedidosPend);
+//        pedidosPend.setPrefWidth(anchorPedPend.getPrefWidth());
+=======
          Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
          //ObservableList idsPedPend = FXCollections.observableArrayList();
          ObservableList patentesCamDisp = FXCollections.observableArrayList();
@@ -603,6 +642,7 @@ public class InicioController implements Initializable {
          pedidosPend = listarPedidos(sucActual.getPedidosPend());
          anchorPedPend.getChildren().add(pedidosPend);
          pedidosPend.setPrefWidth(anchorPedPend.getPrefWidth());
+>>>>>>> origin/master
          
         
         //pedidosPendientes.setItems(idsPedPend);
@@ -618,7 +658,19 @@ public class InicioController implements Initializable {
          camionesPorDescargar.setItems(patentesCamADesc);
      }
      
-     public TreeView<String> listarPedidos(LinkedList<Pedido> pedidos){
+     public TreeItem<String> listarCamiones(LinkedList<Camion> camiones){
+         TreeItem<String> dummyRoot = new TreeItem<>("root");
+         TreeItem<String> pedidos = new TreeItem<>("Pedidos Cargados");
+         for(Camion c : camiones){
+             TreeItem<String> camionView = new TreeItem<>("Camión de Patente " + c.getPatente());
+             camionView.getChildren().add(new TreeItem("Capacidad total: " + c.getCapacidad() + " cm^3"));
+             camionView.getChildren().add(new TreeItem("Espacio Disponible: " + c.getEspDisp() + "cm^3"));
+         }
+         
+         return dummyRoot;
+     }
+     
+     public TreeItem<String> listarPedidos(LinkedList<Pedido> pedidos){
          TreeItem<String> dummyRoot = new TreeItem<>("root");
          TreeItem<String> encomiendas = new TreeItem<>("Encomiendas");
          
@@ -646,18 +698,28 @@ public class InicioController implements Initializable {
              dummyRoot.getChildren().add(child);
          }
          
-         TreeView<String> pedidosTree = new TreeView<>(dummyRoot);
-         
-        pedidosTree.setShowRoot(false);
         
+<<<<<<< HEAD
+        //pedidosTree.setOnDragDone(dragDone);
+=======
         pedidosTree.setOnDragDetected(dragDetected);
         pedidosTree.setOnDragOver(dragOver);
         pedidosTree.setOnDragDropped(dragDropped);
        // pedidosTree.setOnDragDone(dragDone);
+>>>>>>> origin/master
         
-         return pedidosTree;
+         return dummyRoot;
      }
 
+     public void amononarTreeView (AnchorPane ap, TreeView<String> tv){
+        tv.setShowRoot(false);
+        tv.setOnDragDetected(dragDetected);
+        tv.setOnDragOver(dragOver);
+        tv.setOnDragDropped(dragDropped);
+        ap.getChildren().add(tv);
+        tv.setPrefWidth(ap.getPrefWidth());
+     }
+     
      public void limpiarAtender(){
          crearPedido.setVisible(true);
          Scene scene = crearPedido.getScene();

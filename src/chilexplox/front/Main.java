@@ -71,6 +71,7 @@ public class Main extends Application {
         
         Parent root = pantallaElegirUsuario;
         escenaElegirUsuario = new Scene(root,400,269);
+     //   escenaElegirUsuario.getStylesheets().add("/resources/styles/stylesheet.css");
         primaryStage.setTitle("ChilExplox");
         primaryStage.setScene(escenaElegirUsuario);
         primaryStage.setResizable(false);

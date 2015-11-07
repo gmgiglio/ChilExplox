@@ -59,7 +59,8 @@ public class Main extends Application {
             try{
       
                 primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"))));
-                
+//                primaryStage.getScene().getStylesheets().add("/resources/styles/stylesheet.css");
+
                 javafx.geometry.Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
                 primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
                 primaryStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
@@ -71,7 +72,6 @@ public class Main extends Application {
         
         Parent root = pantallaElegirUsuario;
         escenaElegirUsuario = new Scene(root,400,269);
-     //   escenaElegirUsuario.getStylesheets().add("/resources/styles/stylesheet.css");
         primaryStage.setTitle("ChilExplox");
         primaryStage.setScene(escenaElegirUsuario);
         primaryStage.setResizable(false);

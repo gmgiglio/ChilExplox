@@ -34,40 +34,40 @@ public class InicioController implements Initializable {
     /**
      * Initializes the controller class.
      */
-     @FXML
+        @FXML
     private MenuBar menuBar;
-       @FXML
+        @FXML
     private Button agregarCliente,botonAgregarEncomienda,crearPedido,cerrarPedido,modificar,botonNuevoMensaje,
                botonBuzonEntrada,botonMensajesEnviados;
-       @FXML
+        @FXML
     private TabPane tabs;
-       @FXML
+        @FXML
     private SplitPane split;
-       @FXML
+        @FXML
     private AnchorPane pantallaNuevoMensaje,anchorPaneMensajes,anchorEjemplo,agregarPane;
-       @FXML
+        @FXML
     private HBox pantallaBuzonEntrada,pantallaMensajesEnviados;
-       @FXML
+        @FXML
     private ListView pedidosPendientes, pedidosCargados, camionesDisponibles, camionesPorDescargar;
-       @FXML
+        @FXML
     private ComboBox comboBoxClientes, comboBoxSucursales, comboBoxEncomiendas;
-       @FXML
+        @FXML
     private Text patenteCamAct, capacidadCamAct, espDispCamAct, estadoCamAct,advertencia,presupuesto;
-       @FXML
-    private AnchorPane anchorPedPend, anchorPedCar;
+        @FXML
+    private AnchorPane anchorPedPend, anchorPedCar, anchorCamDisp, anchorCamDesc;
     
     private Menu menuSucursal;
     private AgregarEncomiendaController agregarEncomiendaCon;
 
     private AgregarClienteController agregarClienteCon;
 
-   private TreeView<String> treeOrigen = new TreeView<String>(), pedidosPend = new TreeView<String>(),
-           pedidosCar = new TreeView<String>(), camionesDisp = new TreeView<String>(),
-           camionesDesc = new TreeView<String>(), treeDestino = new TreeView<String>();
+    private TreeView<String> treeOrigen = new TreeView<String>(), pedidosPend = new TreeView<String>(),
+        pedidosCar = new TreeView<String>(), camionesDisp = new TreeView<String>(),
+        camionesDesc = new TreeView<String>(), treeDestino = new TreeView<String>();
 
-   private TreeItem aMover;
-   private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
+    private TreeItem aMover;
+    private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
+        public void handle(MouseEvent event) {
                 
                  treeOrigen = (TreeView) event.getSource();
                  if(treeOrigen.getSelectionModel().getSelectedItem().getParent().equals(treeOrigen.getRoot())){
@@ -420,18 +420,18 @@ public class InicioController implements Initializable {
     
     private EventHandler eventoSucusal = new EventHandler() {
 
-         public void handle(Event e) {
-             ItemSucursalMenu item1 = (ItemSucursalMenu)e.getSource();
-             Sucursal suc = item1.getSucursal();
-             menuSucursal.setText(suc.getNombre());
-             ItemSucursalMenu item2 = new ItemSucursalMenu(Main.getUsuarioActual().getSucursalActual());
-             item2.setOnAction(eventoSucusal);
-             Main.getUsuarioActual().setSucursalActual(suc);
-             menuSucursal.getItems().remove(item1);
-             menuSucursal.getItems().add(item2);
-             //actualizarPestanaAdm();
-         }
-     };   
+        public void handle(Event e) {
+            ItemSucursalMenu item1 = (ItemSucursalMenu)e.getSource();
+            Sucursal suc = item1.getSucursal();
+            menuSucursal.setText(suc.getNombre());
+            ItemSucursalMenu item2 = new ItemSucursalMenu(Main.getUsuarioActual().getSucursalActual());
+            item2.setOnAction(eventoSucusal);
+            Main.getUsuarioActual().setSucursalActual(suc);
+            menuSucursal.getItems().remove(item1);
+            menuSucursal.getItems().add(item2);
+            //actualizarPestanaAdm();
+        }
+     };
     
     public void cargarNombresClientes(){
 
@@ -456,16 +456,11 @@ public class InicioController implements Initializable {
         TreeView<String> pedidosPend = new TreeView<>(listarPedidos(sucActual.getPedidosPend()));
         amononarTreeView(anchorPedPend, pedidosPend);
         
+        TreeView<String> camionesDisp = new TreeView<>(listarCamiones(sucActual.getCamionesDisp()));
+        amononarTreeView(anchorCamDisp, camionesDisp);
         
-//        pedidosPend.setShowRoot(false);
-//        pedidosPend.setOnDragDetected(dragDetected);
-//        pedidosPend.setOnDragOver(dragOver);
-//        pedidosPend.setOnDragDropped(dragDropped);
-//        anchorPedPend.getChildren().add(pedidosPend);
-//        pedidosPend.setPrefWidth(anchorPedPend.getPrefWidth());
-         
-        
-        //pedidosPendientes.setItems(idsPedPend);
+        TreeView<String> camionesDesc = new TreeView<>(listarCamiones(sucActual.getCamionesPend()));
+         amononarTreeView(anchorCamDesc, camionesDesc);
          
          for(Camion c : sucActual.getCamionesDisp()){
              patentesCamDisp.add(c.getPatente());
@@ -480,11 +475,11 @@ public class InicioController implements Initializable {
      
      public TreeItem<String> listarCamiones(LinkedList<Camion> camiones){
          TreeItem<String> dummyRoot = new TreeItem<>("root");
-         TreeItem<String> pedidos = new TreeItem<>("Pedidos Cargados");
          for(Camion c : camiones){
              TreeItem<String> camionView = new TreeItem<>("Camión de Patente " + c.getPatente());
              camionView.getChildren().add(new TreeItem("Capacidad total: " + c.getCapacidad() + " cm^3"));
              camionView.getChildren().add(new TreeItem("Espacio Disponible: " + c.getEspDisp() + "cm^3"));
+             dummyRoot.getChildren().add(camionView);
          }
          
          return dummyRoot;

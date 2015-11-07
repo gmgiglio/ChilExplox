@@ -186,12 +186,7 @@
                            <children>
                               <TitledPane animated="false" prefHeight="920.0" prefWidth="360.0" text="Pedidos Pendientes">
                                 <content>
-                                  <AnchorPane fx:id="anchorPedPend" minHeight="0.0" minWidth="0.0" prefHeight="920.0" prefWidth="360.0">
-                                       <children>
-                                          <ListView fx:id="pedidosPendientes" prefHeight="920.0" prefWidth="360.0" />
-                                          <TreeView fx:id="treeEjemplo" layoutX="34.0" layoutY="85.0" prefHeight="200.0" prefWidth="200.0" />
-                                       </children>
-                                    </AnchorPane>
+                                  <AnchorPane fx:id="anchorPedPend" minHeight="0.0" minWidth="0.0" prefHeight="920.0" prefWidth="360.0" />
                                 </content>
                               </TitledPane>
                               <TitledPane animated="false" prefHeight="920.0" prefWidth="360.0" text="Camion Actual">
@@ -230,11 +225,7 @@
                                                       </AnchorPane>
                                                    </children>
                                                 </HBox>
-                                                <AnchorPane fx:id="anchorPedCar">
-                                                   <children>
-                                                      <ListView fx:id="pedidosCargados" prefHeight="433.0" prefWidth="360.0" />
-                                                   </children>
-                                                </AnchorPane>
+                                                <AnchorPane fx:id="anchorPedCar" />
                                              </children>
                                           </VBox>
                                        </children>
@@ -245,7 +236,7 @@
                                  <children>
                                     <TitledPane animated="false" maxHeight="260.0" prefHeight="460.0" prefWidth="360.0" text="Camiones Disponibles">
                                       <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="920.0" prefWidth="360.0">
+                                        <AnchorPane fx:id="anchorCamDisp" minHeight="0.0" minWidth="0.0" prefHeight="920.0" prefWidth="360.0">
                                              <children>
                                                 <ListView fx:id="camionesDisponibles" maxHeight="250.0" prefHeight="920.0" prefWidth="360.0" />
                                              </children>
@@ -254,7 +245,7 @@
                                     </TitledPane>
                                     <TitledPane animated="false" prefHeight="460.0" prefWidth="360.0" text="Camiones por Descargar">
                                       <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="460.0" prefWidth="360.0">
+                                        <AnchorPane fx:id="anchorCamDesc" minHeight="0.0" minWidth="0.0" prefHeight="460.0" prefWidth="360.0">
                                              <children>
                                                 <ListView fx:id="camionesPorDescargar" prefHeight="420.0" prefWidth="360.0" />
                                              </children>

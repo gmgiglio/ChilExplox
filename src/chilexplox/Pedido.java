@@ -89,6 +89,20 @@ public class Pedido extends Servicio implements java.io.Serializable{
             return false;
         }
     }
+    
+    public boolean agregarEnc(Encomienda encomienda){
+        if(abierto){
+            encomiendas.add(encomienda);
+            this.peso += peso;
+            this.volumen += volumen;
+            this.costoEnvio += encomienda.getCostoEnvio();
+            setPrioridad();
+            
+            return true;
+        }
+        else return false;
+        
+    }
   
     //asignar encomienda con prioridadAgregada indicada por el cliente
     // true si se logra agregar (si esta aun abierto el pedido) y false de lo contrario)
@@ -157,5 +171,13 @@ public class Pedido extends Servicio implements java.io.Serializable{
      */
     public LinkedList<Encomienda> getEncomiendas() {
         return new LinkedList(encomiendas);
+    }
+    
+    public boolean eliminarEncomienda(Encomienda enc){
+        if(abierto){
+            encomiendas.remove(enc);
+            return true;
+        }
+        else return false;
     }
 }

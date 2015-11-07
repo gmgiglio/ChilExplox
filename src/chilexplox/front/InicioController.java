@@ -3,9 +3,9 @@ package chilexplox.front;
 
 import chilexplox.*;
 import controllers.AgregarEncomiendaController;
+import controllers.CajaEncomienda;
 import java.net.URL;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -204,8 +204,8 @@ public class InicioController implements Initializable {
                        try{        
                             agregarEncomiendaCon = new AgregarEncomiendaController();
                             agregarEncomiendaCon.setHandlerEncomienda((Event e2) -> {
-                                agregarEncomienda(agregarEncomiendaCon.getPeso(),agregarEncomiendaCon.getVolumen(),
-                                agregarEncomiendaCon.getPrioridad(),agregarEncomiendaCon.getDirDestino(),agregarEncomiendaCon.getDescr());
+                                agregarEncomienda(new Encomienda(agregarEncomiendaCon.getPeso(),agregarEncomiendaCon.getVolumen(),
+                                agregarEncomiendaCon.getPrioridad(),agregarEncomiendaCon.getDirDestino(),agregarEncomiendaCon.getDescr()));
                             });
                             agregarPane.getChildren().setAll(agregarEncomiendaCon);
                             split.setDividerPositions(0.4684014869888476);
@@ -497,13 +497,20 @@ public class InicioController implements Initializable {
          split.setDividerPositions(1);
      }
      
-     private void agregarEncomienda(int peso, int volumen,int prioridad, String dirDestino,String descr){
-         Main.getUsuarioActual().getSucursalActual().getPedidoAbierto().agregarEnc(peso, volumen,prioridad, dirDestino,descr);
-         comboBoxEncomiendas.getItems().add(descr);
-         comboBoxEncomiendas.setPromptText(descr);
+     private void agregarEncomienda(Encomienda encomienda){
+         Main.getUsuarioActual().getSucursalActual().getPedidoAbierto().agregarEnc(encomienda);
+         CajaEncomienda c = new CajaEncomienda(encomienda);
+         c.setHandlerEliminar((Event e) -> {
+             CajaEncomienda caja = (CajaEncomienda) e.getSource();
+             Encomienda enc = caja.getEncomienda();
+             Main.getUsuarioActual().getSucursalActual().getPedidoAbierto().eliminarEncomienda(enc);
+             comboBoxEncomiendas.getItems().remove(caja);
+         });
+         comboBoxEncomiendas.getItems().add(c);
+         comboBoxEncomiendas.setPromptText(encomienda.getDescripcion());
          presupuesto.setText(""+Main.getUsuarioActual().getSucursalActual().getPedidoAbierto().getCostoEnvio());
      }
-          
+            
      private class ItemSucursalMenu extends MenuItem{
          private Sucursal sucursal;
          

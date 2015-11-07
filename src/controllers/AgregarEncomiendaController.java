@@ -36,6 +36,7 @@ public class AgregarEncomiendaController extends VBox {
 
     
     public void botonApretado(ActionEvent event) {
+        limpiarAlertas();
         boolean error = false;
         try{ getPeso();} 
         catch(Exception e){ 

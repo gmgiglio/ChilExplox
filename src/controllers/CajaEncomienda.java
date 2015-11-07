@@ -46,15 +46,8 @@ public class CajaEncomienda extends HBox{
          
          textDesc.setText(encomienda.getDescripcion());
          
-         this.encomienda = encomienda;
-         
-         botonEliminar.setOnAction((ActionEvent e) -> {
-             botonApretado(e);
-         });
     }
-    
-    
-    
+       
     public void botonApretado(ActionEvent e){
         handlerEliminar.handle(new ActionEvent(this,null));
     }

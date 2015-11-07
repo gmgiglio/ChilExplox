@@ -2,6 +2,7 @@
 package chilexplox.front;
 
 import chilexplox.*;
+import controllers.AgregarClienteController;
 import controllers.AgregarEncomiendaController;
 import controllers.CajaEncomienda;
 import java.net.URL;
@@ -17,6 +18,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
@@ -31,105 +34,103 @@ public class InicioController implements Initializable {
     /**
      * Initializes the controller class.
      */
-     @FXML
+        @FXML
     private MenuBar menuBar;
        @FXML
-    private Button agregarCliente,botonAgregarEncomienda,crearPedido,cerrarPedido,modificar,botonNuevoMensaje,
-               botonBuzonEntrada,botonMensajesEnviados;
-       @FXML
+    private Button agregarCliente,botonAgregarEncomienda,crearPedido,botonCancelar,cerrarPedido,modificar,
+               botonNuevoMensaje, botonBuzonEntrada,botonMensajesEnviados;
+        @FXML
     private TabPane tabs;
-       @FXML
+        @FXML
     private SplitPane split;
-       @FXML
+        @FXML
     private AnchorPane pantallaNuevoMensaje,anchorPaneMensajes,anchorEjemplo,agregarPane;
-       @FXML
+        @FXML
     private HBox pantallaBuzonEntrada,pantallaMensajesEnviados;
-       @FXML
+        @FXML
     private ListView pedidosPendientes, pedidosCargados, camionesDisponibles, camionesPorDescargar;
-       @FXML
+        @FXML
     private ComboBox comboBoxClientes, comboBoxSucursales, comboBoxEncomiendas;
-       @FXML
+        @FXML
     private Text patenteCamAct, capacidadCamAct, espDispCamAct, estadoCamAct,advertencia,presupuesto;
-       @FXML
-    private TreeView<String> treeEjemplo;
-      
+        @FXML
+    private AnchorPane anchorPedPend, anchorPedCar, anchorCamDisp, anchorCamDesc;
     
     private Menu menuSucursal;
     private AgregarEncomiendaController agregarEncomiendaCon;
-        @FXML
-    private AnchorPane anchorPedPend, anchorPedCar;
-      
-   private TreeView<String> pedidosPend = new TreeView<String>(), pedidosCar = new TreeView<String>();
-   private TreeItem aMover;
 
-   private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
+    private AgregarClienteController agregarClienteCon;
+
+    private TreeView<String> treeOrigen = new TreeView<String>(), pedidosPend = new TreeView<String>(),
+           pedidosCar = new TreeView<String>(), camionesDisp = new TreeView<String>(),
+           camionesDesc = new TreeView<String>(), treeDestino=new TreeView<String>();
+
+    private TreeItem aMover;
+  
+    private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
-                //ListView<String> list = (ListView) event.getSource();
-                TreeView<String> tree = (TreeView) event.getSource();
-                //Dragboard db = list.startDragAndDrop(TransferMode.MOVE);
-                Dragboard db = tree.startDragAndDrop(TransferMode.MOVE);
-                ClipboardContent content = new ClipboardContent();
-                //content.putString(list.getSelectionModel().getSelectedItem());
-                content.putString(tree.getSelectionModel().getSelectedItem().getValue());
-                aMover = tree.getSelectionModel().getSelectedItem();
-                db.setContent(content);
-
-                event.consume();
-            }
-        };
-    private EventHandler<DragEvent> dragOver = new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
-                if (event.getGestureSource() != event.getTarget() && event.getDragboard().hasString()) {
-                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-                }
-
-                event.consume();
-            }
-        };
-    private EventHandler<DragEvent> dragDropped = new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
-                //ListView<String> list = (ListView) event.getGestureTarget();
-                TreeView<String> tree = (TreeView) event.getGestureTarget();
-
-                Dragboard db = event.getDragboard();
-                boolean success = false;
-                if (db.hasString()) {
-                    //list.getItems().add(db.getString());
-                    tree.getRoot().getChildren().add(aMover);
-                    success = true;
-                }
-
-                event.setDropCompleted(success);
-                event.consume();
-            }
-        };
-    private EventHandler<DragEvent> dragDone = new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
-                if (event.getTransferMode() == TransferMode.MOVE) {
-                    //ListView<String> list = (ListView) event.getGestureSource();
-                    TreeView<String> tree = (TreeView) event.getGestureSource();
-                    //list.getItems().remove(event.getDragboard().getString());
-                    tree.getRoot().getChildren().remove(aMover);
-                    String idString =(String)aMover.getValue();
-                    int id = Integer.parseInt(idString.substring(8));
-                    Main.getUsuarioActual().getSucursalActual().cargarPedido(id);
-                    Sucursal origen = Main.getUsuarioActual().getSucursalActual();
-                    Sucursal destino = Empresa.getSucursal(aMover.getChildren().get(2).toString().substring(8));
-                    Cliente cliente = Empresa.getCliente(aMover.getChildren().get(3).toString().substring(9));
-                    Pedido p = new Pedido(origen, destino, cliente);
-                    Main.getUsuarioActual().getSucursalActual().getCamion(patenteCamAct.getText()).cargarPedido(p);
-                }
-                event.consume();
+                
+                 treeOrigen = (TreeView) event.getSource();
+                 if(treeOrigen.getSelectionModel().getSelectedItem().getParent().equals(treeOrigen.getRoot())){
+                Dragboard dragBoard = treeOrigen.startDragAndDrop(TransferMode.MOVE);
+                Image img = new Image(Main.class.getResourceAsStream("/resources/images/pedidoIcon.png"));
+                        dragBoard.setDragView(img);
+          
+                    ClipboardContent content = new ClipboardContent();
+                    content.put(DataFormat.PLAIN_TEXT, treeOrigen.getSelectionModel().getSelectedItem().toString());
+                    dragBoard.setContent(content);
+                 }
+                    event.consume();
             }
         };
    
+     private EventHandler<DragEvent> dragOver = new EventHandler<DragEvent>() {
+            public void handle(DragEvent event) {
+                if(treeOrigen.getSelectionModel().getSelectedItem().getParent().equals(treeOrigen.getRoot()))
+                {
+                 event.acceptTransferModes(TransferMode.MOVE);
+                }
+                    event.consume();
+            }
+        };
+     private EventHandler<DragEvent> dragDropped = new EventHandler<DragEvent>() {
+            public void handle(DragEvent event) {
+                   
+                    treeDestino = (TreeView) event.getGestureTarget();
+
+                   String valueToMove = event.getDragboard().getString();
+                    TreeItem<String> itemToMove = search(treeOrigen.getRoot(), valueToMove);
+                    // Remove from former parent.
+                    treeOrigen.getRoot().getChildren().remove(itemToMove);
+                    // Add to new parent.
+                    treeDestino.getRoot().getChildren().add(itemToMove);
+
+                    treeDestino.getRoot().setExpanded(true);
+
+                    event.consume();
+            }
+        };
+     private TreeItem<String> search(final TreeItem<String> currentNode, final String valueToSearch) {
+            TreeItem<String> result = null;
+            if (currentNode.toString().equals(valueToSearch) ){
+                result = currentNode;
+            } else if (!currentNode.isLeaf()) {
+                for (TreeItem<String> child : currentNode.getChildren()) {
+                    result = search(child, valueToSearch);
+                    if (result != null) {
+                        break;
+                    }
+                }
+            }
+            return result;
+        }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
    
         LinkedList<Sucursal> sucursales = Empresa.getSucursales();
         
-        ////////////////////////Inicializar Menú\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+////////////////////////////////////////////Inicializar Menú\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
        
         Menu menuUsuario = new Menu(Main.getUsuarioActual().getNombreUsuario());
         MenuItem itemCerrarSesion = new MenuItem("Cerrar sesión");
@@ -140,7 +141,6 @@ public class InicioController implements Initializable {
         Main.getUsuarioActual().setSucursalActual(Empresa.getSucursales().get(0));
         ItemSucursalMenu i = new ItemSucursalMenu(Main.getUsuarioActual().getSucursalActual());
         menuSucursal = new Menu(Main.getUsuarioActual().getSucursalActual().getNombre());
-        //Main.getUsuarioActual().getSucursalActual().revisarTiempoPedidos();
         
         //agregar sucursales al menu de sucursales
         LinkedList<Sucursal> sucEnLista = new LinkedList(sucursales);
@@ -148,7 +148,7 @@ public class InicioController implements Initializable {
         for(Sucursal s : sucEnLista){
                 ItemSucursalMenu item = new ItemSucursalMenu(s);
                 menuSucursal.getItems().add(item); 
-                item.setOnAction(eventoSucusal);  
+                item.setOnAction(eventoSucursal);  
                 
         }
         menuBar.getMenus().addAll(menuUsuario,menuSucursal);
@@ -158,24 +158,44 @@ public class InicioController implements Initializable {
         split.setDividerPositions(1);
 
         
-        ///////////////////////////////Atender\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\      
+///////////////////////////////////////////////////ATENDER\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\     
          
         
-        
+        botonCancelar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                       try{
+                                limpiarAtender();
+
+                          
+                       }
+                       catch (Exception exc)
+                      {
+                               }
+                     
+                
+                }
+            });
         
         agregarCliente.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                     
                        try{        
-
-                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarCliente.fxml")));
-                       split.setDividerPositions(0.4684014869888476);
+                            agregarClienteCon = new AgregarClienteController();
+                            agregarClienteCon.setHandlerEncomienda((Event e2) -> {
+                                Empresa.agregarCliente(agregarClienteCon.getNombre()+" "+agregarClienteCon.getApellidos(),agregarClienteCon.getCalle()+" "+agregarClienteCon.getNumero()+", "+agregarClienteCon.getComuna()+", "+agregarClienteCon.getCiudad(),agregarClienteCon.getTelefono());
+                                comboBoxClientes.getItems().add(agregarClienteCon.getNombre()+" "+agregarClienteCon.getApellidos());
+                                comboBoxClientes.setPromptText(agregarClienteCon.getNombre()+" "+agregarClienteCon.getApellidos());
+                                split.setDividerPositions(1);
+                            });
+                            agregarPane.getChildren().setAll(agregarClienteCon);
+                            split.setDividerPositions(0.4684014869888476);
                        
                        }
                        catch (Exception exc)
                       {
-                          int i=0;
-                               }
+                          System.out.println("InicioController: No se pudo cargar AgregarClienteController");
+                          throw new RuntimeException(exc);
+                      }
                      
                 
                 }
@@ -188,6 +208,23 @@ public class InicioController implements Initializable {
 
                        agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarPedido.fxml")));
                        split.setDividerPositions(0.4684014869888476);
+                       
+                       }
+                       catch (Exception exc)
+                      {
+                               }
+                     
+                
+                }
+            });
+            modificar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                    
+                       try{        
+
+                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarPedido.fxml")));
+                       split.setDividerPositions(0.4684014869888476);
+                       modificar.setVisible(false);
                        
                        }
                        catch (Exception exc)
@@ -242,8 +279,10 @@ public class InicioController implements Initializable {
                 
                 }
             });
+           
+           
         
-         //Tabs
+//////////////////////////////////////////////TABS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         for(int j=0;j<tabs.getTabs().size();j++)
         {
         tabs.getTabs().get(j).setOnSelectionChanged(new EventHandler<Event>() {
@@ -259,14 +298,11 @@ public class InicioController implements Initializable {
                             case "Administrar":
                                 actualizarPestanaAdm();
                                 
-                                
-                                
-                                camionesDisponibles.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                camionesDisp.setOnMouseClicked(new EventHandler<MouseEvent>() {
                                     @Override
                                     public void handle(MouseEvent event) {
                                         Camion camionSelec = null;
-                                        String patenteCamionSelec = (String)camionesDisponibles.getSelectionModel().getSelectedItem();
-                                        ObservableList idsPedCamion = FXCollections.observableArrayList();
+                                        String patenteCamionSelec = (String)camionesDisp.getSelectionModel().getSelectedItem().getValue();
                                         Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
                                         
                                         for(Camion c : sucActual.getCamionesDisp()){
@@ -274,14 +310,13 @@ public class InicioController implements Initializable {
                                         }
                                         
                                         if(camionSelec.getPedidos() != null){
-                                        pedidosCar = listarPedidos(camionSelec.getPedidos());
-                                        anchorPedCar.getChildren().add(pedidosCar);
-                                        pedidosCar.setPrefWidth(anchorPedCar.getPrefWidth());}
-                                        
-//                                        for(Pedido p : camionSelec.getPedidos()){
-//                                            idsPedCamion.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
-//                                        }
-//                                        pedidosCargados.setItems(idsPedCamion);
+                                            pedidosCar = new TreeView<>(listarPedidos(camionSelec.getPedidos()));
+                                            amononarTreeView(anchorPedCar, pedidosCar);
+                                            pedidosCar.setOnDragDetected(dragDetected);
+                                            pedidosCar.setOnDragOver(dragOver);
+                                            pedidosCar.setOnDragDropped(dragDropped);
+                                            
+                                        }
                                         patenteCamAct.setText(camionSelec.getPatente());
                                         capacidadCamAct.setText(Integer.toString(camionSelec.getCapacidad()));
                                         espDispCamAct.setText(Integer.toString(camionSelec.getEspDisp()));
@@ -290,34 +325,32 @@ public class InicioController implements Initializable {
                                     }
                                 });
                                 
-                                camionesPorDescargar.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                camionesDesc.setOnMouseClicked(new EventHandler<MouseEvent>() {
                                     @Override
                                     public void handle(MouseEvent event) {
                                         Camion camionSelec = null;
-                                        String patenteCamionSelec = (String)camionesPorDescargar.getSelectionModel().getSelectedItem();
-                                        ObservableList idsPedCamion = FXCollections.observableArrayList();
+                                        String patenteCamionSelec = (String)camionesDesc.getSelectionModel().getSelectedItem().getValue();
                                         Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
+                                        
                                         for(Camion c : sucActual.getCamionesPend()){
                                             if(c.getPatente()==patenteCamionSelec) camionSelec = c;
                                         }
-                                        for(Pedido p : camionSelec.getPedidos()){
-                                            idsPedCamion.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
+                                        
+                                        if(camionSelec.getPedidos() != null){
+                                            pedidosCar = new TreeView<>(listarPedidos(camionSelec.getPedidos()));
+                                            amononarTreeView(anchorPedCar, pedidosCar);
+                                            pedidosCar.setOnDragDetected(dragDetected);
+                                            pedidosCar.setOnDragOver(dragOver);
+                                            pedidosCar.setOnDragDropped(dragDropped);
+                                            
                                         }
-                                        pedidosCargados.setItems(idsPedCamion);
-                                        
-                                        TreeView<String> pedCar = listarPedidos(camionSelec.getPedidos());
-                                        anchorPedCar.getChildren().add(pedCar);
-                                        pedCar.setPrefWidth(anchorPedCar.getPrefWidth());
-                                        
                                         patenteCamAct.setText(camionSelec.getPatente());
                                         capacidadCamAct.setText(Integer.toString(camionSelec.getCapacidad()));
                                         espDispCamAct.setText(Integer.toString(camionSelec.getEspDisp()));
-                                        estadoCamAct.setText("POR DESCARGAR");
+                                        estadoCamAct.setText("DISPONIBLE");
                                         
                                     }
                                 });
-                                
-                                
                             break;
                                 
                             case "Mensajes":
@@ -332,30 +365,10 @@ public class InicioController implements Initializable {
            
            
            
-        ///////////////////////////ADMINISTRAR\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-        // set up Dnd in both directions
-        
-        //Fuente: https://bugs.openjdk.java.net/browse/JDK-8094227
+///////////////////////////////////////////////////ADMINISTRAR\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         
         
-        
-
-//        pedidosPendientes.setOnDragDetected(dragDetected);
-//        pedidosPendientes.setOnDragOver(dragOver);
-//        pedidosPendientes.setOnDragDropped(dragDropped);
-//        pedidosPendientes.setOnDragDone(dragDone);
-//
-//        pedidosCargados.setOnDragDetected(dragDetected);
-//        pedidosCargados.setOnDragOver(dragOver);
-//        pedidosCargados.setOnDragDropped(dragDropped);
-//        pedidosCargados.setOnDragDone(dragDone);
-        
-        
-
-        
-   
-        
-        /////////////////////////////Mensajes\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+/////////////////////////////////////////////////////MENSAJES\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         
         botonNuevoMensaje.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -390,20 +403,20 @@ public class InicioController implements Initializable {
         
     }
     
-    private EventHandler eventoSucusal = new EventHandler() {
+    private EventHandler eventoSucursal = new EventHandler() {
 
-         public void handle(Event e) {
-             ItemSucursalMenu item1 = (ItemSucursalMenu)e.getSource();
-             Sucursal suc = item1.getSucursal();
-             menuSucursal.setText(suc.getNombre());
-             ItemSucursalMenu item2 = new ItemSucursalMenu(Main.getUsuarioActual().getSucursalActual());
-             item2.setOnAction(eventoSucusal);
-             Main.getUsuarioActual().setSucursalActual(suc);
-             menuSucursal.getItems().remove(item1);
-             menuSucursal.getItems().add(item2);
-             //actualizarPestanaAdm();
-         }
-     };   
+        public void handle(Event e) {
+            ItemSucursalMenu item1 = (ItemSucursalMenu)e.getSource();
+            Sucursal suc = item1.getSucursal();
+            menuSucursal.setText(suc.getNombre());
+            ItemSucursalMenu item2 = new ItemSucursalMenu(Main.getUsuarioActual().getSucursalActual());
+            item2.setOnAction(eventoSucursal);
+            Main.getUsuarioActual().setSucursalActual(suc);
+            menuSucursal.getItems().remove(item1);
+            menuSucursal.getItems().add(item2);
+            //actualizarPestanaAdm();
+        }
+     };
     
     public void cargarNombresClientes(){
 
@@ -420,68 +433,81 @@ public class InicioController implements Initializable {
 
 
      public void actualizarPestanaAdm(){
-         Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
-         //ObservableList idsPedPend = FXCollections.observableArrayList();
-         ObservableList patentesCamDisp = FXCollections.observableArrayList();
-         ObservableList patentesCamADesc = FXCollections.observableArrayList();
-         
-         pedidosPend = listarPedidos(sucActual.getPedidosPend());
-         
-         anchorPedPend.getChildren().add(pedidosPend);
-         pedidosPend.setPrefWidth(anchorPedPend.getPrefWidth());
-         
+        Sucursal sucActual = Main.getUsuarioActual().getSucursalActual();
+        ObservableList patentesCamDisp = FXCollections.observableArrayList();
+        ObservableList patentesCamADesc = FXCollections.observableArrayList();
         
-        //pedidosPendientes.setItems(idsPedPend);
+        pedidosPend = new TreeView<>(listarPedidos(sucActual.getPedidosPend()));
+        amononarTreeView(anchorPedPend, pedidosPend);
+        pedidosPend.setOnDragDetected(dragDetected);
+        pedidosPend.setOnDragOver(dragOver);
+        pedidosPend.setOnDragDropped(dragDropped);
+        
+        camionesDisp = new TreeView<>(listarCamiones(sucActual.getCamionesDisp()));
+        amononarTreeView(anchorCamDisp, camionesDisp);
+        
+        camionesDesc = new TreeView<>(listarCamiones(sucActual.getCamionesPend()));
+        amononarTreeView(anchorCamDesc, camionesDesc);
          
-         for(Camion c : sucActual.getCamionesDisp()){
-             patentesCamDisp.add(c.getPatente());
-         }
-         camionesDisponibles.setItems(patentesCamDisp);
-         
-         for(Camion c : sucActual.getCamionesPend()){
-             patentesCamADesc.add(c.getPatente());
-         }
-         camionesPorDescargar.setItems(patentesCamADesc);
+        for(Camion c : sucActual.getCamionesDisp()){
+            patentesCamDisp.add(c.getPatente());
+        }
+        camionesDisponibles.setItems(patentesCamDisp);
+        
+        for(Camion c : sucActual.getCamionesPend()){
+            patentesCamADesc.add(c.getPatente());
+        }
+        camionesPorDescargar.setItems(patentesCamADesc);
      }
      
-     public TreeView<String> listarPedidos(LinkedList<Pedido> pedidos){
+     public TreeItem<String> listarCamiones(LinkedList<Camion> camiones){
+         TreeItem<String> dummyRoot = new TreeItem<>("root");
+         for(Camion c : camiones){
+             TreeItem<String> camionView = new TreeItem<>(c.getPatente());
+             camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckIcon.png"))));
+             camionView.getChildren().add(new TreeItem("Capacidad total: " + c.getCapacidad() + " cm^3"));
+             camionView.getChildren().add(new TreeItem("Espacio Disponible: " + c.getEspDisp() + "cm^3"));
+             dummyRoot.getChildren().add(camionView);
+         }
+         
+         return dummyRoot;
+     }
+     
+     public TreeItem<String> listarPedidos(LinkedList<Pedido> pedidos){
          TreeItem<String> dummyRoot = new TreeItem<>("root");
          TreeItem<String> encomiendas = new TreeItem<>("Encomiendas");
          
          for(Pedido p : pedidos){
-             //idsPedPend.add("id: "+p.getIdPedido()+", prioridad: "+p.getPrioridad());
              TreeItem<String> child = new TreeItem<>("Pedido #" + Integer.toString(p.getIdPedido()));
-//             child.getChildren().add(new TreeItem<>("Prioridad: " + p.getPrioridad()));
-//             child.getChildren().add(new TreeItem<>("Costo de Envío: $" + p.getCostoEnvio()));
-//             child.getChildren().add(new TreeItem<>("Sucursal de Destino: " + p.getSucDestino().getNombre()));
-//             child.getChildren().add(new TreeItem<>("Cliente: " + p.getCliente().getNombre()));
-//             child.getChildren().add(new TreeItem<>("Peso: " + p.getPeso() + " g"));
-//             child.getChildren().add(new TreeItem<>("Volumen aprox.: " + p.getVol()+ " cm^3"));
-//             child.getChildren().add(encomiendas);
-//             for(Encomienda e : p.getEncomiendas()){
-//                 TreeItem<String> encomienda = new TreeItem<>(e.getDescripcion());
-//                 encomienda.getChildren().add(new TreeItem<>("Prioridad: " + e.getPrioridad()));
-//                 encomienda.getChildren().add(new TreeItem<>("Costo de Envío: $" + e.getCostoEnvio()));
-//                 encomienda.getChildren().add(new TreeItem<>("Peso: " + e.getPeso() + " g"));
-//                 encomienda.getChildren().add(new TreeItem<>("Volumen aprox.: " + e.getVol()+ " cm^3"));
-//                 encomienda.getChildren().add(new TreeItem<>("Dirección de Destino: " + e.getDireccionDestino()));
-//                 encomiendas.getChildren().add(encomienda);
-//             }
+             child.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/pedidoIconView.png"))));
+             child.getChildren().add(new TreeItem<>("Prioridad: " + p.getPrioridad()));
+             child.getChildren().add(new TreeItem<>("Costo de Envío: $" + p.getCostoEnvio()));
+             child.getChildren().add(new TreeItem<>("Sucursal de Destino: " + p.getSucDestino().getNombre()));
+             child.getChildren().add(new TreeItem<>("Cliente: " + p.getCliente().getNombre()));
+             child.getChildren().add(new TreeItem<>("Peso: " + p.getPeso() + " g"));
+             child.getChildren().add(new TreeItem<>("Volumen aprox.: " + p.getVol()+ " cm^3"));
+             child.getChildren().add(encomiendas);
+             for(Encomienda e : p.getEncomiendas()){
+                 TreeItem<String> encomienda = new TreeItem<>(e.getDescripcion());
+                 encomienda.getChildren().add(new TreeItem<>("Prioridad: " + e.getPrioridad()));
+                 encomienda.getChildren().add(new TreeItem<>("Costo de Envío: $" + e.getCostoEnvio()));
+                 encomienda.getChildren().add(new TreeItem<>("Peso: " + e.getPeso() + " g"));
+                 encomienda.getChildren().add(new TreeItem<>("Volumen aprox.: " + e.getVol()+ " cm^3"));
+                 encomienda.getChildren().add(new TreeItem<>("Dirección de Destino: " + e.getDireccionDestino()));
+                 encomiendas.getChildren().add(encomienda);
+             }
              dummyRoot.getChildren().add(child);
          }
-         
-         TreeView<String> pedidosTree = new TreeView<>(dummyRoot);
-         
-        pedidosTree.setShowRoot(false);
-        
-        pedidosTree.setOnDragDetected(dragDetected);
-        pedidosTree.setOnDragOver(dragOver);
-        pedidosTree.setOnDragDropped(dragDropped);
-        pedidosTree.setOnDragDone(dragDone);
-        
-         return pedidosTree;
+         return dummyRoot;
      }
 
+     public void amononarTreeView (AnchorPane ap, TreeView<String> tv){
+        tv.setShowRoot(false);
+        ap.getChildren().add(tv);
+        tv.setPrefWidth(ap.getPrefWidth());
+        tv.setPrefHeight(ap.getPrefHeight());
+     }
+     
      public void limpiarAtender(){
          crearPedido.setVisible(true);
          Scene scene = crearPedido.getScene();
@@ -492,6 +518,9 @@ public class InicioController implements Initializable {
          sucursalText.setText("");
          comboBoxEncomiendas.getItems().clear();
          comboBoxEncomiendas.setPromptText("");
+         comboBoxClientes.getItems().clear();
+         cargarNombresClientes();
+
          Text presupuesto = (Text) scene.lookup("#presupuesto");
          presupuesto.setText("0");
          split.setDividerPositions(1);

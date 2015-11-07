@@ -63,26 +63,24 @@ public class InicioController implements Initializable {
         @FXML
     private AnchorPane anchorPedPend, anchorPedCar;
       
-<<<<<<< HEAD
+
    private TreeView<String> pedidosPend = new TreeView<String>(),treeOrigen = new TreeView<String>(),pedidosCar = new TreeView<String>();
-=======
-   private TreeView<String> treeOrigen = new TreeView<String>(), pedidosPend = new TreeView<String>(),
-           pedidosCar = new TreeView<String>();
->>>>>>> origin/master
+
+
    private TreeItem aMover;
    
-<<<<<<< HEAD
-   
-=======
+
    private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                  treeOrigen = (TreeView) event.getSource();
+                 if(treeOrigen.getSelectionModel().getSelectedItem().getParent().equals(treeOrigen.getRoot())){
                 //TreeView<String> tree = (TreeView) event.getSource();
           
                 Dragboard dragBoard = treeOrigen.startDragAndDrop(TransferMode.MOVE);
                     ClipboardContent content = new ClipboardContent();
                     content.put(DataFormat.PLAIN_TEXT, treeOrigen.getSelectionModel().getSelectedItem().toString());
                     dragBoard.setContent(content);
+                 }
                     event.consume();
             }
         };
@@ -97,7 +95,10 @@ public class InicioController implements Initializable {
                             event.acceptTransferModes(TransferMode.MOVE);
                         }
                     }*/
+                if(treeOrigen.getSelectionModel().getSelectedItem().getParent().equals(treeOrigen.getRoot()))
+                {
                  event.acceptTransferModes(TransferMode.MOVE);
+                }
                     event.consume();
             }
         };
@@ -262,10 +263,6 @@ public class InicioController implements Initializable {
             }
         };
    */
-<<<<<<< HEAD
-=======
-   
->>>>>>> origin/master
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    

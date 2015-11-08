@@ -25,6 +25,17 @@ public class Camion implements java.io.Serializable {
         this.espacioDisp = capacidad;
     }
     
+    public boolean verificaEspacioDestino(Sucursal s,int idPedido){
+        Pedido p = s.getPedidoPendiente(idPedido);
+        if(pedidosCargados.size()>0){
+            if(p.getSucDestino() != pedidosCargados.get(0).getSucDestino() ||
+                    espacioDisp < p.getVol()){
+                return false;
+            }
+        }
+        return true;
+    }
+    
     public LinkedList<Pedido> getPedidos(){
         return this.pedidosCargados;
     }

@@ -108,14 +108,21 @@ public class Sucursal implements java.io.Serializable{
     
     public void recibirCamionCargado(Camion c){
         camionesPend.add(c);
+        for(Pedido p : c.getPedidos()){
+            p.setEstado(Estado.En_destino);
+        }
     }
     
     public void recibirCamionDescargado(Camion c){
-        camionesPend.add(c);
+        camionesDisp.add(c);
     }
 
     public void despacharCamion(){
         camionesPend.remove(0);
+    }
+    
+    public void enviarCamion(Camion c){
+        camionesDisp.remove(c);
     }
     
     //Bajar pedido del camion y pasarlo a la lista de pedidos en destino
@@ -155,8 +162,10 @@ public class Sucursal implements java.io.Serializable{
     
     //retorna true si encontró el camion entre sus camiones pendientes y false de lo contrario
     public boolean descargarCamion (Camion camion){
-        if (this.camionesPend.contains(camion)){
-            this.pedidosEnDest.addAll(camion.descargarPedidos());
+        if (camionesPend.contains(camion)){
+            pedidosEnDest.addAll(camion.descargarPedidos());
+            camionesPend.remove(camion);
+            camionesDisp.add(camion);
             return true;
         }
         else return false;

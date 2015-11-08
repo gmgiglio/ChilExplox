@@ -29,6 +29,7 @@ public class Pedido extends Servicio implements java.io.Serializable{
         this.sucOrigen = sucOrigen;
         this.sucDestino = sucDestino;
         this.costoEnvio = 0;
+        this.volumen = 0;
         this.cliente = cliente;
         this.estado = Estado.En_origen;
         abierto = true;
@@ -93,8 +94,8 @@ public class Pedido extends Servicio implements java.io.Serializable{
     public boolean agregarEnc(Encomienda encomienda){
         if(abierto){
             encomiendas.add(encomienda);
-            this.peso += peso;
-            this.volumen += volumen;
+            this.peso += encomienda.getPeso();
+            this.volumen += encomienda.getVol();
             this.costoEnvio += encomienda.getCostoEnvio();
             setPrioridad();
             

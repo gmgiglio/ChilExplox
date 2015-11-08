@@ -112,6 +112,7 @@ public class InicioController implements Initializable {
                         Main.getUsuarioActual().cargarPed(camionActual, Integer.parseInt(idPedido[1]));
                     else 
                         Main.getUsuarioActual().descargarPed(camionActual, Integer.parseInt(idPedido[1]));
+                    espDispCamAct.setText(Integer.toString(camionActual.getEspDisp()));
 
                     event.consume();
             }
@@ -480,7 +481,7 @@ public class InicioController implements Initializable {
      
      public TreeItem<String> listarPedidos(LinkedList<Pedido> pedidos){
          TreeItem<String> dummyRoot = new TreeItem<>("root");
-         TreeItem<String> encomiendas = new TreeItem<>("Encomiendas");
+         
          
          for(Pedido p : pedidos){
              TreeItem<String> child = new TreeItem<>("Pedido #" + Integer.toString(p.getIdPedido()));
@@ -491,6 +492,7 @@ public class InicioController implements Initializable {
              child.getChildren().add(new TreeItem<>("Cliente: " + p.getCliente().getNombre()));
              child.getChildren().add(new TreeItem<>("Peso: " + p.getPeso() + " g"));
              child.getChildren().add(new TreeItem<>("Volumen aprox.: " + p.getVol()+ " cm^3"));
+             TreeItem<String> encomiendas = new TreeItem<>("Encomiendas");
              child.getChildren().add(encomiendas);
              for(Encomienda e : p.getEncomiendas()){
                  TreeItem<String> encomienda = new TreeItem<>(e.getDescripcion());

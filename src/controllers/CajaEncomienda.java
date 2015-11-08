@@ -20,14 +20,14 @@ import javafx.scene.text.Text;
  *
  * @author gianfrancogiglio
  */
-
+    
 
 
 public class CajaEncomienda extends HBox{
 
     
     @FXML
-    private Text textDesc;
+    private Text textDesc,costo;
     @FXML
     private Button botonEliminar;
     
@@ -48,6 +48,8 @@ public class CajaEncomienda extends HBox{
         }
          
          textDesc.setText(encomienda.getDescripcion());
+         String costo = "$ "+encomienda.getCostoEnvio();
+         this.costo.setText(costo);
          
     }
     

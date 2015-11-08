@@ -425,7 +425,8 @@ public class InicioController implements Initializable {
         camionesDisp.setOnMouseClicked(new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            accionCamion.setText("Enviar Camion");
+            accionCamion.setVisible(true);
+            accionCamion.setText("Enviar Camión");
             
             camionActual = null;
             String patenteCamionActual = (String)camionesDisp.getSelectionModel().getSelectedItem().getValue();
@@ -465,7 +466,8 @@ public class InicioController implements Initializable {
     camionesDesc.setOnMouseClicked(new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            accionCamion.setText("Descargar Camion");
+            accionCamion.setVisible(true);
+            accionCamion.setText("Descargar Camión");
             camionActual = null;
             String patenteCamionSelec = (String)camionesDesc.getSelectionModel().getSelectedItem().getValue();
             Sucursal sucActual = Main.getUsuarioActual().getSucActual();
@@ -552,7 +554,7 @@ public class InicioController implements Initializable {
          modificar.setVisible(false);
          Text sucursalText = (Text) scene.lookup("#stext");
          sucursalText.setText("");
-         listEncomiendas.getItems().clear();
+         listEncomiendas.getItems().clear();    
          comboBoxClientes.getItems().clear();
          cargarNombresClientes();
 

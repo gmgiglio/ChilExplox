@@ -44,9 +44,9 @@ public class AgregarEncomiendaController extends VBox {
         }
     }
     
-    private void aPeso(){ textoAlertaPeso.setText("Peso invalido"); }
-    private void aVol(){ textoAlertaVolumen.setText("Volumen invalido"); }
-    private void aPri(){ textoAlertaPrioridad.setText("Prioridad invalida");}
+    private void aPeso(){ textoAlertaPeso.setText("Peso inválido"); }
+    private void aVol(){ textoAlertaVolumen.setText("Volumen inválido"); }
+    private void aPri(){ textoAlertaPrioridad.setText("Prioridad inválida");}
     
     private void limpiar(){
        descField.setText("");

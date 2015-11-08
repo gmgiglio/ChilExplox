@@ -82,7 +82,7 @@
                                           </HBox>
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <BorderPane prefHeight="100.0" prefWidth="150.0">
+                                                <BorderPane prefHeight="80.0" prefWidth="173.0">
                                                    <right>
                                                       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sucursal de destino:" wrappingWidth="124.34986877441406" BorderPane.alignment="CENTER" />
                                                    </right>
@@ -105,10 +105,10 @@
                                                 <BorderPane prefHeight="148.0" prefWidth="41.0" />
                                                 <BorderPane prefHeight="148.0" prefWidth="327.0">
                                                    <center>
-                                                      <ListView fx:id="listEncomiendas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="131.0" prefWidth="323.0" BorderPane.alignment="CENTER" />
+                                                      <ListView fx:id="listEncomiendas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="275.0" BorderPane.alignment="CENTER" />
                                                    </center>
                                                    <top>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Encomiendas:" wrappingWidth="282.2235412597656" BorderPane.alignment="CENTER" />
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Encomiendas:" wrappingWidth="276.2235412597656" BorderPane.alignment="CENTER" />
                                                    </top>
                                                 </BorderPane>
                                                 <BorderPane prefHeight="148.0" prefWidth="62.0">
@@ -192,12 +192,12 @@
                                  <children>
                                     <TitledPane animated="false" collapsible="false" prefHeight="270.0" prefWidth="360.0" text="Pedidos Pendientes">
                                       <content>
-                                        <AnchorPane fx:id="anchorPedPend" minHeight="0.0" minWidth="0.0" prefHeight="515.0" prefWidth="360.0" />
+                                        <AnchorPane fx:id="anchorPedPend" minHeight="0.0" minWidth="0.0" prefHeight="243.0" prefWidth="360.0" />
                                       </content>
                                     </TitledPane>
                                     <TitledPane animated="false" collapsible="false" prefHeight="270.0" prefWidth="360.0" text="Pedidos En Destino">
                                        <content>
-                                          <AnchorPane fx:id="anchorPedDest" minHeight="0.0" minWidth="0.0" prefHeight="515.0" prefWidth="360.0" />
+                                          <AnchorPane fx:id="anchorPedDest" minHeight="0.0" minWidth="0.0" prefHeight="243.0" prefWidth="360.0" />
                                        </content>
                                     </TitledPane>
                                  </children>
@@ -232,7 +232,11 @@
                                                       </VBox>
                                                    </center>
                                                    <right>
-                                                      <Button fx:id="accionCamion" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER_LEFT" />
+                                                      <BorderPane prefHeight="98.0" prefWidth="129.0" BorderPane.alignment="CENTER">
+                                                         <center>
+                                                            <Button fx:id="accionCamion" mnemonicParsing="false" prefHeight="55.0" prefWidth="116.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" textAlignment="CENTER" visible="false" wrapText="true" BorderPane.alignment="CENTER" />
+                                                         </center>
+                                                      </BorderPane>
                                                    </right>
                                                 </BorderPane>
                                                 <AnchorPane fx:id="anchorPedCar" prefHeight="415.0" prefWidth="360.0" />
@@ -246,12 +250,12 @@
                                  <children>
                                     <TitledPane animated="false" collapsible="false" maxHeight="260.0" prefHeight="460.0" prefWidth="360.0" text="Camiones Disponibles">
                                       <content>
-                                        <AnchorPane fx:id="anchorCamDisp" minHeight="0.0" minWidth="0.0" prefHeight="920.0" prefWidth="360.0" />
+                                        <AnchorPane fx:id="anchorCamDisp" minHeight="0.0" minWidth="0.0" prefHeight="233.0" prefWidth="360.0" />
                                       </content>
                                     </TitledPane>
                                     <TitledPane animated="false" collapsible="false" prefHeight="460.0" prefWidth="360.0" text="Camiones por Descargar">
                                       <content>
-                                        <AnchorPane fx:id="anchorCamDesc" minHeight="0.0" minWidth="0.0" prefHeight="460.0" prefWidth="360.0" />
+                                        <AnchorPane fx:id="anchorCamDesc" minHeight="0.0" minWidth="0.0" prefHeight="433.0" prefWidth="360.0" />
                                       </content>
                                     </TitledPane>
                                  </children>

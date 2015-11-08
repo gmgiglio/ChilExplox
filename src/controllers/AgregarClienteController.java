@@ -7,14 +7,12 @@ package controllers;
 
 import chilexplox.*;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.Arrays;
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -29,19 +27,8 @@ import javafx.scene.text.Text;
 public class AgregarClienteController extends VBox {
 
      @FXML
-    private TextField nombreField;
-      @FXML
-    private TextField apellidosField;
-      @FXML
-    private TextField calleField;
-      @FXML
-    private TextField numeroField;
-     @FXML
-    private TextField comunaField;
-     @FXML
-    private TextField ciudadField;
-     @FXML
-    private TextField telefonoField;
+    private TextField nombreField,telefonoField,ciudadField,comunaField,numeroField,calleField,apellidosField;
+
      @FXML
     private Button agregarCliente;
       @FXML
@@ -80,6 +67,8 @@ public class AgregarClienteController extends VBox {
     public void setHandlerEncomienda(EventHandler eh){
         handlerEncomienda = eh;
     }
+    
+    private List<TextField> fields;
      
     public AgregarClienteController(){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/AgregarCliente.fxml"));
@@ -91,6 +80,9 @@ public class AgregarClienteController extends VBox {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+         
+         TextField[] f = { nombreField,apellidosField,calleField,numeroField,comunaField, ciudadField,telefonoField };
+         fields = Arrays.asList(f);
     
     }
     private EventHandler handlerEncomienda;
@@ -121,6 +113,14 @@ public class AgregarClienteController extends VBox {
     }
      public String getTelefono(){
         return telefonoField.getText();
+    }
+     
+    public void handlerEnterTextField(ActionEvent e){
+          
+        TextField fieldActual = (TextField) e.getSource();
+        int index = fields.indexOf(fieldActual) + 1;
+        if(index < fields.size()) fields.get(index).requestFocus();
+        else agregarCliente.requestFocus();
     }
     
      

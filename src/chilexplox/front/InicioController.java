@@ -54,16 +54,17 @@ public class InicioController implements Initializable {
         @FXML
     private Text patenteCamAct, capacidadCamAct, espDispCamAct, estadoCamAct,advertencia,presupuesto;
         @FXML
-    private AnchorPane anchorPedPend, anchorPedCar, anchorCamDisp, anchorCamDesc;
+    private AnchorPane anchorPedPend, anchorPedCar, anchorCamDisp, anchorCamDesc, anchorPedDest;
     
     private Menu menuSucursal;
     private AgregarEncomiendaController agregarEncomiendaCon;
 
     private AgregarClienteController agregarClienteCon;
 
-    private TreeView<String> treeOrigen = new TreeView<String>(), pedidosPend = new TreeView<String>(),
+    private TreeView<String> treeOrigen = new TreeView<String>(), pedidosPend = new TreeView<String>(), 
            pedidosCar = new TreeView<String>(), camionesDisp = new TreeView<String>(),
-           camionesDesc = new TreeView<String>(), treeDestino=new TreeView<String>();
+           camionesDesc = new TreeView<String>(), treeDestino=new TreeView<String>(),
+           pedidosDest = new TreeView<String>();
 
     private TreeItem aMover;
     
@@ -411,6 +412,9 @@ public class InicioController implements Initializable {
         pedidosPend.setOnDragDetected(dragDetected);
         pedidosPend.setOnDragOver(dragOver);
         pedidosPend.setOnDragDropped(dragDropped);
+        
+        pedidosDest = new TreeView<>(listarPedidos(sucActual.getPedidosEnDest()));
+        amononarTreeView(anchorPedDest, pedidosDest);
         
         camionesDisp = new TreeView<>(listarCamiones(sucActual.getCamionesDisp()));
         amononarTreeView(anchorCamDisp, camionesDisp);

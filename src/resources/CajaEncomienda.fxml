@@ -7,13 +7,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root id="AnchorPane" prefHeight="42.0" prefWidth="295.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="AnchorPane" prefHeight="0.0" prefWidth="295.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text fx:id="textDesc" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="262.21875">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Button fx:id="botonEliminar" mnemonicParsing="false" onAction="#botonApretado" text="-" />
+      <Text fx:id="textDesc" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="262.21875" />
+      <Button fx:id="botonEliminar" mnemonicParsing="false" onAction="#botonApretado" prefHeight="14.0" prefWidth="25.0" text="-" />
    </children>
 </fx:root>

@@ -113,7 +113,7 @@ public class AgregarEncomiendaController extends VBox {
         fields = Arrays.asList(f);
     }   
     
-    
+    //true si esta todo en orden y false si hay error
     public boolean actualizarAlertas(){
         limpiarAlertas();
         
@@ -132,7 +132,7 @@ public class AgregarEncomiendaController extends VBox {
             textPresupuesto.setText(Integer.toString(p));
         }
         
-        return error;
+        return !error;
         
     }
     

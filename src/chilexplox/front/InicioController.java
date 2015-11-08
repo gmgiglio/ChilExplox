@@ -51,7 +51,8 @@ public class InicioController implements Initializable {
     private ListView pedidosPendientes, pedidosCargados, camionesDisponibles, camionesPorDescargar, listEncomiendas;
         @FXML
     private ComboBox comboBoxClientes, comboBoxSucursales;
-        
+        @FXML
+    private VBox vBoxConfPed;
         @FXML
     private Text patenteCamAct, capacidadCamAct, espDispCamAct, estadoCamAct,advertencia,presupuesto;
         @FXML
@@ -493,6 +494,13 @@ public class InicioController implements Initializable {
                     actualizarPestanaAdm();
                 }
             });
+            }
+        });
+    
+    anchorPedDest.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            vBoxConfPed.setVisible(true);
             }
         });
      }

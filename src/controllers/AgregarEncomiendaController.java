@@ -131,7 +131,6 @@ public class AgregarEncomiendaController extends VBox {
             int p = Encomienda.calcularPresupuesto(peso, volumen, prioridad);
             textPresupuesto.setText(Integer.toString(p));
         }
-        
         return !error;
         
     }

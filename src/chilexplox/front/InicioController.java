@@ -93,10 +93,9 @@ public class InicioController implements Initializable {
                 String valueToMove = event.getDragboard().getString();
                 TreeItem<String> itemToMove = search(treeOrigen.getRoot(), valueToMove);
                 String[] idPedido = itemToMove.getValue().split("#");
-                if(treeOrigen.getSelectionModel().getSelectedItem().getParent().equals(treeOrigen.getRoot()) &&
-                        camionActual.verificaEspacioDestino(Main.getUsuarioActual().getSucActual(), Integer.parseInt(idPedido[1]))
-)
+                if(treeOrigen.getSelectionModel().getSelectedItem().getParent().equals(treeOrigen.getRoot()))
                 {
+                    if(treeOrigen != pedidosPend || camionActual.verificaEspacioDestino(Main.getUsuarioActual().getSucActual(), Integer.parseInt(idPedido[1])))
                  event.acceptTransferModes(TransferMode.MOVE);
                 }
                     event.consume();

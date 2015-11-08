@@ -38,9 +38,13 @@ public class Camion implements java.io.Serializable {
     }
     
     public void cargarPedido(Pedido p){
-        p.setEstado(Estado.En_transito);
         pedidosCargados.add(p);
         espacioDisp -= p.getVol();
+    }
+    
+    public void descargarPedido(Pedido p){
+        pedidosCargados.remove(p);
+        espacioDisp += p.getVol();
     }
     
     public void cargarPedidos(LinkedList<Pedido> pedidos){
@@ -49,7 +53,7 @@ public class Camion implements java.io.Serializable {
         }
     }
     
-    public LinkedList<Pedido> descargarPedios(){
+    public LinkedList<Pedido> descargarPedidos(){
         LinkedList<Pedido> result = new LinkedList<Pedido>(this.pedidosCargados);
         this.pedidosCargados.clear();
         return result;
@@ -62,6 +66,15 @@ public class Camion implements java.io.Serializable {
         return patente;
     }
     
-    
+    public Pedido getPedidoCargado(Integer id){
+        for(int i=0; i<pedidosCargados.size();i++)
+        {
+            if(pedidosCargados.get(i).getIdPedido()==id)
+                return pedidosCargados.get(i);
+        }
+        
+        return null;
+        
+    }
     
 }

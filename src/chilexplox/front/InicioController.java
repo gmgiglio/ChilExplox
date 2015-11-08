@@ -107,7 +107,11 @@ public class InicioController implements Initializable {
                     // Add to new parent.
                     treeDestino.getRoot().getChildren().add(itemToMove);
 
-                    //treeDestino.getRoot().setExpanded(true);
+                    String[] idPedido = itemToMove.getValue().split("#");
+                    if(treeOrigen.getParent() == anchorPedPend)
+                        Main.getUsuarioActual().cargarPed(camionActual, Integer.parseInt(idPedido[1]));
+                    else 
+                        Main.getUsuarioActual().descargarPed(camionActual, Integer.parseInt(idPedido[1]));
 
                     event.consume();
             }
@@ -451,9 +455,6 @@ public class InicioController implements Initializable {
             if(camionSelec.getPedidos() != null){
                 pedidosCar = new TreeView<>(listarPedidos(camionSelec.getPedidos()));
                 amononarTreeView(anchorPedCar, pedidosCar);
-                pedidosCar.setOnDragDetected(dragDetected);
-                pedidosCar.setOnDragOver(dragOver);
-                pedidosCar.setOnDragDropped(dragDropped);
             }
             patenteCamAct.setText(camionSelec.getPatente());
             capacidadCamAct.setText(Integer.toString(camionSelec.getCapacidad()));

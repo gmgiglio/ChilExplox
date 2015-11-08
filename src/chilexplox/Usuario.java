@@ -49,9 +49,18 @@ public class Usuario implements java.io.Serializable {
         return sucursalActual.cerrarPedido();
     }
     
-    public void cargarPed(Camion c, Pedido p){
+    public void cargarPed(Camion c, int idPed){
+        Pedido p = sucursalActual.getPedidoPendiente(idPed);
         sucursalActual.cargarPedido(p);
+        p.setEstado(Estado.En_transito);
         c.cargarPedido(p);
+    }
+    
+    public void descargarPed(Camion c, int idPed){
+        Pedido p = c.getPedidoCargado(idPed);
+        sucursalActual.agregarPedido(p);
+        p.setEstado(Estado.En_origen);
+        c.descargarPedido(p);
     }
     
     

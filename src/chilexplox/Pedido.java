@@ -25,7 +25,6 @@ public class Pedido extends Servicio implements java.io.Serializable{
     
     public Pedido(Sucursal sucOrigen, Sucursal sucDestino, Cliente cliente){
         super(0, 0, 0.0);
-        Empresa.nuevoPedido();
         this.idPedido = Empresa.getNroPedidos();
         this.sucOrigen = sucOrigen;
         this.sucDestino = sucDestino;
@@ -44,6 +43,7 @@ public class Pedido extends Servicio implements java.io.Serializable{
         if (getCliente() != null && !encomiendas.isEmpty()){
             abierto = false;
             tiempoCierre = new Date();
+            Empresa.nuevoPedido();
             return true;
         }
         else {

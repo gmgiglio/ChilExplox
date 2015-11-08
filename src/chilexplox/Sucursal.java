@@ -74,7 +74,7 @@ public class Sucursal implements java.io.Serializable{
         return new LinkedList(pedidosEquivocados);
     }
     
-    public Pedido getPedido(Integer id){
+    public Pedido getPedidoPendiente(Integer id){
         for(int i=0; i<pedidosPend.size();i++)
         {
             if(pedidosPend.get(i).getIdPedido()==id)
@@ -156,7 +156,7 @@ public class Sucursal implements java.io.Serializable{
     //retorna true si encontró el camion entre sus camiones pendientes y false de lo contrario
     public boolean descargarCamion (Camion camion){
         if (this.camionesPend.contains(camion)){
-            this.pedidosEnDest.addAll(camion.descargarPedios());
+            this.pedidosEnDest.addAll(camion.descargarPedidos());
             return true;
         }
         else return false;

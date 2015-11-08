@@ -48,9 +48,10 @@ public class InicioController implements Initializable {
         @FXML
     private HBox pantallaBuzonEntrada,pantallaMensajesEnviados;
         @FXML
-    private ListView pedidosPendientes, pedidosCargados, camionesDisponibles, camionesPorDescargar;
+    private ListView pedidosPendientes, pedidosCargados, camionesDisponibles, camionesPorDescargar, listEncomiendas;
         @FXML
-    private ComboBox comboBoxClientes, comboBoxSucursales, comboBoxEncomiendas;
+    private ComboBox comboBoxClientes, comboBoxSucursales;
+        
         @FXML
     private Text patenteCamAct, capacidadCamAct, espDispCamAct, estadoCamAct,advertencia,presupuesto;
         @FXML
@@ -552,8 +553,7 @@ public class InicioController implements Initializable {
          modificar.setVisible(false);
          Text sucursalText = (Text) scene.lookup("#stext");
          sucursalText.setText("");
-         comboBoxEncomiendas.getItems().clear();
-         comboBoxEncomiendas.setPromptText("");
+         listEncomiendas.getItems().clear();
          comboBoxClientes.getItems().clear();
          cargarNombresClientes();
 
@@ -569,10 +569,10 @@ public class InicioController implements Initializable {
              CajaEncomienda caja = (CajaEncomienda) e.getSource();
              Encomienda enc = caja.getEncomienda();
              Main.getUsuarioActual().getSucActual().getPedidoAbierto().eliminarEncomienda(enc);
-             comboBoxEncomiendas.getItems().remove(caja);
+             listEncomiendas.getItems().remove(caja);
          });
-         comboBoxEncomiendas.getItems().add(c);
-         comboBoxEncomiendas.setPromptText(encomienda.getDescripcion());
+         listEncomiendas.getItems().add(c);
+         //comboBoxEncomiendas.setPromptText(encomienda.getDescripcion());
          presupuesto.setText(""+Main.getUsuarioActual().getSucActual().getPedidoAbierto().getCostoEnvio());
      }
             

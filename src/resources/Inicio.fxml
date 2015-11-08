@@ -100,19 +100,18 @@
                                                 </BorderPane>
                                              </children>
                                           </HBox>
-                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                          <HBox prefHeight="168.0" prefWidth="500.0">
                                              <children>
-                                                <BorderPane prefHeight="100.0" prefWidth="150.0">
-                                                   <right>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Encomiendas:" BorderPane.alignment="CENTER" />
-                                                   </right>
-                                                </BorderPane>
-                                                <BorderPane prefHeight="98.0" prefWidth="253.0">
+                                                <BorderPane prefHeight="148.0" prefWidth="41.0" />
+                                                <BorderPane prefHeight="148.0" prefWidth="327.0">
                                                    <center>
-                                                      <ComboBox id="cbe" fx:id="comboBoxEncomiendas" prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
+                                                      <ListView fx:id="listEncomiendas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="131.0" prefWidth="323.0" BorderPane.alignment="CENTER" />
                                                    </center>
+                                                   <top>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Encomiendas:" wrappingWidth="282.2235412597656" BorderPane.alignment="CENTER" />
+                                                   </top>
                                                 </BorderPane>
-                                                <BorderPane prefHeight="100.0" prefWidth="82.0">
+                                                <BorderPane prefHeight="148.0" prefWidth="62.0">
                                                    <center>
                                                       <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
                                                          <children>

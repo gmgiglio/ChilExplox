@@ -34,6 +34,9 @@ public class CajaEncomienda extends HBox{
     private Encomienda encomienda;
     
     public CajaEncomienda (Encomienda encomienda){
+        
+        this.encomienda = encomienda;
+       
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/CajaEncomienda.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

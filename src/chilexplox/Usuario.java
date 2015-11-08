@@ -17,24 +17,24 @@ public class Usuario implements java.io.Serializable {
     
     private String nombreUsuario;
     private String contrasena;
-    private Sucursal sucursalActual;
+    private Sucursal sucActual;
     
     private final LinkedList<RegistroMensaje> registroMensajesEnviados = new LinkedList();
     
     public Usuario(String nombreUsuario, String contrasena){
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
-        sucursalActual = null;
+        sucActual = null;
     }
     
     public Pedido crearPed(Sucursal sucDestino, Cliente cliente){
-        sucursalActual.setPedidoAbierto(new Pedido(sucursalActual, sucDestino, cliente));
-        return sucursalActual.getPedidoAbierto();
+        sucActual.setPedidoAbierto(new Pedido(sucActual, sucDestino, cliente));
+        return sucActual.getPedidoAbierto();
     }
     
     public Pedido crearPed(Sucursal sucDestino){
-        sucursalActual.setPedidoAbierto(new Pedido(sucursalActual, sucDestino, null));
-        return sucursalActual.getPedidoAbierto();
+        sucActual.setPedidoAbierto(new Pedido(sucActual, sucDestino, null));
+        return sucActual.getPedidoAbierto();
     }
     
     public void agregarEnc(Pedido p, int peso, int volumen, String dirDestino, String desc){
@@ -46,19 +46,19 @@ public class Usuario implements java.io.Serializable {
     }
     
     public boolean cerrarPed(){
-        return sucursalActual.cerrarPedido();
+        return sucActual.cerrarPedido();
     }
     
     public void cargarPed(Camion c, int idPed){
-        Pedido p = sucursalActual.getPedidoPendiente(idPed);
-        sucursalActual.cargarPedido(p);
+        Pedido p = sucActual.getPedidoPendiente(idPed);
+        sucActual.cargarPedido(p);
         p.setEstado(Estado.En_transito);
         c.cargarPedido(p);
     }
     
     public void descargarPed(Camion c, int idPed){
         Pedido p = c.getPedidoCargado(idPed);
-        sucursalActual.agregarPedido(p);
+        sucActual.agregarPedido(p);
         p.setEstado(Estado.En_origen);
         c.descargarPedido(p);
     }
@@ -71,7 +71,7 @@ public class Usuario implements java.io.Serializable {
     //true si se logro enviar pedido (siempre que el pedido estubiera abierto y el hay camiones disponibles)
     public boolean enviarPed(Pedido p){
         Camion c = getSucActual().getCamionesDisp().get(0);
-        if(!p.getAbierto() && !sucursalActual.getCamionesDisp().isEmpty()){
+        if(!p.getAbierto() && !sucActual.getCamionesDisp().isEmpty()){
             c.cargarPedido(p);
             return true;
         }
@@ -109,12 +109,12 @@ public class Usuario implements java.io.Serializable {
     }
     
     public void recibirPed(){
-        if(getSucActual().getCamionesPend() != null){
+        if(sucActual.getCamionesPend() != null){
             //Pedidos dentro del camion a descargar
-            LinkedList<Pedido> pedidosADesc = getSucActual().getCamionesPend().get(0).getPedidos();
+            LinkedList<Pedido> pedidosADesc = sucActual.getCamionesPend().get(0).getPedidos();
             Sucursal sucOrigen = pedidosADesc.get(0).getSucOrigen();
             for(Pedido p : pedidosADesc){
-                getSucActual().bajarPedido(p);
+                sucActual.bajarPedido(p);
             }
             Camion camionDescargado = getSucActual().getCamionesPend().get(0);
             getSucActual().despacharCamion();
@@ -154,17 +154,17 @@ public class Usuario implements java.io.Serializable {
     }
 
     /**
-     * @param sucursalActual the sucursalActual to set
+     * @param sucursalActual the sucActual to set
      */
     public void setSucActual(Sucursal sucursalActual) {
-        this.sucursalActual = sucursalActual;
+        this.sucActual = sucursalActual;
     }
 
     /**
-     * @return the sucursalActual
+     * @return the sucActual
      */
     public Sucursal getSucActual() {
-        return sucursalActual;
+        return sucActual;
     }
     
     public boolean contrasenaCorrecta(String clave){

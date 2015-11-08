@@ -53,7 +53,7 @@
                   </BorderPane>
                   <BorderPane prefHeight="69.0" prefWidth="416.0">
                      <center>
-                        <TextField fx:id="pesoField" maxWidth="350.0" onAction="#handlerEnterTextField" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                        <TextField fx:id="pesoField" maxWidth="350.0" onAction="#handlerEnterPesoField" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>
@@ -73,7 +73,7 @@
                   </BorderPane>
                   <BorderPane prefHeight="39.0" prefWidth="416.0">
                      <center>
-                        <TextField fx:id="volumenField" maxWidth="350.0" onAction="#handlerEnterTextField" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                        <TextField fx:id="volumenField" maxWidth="350.0" onAction="#handlerEnterVolumenField" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>
@@ -174,29 +174,29 @@
                   </BorderPane>
                </children>
             </HBox>
-            <HBox maxHeight="50.0" prefHeight="33.0" prefWidth="567.0">
+            <HBox maxHeight="53.0" prefHeight="53.0" prefWidth="567.0">
                <children>
-                  <BorderPane prefHeight="100.0" prefWidth="150.0" />
-                  <BorderPane prefHeight="43.0" prefWidth="460.0">
+                  <BorderPane minWidth="-Infinity" prefHeight="39.0" prefWidth="150.0" />
+                  <BorderPane prefHeight="39.0" prefWidth="189.0">
                <center>
-                  <Text fx:id="textPresupuesto" fill="#1770c3" strokeType="OUTSIDE" strokeWidth="0.0" text="0" BorderPane.alignment="CENTER">
+                  <Text fx:id="textPresupuesto" fill="#1770c3" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="157.86249542236328" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Text>
                </center>
                <left>
-                  <Text fill="#1772c2" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" BorderPane.alignment="CENTER">
+                  <Text fill="#1772c2" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" wrappingWidth="28.2109375" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Text>
-               </left></BorderPane>
-                  <BorderPane prefHeight="39.0" prefWidth="397.0" />
+               </left>
+            </BorderPane>
 
                   <BorderPane prefHeight="100.0" prefWidth="381.0">
                      <left>
-                        <Button fx:id="crearEncomienda" mnemonicParsing="false" onAction="#botonApretado" prefHeight="39.0" prefWidth="163.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Crear Encomienda" BorderPane.alignment="CENTER" />
+                        <Button fx:id="crearEncomienda" mnemonicParsing="false" onAction="#botonApretado" prefHeight="39.0" prefWidth="185.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Crear Encomienda" BorderPane.alignment="CENTER" />
                      </left>
                   </BorderPane>
                </children>

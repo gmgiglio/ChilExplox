@@ -14,6 +14,6 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="botonEliminar" mnemonicParsing="false" text="-" />
+      <Button fx:id="botonEliminar" mnemonicParsing="false" onAction="#botonApretado" text="-" />
    </children>
 </fx:root>

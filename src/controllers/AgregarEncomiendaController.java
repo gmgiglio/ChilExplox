@@ -28,25 +28,17 @@ import javafx.scene.text.Text;
 public class AgregarEncomiendaController extends VBox {
     
     @FXML
-    private TextField descField,pesoField,volumenField,prioridadField,calleField,numeroField,comunaField,ciudadField;
+    protected TextField descField,pesoField,volumenField,prioridadField,calleField,numeroField,comunaField,ciudadField;
      @FXML
-    private Button crearEncomienda;
-    @FXML
-    private ComboBox comboBoxEncomiendas;
+    protected Button crearEncomienda;
+
     @FXML
     private Text idPedido,presupuesto,textoAlertaPeso,textoAlertaVolumen,textoAlertaPrioridad,textPresupuesto;
 
     
     public void botonApretado(ActionEvent event) {
-        limpiarAlertas();
-        boolean error = false;
-        try{ getPeso();} 
-        catch(Exception e){ aPeso(); error = true; }
-        try{ getVolumen();}
-        catch(Exception e){  aVol(); error = true;}
-        try{ getPrioridad();}
-        catch(Exception e){ aPri(); error = true;}
-        if(!error) {
+        
+        if(actualizarAlertas()) {
             handlerEncomienda.handle(new ActionEvent(this,null));
             limpiar();
         }
@@ -122,25 +114,49 @@ public class AgregarEncomiendaController extends VBox {
     }   
     
     
-    public void actualizarPresupuesto(){
+    public boolean actualizarAlertas(){
+        limpiarAlertas();
         
-        try{ 
-            int p = Encomienda.calcularPresupuesto(getPeso(), getVolumen(), getPrioridad());
+        boolean error = false;
+        int peso = 0, volumen = 0, prioridad = 0;
+        
+        try{ peso = getPeso();} 
+        catch(Exception e){ aPeso(); error = true; }
+        try{ volumen = getVolumen();}
+        catch(Exception e){  aVol(); error = true;}
+        try{ prioridad = getPrioridad();}
+        catch(Exception e){ aPri(); error = true;}
+        
+        if(!error){
+            int p = Encomienda.calcularPresupuesto(peso, volumen, prioridad);
             textPresupuesto.setText(Integer.toString(p));
         }
-        catch(Exception ex){ }
+        
+        return error;
+        
     }
     
     
     
     
     public void handlerEnterTextField(ActionEvent e){
-        actualizarPresupuesto();
-          
+
         TextField fieldActual = (TextField) e.getSource();
         int index = fields.indexOf(fieldActual) + 1;
         if(index < fields.size()) fields.get(index).requestFocus();
         else crearEncomienda.requestFocus();
+    }
+    
+    public void handlerEnterPesoField(ActionEvent event){ 
+        try{ getPeso();}
+        catch(Exception e){ aPeso(); }
+        handlerEnterTextField(event);
+    }
+    
+    public void handlerEnterVolumenField(ActionEvent event){ 
+        try{ getVolumen();}
+        catch(Exception e){ aVol(); }
+        handlerEnterTextField(event);
     }
     
 }

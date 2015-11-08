@@ -122,7 +122,5 @@ public class AgregarClienteController extends VBox {
         if(index < fields.size()) fields.get(index).requestFocus();
         else agregarCliente.requestFocus();
     }
-    
-     
-     
+
 }

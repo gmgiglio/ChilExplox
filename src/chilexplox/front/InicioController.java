@@ -88,7 +88,12 @@ public class InicioController implements Initializable {
    
      private EventHandler<DragEvent> dragOver = new EventHandler<DragEvent>() {
             public void handle(DragEvent event) {
-                if(treeOrigen.getSelectionModel().getSelectedItem().getParent().equals(treeOrigen.getRoot()))
+                String valueToMove = event.getDragboard().getString();
+                TreeItem<String> itemToMove = search(treeOrigen.getRoot(), valueToMove);
+                String[] idPedido = itemToMove.getValue().split("#");
+                if(treeOrigen.getSelectionModel().getSelectedItem().getParent().equals(treeOrigen.getRoot()) &&
+                        camionActual.verificaEspacioDestino(Main.getUsuarioActual().getSucActual(), Integer.parseInt(idPedido[1]))
+)
                 {
                  event.acceptTransferModes(TransferMode.MOVE);
                 }
@@ -97,24 +102,25 @@ public class InicioController implements Initializable {
         };
      private EventHandler<DragEvent> dragDropped = new EventHandler<DragEvent>() {
             public void handle(DragEvent event) {
-                   
-                    treeDestino = (TreeView) event.getGestureTarget();
-
-                   String valueToMove = event.getDragboard().getString();
+                    String valueToMove = event.getDragboard().getString();
                     TreeItem<String> itemToMove = search(treeOrigen.getRoot(), valueToMove);
-                    // Remove from former parent.
-                    treeOrigen.getRoot().getChildren().remove(itemToMove);
-                    // Add to new parent.
-                    treeDestino.getRoot().getChildren().add(itemToMove);
-
                     String[] idPedido = itemToMove.getValue().split("#");
-                    if(treeOrigen.getParent() == anchorPedPend)
-                        Main.getUsuarioActual().cargarPed(camionActual, Integer.parseInt(idPedido[1]));
-                    else 
-                        Main.getUsuarioActual().descargarPed(camionActual, Integer.parseInt(idPedido[1]));
-                    espDispCamAct.setText(Integer.toString(camionActual.getEspDisp()));
+                    //if(camionActual.verificaEspacioDestino(Main.getUsuarioActual().getSucActual(), Integer.parseInt(idPedido[1]))){
+                        treeDestino = (TreeView) event.getGestureTarget();
+                        // Remove from former parent.
+                        treeOrigen.getRoot().getChildren().remove(itemToMove);
+                        // Add to new parent.
+                        treeDestino.getRoot().getChildren().add(itemToMove);
 
-                    event.consume();
+
+                        if(treeOrigen.getParent() == anchorPedPend)
+                            Main.getUsuarioActual().cargarPed(camionActual, Integer.parseInt(idPedido[1]));
+                        else 
+                            Main.getUsuarioActual().descargarPed(camionActual, Integer.parseInt(idPedido[1]));
+                        espDispCamAct.setText(Integer.toString(camionActual.getEspDisp()));
+
+                        event.consume();
+                    //}
             }
         };
      private TreeItem<String> search(final TreeItem<String> currentNode, final String valueToSearch) {

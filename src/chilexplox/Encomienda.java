@@ -52,4 +52,11 @@ public class Encomienda extends Servicio implements java.io.Serializable{
         return precioPorGramo*peso + precioPorCc*volumen + precioPorPrioridad*prioridad;
     }
     
+    /**
+     * @return the largoMaximoDesc
+     */
+    public static int getLargoMaximoDesc() {
+        return largoMaximoDesc;
+    }
+    
 }

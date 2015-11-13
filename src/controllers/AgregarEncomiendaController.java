@@ -159,4 +159,12 @@ public class AgregarEncomiendaController extends VBox {
         handlerEnterTextField(event);
     }
     
+    public void handlerEnterDescField(ActionEvent event){
+        String desc = getDescr();
+        if(desc.length() >= Encomienda.getLargoMaximoDesc()){
+            descField.setText(desc.substring(0,Encomienda.getLargoMaximoDesc()));
+        }
+        handlerEnterTextField(event);
+    }
+    
 }

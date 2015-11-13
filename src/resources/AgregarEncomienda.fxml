@@ -33,7 +33,7 @@
                   </BorderPane>
                   <BorderPane prefHeight="0.0" prefWidth="416.0">
                      <center>
-                        <TextField fx:id="descField" maxWidth="350.0" onAction="#handlerEnterTextField" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+                        <TextField fx:id="descField" maxWidth="350.0" onAction="#handlerEnterDescField" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>

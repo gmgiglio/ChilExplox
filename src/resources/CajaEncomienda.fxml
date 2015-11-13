@@ -8,46 +8,36 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root id="AnchorPane" prefHeight="55.0" prefWidth="240.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="AnchorPane" maxWidth="-Infinity" prefHeight="26.0" prefWidth="320.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane prefHeight="58.0" prefWidth="200.0">
-         <top>
-            <HBox prefHeight="28.0" prefWidth="240.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="26.0" prefWidth="156.0">
+         <center>
+            <Text fx:id="textDesc" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="150.78924560546875" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+      <BorderPane prefHeight="28.0" prefWidth="119.0">
+         <center>
+            <Text fx:id="costo" fill="#0049ba" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="89.59375" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+         </center>
+      </BorderPane>
+      <BorderPane prefHeight="26.0" prefWidth="40.0">
+         <center>
+            <Pane maxHeight="16.0" maxWidth="16.0" prefHeight="10.0" prefWidth="17.0" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane prefHeight="28.0" prefWidth="200.0">
-                     <center>
-                        <Text fx:id="textDesc" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="219.78924560546875" BorderPane.alignment="CENTER" />
-                     </center>
-                  </BorderPane>
-                  <BorderPane prefHeight="28.0" prefWidth="200.0">
-                     <left>
-                        <Pane maxHeight="16.0" maxWidth="16.0" prefHeight="10.0" prefWidth="17.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <Circle centerX="18.0" centerY="18.0" fill="#0049ba" layoutX="-10.0" layoutY="-10.0" radius="8.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
-                              <Text fill="WHITE" layoutX="4.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="12.901801109313965">
-                                 <font>
-                                    <Font size="21.0" />
-                                 </font>
-                              </Text>
-                              <Button fx:id="botonEliminar" ellipsisString="" layoutX="-6.0" layoutY="-5.0" mnemonicParsing="false" onAction="#botonApretado" prefHeight="26.0" prefWidth="28.0" style="-fx-background-color: null;" />
-                           </children>
-                        </Pane>
-                     </left>
-                  </BorderPane>
-               </children>
-            </HBox>
-         </top>
-         <bottom>
-            <BorderPane prefHeight="28.0" prefWidth="240.0" BorderPane.alignment="CENTER">
-               <center>
-                  <Text fx:id="costo" fill="#0049ba" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" BorderPane.alignment="CENTER">
+                  <Circle centerX="18.0" centerY="18.0" fill="#0049ba" layoutX="-10.0" layoutY="-10.0" radius="8.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Text fill="WHITE" layoutX="4.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="12.901801109313965">
                      <font>
-                        <Font size="17.0" />
+                        <Font size="21.0" />
                      </font>
                   </Text>
-               </center>
-            </BorderPane>
-         </bottom>
+                  <Button fx:id="botonEliminar" ellipsisString="" layoutX="-6.0" layoutY="-5.0" mnemonicParsing="false" onAction="#botonApretado" prefHeight="26.0" prefWidth="28.0" style="-fx-background-color: null;" />
+               </children>
+            </Pane>
+         </center>
       </BorderPane>
    </children>
 </fx:root>

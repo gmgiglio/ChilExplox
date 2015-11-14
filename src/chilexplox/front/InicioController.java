@@ -193,7 +193,11 @@ public class InicioController implements Initializable {
                        try{        
                             agregarClienteCon = new AgregarClienteController();
                             agregarClienteCon.setHandlerEncomienda((Event e2) -> {
-                                Empresa.agregarCliente(agregarClienteCon.getNombre()+" "+agregarClienteCon.getApellidos(),agregarClienteCon.getCalle()+" "+agregarClienteCon.getNumero()+", "+agregarClienteCon.getComuna()+", "+agregarClienteCon.getCiudad(),agregarClienteCon.getTelefono());
+                                
+                                Empresa.agregarCliente(agregarClienteCon.getNombre(),agregarClienteCon.getApellidos(),
+                                        agregarClienteCon.getCalle()+" "+agregarClienteCon.getNumero()+", "+agregarClienteCon.getComuna()+", "
+                                        +agregarClienteCon.getCiudad(),agregarClienteCon.getTelefono());
+                                
                                 comboBoxClientes.getItems().add(agregarClienteCon.getNombre()+" "+agregarClienteCon.getApellidos());
                                 comboBoxClientes.setPromptText(agregarClienteCon.getNombre()+" "+agregarClienteCon.getApellidos());
                                 split.setDividerPositions(1);

@@ -5,22 +5,26 @@
  */
 package chilexplox;
 
+import java.util.List;
+
 /**
  *
  * @author carlossalame
  */
-public class Cliente implements java.io.Serializable {
+public class Cliente extends Usuario implements java.io.Serializable {
     
     private String nombre;
     private String direccion;
     private String telefono;
     
-    public Cliente(String nombre, String direccion, String telefono){
+    public Cliente(String nombre, String[] apellidos, String direccion, String telefono, String nombreUsuario, String contrasena){
+        super( nombreUsuario, contrasena);
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
     }
-
+    
+    
     /**
      * @return the nombre
      */

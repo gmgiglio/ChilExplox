@@ -27,7 +27,7 @@ public class Empresa implements java.io.Serializable {
     private int nroEncomiendas = 0;
     
     private LinkedList<Cliente> clientes = new LinkedList<>();
-    private LinkedList<Funcionario> usuarios = new LinkedList<>();
+    private LinkedList<Funcionario> funcionarios = new LinkedList<>();
 
     //tiempo limite para mandar para pedidos alta prioridad, 3 dias default
     private long tiempoLimite = 0; //3*24*60*60*1000;
@@ -105,8 +105,8 @@ public class Empresa implements java.io.Serializable {
     /**
      * @return the usuarios
      */
-    public static LinkedList<Funcionario> getUsuarios() {
-        return new LinkedList<>(getInstance().usuarios);
+    public static LinkedList<Funcionario> getFuncionarios() {
+        return new LinkedList<>(getInstance().funcionarios);
     }
 
     /**
@@ -173,24 +173,60 @@ public class Empresa implements java.io.Serializable {
         return true;
     }
     
-    public static boolean agregarUsuario(String nombreUsuario, String contrasena){
-        for(int i = 0; i <  getInstance().usuarios.size(); i++){
-            if( getInstance().usuarios.get(i).getNombreUsuario().equals(nombreUsuario)){
+    public static boolean agregarFuncionario(String nombreUsuario, String contrasena){
+        for(int i = 0; i <  getInstance().funcionarios.size(); i++){
+            if( getInstance().funcionarios.get(i).getNombreUsuario().equals(nombreUsuario)){
                 return false;
             }
         }
-         getInstance().usuarios.add(new Funcionario(nombreUsuario, contrasena));
+         getInstance().funcionarios.add(new Funcionario(nombreUsuario, contrasena));
         return true;
     }
-    public static boolean agregarCliente(String nombreCliente, String direccion, String telefono){
+    public static boolean agregarCliente(String nombre, String[] apellidos, String direccion, String telefono){
         for(int i = 0; i <  getInstance().clientes.size(); i++){
-            if( getInstance().clientes.get(i).getNombre().equals(nombreCliente)){
+            if( getInstance().clientes.get(i).getNombre().equals(nombre)){
                 return false;
             }
         }
-         getInstance().clientes.add(new Cliente(nombreCliente, direccion, telefono));
+        String nomUsuario = generarNombreUsuario(nombre, apellidos);
+        String contrasena = generarContrasena(nombre, apellidos , direccion, telefono);
+        getInstance().clientes.add(new Cliente(nombre, apellidos , direccion, telefono, nomUsuario, contrasena));
         return true;
     }
+    
+    private static String generarNombreUsuario(String nombre, String[] apellidos){
+        String nom;
+        if(apellidos.length >= 1) { nom = nombre.substring(2) + apellidos[0];}
+        else{nom = nombre.substring(6);}
+        
+        boolean esUnico;
+        int indice = 0;
+        do{
+            esUnico = true;
+            for(Usuario cl : getUsuarios()){
+                if (cl.getNombreUsuario().equals(nom)){
+                    esUnico = false;
+                    indice++;
+                    nom.concat(Integer.toString(indice));
+                    break;
+                }
+            }
+            
+        } while(!esUnico);
+   
+        return nom;
+    }
+    
+    private static String generarContrasena(String nombre, String[] apellidos, String direccion, String telefono){
+        return new StringBuilder(nombre).reverse().toString();
+    }
+    
+    public static  List<Usuario> getUsuarios(){
+        List<Usuario>  result = new LinkedList(getInstance().funcionarios);
+        result.addAll(getInstance().clientes);
+        return result;
+    }
+    
     public static void nuevaEncomienda(){
          getInstance().nroEncomiendas++;
     }
@@ -236,8 +272,8 @@ public class Empresa implements java.io.Serializable {
         return null;
     }
     
-    public static Funcionario getUsuario(String nombre){
-        for (Funcionario u :  getInstance().usuarios){
+    public static Usuario getUsuario(String nombre){
+        for (Usuario u :  getUsuarios()){
             if(nombre.equals(u.getNombreUsuario())) return u;
         }
         return null;

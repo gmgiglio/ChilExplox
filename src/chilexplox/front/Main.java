@@ -99,24 +99,25 @@ public class Main extends Application {
         Empresa.agregarSucursal("Maipu", "Santiago", "Amapolas 1122");
         Empresa.agregarSucursal("Las Condes", "Santiago", "Apoquindo 5000");
         Empresa.agregarSucursal("Victoria", "Temuco", "Bernardo Ohiggins 4256");
-        Empresa.agregarCliente("Leo", "Las Raíces 1172", "7778899");
-        Empresa.agregarUsuario("Karl Saleam","112233445");
+        String[] apellidos = {"Silva", "Lopez"};
+        Empresa.agregarCliente("Leo",apellidos, "Las Raíces 1172", "7778899");
+        Empresa.agregarFuncionario("Karl Saleam","112233445");
         
         Cliente leo = Empresa.getClientes().get(0);
         Sucursal maipu = Empresa.getSucursal("Maipu");
         Sucursal victoria = Empresa.getSucursal("Victoria");
         
-        Empresa.agregarUsuario("Tulio Triviño", "31minutos");
-        Empresa.agregarUsuario("a" , "a");
+        Empresa.agregarFuncionario("Tulio Triviño", "31minutos");
+        Empresa.agregarFuncionario("a" , "a");
         
         
         maipu.agregarCamion("BDGH34", 3000);
         maipu.agregarCamionPend("JUHK87", 2500);
         maipu.getCamionesDisp().get(0).cargarPedido(new Pedido(maipu, victoria, leo));
-        Funcionario tulio = Empresa.getUsuarios().get(0);
+        Funcionario tulio = Empresa.getFuncionarios().get(0);
         tulio.setSucActual(maipu);
         
-        Funcionario a = Empresa.getUsuario("a");
+        Funcionario a = (Funcionario) Empresa.getUsuario("a");
         a.enviarMens("prueba", "esto es una prueba", victoria);
         a.enviarMens("hola", "te queria mandar saludos", victoria);
         a.enviarMens("Banana Split", "Esto es un banana split", victoria);

@@ -95,8 +95,8 @@ public class AgregarClienteController extends VBox {
     public String getNombre(){
         return nombreField.getText();
     }
-    public String getApellidos(){
-        return apellidosField.getText();
+    public String[] getApellidos(){
+        return apellidosField.getText().split(" ");
     }
     public String getCalle(){
         return calleField.getText();

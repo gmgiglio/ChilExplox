@@ -9,7 +9,7 @@ package chilexplox;
  *
  * @author gianfrancogiglio
  */
-public class Usuario implements java.io.Serializable {
+public abstract class Usuario implements java.io.Serializable {
     
     private String nombreUsuario;
     private String contrasena;

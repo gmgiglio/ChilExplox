@@ -6,9 +6,9 @@
 package controllers;
 
 import chilexplox.Empresa;
+import chilexplox.Funcionario;
 import chilexplox.Usuario;
 import java.io.IOException;
-import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

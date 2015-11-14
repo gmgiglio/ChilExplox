@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class GeneradorReporte {
     
-    private static Usuario autoRobot = new Usuario("AutoGererador reporte","1234");
+    private static Funcionario autoRobot = new Funcionario("AutoGererador reporte","1234");
     
     public static Mensaje generarReporte(){
         String fecha = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS").format(new Date());

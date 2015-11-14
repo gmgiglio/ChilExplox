@@ -95,7 +95,7 @@ public class InicioController implements Initializable {
                 String[] idPedido = itemToMove.getValue().split("#");
                 if(treeOrigen.getSelectionModel().getSelectedItem().getParent().equals(treeOrigen.getRoot()))
                 {
-                    if(treeOrigen != pedidosPend || camionActual.verificaEspacioDestino(Main.getUsuarioActual().getSucActual(), Integer.parseInt(idPedido[1])))
+                    if(treeOrigen != pedidosPend || camionActual.verificaEspacioDestino(((Funcionario)Main.getUsuarioActual()).getSucActual(), Integer.parseInt(idPedido[1])))
                  event.acceptTransferModes(TransferMode.MOVE);
                 }
                     event.consume();
@@ -113,9 +113,9 @@ public class InicioController implements Initializable {
                         treeDestino.getRoot().getChildren().add(itemToMove);
 
                         if(treeOrigen.getParent() == anchorPedPend)
-                            Main.getUsuarioActual().cargarPed(camionActual, Integer.parseInt(idPedido[1]));
+                            ((Funcionario)Main.getUsuarioActual()).cargarPed(camionActual, Integer.parseInt(idPedido[1]));
                         else 
-                            Main.getUsuarioActual().descargarPed(camionActual, Integer.parseInt(idPedido[1]));
+                            ((Funcionario)Main.getUsuarioActual()).descargarPed(camionActual, Integer.parseInt(idPedido[1]));
                         espDispCamAct.setText(Integer.toString(camionActual.getEspDisp()));
 
                         event.consume();
@@ -149,13 +149,13 @@ public class InicioController implements Initializable {
             Main.cerrarSesion();
         });
         menuUsuario.getItems().add(itemCerrarSesion);
-        Main.getUsuarioActual().setSucActual(Empresa.getSucursales().get(0));
-        ItemSucursalMenu i = new ItemSucursalMenu(Main.getUsuarioActual().getSucActual());
-        menuSucursal = new Menu(Main.getUsuarioActual().getSucActual().getNombre());
+        ((Funcionario)Main.getUsuarioActual()).setSucActual(Empresa.getSucursales().get(0));
+        ItemSucursalMenu i = new ItemSucursalMenu(((Funcionario)Main.getUsuarioActual()).getSucActual());
+        menuSucursal = new Menu(((Funcionario)Main.getUsuarioActual()).getSucActual().getNombre());
         
         //agregar sucursales al menu de sucursales
         LinkedList<Sucursal> sucEnLista = new LinkedList(sucursales);
-        sucEnLista.remove(Main.getUsuarioActual().getSucActual());
+        sucEnLista.remove(((Funcionario)Main.getUsuarioActual()).getSucActual());
         for(Sucursal s : sucEnLista){
                 ItemSucursalMenu item = new ItemSucursalMenu(s);
                 menuSucursal.getItems().add(item); 
@@ -250,7 +250,7 @@ public class InicioController implements Initializable {
             @Override public void handle(ActionEvent e) {
                     
                        try{       
-                            if(Main.getUsuarioActual().getSucActual().getPedidoAbierto() != null){
+                            if(((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto() != null){
                                 agregarEncomiendaCon = new AgregarEncomiendaController();
                                 agregarEncomiendaCon.setHandlerEncomienda((Event e2) -> {
                                     agregarEncomienda(new Encomienda(agregarEncomiendaCon.getPeso(),agregarEncomiendaCon.getVolumen(),
@@ -278,8 +278,8 @@ public class InicioController implements Initializable {
                             if(nombreCliente != null){
                                 Scene scene = split.getScene();
                                 Text idPedido = (Text)scene.lookup("#idPedido");
-                                Main.getUsuarioActual().getSucActual().getPedidoAbierto().setCliente(nombreCliente);
-                                Main.getUsuarioActual().cerrarPed();
+                                ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().setCliente(nombreCliente);
+                                ((Funcionario)Main.getUsuarioActual()).cerrarPed();
                                 limpiarAtender();
                            }
                             else advertencia.setText("Debe seleccionar un cliente");
@@ -369,9 +369,9 @@ public class InicioController implements Initializable {
             ItemSucursalMenu item1 = (ItemSucursalMenu)e.getSource();
             Sucursal suc = item1.getSucursal();
             menuSucursal.setText(suc.getNombre());
-            ItemSucursalMenu item2 = new ItemSucursalMenu(Main.getUsuarioActual().getSucActual());
+            ItemSucursalMenu item2 = new ItemSucursalMenu(((Funcionario)Main.getUsuarioActual()).getSucActual());
             item2.setOnAction(eventoSucursal);
-            Main.getUsuarioActual().setSucActual(suc);
+            ((Funcionario)Main.getUsuarioActual()).setSucActual(suc);
             menuSucursal.getItems().remove(item1);
             menuSucursal.getItems().add(item2);
             actualizarPestanaAdm();
@@ -403,7 +403,7 @@ public class InicioController implements Initializable {
         pedidosCar.setShowRoot(false);
         amononarTreeView(anchorPedCar, pedidosCar);
          
-        Sucursal sucActual = Main.getUsuarioActual().getSucActual();
+        Sucursal sucActual = ((Funcionario)Main.getUsuarioActual()).getSucActual();
         ObservableList patentesCamDisp = FXCollections.observableArrayList();
         ObservableList patentesCamADesc = FXCollections.observableArrayList();
         
@@ -431,7 +431,7 @@ public class InicioController implements Initializable {
             camionActual = null;
             String patenteCamionActual = (String)camionesDisp.getSelectionModel().getSelectedItem().getValue();
             
-            Sucursal sucActual = Main.getUsuarioActual().getSucActual();
+            Sucursal sucActual = ((Funcionario)Main.getUsuarioActual()).getSucActual();
             
             
             for(Camion c : sucActual.getCamionesDisp()){
@@ -452,7 +452,7 @@ public class InicioController implements Initializable {
                 accionCamion.setOnMouseClicked(new EventHandler<MouseEvent>(){
                     @Override
                     public void handle(MouseEvent event){
-                        Sucursal sucActual = Main.getUsuarioActual().getSucActual();
+                        Sucursal sucActual = ((Funcionario)Main.getUsuarioActual()).getSucActual();
                         Sucursal destino = camionActual.getPedidos().get(0).getSucDestino();
                         destino.recibirCamionCargado(camionActual);
                         sucActual.enviarCamion(camionActual);
@@ -470,7 +470,7 @@ public class InicioController implements Initializable {
             accionCamion.setText("Descargar Camión");
             camionActual = null;
             String patenteCamionSelec = (String)camionesDesc.getSelectionModel().getSelectedItem().getValue();
-            Sucursal sucActual = Main.getUsuarioActual().getSucActual();
+            Sucursal sucActual = ((Funcionario)Main.getUsuarioActual()).getSucActual();
             
             for(Camion c : sucActual.getCamionesPend()){
                 if(c.getPatente()==patenteCamionSelec) camionActual = c;
@@ -488,7 +488,7 @@ public class InicioController implements Initializable {
             accionCamion.setOnMouseClicked(new EventHandler<MouseEvent>(){
                 @Override
                 public void handle(MouseEvent event){
-                    Sucursal sucActual = Main.getUsuarioActual().getSucActual();
+                    Sucursal sucActual = ((Funcionario)Main.getUsuarioActual()).getSucActual();
                     sucActual.descargarCamion(camionActual);
                     actualizarPestanaAdm();
                 }
@@ -564,17 +564,17 @@ public class InicioController implements Initializable {
      }
      
      private void agregarEncomienda(Encomienda encomienda){
-         Main.getUsuarioActual().getSucActual().getPedidoAbierto().agregarEnc(encomienda);
+         ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().agregarEnc(encomienda);
          CajaEncomienda c = new CajaEncomienda(encomienda);
          c.setHandlerEliminar((Event e) -> {
              CajaEncomienda caja = (CajaEncomienda) e.getSource();
              Encomienda enc = caja.getEncomienda();
-             Main.getUsuarioActual().getSucActual().getPedidoAbierto().eliminarEncomienda(enc);
+             ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().eliminarEncomienda(enc);
              listEncomiendas.getItems().remove(caja);
          });
          listEncomiendas.getItems().add(c);
          //comboBoxEncomiendas.setPromptText(encomienda.getDescripcion());
-         presupuesto.setText(""+Main.getUsuarioActual().getSucActual().getPedidoAbierto().getCostoEnvio());
+         presupuesto.setText(""+((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getCostoEnvio());
      }
             
      private class ItemSucursalMenu extends MenuItem{

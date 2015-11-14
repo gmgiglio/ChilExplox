@@ -27,7 +27,7 @@ public class Empresa implements java.io.Serializable {
     private int nroEncomiendas = 0;
     
     private LinkedList<Cliente> clientes = new LinkedList<>();
-    private LinkedList<Usuario> usuarios = new LinkedList<>();
+    private LinkedList<Funcionario> usuarios = new LinkedList<>();
 
     //tiempo limite para mandar para pedidos alta prioridad, 3 dias default
     private long tiempoLimite = 0; //3*24*60*60*1000;
@@ -105,7 +105,7 @@ public class Empresa implements java.io.Serializable {
     /**
      * @return the usuarios
      */
-    public static LinkedList<Usuario> getUsuarios() {
+    public static LinkedList<Funcionario> getUsuarios() {
         return new LinkedList<>(getInstance().usuarios);
     }
 
@@ -179,7 +179,7 @@ public class Empresa implements java.io.Serializable {
                 return false;
             }
         }
-         getInstance().usuarios.add(new Usuario(nombreUsuario, contrasena));
+         getInstance().usuarios.add(new Funcionario(nombreUsuario, contrasena));
         return true;
     }
     public static boolean agregarCliente(String nombreCliente, String direccion, String telefono){
@@ -236,8 +236,8 @@ public class Empresa implements java.io.Serializable {
         return null;
     }
     
-    public static Usuario getUsuario(String nombre){
-        for (Usuario u :  getInstance().usuarios){
+    public static Funcionario getUsuario(String nombre){
+        for (Funcionario u :  getInstance().usuarios){
             if(nombre.equals(u.getNombreUsuario())) return u;
         }
         return null;

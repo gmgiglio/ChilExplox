@@ -113,10 +113,10 @@ public class Main extends Application {
         maipu.agregarCamion("BDGH34", 3000);
         maipu.agregarCamionPend("JUHK87", 2500);
         maipu.getCamionesDisp().get(0).cargarPedido(new Pedido(maipu, victoria, leo));
-        Usuario tulio = Empresa.getUsuarios().get(0);
+        Funcionario tulio = Empresa.getUsuarios().get(0);
         tulio.setSucActual(maipu);
         
-        Usuario a = Empresa.getUsuario("a");
+        Funcionario a = Empresa.getUsuario("a");
         a.enviarMens("prueba", "esto es una prueba", victoria);
         a.enviarMens("hola", "te queria mandar saludos", victoria);
         a.enviarMens("Banana Split", "Esto es un banana split", victoria);
@@ -140,7 +140,7 @@ public class Main extends Application {
     
     public static void cerrarSesion(){
         escenarioPrincipal.setScene(escenaElegirUsuario);
-        usuarioActual.getSucActual().setPedidoAbierto(null);
+        //usuarioActual.getSucActual().setPedidoAbierto(null);
         usuarioActual = null;
     }
     

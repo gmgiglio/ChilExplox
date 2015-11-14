@@ -57,7 +57,7 @@ public class AgregarPedidoController implements Initializable {
             if(!(comboBoxSucursales.getSelectionModel().getSelectedItem()==null)){
           
             Sucursal s = Empresa.getSucursal((String)(comboBoxSucursales.getSelectionModel().getSelectedItem()));
-            Pedido p = Main.getUsuarioActual().crearPed(s);
+            Pedido p = ((Funcionario)Main.getUsuarioActual()).crearPed(s);
             sucursalText.setText((String)(comboBoxSucursales.getSelectionModel().getSelectedItem())) ;
             idPedido.setText(""+p.getIdPedido());
             crearP.setVisible(false);
@@ -80,7 +80,7 @@ public class AgregarPedidoController implements Initializable {
             ObservableList nombreSucursales = FXCollections.observableArrayList();
             for (int i=0; i<  Empresa.getSucursales().size();i++)
             {
-                if(!Empresa.getSucursales().get(i).getNombre().equals(Main.getUsuarioActual().getSucActual().getNombre()))
+                if(!Empresa.getSucursales().get(i).getNombre().equals(((Funcionario)Main.getUsuarioActual()).getSucActual().getNombre()))
                 nombreSucursales.add(Empresa.getSucursales().get(i).getNombre());
             }
             

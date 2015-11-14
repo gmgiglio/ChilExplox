@@ -14,9 +14,9 @@ import java.util.Date;
 public class Mensaje implements java.io.Serializable {
     private String nombre;
     String mensaje;
-    private Usuario remitente;
+    private Funcionario remitente;
     
-    public Mensaje(String nombre, String mensaje, Usuario remitente){
+    public Mensaje(String nombre, String mensaje, Funcionario remitente){
         this.mensaje = mensaje;
         this.nombre = nombre;
         this.remitente = remitente;
@@ -49,7 +49,7 @@ public class Mensaje implements java.io.Serializable {
     /**
      * @return the remitente
      */
-    public Usuario getRemitente() {
+    public Funcionario getRemitente() {
         return remitente;
     }
     

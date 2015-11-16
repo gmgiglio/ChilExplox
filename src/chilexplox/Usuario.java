@@ -29,4 +29,12 @@ public abstract class Usuario implements java.io.Serializable {
     public boolean contrasenaCorrecta(String clave){
         return contrasena.equals(clave);
     }
+    
+    public boolean cambiarContrasena(String contrasenaAnterior, String nuevaContrasena){
+        if (contrasenaCorrecta(contrasenaAnterior)){
+            contrasena = nuevaContrasena;
+            return true;
+        }
+        else { return false; }
+    }
 }

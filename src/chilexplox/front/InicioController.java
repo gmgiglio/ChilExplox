@@ -192,14 +192,15 @@ public class InicioController implements Initializable {
                     
                        try{        
                             agregarClienteCon = new AgregarClienteController();
-                            agregarClienteCon.setHandlerEncomienda((Event e2) -> {
+                            agregarClienteCon.setHandlerCliente((Event e2) -> {
                                 
-                                Empresa.agregarCliente(agregarClienteCon.getNombre(),agregarClienteCon.getApellidos(),
+                                Cliente cliente = Empresa.agregarCliente(agregarClienteCon.getNombre(),agregarClienteCon.getApellidos(),
                                         agregarClienteCon.getCalle()+" "+agregarClienteCon.getNumero()+", "+agregarClienteCon.getComuna()+", "
-                                        +agregarClienteCon.getCiudad(),agregarClienteCon.getTelefono());
+                                        +agregarClienteCon.getCiudad(),agregarClienteCon.getTelefono());                              
                                 
-                                comboBoxClientes.getItems().add(agregarClienteCon.getNombre()+" "+agregarClienteCon.getApellidos());
-                                comboBoxClientes.setPromptText(agregarClienteCon.getNombre()+" "+agregarClienteCon.getApellidos());
+                                String enComboBox = cliente.getNombreCompleto() +" " + cliente.getNombreUsuario();
+                                comboBoxClientes.getItems().add(enComboBox);
+                                comboBoxClientes.setPromptText(enComboBox);
                                 split.setDividerPositions(1);
                             });
                             agregarPane.getChildren().setAll(agregarClienteCon);
@@ -595,9 +596,6 @@ public class InicioController implements Initializable {
          }
          
      }
-     
-     
-
 
 }
 

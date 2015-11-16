@@ -62,10 +62,13 @@ public class AgregarClienteController extends VBox {
         try{ Integer.parseInt(telefonoField.getText().replace(" ", ""));}
         catch(Exception e){ textoAlertaTelefono.setText("Teléfono inválido"); error = true;}
         }
-        if(!error) handlerEncomienda.handle(new ActionEvent(this,null));
+        if(!error) handlerCliente.handle(new ActionEvent(this,null));
     }
-    public void setHandlerEncomienda(EventHandler eh){
-        handlerEncomienda = eh;
+    
+    private EventHandler handlerCliente;
+    
+    public void setHandlerCliente(EventHandler eh){
+        handlerCliente = eh;
     }
     
     private List<TextField> fields;
@@ -85,13 +88,8 @@ public class AgregarClienteController extends VBox {
          fields = Arrays.asList(f);
     
     }
-    private EventHandler handlerEncomienda;
     
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-
-           
-    }
+    
     public String getNombre(){
         return nombreField.getText();
     }

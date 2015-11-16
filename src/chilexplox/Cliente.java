@@ -14,12 +14,14 @@ import java.util.List;
 public class Cliente extends Usuario implements java.io.Serializable {
     
     private String nombre;
+    private String[] apellidos;
     private String direccion;
     private String telefono;
     
     public Cliente(String nombre, String[] apellidos, String direccion, String telefono, String nombreUsuario, String contrasena){
         super( nombreUsuario, contrasena);
         this.nombre = nombre;
+        this.apellidos = apellidos;
         this.direccion = direccion;
         this.telefono = telefono;
     }
@@ -37,6 +39,14 @@ public class Cliente extends Usuario implements java.io.Serializable {
      */
     public String getTelefono() {
         return telefono;
+    }
+    
+    public String getNombreCompleto(){
+        String result = new String(nombre);
+        for(String a : apellidos){
+            result+= " " + a;
+        }
+        return result;
     }
     
     

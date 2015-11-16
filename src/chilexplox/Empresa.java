@@ -174,25 +174,28 @@ public class Empresa implements java.io.Serializable {
     }
     
     public static boolean agregarFuncionario(String nombreUsuario, String contrasena){
+        return agregarFuncionario(new Funcionario(nombreUsuario,contrasena));
+    }
+    
+    public static boolean agregarFuncionario(Funcionario funcionario){
         for(int i = 0; i <  getInstance().funcionarios.size(); i++){
-            if( getInstance().funcionarios.get(i).getNombreUsuario().equals(nombreUsuario)){
+            if( getInstance().funcionarios.get(i).getNombreUsuario().equals(funcionario.getNombreUsuario())){
                 return false;
             }
         }
-         getInstance().funcionarios.add(new Funcionario(nombreUsuario, contrasena));
+        getInstance().funcionarios.add(funcionario);
         return true;
     }
-    public static boolean agregarCliente(String nombre, String[] apellidos, String direccion, String telefono){
-        for(int i = 0; i <  getInstance().clientes.size(); i++){
-            if( getInstance().clientes.get(i).getNombre().equals(nombre)){
-                return false;
-            }
-        }
+    
+    
+    public static Cliente agregarCliente(String nombre, String[] apellidos, String direccion, String telefono){
         String nomUsuario = generarNombreUsuario(nombre, apellidos);
         String contrasena = generarContrasena(nombre, apellidos , direccion, telefono);
-        getInstance().clientes.add(new Cliente(nombre, apellidos , direccion, telefono, nomUsuario, contrasena));
-        return true;
+        Cliente cliente = new Cliente(nombre, apellidos , direccion, telefono, nomUsuario, contrasena);
+        getInstance().clientes.add(cliente);
+        return cliente;
     }
+    
     
     private static String generarNombreUsuario(String nombre, String[] apellidos){
         String nom;
@@ -278,4 +281,16 @@ public class Empresa implements java.io.Serializable {
         }
         return null;
     }
+    
+    public static void eliminarSucursal(Sucursal sucursal){
+        getInstance().sucursales.remove(sucursal);
+    }
+    
+    public static void eliminarUsuario(Usuario usuario){
+        if(getInstance().clientes.contains(usuario)) getInstance().clientes.remove(usuario);    
+        else getInstance().funcionarios.remove(usuario);
+    }
+   
+    
+    
 }

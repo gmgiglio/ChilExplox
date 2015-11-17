@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root maxWidth="562.0" prefHeight="562.0" prefWidth="567.0" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox maxHeight="50.0" prefHeight="44.0">
+         <children>
+            <BorderPane prefHeight="100.0" prefWidth="85.0" />
+            <BorderPane prefHeight="100.0" prefWidth="416.0">
+               <center>
+                  <Text fill="#0049ba" strokeType="OUTSIDE" strokeWidth="0.0" text="Ficha cliente" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Text>
+               </center>
+            </BorderPane>
+         </children>
+      </HBox>
+      <HBox maxHeight="50.0" prefHeight="42.0">
+         <children>
+            <BorderPane prefHeight="42.0" prefWidth="129.0">
+               <right>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
+            <BorderPane prefHeight="100.0" prefWidth="416.0">
+               <center>
+                  <Text fx:id="textNombre" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="301.21875" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </children>
+      </HBox>
+      <HBox maxHeight="50.0" prefHeight="42.0">
+         <children>
+            <BorderPane prefHeight="42.0" prefWidth="209.0">
+               <right>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Usuario:" wrappingWidth="105.6064453125" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
+            <BorderPane prefHeight="42.0" prefWidth="499.0">
+               <center>
+                  <Text fx:id="textNomUsuario" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="325.21875" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </children>
+      </HBox>
+      <HBox maxHeight="50.0" prefHeight="100.0">
+         <children>
+            <BorderPane prefHeight="50.0" prefWidth="134.0">
+               <right>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña:" wrappingWidth="75.267578125" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
+            <BorderPane prefHeight="100.0" prefWidth="416.0">
+               <center>
+                  <Text fx:id="textContrasena" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="316.21875" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </children>
+      </HBox>
+   </children>
+</fx:root>

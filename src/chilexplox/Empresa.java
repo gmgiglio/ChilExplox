@@ -188,18 +188,18 @@ public class Empresa implements java.io.Serializable {
     }
     
     
-    public static Cliente agregarCliente(String nombre, String[] apellidos, String direccion, String telefono){
+    public static RegistroCliente agregarCliente(String nombre, String[] apellidos, String direccion, String telefono){
         String nomUsuario = generarNombreUsuario(nombre, apellidos);
         String contrasena = generarContrasena(nombre, apellidos , direccion, telefono);
         Cliente cliente = new Cliente(nombre, apellidos , direccion, telefono, nomUsuario, contrasena);
         getInstance().clientes.add(cliente);
-        return cliente;
+        return new RegistroCliente(cliente, contrasena);
     }
     
     
     private static String generarNombreUsuario(String nombre, String[] apellidos){
         String nom;
-        if(apellidos.length >= 1) { nom = nombre.substring(2) + apellidos[0];}
+        if(apellidos.length >= 1) { nom = nombre.substring(0,2) + apellidos[0];}
         else{nom = nombre.substring(6);}
         
         boolean esUnico;
@@ -210,7 +210,7 @@ public class Empresa implements java.io.Serializable {
                 if (cl.getNombreUsuario().equals(nom)){
                     esUnico = false;
                     indice++;
-                    nom.concat(Integer.toString(indice));
+                    nom = nom.concat(Integer.toString(indice));
                     break;
                 }
             }

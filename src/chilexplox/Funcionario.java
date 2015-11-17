@@ -17,7 +17,6 @@ public class Funcionario extends Usuario implements java.io.Serializable {
     
     
     private Sucursal sucActual;
-    
     private final LinkedList<RegistroMensaje> registroMensajesEnviados = new LinkedList();
     
     public Funcionario(String nombreUsuario, String contrasena){
@@ -159,6 +158,11 @@ public class Funcionario extends Usuario implements java.io.Serializable {
     public Sucursal getSucActual() {
         return sucActual;
     }
+    
+    public RegistroCliente crearCliente(String nombre, String[] apellidos, String direccion, String telefono){
+        return Empresa.agregarCliente(nombre, apellidos, direccion, telefono);
+    }
+    
     
     
 }

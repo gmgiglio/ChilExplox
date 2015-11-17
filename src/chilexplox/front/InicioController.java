@@ -5,6 +5,7 @@ import chilexplox.*;
 import controllers.AgregarClienteController;
 import controllers.AgregarEncomiendaController;
 import controllers.CajaEncomienda;
+import controllers.FichaCliente;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -194,14 +195,20 @@ public class InicioController implements Initializable {
                             agregarClienteCon = new AgregarClienteController();
                             agregarClienteCon.setHandlerCliente((Event e2) -> {
                                 
-                                Cliente cliente = Empresa.agregarCliente(agregarClienteCon.getNombre(),agregarClienteCon.getApellidos(),
+                                RegistroCliente registro = ((Funcionario)Main.getUsuarioActual()).crearCliente(
+                                        agregarClienteCon.getNombre(),agregarClienteCon.getApellidos(),
                                         agregarClienteCon.getCalle()+" "+agregarClienteCon.getNumero()+", "+agregarClienteCon.getComuna()+", "
                                         +agregarClienteCon.getCiudad(),agregarClienteCon.getTelefono());                              
                                 
+                                Cliente cliente =registro.cliente;
                                 String enComboBox = cliente.getNombreCompleto() +" " + cliente.getNombreUsuario();
                                 comboBoxClientes.getItems().add(enComboBox);
                                 comboBoxClientes.setPromptText(enComboBox);
-                                split.setDividerPositions(1);
+                                
+                                //mostrar FichaCliente
+                                FichaCliente ficha = new FichaCliente(registro);
+                                agregarPane.getChildren().setAll(ficha);
+                                
                             });
                             agregarPane.getChildren().setAll(agregarClienteCon);
                             split.setDividerPositions(0.4684014869888476);

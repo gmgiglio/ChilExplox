@@ -248,16 +248,16 @@
                                           </AnchorPane>
                                       </content>
                                     </TitledPane>
-                                    <VBox fx:id="vBoxConfPed" prefHeight="540.0" prefWidth="360.0" visible="false">
+                                    <VBox fx:id="vBoxConfPed" prefHeight="540.0" prefWidth="360.0">
                                        <children>
                                           <TitledPane animated="false" collapsible="false" prefHeight="270.0" prefWidth="360.0" text="Pedidos Confirmados">
                                              <content>
-                                                <AnchorPane fx:id="anchorPedPend1" minHeight="0.0" minWidth="0.0" prefHeight="243.0" prefWidth="360.0" />
+                                                <AnchorPane fx:id="anchorPedConf" minHeight="0.0" minWidth="0.0" prefHeight="243.0" prefWidth="360.0" />
                                              </content>
                                           </TitledPane>
                                           <TitledPane animated="false" collapsible="false" prefHeight="270.0" prefWidth="360.0" text="Pedidos Equivocados">
                                              <content>
-                                                <AnchorPane fx:id="anchorPedDest1" minHeight="0.0" minWidth="0.0" prefHeight="243.0" prefWidth="360.0" />
+                                                <AnchorPane fx:id="anchorPedEq" minHeight="0.0" minWidth="0.0" prefHeight="243.0" prefWidth="360.0" />
                                              </content>
                                           </TitledPane>
                                        </children>

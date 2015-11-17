@@ -56,17 +56,21 @@ public class InicioController implements Initializable {
         @FXML
     private Text patenteCamAct, capacidadCamAct, espDispCamAct, estadoCamAct,advertencia,presupuesto;
         @FXML
-    private AnchorPane anchorPedPend, anchorPedCar, anchorCamDisp, anchorCamDesc, anchorPedDest;
+    private AnchorPane anchorPedPend, anchorPedCar, anchorPedDest, anchorPedConf, anchorPedEq;
+        @FXML
+    private AnchorPane anchorCamDisp, anchorCamDesc;
     
     private Menu menuSucursal;
     private AgregarEncomiendaController agregarEncomiendaCon;
 
     private AgregarClienteController agregarClienteCon;
 
-    private TreeView<String> treeOrigen = new TreeView<String>(), pedidosPend = new TreeView<String>(), 
-           pedidosCar = new TreeView<String>(), camionesDisp = new TreeView<String>(),
-           camionesDesc = new TreeView<String>(), treeDestino=new TreeView<String>(),
-           pedidosDest = new TreeView<String>();
+    private TreeView<String> treeOrigen = new TreeView<String>(), treeDestino=new TreeView<String>();
+    private TreeView<String> pedidosPend = new TreeView<String>(), pedidosCar = new TreeView<String>(),
+            pedidosDest = new TreeView<String>(), pedidosEq = new TreeView<String>(),
+            pedidosConf = new TreeView<String>();;
+    private TreeView<String> camionesDisp = new TreeView<String>(), camionesDesc = new TreeView<String>();
+           
 
     private TreeItem aMover;
     
@@ -408,16 +412,22 @@ public class InicioController implements Initializable {
         ObservableList patentesCamDisp = FXCollections.observableArrayList();
         ObservableList patentesCamADesc = FXCollections.observableArrayList();
         
-        pedidosPend = new TreeView<>(listarPedidos(sucActual.getPedidosPend()));
+        pedidosPend = new TreeView<>(listarPedidos(sucActual.getPedidosPendientes()));
         amononarTreeView(anchorPedPend, pedidosPend);
         pedidosPend.setOnDragDetected(dragDetected);
         pedidosPend.setOnDragOver(dragOver);
         pedidosPend.setOnDragDropped(dragDropped);
         
+        pedidosConf = new TreeView<>(listarPedidos(sucActual.getPedidosConfirmados()));
+        amononarTreeView(anchorPedConf, pedidosConf);
+        pedidosPend.setOnDragDropped(dragDropped);
+        
         pedidosDest = new TreeView<>(listarPedidos(sucActual.getPedidosEnDest()));
         amononarTreeView(anchorPedDest, pedidosDest);
+        pedidosPend.setOnDragDetected(dragDetected);
+        pedidosPend.setOnDragOver(dragOver);
         
-        camionesDisp = new TreeView<>(listarCamiones(sucActual.getCamionesDisp()));
+        camionesDisp = new TreeView<>(listarCamiones(sucActual.getCamionesDisponibles()));
         amononarTreeView(anchorCamDisp, camionesDisp);
         
         camionesDesc = new TreeView<>(listarCamiones(sucActual.getCamionesPend()));
@@ -426,6 +436,8 @@ public class InicioController implements Initializable {
         camionesDisp.setOnMouseClicked(new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
+            vBoxConfPed.setVisible(false);
+            pedidosCar.setVisible(true);
             accionCamion.setVisible(true);
             accionCamion.setText("Enviar Camión");
             
@@ -435,7 +447,7 @@ public class InicioController implements Initializable {
             Sucursal sucActual = Main.getUsuarioActual().getSucActual();
             
             
-            for(Camion c : sucActual.getCamionesDisp()){
+            for(Camion c : sucActual.getCamionesDisponibles()){
                 if(c.getPatente()==patenteCamionActual) camionActual = c;
             }
             
@@ -464,9 +476,19 @@ public class InicioController implements Initializable {
             }
         });
     
+    pedidosDest.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            vBoxConfPed.setVisible(true);
+            pedidosCar.setVisible(false);
+            }
+        });
+        
     camionesDesc.setOnMouseClicked(new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
+            vBoxConfPed.setVisible(false);
+            pedidosCar.setVisible(true);
             accionCamion.setVisible(true);
             accionCamion.setText("Descargar Camión");
             camionActual = null;
@@ -494,13 +516,6 @@ public class InicioController implements Initializable {
                     actualizarPestanaAdm();
                 }
             });
-            }
-        });
-    
-    anchorPedDest.setOnMouseClicked(new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent event) {
-            vBoxConfPed.setVisible(true);
             }
         });
      }

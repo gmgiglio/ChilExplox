@@ -41,7 +41,7 @@ public class GeneradorReporte {
         for(Sucursal s : Empresa.getSucursales()){
 
             LinkedList<Pedido> pedidosTotales = s.getPedidosEnDest();
-            pedidosTotales.addAll(s.getPedidosPend());
+            pedidosTotales.addAll(s.getPedidosPendientes());
             pedidosTotales.addAll(s.getPedidosEntregados());
             pedidosTotales.addAll(s.getPedidosEquivocados());
             for (Pedido p : pedidosTotales){
@@ -58,7 +58,7 @@ public class GeneradorReporte {
     private static double gananciasSucursal(Sucursal s){
         double total = 0;
         List<Pedido> pedidosTotales = s.getPedidosEnDest();
-        pedidosTotales.addAll(s.getPedidosPend());
+        pedidosTotales.addAll(s.getPedidosPendientes());
         pedidosTotales.addAll(s.getPedidosEntregados());
         pedidosTotales.addAll(s.getPedidosEquivocados());
         for (Pedido p : pedidosTotales){

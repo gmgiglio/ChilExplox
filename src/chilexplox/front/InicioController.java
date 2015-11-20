@@ -118,25 +118,25 @@ public class InicioController implements Initializable {
                                 (treeOrigen.getParent() == anchorPedCar && treeDestino.getParent() == anchorPedPend) ||
                                 (treeOrigen.getParent() == anchorPedDest &&
                                 (treeDestino.getParent() == anchorPedConf || treeDestino.getParent() == anchorPedEq))){
-                        // Remove from former parent.
-                        treeOrigen.getRoot().getChildren().remove(itemToMove);
-                        // Add to new parent.
-                        treeDestino.getRoot().getChildren().add(itemToMove);
+                            // Remove from former parent.
+                            treeOrigen.getRoot().getChildren().remove(itemToMove);
+                            // Add to new parent.
+                            treeDestino.getRoot().getChildren().add(itemToMove);
 
-                        
-                        if(treeDestino.getParent() == anchorPedCar)
-                            Main.getUsuarioActual().cargarPed(camionActual, Integer.parseInt(idPedido[1]));
-                        else if(treeDestino.getParent() == anchorPedPend){
-                            Main.getUsuarioActual().descargarPed(camionActual, Integer.parseInt(idPedido[1]));
-                            espDispCamAct.setText(Integer.toString(camionActual.getEspDisp()));
-                        }
-                        else if(treeDestino.getParent() == anchorPedConf){
-                            //metodo del backend para confirmar pedido
-                        }
-                        else if(treeDestino.getParent() == anchorPedEq){
-                            //metodo del backend para pedidos equivocados
-                        }
-                        event.consume();
+
+                            if(treeDestino.getParent() == anchorPedCar)
+                                Main.getUsuarioActual().cargarPed(camionActual, Integer.parseInt(idPedido[1]));
+                            else if(treeDestino.getParent() == anchorPedPend){
+                                Main.getUsuarioActual().descargarPed(camionActual, Integer.parseInt(idPedido[1]));
+                                espDispCamAct.setText(Integer.toString(camionActual.getEspDisp()));
+                            }
+                            else if(treeDestino.getParent() == anchorPedConf){
+                                //metodo del backend para confirmar pedido
+                            }
+                            else if(treeDestino.getParent() == anchorPedEq){
+                                //metodo del backend para pedidos equivocados
+                            }
+                            event.consume();
             }
             }
         };

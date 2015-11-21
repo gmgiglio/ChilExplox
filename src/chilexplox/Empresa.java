@@ -200,7 +200,7 @@ public class Empresa implements java.io.Serializable {
     private static String generarNombreUsuario(String nombre, String[] apellidos){
         String nom;
         if(apellidos.length >= 1) { nom = nombre.substring(0,2) + apellidos[0];}
-        else{nom = nombre.substring(6);}
+        else{ nom = nombre.substring(0,6);}
         
         boolean esUnico;
         int indice = 0;

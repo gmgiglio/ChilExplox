@@ -175,16 +175,7 @@ public class InicioController implements Initializable {
         
         botonCancelar.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                       try{
-                                limpiarAtender();
-
-                          
-                       }
-                       catch (Exception exc)
-                      {
-                               }
-                     
-                
+                    limpiarAtender();
                 }
             });
         

@@ -89,7 +89,6 @@
                                                 </BorderPane>
                                                 <BorderPane prefHeight="91.0" prefWidth="186.0">
                                                    <center>
-                                                      <ComboBox fx:id="comboBoxSucursales" prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
                                                       <Text id="stext" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="153.0" BorderPane.alignment="CENTER" />
                                                    </center>
                                                 </BorderPane>

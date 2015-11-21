@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="200.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane id="splitPane" fx:id="split" dividerPositions="0.4684014869888476" prefHeight="564.0" prefWidth="1078.0">
+         <items>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <VBox maxWidth="500.0" minWidth="500.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <BorderPane prefHeight="22.0" prefWidth="500.0">
+                           <center>
+                              <Text fx:id="advertencia" fill="#dd0b0b" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="49.21875" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="91.0" prefWidth="220.0">
+                                 <right>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID Pedido:" textAlignment="RIGHT" wrappingWidth="61.90853500366211" BorderPane.alignment="CENTER" />
+                                 </right>
+                              </BorderPane>
+                              <BorderPane prefHeight="91.0" prefWidth="253.0">
+                                 <center>
+                                    <Text id="idPedido" strokeType="OUTSIDE" strokeWidth="0.0" text="Haga clic en crear pedido" wrappingWidth="153.69308471679688" BorderPane.alignment="CENTER" />
+                                 </center>
+                              </BorderPane>
+                              <BorderPane prefHeight="91.0" prefWidth="235.0">
+                                 <left>
+                                    <Button id="crearP" fx:id="crearPedido" mnemonicParsing="false" prefHeight="39.0" prefWidth="135.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Crear Pedido" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="80.0" prefWidth="173.0">
+                                 <right>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sucursal de destino:" wrappingWidth="124.34986877441406" BorderPane.alignment="CENTER" />
+                                 </right>
+                              </BorderPane>
+                              <BorderPane prefHeight="91.0" prefWidth="186.0">
+                                 <center>
+                                    <ComboBox fx:id="comboBoxSucursales" prefHeight="26.0" prefWidth="237.0" BorderPane.alignment="CENTER" />
+                                    <Text id="stext" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="153.0" BorderPane.alignment="CENTER" />
+                                 </center>
+                              </BorderPane>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                 <center>
+                                    <Button id="modificar" fx:id="botonModificar" mnemonicParsing="false" prefHeight="39.0" prefWidth="126.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Modificar" visible="false" BorderPane.alignment="CENTER" />
+                                 </center>
+                              </BorderPane>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="168.0" prefWidth="500.0">
+                           <children>
+                              <BorderPane prefHeight="148.0" prefWidth="30.0" />
+                              <BorderPane prefHeight="148.0" prefWidth="378.0">
+                                 <center>
+                                    <ListView fx:id="listEncomiendas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="345.0" BorderPane.alignment="CENTER" />
+                                 </center>
+                                 <top>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Encomiendas:" wrappingWidth="276.2235412597656" BorderPane.alignment="CENTER" />
+                                 </top>
+                              </BorderPane>
+                              <BorderPane prefHeight="148.0" prefWidth="103.0">
+                                 <center>
+                                    <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
+                                       <children>
+                                          <Circle id="agregarPedido" fill="#0049ba" layoutX="18.0" layoutY="18.0" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Text fill="WHITE" layoutX="7.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
+                                             <font>
+                                                <Font size="36.0" />
+                                             </font>
+                                          </Text>
+                                          <Button fx:id="botonAgregarEncomienda" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+                                       </children>
+                                    </Pane>
+                                 </center>
+                              </BorderPane>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="100.0" prefWidth="150.0">
+                                 <right>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Presupuesto:" wrappingWidth="80.66820526123047" BorderPane.alignment="CENTER" />
+                                 </right>
+                              </BorderPane>
+                              <BorderPane prefHeight="98.0" prefWidth="253.0">
+                                 <center>
+                                    <Text id="presupuesto" fx:id="presupuesto" fill="#0049ba" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="282.3005828857422" BorderPane.alignment="CENTER_LEFT">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                    </Text>
+                                 </center>
+                                 <left>
+                                    <Text fill="#0049ba" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" textAlignment="CENTER" wrappingWidth="31.761505126953125" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                    </Text>
+                                 </left>
+                              </BorderPane>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="100.0" prefWidth="150.0" />
+                              <BorderPane prefHeight="91.0" prefWidth="165.0">
+                                 <top>
+                                    <Button fx:id="botonCancelar" mnemonicParsing="false" prefHeight="39.0" prefWidth="139.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Cancelar" BorderPane.alignment="CENTER" />
+                                 </top>
+                              </BorderPane>
+                              <BorderPane prefHeight="94.0" prefWidth="210.0">
+                                 <top>
+                                    <Button fx:id="cerrarPedido" mnemonicParsing="false" prefHeight="39.0" prefWidth="139.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Cerrar Pedido" BorderPane.alignment="CENTER" />
+                                 </top>
+                              </BorderPane>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <AnchorPane fx:id="agregarPane" minHeight="0.0" minWidth="0.0" prefHeight="573.0" prefWidth="568.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </items>
+      </SplitPane>
+   </children>
+</fx:root>

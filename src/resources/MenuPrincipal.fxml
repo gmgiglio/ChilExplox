@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<FlowPane maxHeight="570.0" prefHeight="570.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuPrincipalController">
+   <children>
+      <MenuBar fx:id="menuBar" prefHeight="30.0" prefWidth="1080.0" />
+      <TabPane fx:id="tabs" prefHeight="570.0" prefWidth="1080.0" tabClosingPolicy="UNAVAILABLE" />
+   </children>
+</FlowPane>

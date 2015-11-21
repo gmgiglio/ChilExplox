@@ -11,8 +11,9 @@ package chilexplox;
  */
 public abstract class Usuario implements java.io.Serializable {
     
-    private String nombreUsuario;
+    String nombreUsuario;
     private String contrasena;
+    Sucursal sucActual;
     
     public Usuario(String nombreUsuario, String contrasena){
         this.nombreUsuario = nombreUsuario;
@@ -37,4 +38,43 @@ public abstract class Usuario implements java.io.Serializable {
         }
         else { return false; }
     }
+    
+    
+    public Pedido crearPed(Sucursal sucDestino, Cliente cliente){
+        sucActual.setPedidoAbierto(new Pedido(sucActual, sucDestino, cliente));
+        return sucActual.getPedidoAbierto();
+    }
+    
+    public Pedido crearPed(Sucursal sucDestino){
+        sucActual.setPedidoAbierto(new Pedido(sucActual, sucDestino, null));
+        return sucActual.getPedidoAbierto();
+    }
+    
+    public void agregarEnc(Pedido p, int peso, int volumen, String dirDestino, String desc){
+        p.agregarEnc(peso, volumen, dirDestino, desc);
+    }
+    
+    public void agregarEnc(Pedido p,int peso, int volumen, int prioridad, String dirDestino, String desc){
+        p.agregarEnc(peso, volumen, prioridad, dirDestino, desc);
+    }
+    
+    public boolean cerrarPed(){
+        return sucActual.cerrarPedido();
+    }
+    
+    /**
+     * @param sucursalActual the sucActual to set
+     */
+    public void setSucActual(Sucursal sucursalActual) {
+        this.sucActual = sucursalActual;
+    }
+    
+        /**
+     * @return the sucActual
+     */
+    public Sucursal getSucActual() {
+        return sucActual;
+    }
+    
+    
 }

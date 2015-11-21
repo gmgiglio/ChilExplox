@@ -57,13 +57,18 @@ public class Main extends Application {
         pantallaElegirUsuario.setHandlerUsuarioElegido((EventHandler) (Event event) -> {
             usuarioActual = pantallaElegirUsuario.getUsuario();
             try{
-      
-                primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"))));
-//                primaryStage.getScene().getStylesheets().add("/resources/styles/stylesheet.css");
+                
+                if (usuarioActual instanceof Cliente){
+                    primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/resources/MenuPrincipal.fxml"))));
+                }
+                else{
+                    primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/resources/Inicio.fxml"))));
 
-                javafx.geometry.Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-                primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
-                primaryStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
+
+                    javafx.geometry.Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                    primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
+                    primaryStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
+                }
             }catch(Exception e){ 
                 throw new RuntimeException(e);
                       }

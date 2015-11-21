@@ -5,6 +5,7 @@ import chilexplox.*;
 import controllers.AgregarClienteController;
 import controllers.AgregarEncomiendaController;
 import controllers.CajaEncomienda;
+import controllers.EditarEncomiendaController;
 import controllers.FichaCliente;
 import java.net.URL;
 import java.util.LinkedList;
@@ -65,6 +66,7 @@ public class InicioController implements Initializable {
         
     private Menu menuSucursal;
     private AgregarEncomiendaController agregarEncomiendaCon;
+    private EditarEncomiendaController editarEncomiendaCon;
 
     private AgregarClienteController agregarClienteCon;
 
@@ -303,16 +305,21 @@ public class InicioController implements Initializable {
             
            cerrarPedido.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                    String nombreCliente = (String)comboBoxClientes.getItems().get(0);
-                       try{
-                            if(nombreCliente != null){
+                    String nombreCliente = (String)comboBoxClientes.getValue();
+                       try{ 
+                            if(nombreCliente != null && ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getEncomiendas().size()>0){
+                                advertencia.setText("");
                                 Scene scene = split.getScene();
                                 Text idPedido = (Text)scene.lookup("#idPedido");
                                 ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().setCliente(nombreCliente);
                                 ((Funcionario)Main.getUsuarioActual()).cerrarPed();
                                 limpiarAtender();
                            }
-                            else advertencia.setText("Debe seleccionar un cliente");
+                            else if(nombreCliente == null){
+                                advertencia.setText("Debe seleccionar un cliente");
+                            } else {
+                            advertencia.setText("Debe haber al menos una encomienda");
+                            }
                        }
                        catch (Exception exc)
                       {
@@ -600,6 +607,7 @@ public class InicioController implements Initializable {
      }
      
      public void limpiarAtender(){
+         advertencia.setText("");   
          crearPedido.setVisible(true);
          Scene scene = crearPedido.getScene();
          Text idPedido = (Text) scene.lookup("#idPedido");
@@ -627,6 +635,13 @@ public class InicioController implements Initializable {
              listEncomiendas.getItems().remove(caja);
              presupuesto.setText(""+((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getCostoEnvio());
 
+         });
+         c.setHandlerEditarEncomienda((Event e) -> {
+             CajaEncomienda caja = (CajaEncomienda) e.getSource();
+             Encomienda enc = caja.getEncomienda();
+             editarEncomiendaCon = new EditarEncomiendaController(enc);
+                                agregarPane.getChildren().setAll(editarEncomiendaCon);
+                                split.setDividerPositions(0.4684014869888476);
          });
          listEncomiendas.getItems().add(c);
          //comboBoxEncomiendas.setPromptText(encomienda.getDescripcion());

@@ -57,11 +57,19 @@ public class CajaEncomienda extends HBox{
     public void botonApretado(ActionEvent e){
         handlerEliminar.handle(new ActionEvent(this,null));
     }
+    public void botonEditarApretado(ActionEvent e){
+        handlerEditarEncomienda.handle(new ActionEvent(this,null));
+    }
     
     private EventHandler handlerEliminar;
+     
+    private EventHandler handlerEditarEncomienda;
     
     public void setHandlerEliminar(EventHandler eh){
         handlerEliminar = eh;
+    }
+     public void setHandlerEditarEncomienda(EventHandler eh){
+        handlerEditarEncomienda = eh;
     }
     
     public Encomienda getEncomienda(){

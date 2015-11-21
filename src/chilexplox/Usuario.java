@@ -5,6 +5,8 @@
  */
 package chilexplox;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author gianfrancogiglio
@@ -14,10 +16,12 @@ public abstract class Usuario implements java.io.Serializable {
     String nombreUsuario;
     private String contrasena;
     Sucursal sucActual;
+
     
     public Usuario(String nombreUsuario, String contrasena){
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
+        sucActual = null;
     }
     
     /**
@@ -69,12 +73,9 @@ public abstract class Usuario implements java.io.Serializable {
         this.sucActual = sucursalActual;
     }
     
-        /**
-     * @return the sucActual
-     */
+
     public Sucursal getSucActual() {
         return sucActual;
     }
-    
-    
+
 }

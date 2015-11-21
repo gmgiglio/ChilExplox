@@ -46,8 +46,8 @@ public class Funcionario extends Usuario implements java.io.Serializable {
     
     //true si se logro enviar pedido (siempre que el pedido estubiera abierto y el hay camiones disponibles)
     public boolean enviarPed(Pedido p){
-        Camion c = getSucActual().getCamionesDisp().get(0);
-        if(!p.getAbierto() && !sucActual.getCamionesDisp().isEmpty()){
+        Camion c = getSucActual().getCamionesDisponibles().get(0);
+        if(!p.getAbierto() && !sucActual.getCamionesDisponibles().isEmpty()){
             c.cargarPedido(p);
             return true;
         }
@@ -57,15 +57,15 @@ public class Funcionario extends Usuario implements java.io.Serializable {
     }
     
     public void enviarPedMayorPrioridad(){
-        if(getSucActual().getPedidosPend() != null){
-            Camion camionACargar = getSucActual().getCamionesDisp().get(0);
-            Pedido primerPed = getSucActual().getPedidosPend().get(0);
+        if(getSucActual().getPedidosPendientes() != null){
+            Camion camionACargar = getSucActual().getCamionesDisponibles().get(0);
+            Pedido primerPed = getSucActual().getPedidosPendientes().get(0);
             Sucursal sucDestino = primerPed.getSucDestino();
-            for(Pedido p : getSucActual().getPedidosPend()){
+            for(Pedido p : getSucActual().getPedidosPendientes()){
                 if(camionACargar.getPedidos() == null){
                     p.setEstado(Estado.En_transito);
                     camionACargar.cargarPedido(p);
-                    getSucActual().getPedidosPend().remove(p);
+                    getSucActual().getPedidosPendientes().remove(p);
                     sucDestino = p.getSucDestino();
                 }
             else{
@@ -73,7 +73,7 @@ public class Funcionario extends Usuario implements java.io.Serializable {
                         && p.getVol() <= camionACargar.getEspDisp()){
                     p.setEstado(Estado.En_transito);
                     camionACargar.cargarPedido(p);
-                        getSucActual().getPedidosPend().remove(p);
+                        getSucActual().getPedidosPendientes().remove(p);
                 }
             }
         }

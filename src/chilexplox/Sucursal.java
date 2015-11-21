@@ -21,15 +21,15 @@ public class Sucursal implements java.io.Serializable{
     private String ciudad;
     private String direccion;
     //Camiones disponibles para asignar pedidos
-    private final LinkedList<Camion> camionesDisp = new LinkedList<>();
+    private final LinkedList<Camion> camionesDisponibles = new LinkedList<>();
     //Camiones pendientes que esperan ser descargados
-    private final LinkedList<Camion> camionesPend = new LinkedList<>();
+    private final LinkedList<Camion> camionesPendientes = new LinkedList<>();
     //Pedidos pendientes asignados a ningun camion
-    private final LinkedList<Pedido> pedidosPend = new LinkedList<>();
+    private final LinkedList<Pedido> pedidosPendientes = new LinkedList<>();
     //Pedidos que ya se descargaron del camion y que esperan ser "revisados manualmente"
-    private final LinkedList<Pedido> pedidosEnDest = new LinkedList<>();
+    private final LinkedList<Pedido> pedidosEnDestino = new LinkedList<>();
     //Pedidos confirmados con informacion correcta
-    private final LinkedList<Pedido> pedidosEntregados = new LinkedList<>();
+    private final LinkedList<Pedido> pedidosConfirmados = new LinkedList<>();
     //Pedidos confirmados con informacion incorrecta
     private final LinkedList<Pedido> pedidosEquivocados = new LinkedList<>();
     private Pedido pedidoAbierto = null;
@@ -45,12 +45,12 @@ public class Sucursal implements java.io.Serializable{
     }
     
     public void agregarPedido(Pedido p){
-        if(pedidosPend.isEmpty()) pedidosPend.add(p);
+        if(pedidosPendientes.isEmpty()) pedidosPendientes.add(p);
         else{   
-            for(int i = 0; i < pedidosPend.size(); i++){
+            for(int i = 0; i < pedidosPendientes.size(); i++){
 
-                if(p.getPrioridad() >= pedidosPend.get(i).getPrioridad()) {
-                    pedidosPend.add(i, p);
+                if(p.getPrioridad() >= pedidosPendientes.get(i).getPrioridad()) {
+                    pedidosPendientes.add(i, p);
                     break;
                 }
                 
@@ -58,16 +58,16 @@ public class Sucursal implements java.io.Serializable{
         }
     }
     
-    public LinkedList<Camion> getCamionesDisp(){
-        return this.camionesDisp;
+    public LinkedList<Camion> getCamionesDisponibles(){
+        return this.camionesDisponibles;
     }
     
-    public LinkedList<Pedido> getPedidosPend(){
-        return new LinkedList(pedidosPend);
+    public LinkedList<Pedido> getPedidosPendientes(){
+        return new LinkedList(pedidosPendientes);
     }
     
     public LinkedList<Pedido> getPedidosEntregados(){
-        return new LinkedList(pedidosEntregados);
+        return new LinkedList(pedidosConfirmados);
     }
     
     public LinkedList<Pedido> getPedidosEquivocados(){
@@ -75,54 +75,61 @@ public class Sucursal implements java.io.Serializable{
     }
     
     public Pedido getPedidoPendiente(Integer id){
-        for(int i=0; i<pedidosPend.size();i++)
+        for(int i=0; i<pedidosPendientes.size();i++)
         {
-            if(pedidosPend.get(i).getIdPedido()==id)
-                return pedidosPend.get(i);
+            if(pedidosPendientes.get(i).getIdPedido()==id)
+                return pedidosPendientes.get(i);
         }
-        
-        return null;
-        
+        return null; 
+    }
+    
+    public Pedido getPedidoEnDestino(Integer id){
+        for(int i=0; i<pedidosEnDestino.size();i++)
+        {
+            if(pedidosEnDestino.get(i).getIdPedido()==id)
+                return pedidosEnDestino.get(i);
+        }
+        return null; 
     }
     
     
     public void cargarPedido(Pedido p){
-        pedidosPend.remove(p);
+        pedidosPendientes.remove(p);
     }
     
     public void cargarPedido(int id){
-        for(Pedido p : pedidosPend){
+        for(Pedido p : pedidosPendientes){
             if(p.getIdPedido() == id ){
                 p.setEstado(Estado.En_transito);
-                pedidosPend.remove(p);
+                pedidosPendientes.remove(p);
             }
         }
     }
 
     /**
-     * @return the camionesPend
+     * @return the camionesPendientes
      */
     public LinkedList<Camion> getCamionesPend() {
-        return camionesPend;
+        return camionesPendientes;
     }
     
     public void recibirCamionCargado(Camion c){
-        camionesPend.add(c);
+        camionesPendientes.add(c);
         for(Pedido p : c.getPedidos()){
             p.setEstado(Estado.En_destino);
         }
     }
     
     public void recibirCamionDescargado(Camion c){
-        camionesDisp.add(c);
+        camionesDisponibles.add(c);
     }
 
     public void despacharCamion(){
-        camionesPend.remove(0);
+        camionesPendientes.remove(0);
     }
     
     public void enviarCamion(Camion c){
-        camionesDisp.remove(c);
+        camionesDisponibles.remove(c);
     }
     
     //Bajar pedido del camion y pasarlo a la lista de pedidos en destino
@@ -132,20 +139,22 @@ public class Sucursal implements java.io.Serializable{
     }
 
     /**
-     * @return the pedidosEnDest
+     * @return the pedidosEnDestino
      */
     public LinkedList<Pedido> getPedidosEnDest() {
-        return new LinkedList(pedidosEnDest);
+        return new LinkedList(pedidosEnDestino);
     }
     
     public void pedidoEntregado(Pedido p){
-        pedidosEntregados.add(p);
+        pedidosEnDestino.remove(p);
         p.setEstado(Estado.Entregado);
+        pedidosConfirmados.add(p);
     }
     
     public void pedidoEquivocado(Pedido p){
-        pedidosEquivocados.add(p);
+        pedidosEnDestino.remove(p);
         p.setEstado(Estado.Equivocado);
+        pedidosEquivocados.add(p);
     }
     
     public void recibeMensaje(Mensaje mensaje){
@@ -162,10 +171,10 @@ public class Sucursal implements java.io.Serializable{
     
     //retorna true si encontró el camion entre sus camiones pendientes y false de lo contrario
     public boolean descargarCamion (Camion camion){
-        if (camionesPend.contains(camion)){
-            pedidosEnDest.addAll(camion.descargarPedidos());
-            camionesPend.remove(camion);
-            camionesDisp.add(camion);
+        if (camionesPendientes.contains(camion)){
+            pedidosEnDestino.addAll(camion.descargarPedidos());
+            camionesPendientes.remove(camion);
+            camionesDisponibles.add(camion);
             return true;
         }
         else return false;
@@ -188,8 +197,8 @@ public class Sucursal implements java.io.Serializable{
     }
             
     public void revisarTiempoPedidos(){
-        if(pedidosPend.size()>0){
-            for(Pedido p : this.pedidosPend){
+        if(pedidosPendientes.size()>0){
+            for(Pedido p : this.pedidosPendientes){
                 if(p.getPrioridad() >= Empresa.getAltaPrioridad() && p.getTiempoTranscurrido() >= Empresa.getTiempoLimite()){
                     if(handlerPedidoAtrasado != null) handlerPedidoAtrasado.handle(new ActionEvent(p,null));
                     else{
@@ -202,11 +211,11 @@ public class Sucursal implements java.io.Serializable{
     } 
     
     public void agregarCamion(String patente, int capacidad){
-        camionesDisp.add(new Camion(patente, capacidad));
+        camionesDisponibles.add(new Camion(patente, capacidad));
     }
     
     public void agregarCamionPend(String patente, int capacidad){
-        camionesPend.add(new Camion(patente, capacidad));
+        camionesPendientes.add(new Camion(patente, capacidad));
     }
     
     public LinkedList<Mensaje> getMensajesEnBuzon(){
@@ -228,16 +237,23 @@ public class Sucursal implements java.io.Serializable{
     }
     
     public Camion getCamion(String patente){
-        for(Camion c : camionesDisp){
+        for(Camion c : camionesDisponibles){
             if(c.getPatente() == patente){
                 return c;
             }
         }
-        for(Camion c : camionesPend){
+        for(Camion c : camionesPendientes){
             if(c.getPatente() == patente){
                 return c;
             }
         }
         return null;
+    }
+
+    /**
+     * @return the pedidosConfirmados
+     */
+    public LinkedList<Pedido> getPedidosConfirmados() {
+        return pedidosConfirmados;
     }
 }

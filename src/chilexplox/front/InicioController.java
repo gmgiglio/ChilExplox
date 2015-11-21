@@ -27,16 +27,8 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
-/**
- * FXML Controller class
- *
- * @author alberto
- */
 public class InicioController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
         @FXML
     private MenuBar menuBar;
        @FXML
@@ -190,7 +182,7 @@ public class InicioController implements Initializable {
         for(Sucursal s : sucEnLista){
                 ItemSucursalMenu item = new ItemSucursalMenu(s);
                 menuSucursal.getItems().add(item); 
-                item.setOnAction(eventoSucursal);  
+                item.setOnAction(cambiarSucursalActual);  
                 
         }
         menuBar.getMenus().addAll(menuUsuario,menuSucursal);
@@ -401,14 +393,14 @@ public class InicioController implements Initializable {
         
     }
     
-    private EventHandler eventoSucursal = new EventHandler() {
+    private EventHandler cambiarSucursalActual = new EventHandler() {
 
         public void handle(Event e) {
             ItemSucursalMenu item1 = (ItemSucursalMenu)e.getSource();
             Sucursal suc = item1.getSucursal();
             menuSucursal.setText(suc.getNombre());
             ItemSucursalMenu item2 = new ItemSucursalMenu(((Funcionario)Main.getUsuarioActual()).getSucActual());
-            item2.setOnAction(eventoSucursal);
+            item2.setOnAction(cambiarSucursalActual);
             ((Funcionario)Main.getUsuarioActual()).setSucActual(suc);
             menuSucursal.getItems().remove(item1);
             menuSucursal.getItems().add(item2);
@@ -430,8 +422,10 @@ public class InicioController implements Initializable {
     }
 
 
-     public void actualizarPestanaAdm(){
+    public void actualizarPestanaAdm(){
          
+        accionCamion.setVisible(false);
+        retornarCamion.setVisible(false);
         camionActual = null;
         patenteCamAct.setText("");
         capacidadCamAct.setText("");
@@ -514,7 +508,7 @@ public class InicioController implements Initializable {
             }
         });
     
-    pedidosDest.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        pedidosDest.setOnMouseClicked(new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
             vBoxConfPed.setVisible(true);
@@ -522,13 +516,14 @@ public class InicioController implements Initializable {
             }
         });
         
-    camionesDesc.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        camionesDesc.setOnMouseClicked(new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
             vBoxConfPed.setVisible(false);
             pedidosCar.setVisible(true);
             accionCamion.setVisible(true);
             accionCamion.setText("Descargar Camión");
+            retornarCamion.setVisible(true);
             camionActual = null;
             String patenteCamionSelec = (String)camionesDesc.getSelectionModel().getSelectedItem().getValue();
             Sucursal sucActual = ((Funcionario)Main.getUsuarioActual()).getSucActual();
@@ -554,24 +549,50 @@ public class InicioController implements Initializable {
                     actualizarPestanaAdm();
                 }
             });
+            
+            retornarCamion.setOnMouseClicked(new EventHandler<MouseEvent>(){
+                    @Override
+                    public void handle(MouseEvent event){
+                        Sucursal sucActual = ((Funcionario)Main.getUsuarioActual()).getSucActual();
+                        Sucursal origen = camionActual.getPedidos().get(0).getSucOrigen();
+                        ((Funcionario)Main.getUsuarioActual()).enviarMens(
+                                "Retorno del Camion " + camionActual.getPatente(),
+                                "Estimado:\n"
+                                        + "\t le escribimos desde la sucursal " + sucActual.getNombre() + 
+                                        " para informarle que hemos recibido al camión de patente " + 
+                                        camionActual.getPatente() +
+                                        ". Desafortunadamente, el contenido de este presenta errores, por lo que "
+                                        + "decidimos enviarlo de vuelta a sus instalaciones.\n"
+                                        + "Quedamos atentos a sus comentarios.\nSe despide,\n\n" +
+                                        ((Funcionario)Main.getUsuarioActual()).getNombreUsuario()+"\nSucursal "+
+                                        sucActual.getNombre(), origen);
+                        camionActual.setEstado(EstadoCamion.Con_Errores);
+                        origen.recibirCamionCargado(camionActual);
+                        sucActual.retornarCamion(camionActual);
+                        actualizarPestanaAdm();
+                    }
+                });
             }
         });
-     }
+    }
      
-     public TreeItem<String> listarCamiones(LinkedList<Camion> camiones){
-         TreeItem<String> dummyRoot = new TreeItem<>("root");
-         for(Camion c : camiones){
-             TreeItem<String> camionView = new TreeItem<>(c.getPatente());
-             camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckIcon.png"))));
-             camionView.getChildren().add(new TreeItem("Capacidad total: " + c.getCapacidad() + " cm^3"));
-             camionView.getChildren().add(new TreeItem("Espacio Disponible: " + c.getEspDisp() + "cm^3"));
-             dummyRoot.getChildren().add(camionView);
-         }
+    public TreeItem<String> listarCamiones(LinkedList<Camion> camiones){
+        TreeItem<String> dummyRoot = new TreeItem<>("root");
+        for(Camion c : camiones){
+            TreeItem<String> camionView = new TreeItem<>(c.getPatente());
+            if(c.getEstado() == EstadoCamion.Sin_Errores)
+               camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckIcon.png"))));
+            else
+               camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckErrorIcon.png"))));
+            camionView.getChildren().add(new TreeItem("Capacidad total: " + c.getCapacidad() + " cm^3"));
+            camionView.getChildren().add(new TreeItem("Espacio Disponible: " + c.getEspDisp() + "cm^3"));
+            dummyRoot.getChildren().add(camionView);
+        }
          
          return dummyRoot;
      }
-     
-     public TreeItem<String> listarPedidos(LinkedList<Pedido> pedidos){
+    
+    public TreeItem<String> listarPedidos(LinkedList<Pedido> pedidos){
          TreeItem<String> dummyRoot = new TreeItem<>("root");
          
          
@@ -599,15 +620,15 @@ public class InicioController implements Initializable {
          }
          return dummyRoot;
      }
-
-     public void amononarTreeView (AnchorPane ap, TreeView<String> tv){
+    
+    public void amononarTreeView (AnchorPane ap, TreeView<String> tv){
         tv.setShowRoot(false);
         ap.getChildren().add(tv);
         tv.setPrefWidth(ap.getPrefWidth());
         tv.setPrefHeight(ap.getPrefHeight());
      }
-     
-     public void limpiarAtender(){
+    
+    public void limpiarAtender(){
          advertencia.setText("");   
          crearPedido.setVisible(true);
          Scene scene = crearPedido.getScene();
@@ -624,8 +645,8 @@ public class InicioController implements Initializable {
          presupuesto.setText("0");
          split.setDividerPositions(1);
      }
-     
-     private void agregarEncomienda(Encomienda encomienda){
+    
+    private void agregarEncomienda(Encomienda encomienda){
          ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().agregarEnc(encomienda);
          CajaEncomienda c = new CajaEncomienda(encomienda);
          c.setHandlerEliminar((Event e) -> {
@@ -652,6 +673,7 @@ public class InicioController implements Initializable {
          //comboBoxEncomiendas.setPromptText(encomienda.getDescripcion());
          presupuesto.setText(""+((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getCostoEnvio());
      }
+
      
      private void eliminarEncomienda(Encomienda encomienda){
          ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().eliminarEncomienda(encomienda);

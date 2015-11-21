@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package chilexplox;
 
 import java.util.LinkedList;
 
-/**
- *
- * @author gianfrancogiglio
- */
 public abstract class Usuario implements java.io.Serializable {
     
     String nombreUsuario;
@@ -24,9 +15,6 @@ public abstract class Usuario implements java.io.Serializable {
         sucActual = null;
     }
     
-    /**
-     * @return the nombreUsuario
-     */
     public String getNombreUsuario() {
         return nombreUsuario;
     }
@@ -42,8 +30,7 @@ public abstract class Usuario implements java.io.Serializable {
         }
         else { return false; }
     }
-    
-    
+   
     public Pedido crearPed(Sucursal sucDestino, Cliente cliente){
         sucActual.setPedidoAbierto(new Pedido(sucActual, sucDestino, cliente));
         return sucActual.getPedidoAbierto();
@@ -57,6 +44,7 @@ public abstract class Usuario implements java.io.Serializable {
     public void agregarEnc(Pedido p, int peso, int volumen, String dirDestino, String desc){
         p.agregarEnc(peso, volumen, dirDestino, desc);
     }
+    
     public void agregarEnc(Pedido p,int peso, int volumen, int prioridad, String dirDestino, String desc){
         p.agregarEnc(peso, volumen, prioridad, dirDestino, desc);
     }
@@ -64,14 +52,11 @@ public abstract class Usuario implements java.io.Serializable {
     public boolean cerrarPed(){
         return sucActual.cerrarPedido();
     }
-    /**
-     * @param sucursalActual the sucActual to set
-     */
+    
     public void setSucActual(Sucursal sucursalActual) {
         this.sucActual = sucursalActual;
     }
     
-
     public Sucursal getSucActual() {
         return sucActual;
     }

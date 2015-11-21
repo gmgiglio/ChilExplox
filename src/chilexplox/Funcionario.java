@@ -16,35 +16,14 @@ import static javafx.scene.input.KeyCode.I;
 public class Funcionario extends Usuario implements java.io.Serializable {
     
     
-    private Sucursal sucActual;
+   
     private final LinkedList<RegistroMensaje> registroMensajesEnviados = new LinkedList();
     
     public Funcionario(String nombreUsuario, String contrasena){
         super( nombreUsuario, contrasena);
-        sucActual = null;
     }
     
-    public Pedido crearPed(Sucursal sucDestino, Cliente cliente){
-        sucActual.setPedidoAbierto(new Pedido(sucActual, sucDestino, cliente));
-        return sucActual.getPedidoAbierto();
-    }
     
-    public Pedido crearPed(Sucursal sucDestino){
-        sucActual.setPedidoAbierto(new Pedido(sucActual, sucDestino, null));
-        return sucActual.getPedidoAbierto();
-    }
-    
-    public void agregarEnc(Pedido p, int peso, int volumen, String dirDestino, String desc){
-        p.agregarEnc(peso, volumen, dirDestino, desc);
-    }
-    
-    public void agregarEnc(Pedido p,int peso, int volumen, int prioridad, String dirDestino, String desc){
-        p.agregarEnc(peso, volumen, prioridad, dirDestino, desc);
-    }
-    
-    public boolean cerrarPed(){
-        return sucActual.cerrarPedido();
-    }
     
     public void cargarPed(Camion c, int idPed){
         Pedido p = sucActual.getPedidoPendiente(idPed);
@@ -78,7 +57,7 @@ public class Funcionario extends Usuario implements java.io.Serializable {
     }
     
     public void enviarPedMayorPrioridad(){
-        if(getSucActual().getPedidosPendientes()!= null){
+        if(getSucActual().getPedidosPendientes() != null){
             Camion camionACargar = getSucActual().getCamionesDisponibles().get(0);
             Pedido primerPed = getSucActual().getPedidosPendientes().get(0);
             Sucursal sucDestino = primerPed.getSucDestino();
@@ -141,22 +120,6 @@ public class Funcionario extends Usuario implements java.io.Serializable {
     
     public LinkedList<RegistroMensaje> getRegistroMensEnviados(){
         return new LinkedList(registroMensajesEnviados);
-    }
-
-    
-
-    /**
-     * @param sucursalActual the sucActual to set
-     */
-    public void setSucActual(Sucursal sucursalActual) {
-        this.sucActual = sucursalActual;
-    }
-
-    /**
-     * @return the sucActual
-     */
-    public Sucursal getSucActual() {
-        return sucActual;
     }
     
     public RegistroCliente crearCliente(String nombre, String[] apellidos, String direccion, String telefono){

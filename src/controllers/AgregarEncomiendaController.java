@@ -127,10 +127,6 @@ public class AgregarEncomiendaController extends VBox {
         try{ prioridad = getPrioridad();}
         catch(Exception e){ aPri(); error = true;}
         
-       /* if(!error){
-            int p = Encomienda.calcularPresupuesto(peso, volumen, prioridad);
-            textPresupuesto.setText(Integer.toString(p));
-        }*/
         return !error;
         
     }

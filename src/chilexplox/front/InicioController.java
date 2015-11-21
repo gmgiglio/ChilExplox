@@ -128,20 +128,20 @@ public class InicioController implements Initializable {
                 treeDestino.getRoot().getChildren().add(itemToMove);
                 
                 if(treeDestino.getParent() == anchorPedCar)
-                    Main.getUsuarioActual().cargarPed(camionActual, Integer.parseInt(idPedido[1]));
+                    ((Funcionario)Main.getUsuarioActual()).cargarPed(camionActual, Integer.parseInt(idPedido[1]));
                 
                 else if(treeDestino.getParent() == anchorPedPend){
-                    Main.getUsuarioActual().descargarPed(camionActual, Integer.parseInt(idPedido[1]));
+                    ((Funcionario)Main.getUsuarioActual()).descargarPed(camionActual, Integer.parseInt(idPedido[1]));
                     espDispCamAct.setText(Integer.toString(camionActual.getEspDisp()));
                 }
                 else if(treeDestino.getParent() == anchorPedConf)
-                    Main.getUsuarioActual().confirmarPed(Integer.parseInt(idPedido[1]), true);
+                    ((Funcionario)Main.getUsuarioActual()).confirmarPed(Integer.parseInt(idPedido[1]), true);
                 
                 else if(treeDestino.getParent() == anchorPedEq)
-                    Main.getUsuarioActual().confirmarPed(Integer.parseInt(idPedido[1]), false);
+                    ((Funcionario)Main.getUsuarioActual()).confirmarPed(Integer.parseInt(idPedido[1]), false);
                 
                 event.consume();
-
+                
             }
         }
     };
@@ -202,16 +202,7 @@ public class InicioController implements Initializable {
         
         botonCancelar.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                       try{
-                                limpiarAtender();
-
-                          
-                       }
-                       catch (Exception exc)
-                      {
-                               }
-                     
-                
+                    limpiarAtender();
                 }
             });
         
@@ -443,7 +434,7 @@ public class InicioController implements Initializable {
         pedidosCar.setShowRoot(false);
         amononarTreeView(anchorPedCar, pedidosCar);
         
-        Sucursal sucActual = ((Funcionario)Main.getUsuarioActual()).getSucActual();
+        Sucursal sucActual = Main.getUsuarioActual().getSucActual();
         
         pedidosPend = new TreeView<>(listarPedidos(sucActual.getPedidosPendientes()));
         amononarTreeView(anchorPedPend, pedidosPend);
@@ -530,7 +521,6 @@ public class InicioController implements Initializable {
             pedidosCar.setVisible(true);
             accionCamion.setVisible(true);
             accionCamion.setText("Descargar Camión");
-            reto
             camionActual = null;
             String patenteCamionSelec = (String)camionesDesc.getSelectionModel().getSelectedItem().getValue();
             Sucursal sucActual = ((Funcionario)Main.getUsuarioActual()).getSucActual();

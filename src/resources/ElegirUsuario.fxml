@@ -53,9 +53,9 @@
                            </center>
                         </BorderPane>
                         <BorderPane prefHeight="50.0" prefWidth="400.0">
-                           <top>
-                              <TextField fx:id="textFieldClave" maxWidth="200.0" onAction="#handlerTextFieldUsuario" BorderPane.alignment="CENTER" />
-                           </top>
+                           <center>
+                              <PasswordField fx:id="textFieldClave" maxWidth="200.0" onAction="#handlerTextFieldUsuario" BorderPane.alignment="CENTER" />
+                           </center>
                         </BorderPane>
                      </children>
                   </VBox>

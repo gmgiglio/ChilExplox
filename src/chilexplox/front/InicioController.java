@@ -623,7 +623,10 @@ public class InicioController implements Initializable {
              CajaEncomienda caja = (CajaEncomienda) e.getSource();
              Encomienda enc = caja.getEncomienda();
              ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().eliminarEncomienda(enc);
+            
              listEncomiendas.getItems().remove(caja);
+             presupuesto.setText(""+((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getCostoEnvio());
+
          });
          listEncomiendas.getItems().add(c);
          //comboBoxEncomiendas.setPromptText(encomienda.getDescripcion());

@@ -80,9 +80,16 @@ public class Sucursal implements java.io.Serializable{
             if(pedidosPendientes.get(i).getIdPedido()==id)
                 return pedidosPendientes.get(i);
         }
-        
-        return null;
-        
+        return null; 
+    }
+    
+    public Pedido getPedidoEnDestino(Integer id){
+        for(int i=0; i<pedidosEnDestino.size();i++)
+        {
+            if(pedidosEnDestino.get(i).getIdPedido()==id)
+                return pedidosEnDestino.get(i);
+        }
+        return null; 
     }
     
     
@@ -139,13 +146,15 @@ public class Sucursal implements java.io.Serializable{
     }
     
     public void pedidoEntregado(Pedido p){
-        getPedidosConfirmados().add(p);
+        pedidosEnDestino.remove(p);
         p.setEstado(Estado.Entregado);
+        pedidosConfirmados.add(p);
     }
     
     public void pedidoEquivocado(Pedido p){
-        getPedidosEquivocados().add(p);
+        pedidosEnDestino.remove(p);
         p.setEstado(Estado.Equivocado);
+        pedidosEquivocados.add(p);
     }
     
     public void recibeMensaje(Mensaje mensaje){

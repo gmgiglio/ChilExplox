@@ -124,17 +124,14 @@ public class Usuario implements java.io.Serializable {
     }
     
     public void confirmarPed(int idPedido, boolean correcto){
-        LinkedList<Pedido> pedidosEnDest = getSucActual().getPedidosEnDest();
-        for(Pedido p : pedidosEnDest){
-            if(idPedido == p.getIdPedido()){
-                if(correcto){
-                    getSucActual().pedidoEntregado(p);
-                }
-                else{
-                    getSucActual().pedidoEquivocado(p);
-                }
-            }
+        Pedido p = getSucActual().getPedidoEnDestino(idPedido);
+        if(idPedido == p.getIdPedido()){
+            if(correcto)
+                getSucActual().pedidoEntregado(p);
+            else
+                getSucActual().pedidoEquivocado(p);
         }
+        
     }
     
     public void enviarMens(String titulo, String texto, Sucursal sucursal){

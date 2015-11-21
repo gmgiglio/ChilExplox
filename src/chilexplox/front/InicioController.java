@@ -37,29 +37,29 @@ public class InicioController implements Initializable {
         @FXML
     private MenuBar menuBar;
        @FXML
-    private Button agregarCliente,botonAgregarEncomienda,crearPedido,botonCancelar,cerrarPedido,modificar,
-               botonNuevoMensaje, botonBuzonEntrada,botonMensajesEnviados, accionCamion;
+    private Button agregarCliente, botonAgregarEncomienda,crearPedido, botonCancelar, cerrarPedido, modificar,
+               botonNuevoMensaje, botonBuzonEntrada, botonMensajesEnviados, accionCamion;
         @FXML
     private TabPane tabs;
         @FXML
     private SplitPane split;
         @FXML
-    private AnchorPane pantallaNuevoMensaje,anchorPaneMensajes,anchorEjemplo,agregarPane;
+    private AnchorPane pantallaNuevoMensaje, anchorPaneMensajes, agregarPane;
         @FXML
-    private HBox pantallaBuzonEntrada,pantallaMensajesEnviados;
-        @FXML
-    private ListView pedidosPendientes, pedidosCargados, camionesDisponibles, camionesPorDescargar, listEncomiendas;
+    private HBox pantallaBuzonEntrada, pantallaMensajesEnviados;
         @FXML
     private ComboBox comboBoxClientes, comboBoxSucursales;
         @FXML
     private VBox vBoxConfPed;
         @FXML
-    private Text patenteCamAct, capacidadCamAct, espDispCamAct, estadoCamAct,advertencia,presupuesto;
+    private Text patenteCamAct, capacidadCamAct, espDispCamAct, estadoCamAct, advertencia, presupuesto;
         @FXML
     private AnchorPane anchorPedPend, anchorPedCar, anchorPedDest, anchorPedConf, anchorPedEq;
         @FXML
     private AnchorPane anchorCamDisp, anchorCamDesc;
-    
+        @FXML
+    private ListView listEncomiendas;
+        
     private Menu menuSucursal;
     private AgregarEncomiendaController agregarEncomiendaCon;
 
@@ -70,90 +70,95 @@ public class InicioController implements Initializable {
             pedidosDest = new TreeView<String>(), pedidosEq = new TreeView<String>(),
             pedidosConf = new TreeView<String>();;
     private TreeView<String> camionesDisp = new TreeView<String>(), camionesDesc = new TreeView<String>();
-           
-
-    private TreeItem aMover;
-    
+       
     private Camion camionActual;
-  
+    
     private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-                
-                //obtiene el treeview de origen
-                treeOrigen = (TreeView) event.getSource();
-                //Solo los hijos de root pueden ser drageados
-                if(treeOrigen.getSelectionModel().getSelectedItem().getParent().equals(treeOrigen.getRoot())){
-                    Dragboard dragBoard = treeOrigen.startDragAndDrop(TransferMode.MOVE);
-                    Image img = new Image(Main.class.getResourceAsStream("/resources/images/pedidoIcon.png"));
-                    dragBoard.setDragView(img);
-                    ClipboardContent content = new ClipboardContent();
-                    content.put(DataFormat.PLAIN_TEXT, treeOrigen.getSelectionModel().getSelectedItem().toString());
-                    dragBoard.setContent(content);
-                 }
-                    event.consume();
+        public void handle(MouseEvent event) {
+//obtiene el treeview de origen
+            treeOrigen = (TreeView) event.getSource();
+//Solo los hijos de root pueden ser drageados
+            if(treeOrigen.getSelectionModel().getSelectedItem().getParent().equals(treeOrigen.getRoot())){
+                Dragboard dragBoard = treeOrigen.startDragAndDrop(TransferMode.MOVE);
+                Image img = new Image(Main.class.getResourceAsStream("/resources/images/pedidoIcon.png"));
+                dragBoard.setDragView(img);
+                ClipboardContent content = new ClipboardContent();
+                content.put(DataFormat.PLAIN_TEXT, treeOrigen.getSelectionModel().getSelectedItem().toString());
+                dragBoard.setContent(content);
             }
-        };
-   
-     private EventHandler<DragEvent> dragOver = new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
-                String valueToMove = event.getDragboard().getString();
-                TreeItem<String> itemToMove = search(treeOrigen.getRoot(), valueToMove);
-                String[] idPedido = itemToMove.getValue().split("#");
-                Sucursal sucActual = Main.getUsuarioActual().getSucActual();
-                boolean cabePedido = camionActual.verificaEspacioDestino(sucActual, Integer.parseInt(idPedido[1]));
-                if(treeOrigen == pedidosDest || treeOrigen == pedidosCar ||
-                        (treeOrigen == pedidosPend && cabePedido))
-                    event.acceptTransferModes(TransferMode.MOVE);
+            event.consume();
+        }
+    };
+    
+    private EventHandler<DragEvent> dragOver = new EventHandler<DragEvent>() {
+        public void handle(DragEvent event) {
+            String valueToMove = event.getDragboard().getString();
+            TreeItem<String> itemToMove = search(treeOrigen.getRoot(), valueToMove);
+            String[] idPedido = itemToMove.getValue().split("#");
+            Sucursal sucActual = Main.getUsuarioActual().getSucActual();
+            boolean cabePedido = false;
+            if(camionActual != null){
+                cabePedido = camionActual.verificaEspacioDestino(sucActual, Integer.parseInt(idPedido[1]));
+            }
+            
+            if(treeOrigen == pedidosDest || treeOrigen == pedidosCar || (treeOrigen == pedidosPend && cabePedido))
+                event.acceptTransferModes(TransferMode.MOVE);
+            
+            event.consume();
+        }
+    };
+    
+    private EventHandler<DragEvent> dragDropped = new EventHandler<DragEvent>() {
+        public void handle(DragEvent event) {
+            String valueToMove = event.getDragboard().getString();
+            TreeItem<String> itemToMove = search(treeOrigen.getRoot(), valueToMove);
+            String[] idPedido = itemToMove.getValue().split("#");
+            treeDestino = (TreeView) event.getGestureTarget();
+            
+            if((treeOrigen.getParent() == anchorPedPend && treeDestino.getParent() == anchorPedCar) ||
+                    (treeOrigen.getParent() == anchorPedCar && treeDestino.getParent() == anchorPedPend) ||
+                    (treeOrigen.getParent() == anchorPedDest &&
+                    (treeDestino.getParent() == anchorPedConf || treeDestino.getParent() == anchorPedEq))){
+// Remove from former parent.
+                treeOrigen.getRoot().getChildren().remove(itemToMove);
+// Add to new parent.
+                treeDestino.getRoot().getChildren().add(itemToMove);
+                
+                if(treeDestino.getParent() == anchorPedCar)
+                    Main.getUsuarioActual().cargarPed(camionActual, Integer.parseInt(idPedido[1]));
+                
+                else if(treeDestino.getParent() == anchorPedPend){
+                    Main.getUsuarioActual().descargarPed(camionActual, Integer.parseInt(idPedido[1]));
+                    espDispCamAct.setText(Integer.toString(camionActual.getEspDisp()));
+                }
+                else if(treeDestino.getParent() == anchorPedConf)
+                    Main.getUsuarioActual().confirmarPed(Integer.parseInt(idPedido[1]), true);
+                
+                else if(treeDestino.getParent() == anchorPedEq)
+                    Main.getUsuarioActual().confirmarPed(Integer.parseInt(idPedido[1]), false);
                 
                 event.consume();
             }
-        };
-     private EventHandler<DragEvent> dragDropped = new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
-                    String valueToMove = event.getDragboard().getString();
-                    TreeItem<String> itemToMove = search(treeOrigen.getRoot(), valueToMove);
-                    String[] idPedido = itemToMove.getValue().split("#");
-                        treeDestino = (TreeView) event.getGestureTarget();
-                        if((treeOrigen.getParent() == anchorPedPend && treeDestino.getParent() == anchorPedCar) ||
-                                (treeOrigen.getParent() == anchorPedCar && treeDestino.getParent() == anchorPedPend) ||
-                                (treeOrigen.getParent() == anchorPedDest &&
-                                (treeDestino.getParent() == anchorPedConf || treeDestino.getParent() == anchorPedEq))){
-                            // Remove from former parent.
-                            treeOrigen.getRoot().getChildren().remove(itemToMove);
-                            // Add to new parent.
-                            treeDestino.getRoot().getChildren().add(itemToMove);
-
-
-                            if(treeDestino.getParent() == anchorPedCar)
-                                Main.getUsuarioActual().cargarPed(camionActual, Integer.parseInt(idPedido[1]));
-                            else if(treeDestino.getParent() == anchorPedPend){
-                                Main.getUsuarioActual().descargarPed(camionActual, Integer.parseInt(idPedido[1]));
-                                espDispCamAct.setText(Integer.toString(camionActual.getEspDisp()));
-                            }
-                            else if(treeDestino.getParent() == anchorPedConf){
-                                //metodo del backend para confirmar pedido
-                            }
-                            else if(treeDestino.getParent() == anchorPedEq){
-                                //metodo del backend para pedidos equivocados
-                            }
-                            event.consume();
-            }
-            }
-        };
-     private TreeItem<String> search(final TreeItem<String> currentNode, final String valueToSearch) {
+        }
+    };
+    
+    private TreeItem<String> search(final TreeItem<String> currentNode, final String valueToSearch) {
             TreeItem<String> result = null;
             if (currentNode.toString().equals(valueToSearch) ){
                 result = currentNode;
             } else if (!currentNode.isLeaf()) {
                 for (TreeItem<String> child : currentNode.getChildren()) {
                     result = search(child, valueToSearch);
-                    if (result != null) {
+                   if (result != null) {
                         break;
                     }
                 }
             }
             return result;
         }
+     
+     
+     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
@@ -418,13 +423,12 @@ public class InicioController implements Initializable {
         capacidadCamAct.setText("");
         espDispCamAct.setText("");
         estadoCamAct.setText("");
+        
         pedidosCar = new TreeView<>(new TreeItem<>("empty"));
         pedidosCar.setShowRoot(false);
         amononarTreeView(anchorPedCar, pedidosCar);
          
         Sucursal sucActual = Main.getUsuarioActual().getSucActual();
-        ObservableList patentesCamDisp = FXCollections.observableArrayList();
-        ObservableList patentesCamADesc = FXCollections.observableArrayList();
         
         pedidosPend = new TreeView<>(listarPedidos(sucActual.getPedidosPendientes()));
         amononarTreeView(anchorPedPend, pedidosPend);
@@ -432,18 +436,20 @@ public class InicioController implements Initializable {
         pedidosPend.setOnDragOver(dragOver);
         pedidosPend.setOnDragDropped(dragDropped);
         
-        pedidosConf = new TreeView<>(listarPedidos(sucActual.getPedidosConfirmados()));
-        amononarTreeView(anchorPedConf, pedidosConf);
-        pedidosConf.setOnDragDetected(dragDetected);
-        pedidosConf.setOnDragOver(dragOver);
-        pedidosConf.setOnDragDropped(dragDropped);
         
         pedidosDest = new TreeView<>(listarPedidos(sucActual.getPedidosEnDest()));
         amononarTreeView(anchorPedDest, pedidosDest);
         pedidosDest.setOnDragDetected(dragDetected);
-        pedidosDest.setOnDragOver(dragOver);
-        pedidosDest.setOnDragDropped(dragDropped);
-
+        
+        pedidosConf = new TreeView<>(listarPedidos(sucActual.getPedidosConfirmados()));
+        amononarTreeView(anchorPedConf, pedidosConf);
+        pedidosConf.setOnDragOver(dragOver);
+        pedidosConf.setOnDragDropped(dragDropped);
+        
+        pedidosEq = new TreeView<>(listarPedidos(sucActual.getPedidosEquivocados()));
+        amononarTreeView(anchorPedEq, pedidosEq);
+        pedidosEq.setOnDragOver(dragOver);
+        pedidosEq.setOnDragDropped(dragDropped);
 
         camionesDisp = new TreeView<>(listarCamiones(sucActual.getCamionesDisponibles()));
         amononarTreeView(anchorCamDisp, camionesDisp);

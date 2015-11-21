@@ -39,7 +39,9 @@ public class InicioController implements Initializable {
     private MenuBar menuBar;
        @FXML
     private Button agregarCliente, botonAgregarEncomienda,crearPedido, botonCancelar, cerrarPedido, modificar,
-               botonNuevoMensaje, botonBuzonEntrada, botonMensajesEnviados, accionCamion;
+               botonNuevoMensaje, botonBuzonEntrada, botonMensajesEnviados;
+        @FXML
+    private Button accionCamion, retornarCamion;
         @FXML
     private TabPane tabs;
         @FXML
@@ -528,12 +530,13 @@ public class InicioController implements Initializable {
             pedidosCar.setVisible(true);
             accionCamion.setVisible(true);
             accionCamion.setText("Descargar Camión");
+            reto
             camionActual = null;
             String patenteCamionSelec = (String)camionesDesc.getSelectionModel().getSelectedItem().getValue();
             Sucursal sucActual = ((Funcionario)Main.getUsuarioActual()).getSucActual();
             
             for(Camion c : sucActual.getCamionesPend()){
-                if(c.getPatente()==patenteCamionSelec) camionActual = c;
+                if(c.getPatente() == patenteCamionSelec) camionActual = c;
             }
             
             if(camionActual.getPedidos() != null){

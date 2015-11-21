@@ -257,7 +257,7 @@
                                           </AnchorPane>
                                       </content>
                                     </TitledPane>
-                                    <VBox fx:id="vBoxConfPed" prefHeight="540.0" prefWidth="360.0">
+                                    <VBox fx:id="vBoxConfPed" prefHeight="540.0" prefWidth="360.0" visible="false">
                                        <children>
                                           <TitledPane animated="false" collapsible="false" prefHeight="270.0" prefWidth="360.0" text="Pedidos Confirmados">
                                              <content>

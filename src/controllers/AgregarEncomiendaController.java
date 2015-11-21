@@ -127,10 +127,15 @@ public class AgregarEncomiendaController extends VBox {
         try{ prioridad = getPrioridad();}
         catch(Exception e){ aPri(); error = true;}
         
-        if(!error){
+       /* if(!error){
             int p = Encomienda.calcularPresupuesto(peso, volumen, prioridad);
             textPresupuesto.setText(Integer.toString(p));
+<<<<<<< HEAD
         }
+=======
+        }*/
+        
+>>>>>>> origin/master
         return !error;
         
     }
@@ -155,6 +160,14 @@ public class AgregarEncomiendaController extends VBox {
     public void handlerEnterVolumenField(ActionEvent event){ 
         try{ getVolumen();}
         catch(Exception e){ aVol(); }
+        handlerEnterTextField(event);
+    }
+    
+    public void handlerEnterDescField(ActionEvent event){
+        String desc = getDescr();
+        if(desc.length() >= Encomienda.getLargoMaximoDesc()){
+            descField.setText(desc.substring(0,Encomienda.getLargoMaximoDesc()));
+        }
         handlerEnterTextField(event);
     }
     

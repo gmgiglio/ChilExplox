@@ -17,6 +17,7 @@ public class Encomienda extends Servicio implements java.io.Serializable{
     private static int precioPorGramo = 10;
     private static int precioPorCc = 10;
     private static int precioPorPrioridad = 1000;
+    private static int largoMaximoDesc = 20;
     
     //peso y volumen definidos en gramos y cm cubicos
     public Encomienda(int peso, int volumen, double prioridad, String dirDestino, String d){
@@ -25,7 +26,8 @@ public class Encomienda extends Servicio implements java.io.Serializable{
         //Podemos juntarnos a discutir el precio si quieren
         costoEnvio = precioPorGramo*peso + precioPorCc*volumen;
         direccionDestino = dirDestino;
-        descripcion = d;
+        if(d.length() > largoMaximoDesc) descripcion = d.substring(0, largoMaximoDesc);
+        else descripcion = d;
     }
     
     public void agregarCostoPrioridad(int prioridadAgregada){
@@ -48,6 +50,13 @@ public class Encomienda extends Servicio implements java.io.Serializable{
     
     public static int calcularPresupuesto(int peso, int volumen,int prioridad){
         return precioPorGramo*peso + precioPorCc*volumen + precioPorPrioridad*prioridad;
+    }
+    
+    /**
+     * @return the largoMaximoDesc
+     */
+    public static int getLargoMaximoDesc() {
+        return largoMaximoDesc;
     }
     
 }

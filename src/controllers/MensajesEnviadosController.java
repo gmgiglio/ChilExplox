@@ -36,8 +36,8 @@ public class MensajesEnviadosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        List<RegistroMensaje> registroMensajes = Main.getUsuarioActual().getRegistroMensEnviados();
-        Usuario u = Main.getUsuarioActual();
+        List<RegistroMensaje> registroMensajes = ((Funcionario)Main.getUsuarioActual()).getRegistroMensEnviados();
+        //Funcionario u = Main.getUsuarioActual();
         for(RegistroMensaje r : registroMensajes){
             CajaMensajeEnviado cajaM = new CajaMensajeEnviado(r);
             listaMensajes.getChildren().add(cajaM);

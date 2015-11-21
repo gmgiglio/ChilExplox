@@ -35,13 +35,13 @@ public class Sucursal implements java.io.Serializable{
     private Pedido pedidoAbierto = null;
     private final Stack<Mensaje> buzonMensajes = new Stack<>();
     
-    private final Usuario autoRobot;
+    private final Funcionario autoRobot;
     
     public Sucursal(String nombre, String ciudad, String direccion){
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.direccion = direccion;
-        this.autoRobot = new Usuario("AutoRobot sucursal " + nombre, nombre);
+        this.autoRobot = new Funcionario("AutoRobot sucursal " + nombre, nombre);
     }
     
     public void agregarPedido(Pedido p){

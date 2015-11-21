@@ -107,7 +107,7 @@
                                                       <ListView fx:id="listEncomiendas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="345.0" BorderPane.alignment="CENTER" />
                                                    </center>
                                                    <top>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Encomiendas:" wrappingWidth="276.2235412597656" BorderPane.alignment="CENTER" />
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Encomiendas:" wrappingWidth="294.2235412597656" BorderPane.alignment="CENTER" />
                                                    </top>
                                                 </BorderPane>
                                                 <BorderPane prefHeight="148.0" prefWidth="103.0">

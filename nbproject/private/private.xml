@@ -7,6 +7,10 @@
             <file>file:/Users/carlossalame/ChilExplox/src/chilexplox/Sucursal.java</file>
             <file>file:/Users/carlossalame/ChilExplox/src/chilexplox/Estado.java</file>
             <file>file:/Users/carlossalame/ChilExplox/src/chilexplox/Camion.java</file>
+<<<<<<< HEAD
+=======
+            <file>file:/Users/carlossalame/ChilExplox/src/resources/Inicio.fxml</file>
+>>>>>>> probando-confirmar-pedido
             <file>file:/Users/carlossalame/ChilExplox/src/chilexplox/Usuario.java</file>
             <file>file:/Users/carlossalame/ChilExplox/src/chilexplox/front/InicioController.java</file>
         </group>

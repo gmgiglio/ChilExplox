@@ -23,6 +23,13 @@ public abstract class Usuario implements java.io.Serializable {
         sucActual = null;
     }
     
+    public void cargarPed(Camion c, int idPed){
+        Pedido p = sucActual.getPedidoPendiente(idPed);
+        sucActual.cargarPedido(p);
+        p.setEstado(Estado.En_transito);
+        c.cargarPedido(p);
+    }
+    
     public void descargarPed(Camion c, int idPed){
         Pedido p = c.getPedidoCargado(idPed);
         getSucActual().agregarPedido(p);
@@ -101,14 +108,14 @@ public abstract class Usuario implements java.io.Serializable {
         
     }
     
-    public void enviarMens(String titulo, String texto, Sucursal sucursal){
-        Mensaje mensaje = new Mensaje(titulo, texto, this);
-        registroMensajesEnviados.add(mensaje.enviar(sucursal));
-    }
-    
-    public LinkedList<RegistroMensaje> getRegistroMensEnviados(){
-        return new LinkedList(registroMensajesEnviados);
-    }
+//    public void enviarMens(String titulo, String texto, Sucursal sucursal){
+//        Mensaje mensaje = new Mensaje(titulo, texto, this);
+//        registroMensajesEnviados.add(mensaje.enviar(sucursal));
+//    }
+//    
+//    public LinkedList<RegistroMensaje> getRegistroMensEnviados(){
+//        return new LinkedList(registroMensajesEnviados);
+//    }
     /**
      * @return the nombreUsuario
      */

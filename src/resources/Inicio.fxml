@@ -235,9 +235,18 @@
                                                          </center>
                                                          <right>
                                                             <BorderPane prefHeight="98.0" prefWidth="129.0" BorderPane.alignment="CENTER">
-                                                               <center>
-                                                                  <Button fx:id="accionCamion" mnemonicParsing="false" prefHeight="55.0" prefWidth="116.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" textAlignment="CENTER" visible="false" wrapText="true" BorderPane.alignment="CENTER" />
-                                                               </center>
+                                                               <top>
+                                                                  <Button fx:id="accionCamion" mnemonicParsing="false" prefHeight="41.0" prefWidth="116.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
+                                                                     <BorderPane.margin>
+                                                                        <Insets top="5.0" />
+                                                                     </BorderPane.margin></Button>
+                                                               </top>
+                                                               <bottom>
+                                                                  <Button fx:id="retornarCamion" mnemonicParsing="false" prefHeight="41.0" prefWidth="116.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768); -fx-background-insets: 0,1,2,3; -fx-background-radius: 3,2,2,2; -fx-padding: 5 30 5 30; -fx-text-fill: white; -fx-font-size: 12px;" text="Retornar Camión" textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
+                                                                     <BorderPane.margin>
+                                                                        <Insets bottom="5.0" />
+                                                                     </BorderPane.margin></Button>
+                                                               </bottom>
                                                             </BorderPane>
                                                          </right>
                                                       </BorderPane>

@@ -9,6 +9,7 @@ import controllers.EditarEncomiendaController;
 import controllers.FichaCliente;
 import java.net.URL;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -661,6 +662,10 @@ public class InicioController implements Initializable {
              CajaEncomienda caja = (CajaEncomienda) e.getSource();
              Encomienda enc = caja.getEncomienda();
              editarEncomiendaCon = new EditarEncomiendaController(enc);
+             editarEncomiendaCon.setHandlerAceptarEncomienda((Event ev) -> {
+                 eliminarEncomienda(editarEncomiendaCon.getEnc());
+                 agregarEncomienda(editarEncomiendaCon.getEncomiendaMod());
+            });
                                 agregarPane.getChildren().setAll(editarEncomiendaCon);
                                 split.setDividerPositions(0.4684014869888476);
          });
@@ -668,8 +673,32 @@ public class InicioController implements Initializable {
          //comboBoxEncomiendas.setPromptText(encomienda.getDescripcion());
          presupuesto.setText(""+((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getCostoEnvio());
      }
+<<<<<<< HEAD
            
     private class ItemSucursalMenu extends MenuItem{
+=======
+     
+     private void eliminarEncomienda(Encomienda encomienda){
+         ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().eliminarEncomienda(encomienda);
+         List<CajaEncomienda> listcajas = listEncomiendas.getItems(); 
+         
+         for(CajaEncomienda c:listcajas)
+         {
+             if(c.getEncomienda()==encomienda){
+              
+                 listEncomiendas.getItems().remove(c);
+                 break;
+             }
+         
+         }
+        
+        presupuesto.setText(""+((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getCostoEnvio());
+
+      
+     }
+            
+     private class ItemSucursalMenu extends MenuItem{
+>>>>>>> master
          private Sucursal sucursal;
          
          public ItemSucursalMenu(Sucursal sucursal){

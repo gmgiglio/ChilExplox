@@ -30,16 +30,18 @@ public class EditarEncomiendaController extends VBox {
     @FXML
     protected TextField descField,pesoField,volumenField,prioridadField,direccionField;
      @FXML
-    protected Button crearEncomienda;
+    protected Button aceptarEditarEncomienda;
 
     @FXML
-    private Text idPedido,presupuesto,textoAlertaPeso,textoAlertaVolumen,textoAlertaPrioridad,textPresupuesto;
+    private Text idPedido,presupuesto,textoAlertaPeso,textoAlertaVolumen,textoAlertaPrioridad;
 
-    private Encomienda enc;
-    public void botonApretado(ActionEvent event) {
+    private Encomienda enc,encomiendaMod;
+    
+    public void botonAceptarApretado(ActionEvent event) {
         
         if(actualizarAlertas()) {
-            handlerEncomienda.handle(new ActionEvent(this,null));
+            encomiendaMod = new Encomienda(getPeso(), getVolumen(),getPrioridad(),getDirDestino(),getDescr());
+            handlerAceptarEncomienda.handle(new ActionEvent(this,null));
             limpiar();
         }
     }
@@ -53,8 +55,7 @@ public class EditarEncomiendaController extends VBox {
        pesoField.setText("");   
        volumenField.setText("");
        prioridadField.setText("");
-       textPresupuesto.setText("0");
-       
+       direccionField.setText("");
        limpiarAlertas();
     }
     
@@ -64,10 +65,10 @@ public class EditarEncomiendaController extends VBox {
         textoAlertaPrioridad.setText("");
     }
     
-    private EventHandler handlerEncomienda;
+    private EventHandler handlerAceptarEncomienda;
     
-    public void setHandlerEncomienda(EventHandler eh){
-        handlerEncomienda = eh;
+    public void setHandlerAceptarEncomienda(EventHandler eh){
+        handlerAceptarEncomienda = eh;
     }
     
     public int getPeso(){
@@ -108,7 +109,9 @@ public class EditarEncomiendaController extends VBox {
         descField.setText(enc.getDescripcion());
         pesoField.setText(""+enc.getPeso());
         volumenField.setText(""+enc.getVol());
-        prioridadField.setText(""+enc.getPrioridad());
+        Double dPrioridad = enc.getPrioridad();
+        Integer prioridad = dPrioridad.intValue();
+        prioridadField.setText(""+prioridad);
         direccionField.setText(enc.getDireccionDestino());
      
         TextField[] f = {descField,pesoField,volumenField,prioridadField,direccionField};
@@ -145,7 +148,7 @@ public class EditarEncomiendaController extends VBox {
         TextField fieldActual = (TextField) e.getSource();
         int index = fields.indexOf(fieldActual) + 1;
         if(index < fields.size()) fields.get(index).requestFocus();
-        else crearEncomienda.requestFocus();
+        else aceptarEditarEncomienda.requestFocus();
     }
     
     public void handlerEnterPesoField(ActionEvent event){ 
@@ -166,6 +169,20 @@ public class EditarEncomiendaController extends VBox {
             descField.setText(desc.substring(0,Encomienda.getLargoMaximoDesc()));
         }
         handlerEnterTextField(event);
+    }
+
+    /**
+     * @return the enc
+     */
+    public Encomienda getEnc() {
+        return enc;
+    }
+
+    /**
+     * @return the encomiendaMod
+     */
+    public Encomienda getEncomiendaMod() {
+        return encomiendaMod;
     }
     
 }

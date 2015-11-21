@@ -550,9 +550,20 @@ public class InicioController implements Initializable {
             retornarCamion.setOnMouseClicked(new EventHandler<MouseEvent>(){
                     @Override
                     public void handle(MouseEvent event){
-                        camionActual.setEstado(EstadoCamion.Con_Errores);
                         Sucursal sucActual = ((Funcionario)Main.getUsuarioActual()).getSucActual();
                         Sucursal origen = camionActual.getPedidos().get(0).getSucDestino();
+                        ((Funcionario)Main.getUsuarioActual()).enviarMens(
+                                "Retorno del Camion " + camionActual.getPatente(),
+                                "Estimado:\n"
+                                        + "\t le escribimos desde la sucursal " + sucActual.getNombre() + 
+                                        " para informarle que hemos recibido al camión de patente " + 
+                                        camionActual.getPatente() +
+                                        ". Desafortunadamente, el contenido de este presenta errores, por lo que"
+                                        + "decidimos enviarlo de vuelta a sus instalaciones.\n"
+                                        + "Quedamos atentos a sus comentarios. Se despide,\n\n" +
+                                        ((Funcionario)Main.getUsuarioActual()).getNombreUsuario()+"\n"+
+                                        sucActual.getNombre(), null);
+                        camionActual.setEstado(EstadoCamion.Con_Errores);
                         origen.recibirCamionCargado(camionActual);
                         sucActual.enviarCamion(camionActual);
                         actualizarPestanaAdm();

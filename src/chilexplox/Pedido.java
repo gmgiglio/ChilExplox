@@ -177,6 +177,10 @@ public class Pedido extends Servicio implements java.io.Serializable{
     public boolean eliminarEncomienda(Encomienda enc){
         if(abierto){
             encomiendas.remove(enc);
+            this.peso -= enc.getPeso();
+            this.volumen -= enc.getVol();
+            this.costoEnvio -= enc.getCostoEnvio();
+            setPrioridad();
             return true;
         }
         else return false;

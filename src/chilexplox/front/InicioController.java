@@ -561,10 +561,10 @@ public class InicioController implements Initializable {
                                         + "\t le escribimos desde la sucursal " + sucActual.getNombre() + 
                                         " para informarle que hemos recibido al camión de patente " + 
                                         camionActual.getPatente() +
-                                        ". Desafortunadamente, el contenido de este presenta errores, por lo que"
+                                        ". Desafortunadamente, el contenido de este presenta errores, por lo que "
                                         + "decidimos enviarlo de vuelta a sus instalaciones.\n"
-                                        + "Quedamos atentos a sus comentarios. Se despide,\n\n" +
-                                        ((Funcionario)Main.getUsuarioActual()).getNombreUsuario()+"\n"+
+                                        + "Quedamos atentos a sus comentarios.\nSe despide,\n\n" +
+                                        ((Funcionario)Main.getUsuarioActual()).getNombreUsuario()+"\nSucursal "+
                                         sucActual.getNombre(), origen);
                         camionActual.setEstado(EstadoCamion.Con_Errores);
                         origen.recibirCamionCargado(camionActual);
@@ -583,7 +583,7 @@ public class InicioController implements Initializable {
             if(c.getEstado() == EstadoCamion.Sin_Errores)
                camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckIcon.png"))));
             else
-               //Imagen de camion con errores
+               camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckErrorIcon.png"))));
             camionView.getChildren().add(new TreeItem("Capacidad total: " + c.getCapacidad() + " cm^3"));
             camionView.getChildren().add(new TreeItem("Espacio Disponible: " + c.getEspDisp() + "cm^3"));
             dummyRoot.getChildren().add(camionView);
@@ -673,10 +673,7 @@ public class InicioController implements Initializable {
          //comboBoxEncomiendas.setPromptText(encomienda.getDescripcion());
          presupuesto.setText(""+((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getCostoEnvio());
      }
-<<<<<<< HEAD
-           
-    private class ItemSucursalMenu extends MenuItem{
-=======
+
      
      private void eliminarEncomienda(Encomienda encomienda){
          ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().eliminarEncomienda(encomienda);
@@ -698,7 +695,6 @@ public class InicioController implements Initializable {
      }
             
      private class ItemSucursalMenu extends MenuItem{
->>>>>>> master
          private Sucursal sucursal;
          
          public ItemSucursalMenu(Sucursal sucursal){

@@ -24,11 +24,26 @@ public abstract class Usuario implements java.io.Serializable {
         sucActual = null;
     }
     
+<<<<<<< HEAD
     /**
      * @return the nombreUsuario
      */
     public String getNombreUsuario() {
         return nombreUsuario;
+=======
+    public void cargarPed(Camion c, int idPed){
+        Pedido p = sucActual.getPedidoPendiente(idPed);
+        sucActual.cargarPedido(p);
+        p.setEstado(Estado.En_transito);
+        c.cargarPedido(p);
+    }
+    
+    public void descargarPed(Camion c, int idPed){
+        Pedido p = c.getPedidoCargado(idPed);
+        getSucActual().agregarPedido(p);
+        p.setEstado(Estado.En_origen);
+        c.descargarPedido(p);
+>>>>>>> origin/master
     }
     
     public boolean contrasenaCorrecta(String clave){
@@ -58,6 +73,7 @@ public abstract class Usuario implements java.io.Serializable {
         p.agregarEnc(peso, volumen, dirDestino, desc);
     }
     
+<<<<<<< HEAD
     public void agregarEnc(Pedido p,int peso, int volumen, int prioridad, String dirDestino, String desc){
         p.agregarEnc(peso, volumen, prioridad, dirDestino, desc);
     }
@@ -66,6 +82,16 @@ public abstract class Usuario implements java.io.Serializable {
         return sucActual.cerrarPedido();
     }
     
+=======
+//    public void enviarMens(String titulo, String texto, Sucursal sucursal){
+//        Mensaje mensaje = new Mensaje(titulo, texto, this);
+//        registroMensajesEnviados.add(mensaje.enviar(sucursal));
+//    }
+//    
+//    public LinkedList<RegistroMensaje> getRegistroMensEnviados(){
+//        return new LinkedList(registroMensajesEnviados);
+//    }
+>>>>>>> origin/master
     /**
      * @param sucursalActual the sucActual to set
      */

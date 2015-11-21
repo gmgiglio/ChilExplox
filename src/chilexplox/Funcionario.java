@@ -57,7 +57,11 @@ public class Funcionario extends Usuario implements java.io.Serializable {
     }
     
     public void enviarPedMayorPrioridad(){
+<<<<<<< HEAD
         if(getSucActual().getPedidosPendientes() != null){
+=======
+        if(getSucActual().getPedidosPendientes()!= null){
+>>>>>>> origin/master
             Camion camionACargar = getSucActual().getCamionesDisponibles().get(0);
             Pedido primerPed = getSucActual().getPedidosPendientes().get(0);
             Sucursal sucDestino = primerPed.getSucDestino();

@@ -139,6 +139,10 @@ public class InicioController implements Initializable {
                     Main.getUsuarioActual().confirmarPed(Integer.parseInt(idPedido[1]), false);
                 
                 event.consume();
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
             }
         }
     };
@@ -430,8 +434,13 @@ public class InicioController implements Initializable {
         pedidosCar = new TreeView<>(new TreeItem<>("empty"));
         pedidosCar.setShowRoot(false);
         amononarTreeView(anchorPedCar, pedidosCar);
+<<<<<<< HEAD
          
         Sucursal sucActual = Main.getUsuarioActual().getSucActual();
+=======
+        
+        Sucursal sucActual = ((Funcionario)Main.getUsuarioActual()).getSucActual();
+>>>>>>> origin/master
         
         pedidosPend = new TreeView<>(listarPedidos(sucActual.getPedidosPendientes()));
         amononarTreeView(anchorPedPend, pedidosPend);

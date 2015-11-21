@@ -58,7 +58,7 @@
                                           </HBox>
                                           <BorderPane prefHeight="22.0" prefWidth="500.0">
                                              <center>
-                                                <Text fx:id="advertencia" fill="#dd0b0b" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="49.21875" BorderPane.alignment="CENTER" />
+                                                <Text fx:id="advertencia" fill="#dd0b0b" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="299.21875" BorderPane.alignment="CENTER" />
                                              </center>
                                           </BorderPane>
                                           <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">

@@ -5,6 +5,8 @@
  */
 package chilexplox;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author gianfrancogiglio
@@ -13,16 +15,17 @@ public abstract class Usuario implements java.io.Serializable {
     
     private String nombreUsuario;
     private String contrasena;
+    private Sucursal sucActual;
     
     public Usuario(String nombreUsuario, String contrasena){
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
+        sucActual = null;
     }
     
-<<<<<<< HEAD
     public void descargarPed(Camion c, int idPed){
         Pedido p = c.getPedidoCargado(idPed);
-        sucActual.agregarPedido(p);
+        getSucActual().agregarPedido(p);
         p.setEstado(Estado.En_origen);
         c.descargarPedido(p);
     }
@@ -73,12 +76,12 @@ public abstract class Usuario implements java.io.Serializable {
     }
     
     public void recibirPed(){
-        if(sucActual.getCamionesPend() != null){
+        if(getSucActual().getCamionesPend() != null){
             //Pedidos dentro del camion a descargar
-            LinkedList<Pedido> pedidosADesc = sucActual.getCamionesPend().get(0).getPedidos();
+            LinkedList<Pedido> pedidosADesc = getSucActual().getCamionesPend().get(0).getPedidos();
             Sucursal sucOrigen = pedidosADesc.get(0).getSucOrigen();
             for(Pedido p : pedidosADesc){
-                sucActual.bajarPedido(p);
+                getSucActual().bajarPedido(p);
             }
             Camion camionDescargado = getSucActual().getCamionesPend().get(0);
             getSucActual().despacharCamion();
@@ -106,9 +109,6 @@ public abstract class Usuario implements java.io.Serializable {
     public LinkedList<RegistroMensaje> getRegistroMensEnviados(){
         return new LinkedList(registroMensajesEnviados);
     }
-
-=======
->>>>>>> origin/master
     /**
      * @return the nombreUsuario
      */
@@ -126,5 +126,12 @@ public abstract class Usuario implements java.io.Serializable {
             return true;
         }
         else { return false; }
+    }
+
+    /**
+     * @return the sucActual
+     */
+    public Sucursal getSucActual() {
+        return sucActual;
     }
 }

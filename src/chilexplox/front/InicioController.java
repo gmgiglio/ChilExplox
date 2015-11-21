@@ -87,7 +87,6 @@ public class InicioController implements Initializable {
                 content.put(DataFormat.PLAIN_TEXT, treeOrigen.getSelectionModel().getSelectedItem().toString());
                 dragBoard.setContent(content);
             }
-<<<<<<< HEAD
             event.consume();
         }
     };

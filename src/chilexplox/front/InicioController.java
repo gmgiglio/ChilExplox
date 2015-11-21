@@ -423,6 +423,8 @@ public class InicioController implements Initializable {
 
     public void actualizarPestanaAdm(){
          
+        accionCamion.setVisible(false);
+        retornarCamion.setVisible(false);
         camionActual = null;
         patenteCamAct.setText("");
         capacidadCamAct.setText("");
@@ -505,7 +507,7 @@ public class InicioController implements Initializable {
             }
         });
     
-    pedidosDest.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        pedidosDest.setOnMouseClicked(new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
             vBoxConfPed.setVisible(true);
@@ -513,7 +515,7 @@ public class InicioController implements Initializable {
             }
         });
         
-    camionesDesc.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        camionesDesc.setOnMouseClicked(new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
             vBoxConfPed.setVisible(false);
@@ -551,7 +553,7 @@ public class InicioController implements Initializable {
                     @Override
                     public void handle(MouseEvent event){
                         Sucursal sucActual = ((Funcionario)Main.getUsuarioActual()).getSucActual();
-                        Sucursal origen = camionActual.getPedidos().get(0).getSucDestino();
+                        Sucursal origen = camionActual.getPedidos().get(0).getSucOrigen();
                         ((Funcionario)Main.getUsuarioActual()).enviarMens(
                                 "Retorno del Camion " + camionActual.getPatente(),
                                 "Estimado:\n"
@@ -562,16 +564,16 @@ public class InicioController implements Initializable {
                                         + "decidimos enviarlo de vuelta a sus instalaciones.\n"
                                         + "Quedamos atentos a sus comentarios. Se despide,\n\n" +
                                         ((Funcionario)Main.getUsuarioActual()).getNombreUsuario()+"\n"+
-                                        sucActual.getNombre(), null);
+                                        sucActual.getNombre(), origen);
                         camionActual.setEstado(EstadoCamion.Con_Errores);
                         origen.recibirCamionCargado(camionActual);
-                        sucActual.enviarCamion(camionActual);
+                        sucActual.retornarCamion(camionActual);
                         actualizarPestanaAdm();
                     }
                 });
             }
         });
-     }
+    }
      
     public TreeItem<String> listarCamiones(LinkedList<Camion> camiones){
         TreeItem<String> dummyRoot = new TreeItem<>("root");

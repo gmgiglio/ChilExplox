@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -25,7 +26,9 @@ import javafx.scene.text.Text;
 public class ElegirUsuario extends AnchorPane{
 
     @FXML
-    private TextField textFieldUsuario, textFieldClave;
+    private TextField textFieldUsuario; //textFieldClave;
+    @FXML
+    private PasswordField textFieldClave;
     @FXML
     private Text textAlerta;
             
@@ -47,6 +50,18 @@ public class ElegirUsuario extends AnchorPane{
         handlerUsuarioElegido = e;
     }
     
+   /* public void handlerTextFieldUsuario(ActionEvent event){
+        Usuario u = getUsuario();
+        if(u != null && u.contrasenaCorrecta(textFieldClave.getText()) ){
+            handlerUsuarioElegido.handle(event);
+            textFieldUsuario.setText("");
+            textFieldClave.setText("");
+            textAlerta.setText("");
+        }
+        else {
+            textAlerta.setText("El usuario no exsiste o la contraseña es incorrecta");
+        }
+    }*/
     public void handlerTextFieldUsuario(ActionEvent event){
         Usuario u = getUsuario();
         if(u != null && u.contrasenaCorrecta(textFieldClave.getText()) ){

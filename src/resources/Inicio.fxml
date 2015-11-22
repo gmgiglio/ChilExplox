@@ -360,7 +360,7 @@
                                                 </BorderPane>
                                              </left>
                                           </BorderPane>
-                                          <Button fx:id="botonBuzonEntrada" mnemonicParsing="false" prefWidth="180.0" style="-fx-background-color: null;">
+                                          <Button fx:id="botonBuzonEntrada" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="33.0" prefWidth="180.0" style="-fx-background-color: null;">
                                              <font>
                                                 <Font size="17.0" />
                                              </font>

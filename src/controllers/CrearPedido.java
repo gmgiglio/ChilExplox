@@ -157,4 +157,10 @@ public class CrearPedido extends AnchorPane {
             
      }
     
+    public void revisarPedidos(ActionEvent event){
+        Cliente c = (Cliente)Main.getUsuarioActual();
+        agregarPane.getChildren().setAll(new SeguimientoPedidos((Cliente)Main.getUsuarioActual()));
+        split.setDividerPositions(0.4684014869888476);
+    }
+    
 }

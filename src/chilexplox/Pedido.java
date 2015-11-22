@@ -46,6 +46,7 @@ public class Pedido extends Servicio implements java.io.Serializable{
             abierto = false;
             tiempoCierre = new Date();
             Empresa.nuevoPedido();
+            cliente.agregarPedido(this);
             return true;
         }
         else {

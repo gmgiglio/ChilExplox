@@ -506,10 +506,21 @@ public class InicioController implements Initializable {
         TreeItem<String> dummyRoot = new TreeItem<>("root");
         for(Camion c : camiones){
             TreeItem<String> camionView = new TreeItem<>(c.getPatente());
-            if(c.getEstado() == EstadoCamion.Sin_Errores)
-               camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckIcon.png"))));
-            else
-               camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckErrorIcon.png"))));
+            if(c.getEstado() == EstadoCamion.Con_Errores)
+                camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckErrorIcon.png"))));
+            else if(c.getTipo() == Tipo.Normal)
+                camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckIcon.png"))));
+            else if(c.getTipo() == Tipo.Animales)
+                camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckIcon.png"))));
+            else if(c.getTipo() == Tipo.Blindado)
+                camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckIcon.png"))));
+            else if(c.getTipo() == Tipo.Radioactivo)
+                camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckIcon.png"))));
+            else if(c.getTipo() == Tipo.Fragil)
+                camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckIcon.png"))));
+            else if(c.getTipo() == Tipo.Refrigerado)
+                camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckIcon.png"))));
+            
             camionView.getChildren().add(new TreeItem("Capacidad total: " + c.getCapacidad() + " cm^3"));
             camionView.getChildren().add(new TreeItem("Espacio Disponible: " + c.getEspDisp() + "cm^3"));
             dummyRoot.getChildren().add(camionView);

@@ -19,13 +19,18 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class InicioController implements Initializable {
 
@@ -173,14 +178,18 @@ public class InicioController implements Initializable {
             }
             else if(treeOrigen.getParent() == anchorPedPend && treeDestino.getParent() == anchorPedCar){
                 if(pedidoACargar.getTipo() != camionActual.getTipo()){
-                    errorDeCarga.setText("Un pedido del tipo " + pedidoACargar.getTipo() + " no puede cargarse en un "
-                            + "camion de tipo " + camionActual.getTipo() + ".");
+                    Alert alert = new Alert(AlertType.ERROR, "Un pedido del tipo " + pedidoACargar.getTipo() +
+                            " no puede cargarse en un " + "camion de tipo " + camionActual.getTipo() + ".", ButtonType.CLOSE);
+                    alert.showAndWait();
                 }
                 else if(!mismoDestino){
-                    //el pedido posee un destino distinto al camion
+                    Alert alert = new Alert(AlertType.ERROR, "Este camión no se dirije a la sucursal de destino del "
+                            + "pedido seleccionado.", ButtonType.CLOSE);
+                    alert.showAndWait();
                 }
                 else if(!sePuedeCargar){
-                    //No hay sufiencie espacio en el camion seleccionado
+                    Alert alert = new Alert(AlertType.ERROR, "No hay suficiente espacio en este camión.", ButtonType.CLOSE);
+                    alert.showAndWait();
                 }
             }
         };
@@ -359,26 +368,22 @@ public class InicioController implements Initializable {
         });
             
             
-           cerrarPedido.setOnAction((ActionEvent e) -> {
-               String nombreCliente = (String)comboBoxClientes.getValue();
-               try{
-                   if(nombreCliente != null && ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getEncomiendas().size()>0){
-                       advertencia.setText("");
-                       Scene scene = split.getScene();
-                       Text idPedido = (Text)scene.lookup("#idPedido");
-                       ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().setCliente(nombreCliente);
-                       ((Funcionario)Main.getUsuarioActual()).cerrarPed();
-                       limpiarAtender();
-                   }
-                   else if(nombreCliente == null){
-                       advertencia.setText("Debe seleccionar un cliente");
-                   } else {
-                       advertencia.setText("Debe haber al menos una encomienda");
-                   }
-               }
-               catch (Exception exc)
-               {
-               }
+            cerrarPedido.setOnAction((ActionEvent e) -> {
+                String nombreCliente = (String)comboBoxClientes.getValue();
+                if(nombreCliente != null && ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getEncomiendas().size()>0){
+                    advertencia.setText("");
+                    Scene scene = split.getScene();
+                    Text idPedido = (Text)scene.lookup("#idPedido");
+                    ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().setCliente(nombreCliente);
+                    ((Funcionario)Main.getUsuarioActual()).cerrarPed();
+                    limpiarAtender();
+                }
+                else if(nombreCliente == null){
+                    advertencia.setText("Debe seleccionar un cliente");
+                } else {
+                    advertencia.setText("Debe haber al menos una encomienda");
+                }
+               
         });
            
            

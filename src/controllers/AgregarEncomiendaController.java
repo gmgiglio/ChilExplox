@@ -57,7 +57,6 @@ public class AgregarEncomiendaController extends VBox {
        numeroField.setText("");
        comunaField.setText("");
        ciudadField.setText("");
-       textPresupuesto.setText("0");
        
        limpiarAlertas();
     }

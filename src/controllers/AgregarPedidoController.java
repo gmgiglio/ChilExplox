@@ -7,17 +7,16 @@ package controllers;
 
 import chilexplox.*;
 import chilexplox.front.Main;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.SplitPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 /**
@@ -25,7 +24,7 @@ import javafx.scene.text.Text;
  *
  * @author alberto
  */
-public class AgregarPedidoController implements Initializable {
+public class AgregarPedidoController extends VBox {
 
     /**
      * Initializes the controller class.
@@ -33,17 +32,23 @@ public class AgregarPedidoController implements Initializable {
         @FXML
     private Button crearPedido;
      
+<<<<<<< HEAD
         @FXML
     private ComboBox comboBoxSucursales, comboBoxTipos;
         @FXML
     private Text textoAlertaSucursal, textoAlertaTipo;
+=======
+      @FXML
+    private ComboBox comboBoxSucursales;
+       @FXML
+    private Text textoAlertaSucursal;
+       @FXML
+    private Button botonCrearPedido;
+>>>>>>> origin/master
     
-    private Text sucursalText;
-    private Button crearP;
-    private Text idPedido;
-    private SplitPane splitPane;
-    private Button mod;
+    private Sucursal sucursal;
     
+<<<<<<< HEAD
 //    
     @FXML
     private void handlePedido(ActionEvent event) {
@@ -76,10 +81,32 @@ public class AgregarPedidoController implements Initializable {
                 splitPane.setDividerPositions(1);
                 mod.setVisible(true);
             }
+=======
+    
+    private EventHandler handlerPedido;
+    
+    public void sethandlerPedido(EventHandler eh){
+        handlerPedido = eh;
+    }
+    
+    public void crearPedido(ActionEvent event) {
+            
+     
+            if(!(comboBoxSucursales.getSelectionModel().getSelectedItem()==null)){
+                sucursal = Empresa.getSucursal((String)comboBoxSucursales.getSelectionModel().getSelectedItem());
+                handlerPedido.handle(event);
+            } 
+            else { textoAlertaSucursal.setText("Por favor seleccione una sucursal"); }
+>>>>>>> origin/master
 
     }
     
+    public Sucursal getSucursal(){
+        return sucursal;
+    }
     
+    
+<<<<<<< HEAD
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cargarNombresSucursales();
@@ -88,12 +115,29 @@ public class AgregarPedidoController implements Initializable {
         textoAlertaTipo.setVisible(false);
 
     }    
+=======
+    public AgregarPedidoController(){
+        
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/AgregarPedido.fxml"));
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+        
+         try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+
+        cargarNombresSucursales();
+    }
+  
+>>>>>>> origin/master
     public void cargarNombresSucursales(){
 
             ObservableList nombreSucursales = FXCollections.observableArrayList();
             for (int i=0; i<  Empresa.getSucursales().size();i++)
             {
-                if(!Empresa.getSucursales().get(i).getNombre().equals(((Funcionario)Main.getUsuarioActual()).getSucActual().getNombre()))
+                if(!Empresa.getSucursales().get(i).getNombre().equals(Main.getUsuarioActual().getSucActual().getNombre()))
                 nombreSucursales.add(Empresa.getSucursales().get(i).getNombre());
             }
             

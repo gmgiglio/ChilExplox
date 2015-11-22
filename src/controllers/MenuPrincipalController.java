@@ -36,12 +36,13 @@ public class MenuPrincipalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         if(Main.getUsuarioActual() instanceof Cliente){
-            addTab(new CrearPedido());
+            addTab(new CrearPedido(),"Pedido");
         }
     } 
     
-    public void addTab(Node contenido){
+    public void addTab(Node contenido,String titulo){
         Tab tab = new Tab();
+        tab.setText(titulo);
         tab.setContent(contenido);
         List<Tab> t = tabs.getTabs();
         t.add(tab);

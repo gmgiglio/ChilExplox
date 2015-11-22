@@ -31,13 +31,13 @@ public abstract class Usuario implements java.io.Serializable {
         else { return false; }
     }
    
-    public Pedido crearPed(Sucursal sucDestino, Cliente cliente){
-        sucActual.setPedidoAbierto(new Pedido(sucActual, sucDestino, cliente));
+    public Pedido crearPed(Sucursal sucDestino, Cliente cliente, Tipo tipo){
+        sucActual.setPedidoAbierto(new Pedido(sucActual, sucDestino, cliente, tipo));
         return sucActual.getPedidoAbierto();
     }
     
-    public Pedido crearPed(Sucursal sucDestino){
-        sucActual.setPedidoAbierto(new Pedido(sucActual, sucDestino, null));
+    public Pedido crearPed(Sucursal sucDestino, Tipo tipo){
+        sucActual.setPedidoAbierto(new Pedido(sucActual, sucDestino, null, tipo));
         return sucActual.getPedidoAbierto();
     }
     

@@ -19,11 +19,13 @@ public class Camion implements java.io.Serializable {
     private LinkedList<Pedido> pedidosCargados = new LinkedList<>();
     private int capacidad;
     private EstadoCamion estado;
+    private Tipo tipo;
     
-    public Camion(String patente, int capacidad){
+    public Camion(String patente, int capacidad, Tipo tipo){
         this.patente = patente;
         this.capacidad = capacidad;
         this.espacioDisp = capacidad;
+        this.tipo = tipo;
         estado = EstadoCamion.Sin_Errores;
     }
     
@@ -102,6 +104,13 @@ public class Camion implements java.io.Serializable {
      */
     public void setEstado(EstadoCamion estado) {
         this.estado = estado;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public Tipo getTipo() {
+        return tipo;
     }
     
 }

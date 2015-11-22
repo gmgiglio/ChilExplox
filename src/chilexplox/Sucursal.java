@@ -210,12 +210,12 @@ public class Sucursal implements java.io.Serializable{
         }
     } 
     
-    public void agregarCamion(String patente, int capacidad){
-        camionesDisponibles.add(new Camion(patente, capacidad));
+    public void agregarCamion(String patente, int capacidad, Tipo tipo){
+        camionesDisponibles.add(new Camion(patente, capacidad, tipo));
     }
     
-    public void agregarCamionPend(String patente, int capacidad){
-        camionesPendientes.add(new Camion(patente, capacidad));
+    public void agregarCamionPend(String patente, int capacidad, Tipo tipo){
+        camionesPendientes.add(new Camion(patente, capacidad, tipo));
     }
     
     public LinkedList<Mensaje> getMensajesEnBuzon(){

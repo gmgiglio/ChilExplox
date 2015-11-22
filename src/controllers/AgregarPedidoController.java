@@ -57,7 +57,8 @@ public class AgregarPedidoController implements Initializable {
             if(!(comboBoxSucursales.getSelectionModel().getSelectedItem()==null)){
           
             Sucursal s = Empresa.getSucursal((String)(comboBoxSucursales.getSelectionModel().getSelectedItem()));
-            Pedido p = ((Funcionario)Main.getUsuarioActual()).crearPed(s);
+            ///////////////////IMPLEMENTAR SELECCIONAR TIPO EN FRONTEND!!!!\\\\\\\\\\\\\\\\\\\\\\\\\\
+            Pedido p = ((Funcionario)Main.getUsuarioActual()).crearPed(s, Tipo.Normal);
             sucursalText.setText((String)(comboBoxSucursales.getSelectionModel().getSelectedItem())) ;
             idPedido.setText(""+p.getIdPedido());
             crearP.setVisible(false);

@@ -115,10 +115,9 @@ public class Main extends Application {
         Empresa.agregarFuncionario("Tulio Triviño", "31minutos");
         Empresa.agregarFuncionario("a" , "a");
         
-        
-        maipu.agregarCamion("BDGH34", 3000);
-        maipu.agregarCamionPend("JUHK87", 2500);
-        maipu.getCamionesDisponibles().get(0).cargarPedido(new Pedido(maipu, victoria, leo));
+        maipu.agregarCamion("BDGH34", 3000, Tipo.Normal);
+        maipu.agregarCamionPend("JUHK87", 2500, Tipo.Normal);
+        maipu.getCamionesDisponibles().get(0).cargarPedido(new Pedido(maipu, victoria, leo, Tipo.Normal));
         Funcionario tulio = Empresa.getFuncionarios().get(0);
         tulio.setSucActual(maipu);
         

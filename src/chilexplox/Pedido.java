@@ -22,8 +22,9 @@ public class Pedido extends Servicio implements java.io.Serializable{
     private Estado estado;
     private boolean abierto; //establece si el pedido esta abierto a seguir agregandole encomiendas
     private Date tiempoCierre; //el momento en el que se cierra el pedido y empieza a correr para temas de prioridad
+    private Tipo tipo;
     
-    public Pedido(Sucursal sucOrigen, Sucursal sucDestino, Cliente cliente){
+    public Pedido(Sucursal sucOrigen, Sucursal sucDestino, Cliente cliente, Tipo tipo){
         super(0, 0, 0.0);
         this.idPedido = Empresa.getNroPedidos();
         this.sucOrigen = sucOrigen;
@@ -33,7 +34,7 @@ public class Pedido extends Servicio implements java.io.Serializable{
         this.cliente = cliente;
         this.estado = Estado.En_origen;
         abierto = true;
-        
+        this.tipo = tipo;
         
     }
     
@@ -184,6 +185,13 @@ public class Pedido extends Servicio implements java.io.Serializable{
             return true;
         }
         else return false;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public Tipo getTipo() {
+        return tipo;
     }
     
     

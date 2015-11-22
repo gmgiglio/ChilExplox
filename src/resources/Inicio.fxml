@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.geometry.*?>
@@ -299,21 +300,81 @@
                            <children>
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="540.0" prefWidth="180.0">
                                  <children>
-                                    <Button fx:id="botonNuevoMensaje" mnemonicParsing="false" prefWidth="180.0" text="Nuevo Mensaje">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="botonBuzonEntrada" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="180.0" text="Buzón de Entrada">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Button>
-                                    <Button fx:id="botonMensajesEnviados" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" prefWidth="180.0" text="Mensajes Enviados">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Button>
+                                    <AnchorPane prefHeight="27.0" prefWidth="180.0">
+                                       <children>
+                                          <BorderPane prefHeight="37.0" prefWidth="94.0">
+                                             <center>
+                                                <Text fill="#3e3e3e" strokeType="OUTSIDE" strokeWidth="0.0" text="Nuevo Mensaje" BorderPane.alignment="CENTER" />
+                                             </center>
+                                             <left>
+                                                <BorderPane prefHeight="37.0" prefWidth="43.0" BorderPane.alignment="CENTER">
+                                                   <center>
+                                                      <ImageView fitHeight="150.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                                         <image>
+                                                            <Image url="@images/Nuevo.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </center>
+                                                </BorderPane>
+                                             </left>
+                                          </BorderPane>
+                                          <Button fx:id="botonNuevoMensaje" mnemonicParsing="false" prefWidth="180.0" style="-fx-background-color: null;">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="27.0" prefWidth="180.0">
+                                       <children>
+                                          <BorderPane prefHeight="37.0" prefWidth="94.0">
+                                             <center>
+                                                <Text fill="#3e3e3e" strokeType="OUTSIDE" strokeWidth="0.0" text="Entrada" BorderPane.alignment="CENTER" />
+                                             </center>
+                                             <left>
+                                                <BorderPane prefHeight="37.0" prefWidth="43.0" BorderPane.alignment="CENTER">
+                                                   <center>
+                                                      <ImageView fitHeight="150.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                                         <image>
+                                                            <Image url="@images/Inbox.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </center>
+                                                </BorderPane>
+                                             </left>
+                                          </BorderPane>
+                                          <Button fx:id="botonBuzonEntrada" mnemonicParsing="false" prefWidth="180.0" style="-fx-background-color: null;">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="27.0" prefWidth="180.0">
+                                       <children>
+                                          <BorderPane prefHeight="37.0" prefWidth="94.0">
+                                             <center>
+                                                <Text fill="#3e3e3e" strokeType="OUTSIDE" strokeWidth="0.0" text="Enviado" BorderPane.alignment="CENTER" />
+                                             </center>
+                                             <left>
+                                                <BorderPane prefHeight="37.0" prefWidth="43.0" BorderPane.alignment="CENTER">
+                                                   <center>
+                                                      <ImageView fitHeight="150.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                                         <image>
+                                                            <Image url="@images/enviado.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </center>
+                                                </BorderPane>
+                                             </left>
+                                          </BorderPane>
+                                          <Button fx:id="botonMensajesEnviados" mnemonicParsing="false" prefWidth="180.0" style="-fx-background-color: null;">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
                                  </children>
                               </VBox>
                               <AnchorPane fx:id="anchorPaneMensajes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="900.0" />

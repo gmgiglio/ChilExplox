@@ -619,8 +619,6 @@ public class InicioController implements Initializable {
          listEncomiendas.getItems().clear();    
          comboBoxClientes.getItems().clear();
          cargarNombresClientes();
-
-         Text presupuesto = (Text) scene.lookup("#presupuesto");
          presupuesto.setText("0");
          split.setDividerPositions(1);
      }

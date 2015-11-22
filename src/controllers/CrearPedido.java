@@ -146,6 +146,8 @@ public class CrearPedido extends AnchorPane {
             Sucursal s = apc.getSucursal();
             Tipo t = apc.getTipo();
             Pedido p = Main.getUsuarioActual().crearPed(s, t);
+
+
             textSucursal.setText(s.getNombre()) ;
             textIdPedido.setText(""+p.getIdPedido());
             botonCrearPedido.setVisible(false);

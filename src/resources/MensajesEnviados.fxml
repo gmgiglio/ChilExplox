@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -19,9 +21,14 @@
             </ScrollPane>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="600.0">
                <children>
-                  <BorderPane layoutX="-5.0" layoutY="-5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="607.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="470.0" layoutX="44.0" layoutY="31.0" stroke="#c2c2c2ad" strokeType="INSIDE" width="520.0">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Rectangle>
+                  <BorderPane layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="600.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="-2.0">
                      <center>
-                        <TextFlow fx:id="textoMensaje" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="540.0" prefWidth="568.0" BorderPane.alignment="CENTER">
+                        <TextFlow fx:id="textoMensaje" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="407.0" prefWidth="434.0" BorderPane.alignment="CENTER">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>

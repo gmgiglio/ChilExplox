@@ -40,6 +40,7 @@ public class MensajesEnviadosController implements Initializable {
         //Funcionario u = Main.getUsuarioActual();
         for(RegistroMensaje r : registroMensajes){
             CajaMensajeEnviado cajaM = new CajaMensajeEnviado(r);
+            cajaM.changeBackgroundOnHover();
             listaMensajes.getChildren().add(cajaM);
             cajaM.setOnAction(botonApretado);
         }

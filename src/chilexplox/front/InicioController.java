@@ -27,16 +27,8 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
-/**
- * FXML Controller class
- *
- * @author alberto
- */
 public class InicioController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
         @FXML
     private MenuBar menuBar;
        @FXML
@@ -49,11 +41,9 @@ public class InicioController implements Initializable {
         @FXML
     private SplitPane split;
         @FXML
-    private AnchorPane pantallaNuevoMensaje, anchorPaneMensajes, agregarPane;
+    private AnchorPane anchorPaneMensajes, agregarPane;
         @FXML
-    private HBox pantallaBuzonEntrada, pantallaMensajesEnviados;
-        @FXML
-    private ComboBox comboBoxClientes, comboBoxSucursales;
+    private ComboBox comboBoxClientes;
         @FXML
     private VBox vBoxConfPed;
         @FXML
@@ -71,19 +61,39 @@ public class InicioController implements Initializable {
 
     private AgregarClienteController agregarClienteCon;
 
-    private TreeView<String> treeOrigen = new TreeView<String>(), treeDestino=new TreeView<String>();
-    private TreeView<String> pedidosPend = new TreeView<String>(), pedidosCar = new TreeView<String>(),
-            pedidosDest = new TreeView<String>(), pedidosEq = new TreeView<String>(),
-            pedidosConf = new TreeView<String>();;
-    private TreeView<String> camionesDisp = new TreeView<String>(), camionesDesc = new TreeView<String>();
+    private TreeView<String> treeOrigen = new TreeView<>(), treeDestino=new TreeView<>();
+    private TreeView<String> pedidosPend = new TreeView<>(), pedidosCar = new TreeView<>(),
+            pedidosDest = new TreeView<>(), pedidosEq = new TreeView<>(),
+            pedidosConf = new TreeView<>();;
+    private TreeView<String> camionesDisp = new TreeView<>(), camionesDesc = new TreeView<>();
        
     private Camion camionActual;
     
-    private EventHandler<MouseEvent> dragDetected = new EventHandler<MouseEvent>() {
-        public void handle(MouseEvent event) {
-//obtiene el treeview de origen
+    private final EventHandler<MouseEvent> dragDetected;
+    
+    private final EventHandler<DragEvent> dragOver;
+    
+    private final EventHandler<DragEvent> dragDropped;
+    
+    private EventHandler cambiarSucursalActual;
+
+    public InicioController() {
+        this.cambiarSucursalActual = (EventHandler) (Event e) -> {
+            ItemSucursalMenu item1 = (ItemSucursalMenu)e.getSource();
+            Sucursal suc = item1.getSucursal();
+            menuSucursal.setText(suc.getNombre());
+            ItemSucursalMenu item2 = new ItemSucursalMenu(((Funcionario)Main.getUsuarioActual()).getSucActual());
+            item2.setOnAction(cambiarSucursalActual);
+            ((Funcionario)Main.getUsuarioActual()).setSucActual(suc);
+            menuSucursal.getItems().remove(item1);
+            menuSucursal.getItems().add(item2);
+            actualizarPestanaAdm();
+        };
+        
+        dragDetected = (MouseEvent event) -> {
+            //obtiene el treeview de origen
             treeOrigen = (TreeView) event.getSource();
-//Solo los hijos de root pueden ser drageados
+            //Solo los hijos de root pueden ser drageados
             if(treeOrigen.getSelectionModel().getSelectedItem().getParent().equals(treeOrigen.getRoot())){
                 Dragboard dragBoard = treeOrigen.startDragAndDrop(TransferMode.MOVE);
                 Image img = new Image(Main.class.getResourceAsStream("/resources/images/pedidoIcon.png"));
@@ -93,11 +103,8 @@ public class InicioController implements Initializable {
                 dragBoard.setContent(content);
             }
             event.consume();
-        }
-    };
-    
-    private EventHandler<DragEvent> dragOver = new EventHandler<DragEvent>() {
-        public void handle(DragEvent event) {
+        };
+        dragOver = (DragEvent event) -> {
             String valueToMove = event.getDragboard().getString();
             TreeItem<String> itemToMove = search(treeOrigen.getRoot(), valueToMove);
             String[] idPedido = itemToMove.getValue().split("#");
@@ -111,11 +118,8 @@ public class InicioController implements Initializable {
                 event.acceptTransferModes(TransferMode.MOVE);
             
             event.consume();
-        }
-    };
-    
-    private EventHandler<DragEvent> dragDropped = new EventHandler<DragEvent>() {
-        public void handle(DragEvent event) {
+        };
+        dragDropped = (DragEvent event) -> {
             String valueToMove = event.getDragboard().getString();
             TreeItem<String> itemToMove = search(treeOrigen.getRoot(), valueToMove);
             String[] idPedido = itemToMove.getValue().split("#");
@@ -125,9 +129,9 @@ public class InicioController implements Initializable {
                     (treeOrigen.getParent() == anchorPedCar && treeDestino.getParent() == anchorPedPend) ||
                     (treeOrigen.getParent() == anchorPedDest &&
                     (treeDestino.getParent() == anchorPedConf || treeDestino.getParent() == anchorPedEq))){
-// Remove from former parent.
+                // Remove from former parent.
                 treeOrigen.getRoot().getChildren().remove(itemToMove);
-// Add to new parent.
+                // Add to new parent.
                 treeDestino.getRoot().getChildren().add(itemToMove);
                 
                 if(treeDestino.getParent() == anchorPedCar)
@@ -146,8 +150,8 @@ public class InicioController implements Initializable {
                 event.consume();
                 
             }
-        }
-    };
+        };
+    }
     
     private TreeItem<String> search(final TreeItem<String> currentNode, final String valueToSearch) {
             TreeItem<String> result = null;
@@ -187,12 +191,11 @@ public class InicioController implements Initializable {
         //agregar sucursales al menu de sucursales
         LinkedList<Sucursal> sucEnLista = new LinkedList(sucursales);
         sucEnLista.remove(((Funcionario)Main.getUsuarioActual()).getSucActual());
-        for(Sucursal s : sucEnLista){
+            for (Sucursal s : sucEnLista) {
                 ItemSucursalMenu item = new ItemSucursalMenu(s);
-                menuSucursal.getItems().add(item); 
-                item.setOnAction(eventoSucursal);  
-                
-        }
+                menuSucursal.getItems().add(item);
+                item.setOnAction(cambiarSucursalActual);
+            }
         menuBar.getMenus().addAll(menuUsuario,menuSucursal);
         
       cargarNombresClientes();
@@ -203,162 +206,133 @@ public class InicioController implements Initializable {
 ///////////////////////////////////////////////////ATENDER\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\     
          
         
-        botonCancelar.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                    limpiarAtender();
-                }
-            });
+        botonCancelar.setOnAction((ActionEvent e) -> {
+            limpiarAtender();
+        });
         
-        agregarCliente.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
+        agregarCliente.setOnAction((ActionEvent e) -> {
+            try{
+                agregarClienteCon = new AgregarClienteController();
+                agregarClienteCon.setHandlerCliente((Event e2) -> {
                     
-                       try{        
-                            agregarClienteCon = new AgregarClienteController();
-                            agregarClienteCon.setHandlerCliente((Event e2) -> {
-                                
-                                RegistroCliente registro = ((Funcionario)Main.getUsuarioActual()).crearCliente(
-                                        agregarClienteCon.getNombre(),agregarClienteCon.getApellidos(),
-                                        agregarClienteCon.getCalle()+" "+agregarClienteCon.getNumero()+", "+agregarClienteCon.getComuna()+", "
-                                        +agregarClienteCon.getCiudad(),agregarClienteCon.getTelefono());                              
-                                
-                                Cliente cliente =registro.cliente;
-                                String enComboBox = cliente.getNombreCompleto() +" " + cliente.getNombreUsuario();
-                                comboBoxClientes.getItems().add(enComboBox);
-                                comboBoxClientes.setPromptText(enComboBox);
-                                
-                                //mostrar FichaCliente
-                                FichaCliente ficha = new FichaCliente(registro);
-                                agregarPane.getChildren().setAll(ficha);
-                                
-                            });
-                            agregarPane.getChildren().setAll(agregarClienteCon);
-                            split.setDividerPositions(0.4684014869888476);
-                       
-                       }
-                       catch (Exception exc)
-                      {
-                          System.out.println("InicioController: No se pudo cargar AgregarClienteController");
-                          throw new RuntimeException(exc);
-                      }
-                     
+                    RegistroCliente registro = ((Funcionario)Main.getUsuarioActual()).crearCliente(
+                            agregarClienteCon.getNombre(),agregarClienteCon.getApellidos(),
+                            agregarClienteCon.getCalle()+" "+agregarClienteCon.getNumero()+", "+agregarClienteCon.getComuna()+", "
+                                    +agregarClienteCon.getCiudad(),agregarClienteCon.getTelefono());
+                    
+                    Cliente cliente =registro.cliente;
+                    String enComboBox = cliente.getNombreCompleto() +" " + cliente.getNombreUsuario();
+                    comboBoxClientes.getItems().add(enComboBox);
+                    comboBoxClientes.setPromptText(enComboBox);
+                    
+                    //mostrar FichaCliente
+                    FichaCliente ficha = new FichaCliente(registro);
+                    agregarPane.getChildren().setAll(ficha);
+                    
+                });
+                agregarPane.getChildren().setAll(agregarClienteCon);
+                split.setDividerPositions(0.4684014869888476);
                 
-                }
-            });
+            }
+            catch (Exception exc)
+            {
+                System.out.println("InicioController: No se pudo cargar AgregarClienteController");
+                throw new RuntimeException(exc);
+            }
+        });
         
-           crearPedido.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
+           crearPedido.setOnAction((ActionEvent e) -> {
+               try{
+                   
+                   agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarPedido.fxml")));
+                   split.setDividerPositions(0.4684014869888476);
+                   
+               }
+               catch (Exception exc)
+               {
+               }
+        });
+            modificar.setOnAction((ActionEvent e) -> {
+                try{
                     
-                       try{        
-
-                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarPedido.fxml")));
-                       split.setDividerPositions(0.4684014869888476);
-                       
-                       }
-                       catch (Exception exc)
-                      {
-                               }
-                     
-                
-                }
-            });
-            modificar.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
+                    agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarPedido.fxml")));
+                    split.setDividerPositions(0.4684014869888476);
+                    modificar.setVisible(false);
                     
-                       try{        
-
-                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarPedido.fxml")));
-                       split.setDividerPositions(0.4684014869888476);
-                       modificar.setVisible(false);
-                       
-                       }
-                       catch (Exception exc)
-                      {
-                               }
-                     
-                
                 }
-            });
+                catch (Exception exc)
+                {
+                }
+        });
            
-            botonAgregarEncomienda.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                    
-                       try{       
-                            if(((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto() != null){
-                                agregarEncomiendaCon = new AgregarEncomiendaController();
-                                agregarEncomiendaCon.setHandlerEncomienda((Event e2) -> {
-                                    agregarEncomienda(new Encomienda(agregarEncomiendaCon.getPeso(),agregarEncomiendaCon.getVolumen(),
+            botonAgregarEncomienda.setOnAction((ActionEvent e) -> {
+                try{
+                    if(((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto() != null){
+                        agregarEncomiendaCon = new AgregarEncomiendaController();
+                        agregarEncomiendaCon.setHandlerEncomienda((Event e2) -> {
+                            agregarEncomienda(new Encomienda(agregarEncomiendaCon.getPeso(),agregarEncomiendaCon.getVolumen(),
                                     agregarEncomiendaCon.getPrioridad(),agregarEncomiendaCon.getDirDestino(),agregarEncomiendaCon.getDescr()));
-                                });
-                                agregarPane.getChildren().setAll(agregarEncomiendaCon);
-                                split.setDividerPositions(0.4684014869888476);
-                            }
-                       }
-                       catch (Exception exc)
-                      {
-                          System.out.println("InicioController: No se pudo cargar AgregarEncomiendaController");
-                          throw new RuntimeException(exc);
-                               }
-                     
-                
+                        });
+                        agregarPane.getChildren().setAll(agregarEncomiendaCon);
+                        split.setDividerPositions(0.4684014869888476);
+                    }
                 }
-            });
+                catch (Exception exc)
+                {
+                    System.out.println("InicioController: No se pudo cargar AgregarEncomiendaController");
+                    throw new RuntimeException(exc);
+                }
+        });
             
             
-           cerrarPedido.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                    String nombreCliente = (String)comboBoxClientes.getValue();
-                       try{ 
-                            if(nombreCliente != null && ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getEncomiendas().size()>0){
-                                advertencia.setText("");
-                                Scene scene = split.getScene();
-                                Text idPedido = (Text)scene.lookup("#idPedido");
-                                ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().setCliente(nombreCliente);
-                                ((Funcionario)Main.getUsuarioActual()).cerrarPed();
-                                limpiarAtender();
-                           }
-                            else if(nombreCliente == null){
-                                advertencia.setText("Debe seleccionar un cliente");
-                            } else {
-                            advertencia.setText("Debe haber al menos una encomienda");
-                            }
-                       }
-                       catch (Exception exc)
-                      {
-                               }
-                     
-                
-                }
-            });
+           cerrarPedido.setOnAction((ActionEvent e) -> {
+               String nombreCliente = (String)comboBoxClientes.getValue();
+               try{
+                   if(nombreCliente != null && ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getEncomiendas().size()>0){
+                       advertencia.setText("");
+                       Scene scene = split.getScene();
+                       Text idPedido = (Text)scene.lookup("#idPedido");
+                       ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().setCliente(nombreCliente);
+                       ((Funcionario)Main.getUsuarioActual()).cerrarPed();
+                       limpiarAtender();
+                   }
+                   else if(nombreCliente == null){
+                       advertencia.setText("Debe seleccionar un cliente");
+                   } else {
+                       advertencia.setText("Debe haber al menos una encomienda");
+                   }
+               }
+               catch (Exception exc)
+               {
+               }
+        });
            
            
         
 //////////////////////////////////////////////TABS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         for(int j=0;j<tabs.getTabs().size();j++)
         {
-        tabs.getTabs().get(j).setOnSelectionChanged(new EventHandler<Event>() {
-                @Override
-                public void handle (Event e) {
-                    Tab t = (Tab)(e.getSource());
-                    if(((Tab)(e.getSource())).isSelected()){
-                        switch(t.getText()){
-                            
-                            case "Atender":
-                                break;
-                            
-                            case "Administrar":
-                                actualizarPestanaAdm();
-                                
-                                
-                            break;
-                                
-                            case "Mensajes":
-                                    break;
-                            default:;
-                                break;
-                        }             
-                    }
-                }                 
-            }); 
+        tabs.getTabs().get(j).setOnSelectionChanged((Event e) -> {
+            Tab t = (Tab)(e.getSource());
+            if(((Tab)(e.getSource())).isSelected()){
+                switch(t.getText()){
+                    
+                    case "Atender":
+                        break;
+                        
+                    case "Administrar":
+                        actualizarPestanaAdm();
+                        
+                        
+                        break;
+                        
+                    case "Mensajes":
+                        break;
+                    default:;
+                    break;
+                }
+            }
+        }); 
         }
            
            
@@ -368,53 +342,33 @@ public class InicioController implements Initializable {
         
 /////////////////////////////////////////////////////MENSAJES\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         
-        botonNuevoMensaje.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                    
-                       try{
-                        anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/NuevoMensaje.fxml")));
-                        
-                       }
-                       catch (Exception exc){
-                           System.out.println("InicioController: No se cargó NuevoMensaje.fxml ");
-                      }
+        botonNuevoMensaje.setOnAction((ActionEvent e) -> {
+            try{
+                anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/NuevoMensaje.fxml")));
+                
+            }
+            catch (Exception exc){
+                System.out.println("InicioController: No se cargó NuevoMensaje.fxml ");
             }
         });
         
-        botonBuzonEntrada.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {                    
-                try{
-                 anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/BuzonEntrada.fxml")));
-                }
-                catch (Exception exc){} 
+        botonBuzonEntrada.setOnAction((ActionEvent e) -> {
+            try{
+                anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/BuzonEntrada.fxml"))); 
             }
+            catch (Exception exc){}
         });
         
-        botonMensajesEnviados.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {                    
-                try{
-                 anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/MensajesEnviados.fxml")));
-                }
-                catch (Exception exc){} 
+        botonMensajesEnviados.setOnAction((ActionEvent e) -> {
+            try{
+                anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/MensajesEnviados.fxml"))); 
             }
+            catch (Exception exc){}
         });
         
     }
     
-    private EventHandler eventoSucursal = new EventHandler() {
-
-        public void handle(Event e) {
-            ItemSucursalMenu item1 = (ItemSucursalMenu)e.getSource();
-            Sucursal suc = item1.getSucursal();
-            menuSucursal.setText(suc.getNombre());
-            ItemSucursalMenu item2 = new ItemSucursalMenu(((Funcionario)Main.getUsuarioActual()).getSucActual());
-            item2.setOnAction(eventoSucursal);
-            ((Funcionario)Main.getUsuarioActual()).setSucActual(suc);
-            menuSucursal.getItems().remove(item1);
-            menuSucursal.getItems().add(item2);
-            actualizarPestanaAdm();
-        }
-     };
+    
     
     public void cargarNombresClientes(){
 
@@ -430,8 +384,10 @@ public class InicioController implements Initializable {
     }
 
 
-     public void actualizarPestanaAdm(){
+    private void actualizarPestanaAdm(){
          
+        accionCamion.setVisible(false);
+        retornarCamion.setVisible(false);
         camionActual = null;
         patenteCamAct.setText("");
         capacidadCamAct.setText("");
@@ -471,72 +427,54 @@ public class InicioController implements Initializable {
         camionesDesc = new TreeView<>(listarCamiones(sucActual.getCamionesPend()));
         amononarTreeView(anchorCamDesc, camionesDesc);
         
-        camionesDisp.setOnMouseClicked(new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent event) {
+        camionesDisp.setOnMouseClicked((MouseEvent event) -> {
             vBoxConfPed.setVisible(false);
             pedidosCar.setVisible(true);
             accionCamion.setVisible(true);
             accionCamion.setText("Enviar Camión");
-            
             camionActual = null;
             String patenteCamionActual = (String)camionesDisp.getSelectionModel().getSelectedItem().getValue();
-            
-            Sucursal sucActual = ((Funcionario)Main.getUsuarioActual()).getSucActual();
-            
-            
-            for(Camion c : sucActual.getCamionesDisponibles()){
-                if(c.getPatente()==patenteCamionActual) camionActual = c;
+            Sucursal sucActual1 = ((Funcionario)Main.getUsuarioActual()).getSucActual();
+            for (Camion c : sucActual1.getCamionesDisponibles()) {
+                if(c.getPatente() == null ? patenteCamionActual == null : c.getPatente().equals(patenteCamionActual)) camionActual = c;
             }
-            
             pedidosCar = new TreeView<>(listarPedidos(camionActual.getPedidos()));
             amononarTreeView(anchorPedCar, pedidosCar);
             pedidosCar.setOnDragDetected(dragDetected);
             pedidosCar.setOnDragOver(dragOver);
             pedidosCar.setOnDragDropped(dragDropped);
-                
             patenteCamAct.setText(camionActual.getPatente());
             capacidadCamAct.setText(Integer.toString(camionActual.getCapacidad()));
             espDispCamAct.setText(Integer.toString(camionActual.getEspDisp()));
             estadoCamAct.setText("DISPONIBLE");
-            if(camionActual.getPedidos().size()>0){
-                accionCamion.setOnMouseClicked(new EventHandler<MouseEvent>(){
-                    @Override
-                    public void handle(MouseEvent event){
-                        Sucursal sucActual = ((Funcionario)Main.getUsuarioActual()).getSucActual();
-                        Sucursal destino = camionActual.getPedidos().get(0).getSucDestino();
-                        destino.recibirCamionCargado(camionActual);
-                        sucActual.enviarCamion(camionActual);
-                        actualizarPestanaAdm();
-                    }
+            if (camionActual.getPedidos().size()>0) {
+                accionCamion.setOnMouseClicked((MouseEvent event1) -> {
+                    Sucursal sucActual2 = ((Funcionario)Main.getUsuarioActual()).getSucActual();
+                    Sucursal destino = camionActual.getPedidos().get(0).getSucDestino();
+                    destino.recibirCamionCargado(camionActual);
+                    sucActual2.enviarCamion(camionActual);
+                    actualizarPestanaAdm();
                 });
-            }
             }
         });
     
-    pedidosDest.setOnMouseClicked(new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent event) {
+        pedidosDest.setOnMouseClicked((MouseEvent event) -> {
             vBoxConfPed.setVisible(true);
             pedidosCar.setVisible(false);
-            }
         });
         
-    camionesDesc.setOnMouseClicked(new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent event) {
+        camionesDesc.setOnMouseClicked((MouseEvent event) -> {
             vBoxConfPed.setVisible(false);
             pedidosCar.setVisible(true);
             accionCamion.setVisible(true);
             accionCamion.setText("Descargar Camión");
+            retornarCamion.setVisible(true);
             camionActual = null;
             String patenteCamionSelec = (String)camionesDesc.getSelectionModel().getSelectedItem().getValue();
-            Sucursal sucActual = ((Funcionario)Main.getUsuarioActual()).getSucActual();
-            
-            for(Camion c : sucActual.getCamionesPend()){
-                if(c.getPatente() == patenteCamionSelec) camionActual = c;
+            Sucursal sucActual1 = ((Funcionario)Main.getUsuarioActual()).getSucActual();
+            for (Camion c : sucActual1.getCamionesPend()) {
+                if(c.getPatente() == null ? patenteCamionSelec == null : c.getPatente().equals(patenteCamionSelec)) camionActual = c;
             }
-            
             if(camionActual.getPedidos() != null){
                 pedidosCar = new TreeView<>(listarPedidos(camionActual.getPedidos()));
                 amononarTreeView(anchorPedCar, pedidosCar);
@@ -545,33 +483,41 @@ public class InicioController implements Initializable {
             capacidadCamAct.setText(Integer.toString(camionActual.getCapacidad()));
             espDispCamAct.setText(Integer.toString(camionActual.getEspDisp()));
             estadoCamAct.setText("DISPONIBLE");
-            
-            accionCamion.setOnMouseClicked(new EventHandler<MouseEvent>(){
-                @Override
-                public void handle(MouseEvent event){
-                    Sucursal sucActual = ((Funcionario)Main.getUsuarioActual()).getSucActual();
-                    sucActual.descargarCamion(camionActual);
-                    actualizarPestanaAdm();
-                }
+            accionCamion.setOnMouseClicked((MouseEvent event1) -> {
+                Sucursal sucActual2 = ((Funcionario)Main.getUsuarioActual()).getSucActual();
+                sucActual2.descargarCamion(camionActual);
+                actualizarPestanaAdm();
             });
-            }
+            retornarCamion.setOnMouseClicked((MouseEvent event1) -> {
+                Sucursal sucActual3 = ((Funcionario)Main.getUsuarioActual()).getSucActual();
+                Sucursal origen = camionActual.getPedidos().get(0).getSucOrigen();
+                ((Funcionario)Main.getUsuarioActual()).enviarMens("Retorno del Camion " + camionActual.getPatente(), "Estimado:\n"
+                        + "\t Le escribimos desde la sucursal " + sucActual3.getNombre() + " para informarle que hemos recibido al camión de patente " + camionActual.getPatente() + ". Desafortunadamente, el contenido de este presenta errores, por lo que " + "decidimos enviarlo de vuelta a sus instalaciones.\n" + "Quedamos atentos a sus comentarios.\nSe despide,\n\n" + ((Funcionario)Main.getUsuarioActual()).getNombreUsuario() + "\nSucursal " + sucActual3.getNombre(), origen);
+                camionActual.setEstado(EstadoCamion.Con_Errores);
+                origen.recibirCamionCargado(camionActual);
+                sucActual3.retornarCamion(camionActual);
+                actualizarPestanaAdm();
+            });
         });
-     }
+    }
      
-     public TreeItem<String> listarCamiones(LinkedList<Camion> camiones){
-         TreeItem<String> dummyRoot = new TreeItem<>("root");
-         for(Camion c : camiones){
-             TreeItem<String> camionView = new TreeItem<>(c.getPatente());
-             camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckIcon.png"))));
-             camionView.getChildren().add(new TreeItem("Capacidad total: " + c.getCapacidad() + " cm^3"));
-             camionView.getChildren().add(new TreeItem("Espacio Disponible: " + c.getEspDisp() + "cm^3"));
-             dummyRoot.getChildren().add(camionView);
-         }
+    public TreeItem<String> listarCamiones(LinkedList<Camion> camiones){
+        TreeItem<String> dummyRoot = new TreeItem<>("root");
+        for(Camion c : camiones){
+            TreeItem<String> camionView = new TreeItem<>(c.getPatente());
+            if(c.getEstado() == EstadoCamion.Sin_Errores)
+               camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckIcon.png"))));
+            else
+               camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckErrorIcon.png"))));
+            camionView.getChildren().add(new TreeItem("Capacidad total: " + c.getCapacidad() + " cm^3"));
+            camionView.getChildren().add(new TreeItem("Espacio Disponible: " + c.getEspDisp() + "cm^3"));
+            dummyRoot.getChildren().add(camionView);
+        }
          
          return dummyRoot;
      }
-     
-     public TreeItem<String> listarPedidos(LinkedList<Pedido> pedidos){
+    
+    public TreeItem<String> listarPedidos(LinkedList<Pedido> pedidos){
          TreeItem<String> dummyRoot = new TreeItem<>("root");
          
          
@@ -599,15 +545,15 @@ public class InicioController implements Initializable {
          }
          return dummyRoot;
      }
-
-     public void amononarTreeView (AnchorPane ap, TreeView<String> tv){
+    
+    public void amononarTreeView (AnchorPane ap, TreeView<String> tv){
         tv.setShowRoot(false);
         ap.getChildren().add(tv);
         tv.setPrefWidth(ap.getPrefWidth());
         tv.setPrefHeight(ap.getPrefHeight());
      }
-     
-     public void limpiarAtender(){
+    
+    public void limpiarAtender(){
          advertencia.setText("");   
          crearPedido.setVisible(true);
          Scene scene = crearPedido.getScene();
@@ -622,8 +568,8 @@ public class InicioController implements Initializable {
          presupuesto.setText("0");
          split.setDividerPositions(1);
      }
-     
-     private void agregarEncomienda(Encomienda encomienda){
+    
+    private void agregarEncomienda(Encomienda encomienda){
          ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().agregarEnc(encomienda);
          CajaEncomienda c = new CajaEncomienda(encomienda);
          c.setHandlerEliminar((Event e) -> {
@@ -650,6 +596,7 @@ public class InicioController implements Initializable {
          //comboBoxEncomiendas.setPromptText(encomienda.getDescripcion());
          presupuesto.setText(""+((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getCostoEnvio());
      }
+
      
      private void eliminarEncomienda(Encomienda encomienda){
          ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().eliminarEncomienda(encomienda);
@@ -671,7 +618,7 @@ public class InicioController implements Initializable {
      }
             
      private class ItemSucursalMenu extends MenuItem{
-         private Sucursal sucursal;
+         private final Sucursal sucursal;
          
          public ItemSucursalMenu(Sucursal sucursal){
              this.sucursal = sucursal;

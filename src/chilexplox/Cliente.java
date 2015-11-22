@@ -5,6 +5,7 @@
  */
 package chilexplox;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public class Cliente extends Usuario implements java.io.Serializable {
     private String[] apellidos;
     private String direccion;
     private String telefono;
+    private final LinkedList<Pedido> pedidos = new LinkedList();
     
     public Cliente(String nombre, String[] apellidos, String direccion, String telefono, String nombreUsuario, String contrasena){
         super( nombreUsuario, contrasena);
@@ -47,6 +49,14 @@ public class Cliente extends Usuario implements java.io.Serializable {
             result+= " " + a;
         }
         return result;
+    }
+    
+    public void agregarPedido(Pedido pedido){
+        pedidos.add(pedido);
+    }
+    
+    public List<Pedido> getPedidos(){
+        return pedidos;
     }
     
     

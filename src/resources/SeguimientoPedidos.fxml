@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="537.0" prefWidth="567.0" type="VBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="567.0">
+         <children>
+            <BorderPane prefHeight="54.0" prefWidth="285.0">
+               <center>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Id Pedido" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="54.0" prefWidth="284.0">
+               <center>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Estado" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </center>
+            </BorderPane>
+         </children>
+      </HBox>
+      <javafx.scene.control.ListView fx:id="listPedidos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="484.0" prefWidth="567.0" />
+   </children>
+</fx:root>

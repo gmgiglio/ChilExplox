@@ -115,10 +115,9 @@
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <BorderPane prefHeight="100.0" prefWidth="150.0" />
                               <BorderPane prefHeight="91.0" prefWidth="165.0">
                                  <top>
-                                    <Button fx:id="botonCancelar" mnemonicParsing="false" prefHeight="39.0" prefWidth="139.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Cancelar" BorderPane.alignment="CENTER" />
+                                    <Button fx:id="botonRevisar" mnemonicParsing="false" onAction="#revisarPedidos" prefHeight="27.0" prefWidth="139.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Revisar Pedidos" BorderPane.alignment="CENTER" />
                                  </top>
                               </BorderPane>
                               <BorderPane prefHeight="94.0" prefWidth="210.0">
@@ -126,6 +125,7 @@
                                     <Button fx:id="botonCerrarPedido" mnemonicParsing="false" prefHeight="39.0" prefWidth="139.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Cerrar Pedido" BorderPane.alignment="CENTER" />
                                  </top>
                               </BorderPane>
+                              <Button fx:id="botonCancelar" mnemonicParsing="false" prefHeight="39.0" prefWidth="139.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Cancelar" />
                            </children>
                         </HBox>
                      </children>

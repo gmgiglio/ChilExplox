@@ -30,13 +30,13 @@ public class AgregarPedidoController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    @FXML
+        @FXML
     private Button crearPedido;
      
-      @FXML
-    private ComboBox comboBoxSucursales;
-       @FXML
-    private Text textoAlertaSucursal;
+        @FXML
+    private ComboBox comboBoxSucursales, comboBoxTipos;
+        @FXML
+    private Text textoAlertaSucursal, textoAlertaTipo;
     
     private Text sucursalText;
     private Button crearP;
@@ -48,24 +48,33 @@ public class AgregarPedidoController implements Initializable {
     @FXML
     private void handlePedido(ActionEvent event) {
             Scene scene = crearPedido.getScene();
-            
             sucursalText = (Text)scene.lookup("#stext");
             crearP = (Button)scene.lookup("#crearP");
             idPedido= (Text)scene.lookup("#idPedido");
             splitPane = (SplitPane)scene.lookup("#splitPane");
             mod =(Button)scene.lookup("#modificar");
-            if(!(comboBoxSucursales.getSelectionModel().getSelectedItem()==null)){
-          
-            Sucursal s = Empresa.getSucursal((String)(comboBoxSucursales.getSelectionModel().getSelectedItem()));
-            ///////////////////IMPLEMENTAR SELECCIONAR TIPO EN FRONTEND!!!!\\\\\\\\\\\\\\\\\\\\\\\\\\
-            Pedido p = ((Funcionario)Main.getUsuarioActual()).crearPed(s, Tipo.Normal);
-            sucursalText.setText((String)(comboBoxSucursales.getSelectionModel().getSelectedItem())) ;
-            idPedido.setText(""+p.getIdPedido());
-            crearP.setVisible(false);
-            splitPane.setDividerPositions(1);
-            mod.setVisible(true);
-            } else {
+            if(comboBoxSucursales.getSelectionModel().getSelectedItem() == null){
                 textoAlertaSucursal.setText("Por favor seleccione una sucursal");
+                textoAlertaSucursal.setVisible(true);
+                textoAlertaTipo.setVisible(false);
+
+            }
+            else if(comboBoxTipos.getSelectionModel().getSelectedItem() == null){
+                textoAlertaTipo.setText("Por favor seleccione una sucursal");
+                textoAlertaSucursal.setVisible(false);
+                textoAlertaTipo.setVisible(true);
+
+            }
+            else{
+                Sucursal s = Empresa.getSucursal((String)(comboBoxSucursales.getSelectionModel().getSelectedItem()));
+                Tipo t = (Tipo)comboBoxTipos.getSelectionModel().getSelectedItem();
+                ///////////////////IMPLEMENTAR SELECCIONAR TIPO EN FRONTEND!!!!\\\\\\\\\\\\\\\\\\\\\\\\\\
+                Pedido p = ((Funcionario)Main.getUsuarioActual()).crearPed(s, t);
+                sucursalText.setText((String)(comboBoxSucursales.getSelectionModel().getSelectedItem())) ;
+                idPedido.setText(""+p.getIdPedido());
+                crearP.setVisible(false);
+                splitPane.setDividerPositions(1);
+                mod.setVisible(true);
             }
 
     }
@@ -73,8 +82,11 @@ public class AgregarPedidoController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-           cargarNombresSucursales();
-        
+        cargarNombresSucursales();
+        cargarTipos();
+        textoAlertaSucursal.setVisible(false);
+        textoAlertaTipo.setVisible(false);
+
     }    
     public void cargarNombresSucursales(){
 
@@ -87,6 +99,18 @@ public class AgregarPedidoController implements Initializable {
             
             comboBoxSucursales.getItems().setAll(nombreSucursales);
             comboBoxSucursales.setPromptText("seleccione una sucursal");
+    }
+    
+    public void cargarTipos(){
+            ObservableList tipos = FXCollections.observableArrayList();
+            tipos.add(Tipo.Normal);
+            tipos.add(Tipo.Animales);
+            tipos.add(Tipo.Blindado);
+            tipos.add(Tipo.Fragil);
+            tipos.add(Tipo.Radioactivo);
+            tipos.add(Tipo.Refrigerado);
+            comboBoxTipos.getItems().setAll(tipos);
+            comboBoxTipos.setPromptText("seleccione el tipo de pedido");
     }
     
 }

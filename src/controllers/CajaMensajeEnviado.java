@@ -31,10 +31,29 @@ public class CajaMensajeEnviado extends Button {
     
     private int largoMaxAsunto = 40;
     
+    private boolean modoAzul = false;
+    
     private static final String STANDARD_BUTTON_STYLE = "-fx-background-color: #FFF;";
     private static final String HOVERED_BUTTON_STYLE  = "-fx-background-color: #F1F1F1;";
     private static final String ACTIVE_BUTTON_STYLE  = "-fx-background-color: #1269D9;";
     
+    public void enModoAzul(){
+        setStyle(ACTIVE_BUTTON_STYLE);
+        textoAsunto.setFill(Color.WHITE);
+        getTextoSucursal().setFill(Color.WHITE);
+        modoAzul = true;
+        setOnMouseExited(null);
+        setOnMouseEntered(null);
+    }
+    
+    public void enModoNormal(){
+        setStyle(STANDARD_BUTTON_STYLE);
+        textoAsunto.setFill(Color.BLACK);
+        getTextoSucursal().setFill(Color.BLACK);
+        modoAzul = false;
+        changeBackgroundOnHover();
+    }
+
     public CajaMensajeEnviado(RegistroMensaje registro){
         this.registro = registro;
         
@@ -51,6 +70,7 @@ public class CajaMensajeEnviado extends Button {
           setTextoAsunto(registro.getMensaje().getNombre());
           textoSucursal.setText(registro.getDestino().getNombre());
     } 
+    
     
     public Mensaje getMensaje(){
         return registro.getMensaje();
@@ -69,7 +89,7 @@ public class CajaMensajeEnviado extends Button {
       @Override public void handle(MouseEvent mouseEvent) {
         setStyle(HOVERED_BUTTON_STYLE);
         textoAsunto.setFill(Color.BLACK);
-        textoSucursal.setFill(Color.BLACK);  
+                getTextoSucursal().setFill(Color.BLACK);  
       }
     });
     
@@ -77,7 +97,7 @@ public class CajaMensajeEnviado extends Button {
       @Override public void handle(MouseEvent mouseEvent) {
         setStyle(STANDARD_BUTTON_STYLE);
         textoAsunto.setFill(Color.BLACK);
-        textoSucursal.setFill(Color.BLACK);
+                getTextoSucursal().setFill(Color.BLACK);
 
       }
     });
@@ -86,11 +106,18 @@ public class CajaMensajeEnviado extends Button {
                 
                 setStyle(ACTIVE_BUTTON_STYLE);
                 textoAsunto.setFill(Color.WHITE);
-                textoSucursal.setFill(Color.WHITE);
+                getTextoSucursal().setFill(Color.WHITE);
             }
     }); 
    
         
+    }
+
+    /**
+     * @return the textoSucursal
+     */
+    public Text getTextoSucursal() {
+        return textoSucursal;
     }
     
 }

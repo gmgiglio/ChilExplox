@@ -16,7 +16,7 @@ public class Mensaje implements java.io.Serializable {
     String mensaje;
     private Funcionario remitente;
     
-    public Mensaje(String nombre, String mensaje, Funcionario remitente){
+    public Mensaje(String nombre, String mensaje, Funcionario emisor){
         this.mensaje = mensaje;
         this.nombre = nombre;
         this.remitente = remitente;

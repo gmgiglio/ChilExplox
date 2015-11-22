@@ -30,6 +30,8 @@ public class MensajesEnviadosController implements Initializable {
     private VBox listaMensajes;
     @FXML
     private TextFlow textoMensaje;
+    @FXML
+    private Text asunto,receptor;
     /**
      * Initializes the controller class.
      */
@@ -46,12 +48,23 @@ public class MensajesEnviadosController implements Initializable {
         }
     }    
     
+    private CajaMensajeEnviado cajaMensActual;
+
+    
     EventHandler botonApretado = (EventHandler) (Event event) -> {
         CajaMensajeEnviado boton = (CajaMensajeEnviado) event.getTarget();
+         if (cajaMensActual != null) {
+            cajaMensActual.enModoNormal();
+        } 
+        cajaMensActual = boton;
+        cajaMensActual.enModoAzul();
+        
         String s = boton.getMensaje().getTexto();
         Text t = new Text(s);
+        receptor.setText(boton.getTextoSucursal().getText());
+        asunto.setText(boton.getMensaje().getNombre());
         textoMensaje.getChildren().clear();
         textoMensaje.getChildren().add(t);
-    };
+    };  
     
 }

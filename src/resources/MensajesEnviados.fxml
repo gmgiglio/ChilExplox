@@ -28,12 +28,42 @@
                   </Rectangle>
                   <BorderPane layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="600.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="-2.0">
                      <center>
-                        <TextFlow fx:id="textoMensaje" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="407.0" prefWidth="434.0" BorderPane.alignment="CENTER">
+                        <TextFlow fx:id="textoMensaje" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="346.0" prefWidth="435.0" translateY="-70.0" BorderPane.alignment="CENTER">
                            <rotationAxis>
                               <Point3D />
                            </rotationAxis>
                         </TextFlow>
                      </center>
+                     <top>
+                        <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="195.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <center>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="54.0" prefWidth="431.0">
+                                 <children>
+                                    <HBox prefHeight="31.0" prefWidth="431.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="A:" />
+                                          <Text fx:id="receptor" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="432.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Asunto:" />
+                                          <Text fx:id="asunto" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </center>
+                        </BorderPane>
+                     </top>
                   </BorderPane>
                </children>
             </AnchorPane>

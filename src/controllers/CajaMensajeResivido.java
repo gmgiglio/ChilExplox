@@ -38,10 +38,28 @@ public class CajaMensajeResivido extends Button {
     private static final String HOVERED_BUTTON_STYLE  = "-fx-background-color: #F1F1F1;";
     private static final String ACTIVE_BUTTON_STYLE  = "-fx-background-color: #1269D9;";
 
+    private boolean modoAzul = false;
 
     private Mensaje mensaje;
             
     private int largoMaxAsunto = 40;
+    
+    public void enModoAzul(){
+        setStyle(ACTIVE_BUTTON_STYLE);
+        textoAsunto.setFill(Color.WHITE);
+        textoUsuario.setFill(Color.WHITE);
+        modoAzul = true;
+        setOnMouseExited(null);
+        setOnMouseEntered(null);
+    }
+    
+    public void enModoNormal(){
+        setStyle(STANDARD_BUTTON_STYLE);
+        textoAsunto.setFill(Color.BLACK);
+        textoUsuario.setFill(Color.BLACK);
+        modoAzul = false;
+        changeBackgroundOnHover();
+    }
 
     public CajaMensajeResivido (Mensaje mensaje){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/CajaMensajeResivido.fxml"));
@@ -94,7 +112,7 @@ public class CajaMensajeResivido extends Button {
 
       }
     });
-    this.setOnMouseClicked(new EventHandler<MouseEvent>() {
+    setOnMouseClicked(new EventHandler<MouseEvent>() {
            @Override public void handle(MouseEvent mouseEvent) {
                 
                 setStyle(ACTIVE_BUTTON_STYLE);

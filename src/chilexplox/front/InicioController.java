@@ -180,13 +180,13 @@ public class InicioController implements Initializable {
             Main.cerrarSesion();
         });
         menuUsuario.getItems().add(itemCerrarSesion);
-        ((Funcionario)Main.getUsuarioActual()).setSucActual(Empresa.getSucursales().get(0));
-        ItemSucursalMenu i = new ItemSucursalMenu(((Funcionario)Main.getUsuarioActual()).getSucActual());
+        Main.getUsuarioActual().setSucActual(Empresa.getSucursales().get(0));
+        ItemSucursalMenu i = new ItemSucursalMenu(Main.getUsuarioActual().getSucActual());
         menuSucursal = new Menu(((Funcionario)Main.getUsuarioActual()).getSucActual().getNombre());
         
         //agregar sucursales al menu de sucursales
         LinkedList<Sucursal> sucEnLista = new LinkedList(sucursales);
-        sucEnLista.remove(((Funcionario)Main.getUsuarioActual()).getSucActual());
+        sucEnLista.remove(Main.getUsuarioActual().getSucActual());
         for(Sucursal s : sucEnLista){
                 ItemSucursalMenu item = new ItemSucursalMenu(s);
                 menuSucursal.getItems().add(item); 
@@ -374,7 +374,7 @@ public class InicioController implements Initializable {
             ItemSucursalMenu item1 = (ItemSucursalMenu)e.getSource();
             Sucursal suc = item1.getSucursal();
             menuSucursal.setText(suc.getNombre());
-            ItemSucursalMenu item2 = new ItemSucursalMenu(((Funcionario)Main.getUsuarioActual()).getSucActual());
+            ItemSucursalMenu item2 = new ItemSucursalMenu(Main.getUsuarioActual().getSucActual());
             item2.setOnAction(eventoSucursal);
             ((Funcionario)Main.getUsuarioActual()).setSucActual(suc);
             menuSucursal.getItems().remove(item1);

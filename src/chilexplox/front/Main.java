@@ -118,6 +118,9 @@ public class Main extends Application {
         
         Empresa.agregarFuncionario("Tulio Triviño", "31minutos");
         Empresa.agregarFuncionario("a" , "a");
+        String[] ap = {"melo"};
+        RegistroCliente rc = Empresa.agregarCliente("pablo", ap,"asda", "123");
+        System.out.println(rc.contrasena);
         
         maipu.agregarCamion("BDGH30", 3000, Tipo.Normal);
         maipu.agregarCamion("BDGH31", 3000, Tipo.Normal);

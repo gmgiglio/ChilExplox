@@ -525,15 +525,30 @@ public class InicioController implements Initializable {
         });
      }
      
-     public TreeItem<String> listarCamiones(LinkedList<Camion> camiones){
-         TreeItem<String> dummyRoot = new TreeItem<>("root");
-         for(Camion c : camiones){
-             TreeItem<String> camionView = new TreeItem<>(c.getPatente());
-             camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/truckIcon.png"))));
-             camionView.getChildren().add(new TreeItem("Capacidad total: " + c.getCapacidad() + " cm^3"));
-             camionView.getChildren().add(new TreeItem("Espacio Disponible: " + c.getEspDisp() + "cm^3"));
-             dummyRoot.getChildren().add(camionView);
-         }
+
+    private TreeItem<String> listarCamiones(LinkedList<Camion> camiones){
+        TreeItem<String> dummyRoot = new TreeItem<>("root");
+        for(Camion c : camiones){
+            TreeItem<String> camionView = new TreeItem<>(c.getPatente());
+            if(c.getEstado() == EstadoCamion.Con_Errores)
+                camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/ErrorTruckIcon.png"))));
+            else if(c.getTipo() == Tipo.Normal)
+                camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/TruckIcon.png"))));
+            else if(c.getTipo() == Tipo.Animales)
+                camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/AnimalTruckIcon.png"))));
+            else if(c.getTipo() == Tipo.Blindado)
+                camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/RubyTruckIcon.png"))));
+            else if(c.getTipo() == Tipo.Radioactivo)
+                camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/RadioactiveTruckIcon.png"))));
+            else if(c.getTipo() == Tipo.Fragil)
+                camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/FragileTruckIcon.png"))));
+            else if(c.getTipo() == Tipo.Refrigerado)
+                camionView.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/ColdTruckIcon.png"))));
+            
+            camionView.getChildren().add(new TreeItem("Capacidad total: " + c.getCapacidad() + " cm^3"));
+            camionView.getChildren().add(new TreeItem("Espacio Disponible: " + c.getEspDisp() + "cm^3"));
+            dummyRoot.getChildren().add(camionView);
+        }
          
          return dummyRoot;
      }

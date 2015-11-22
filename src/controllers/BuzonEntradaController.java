@@ -10,10 +10,13 @@ import chilexplox.front.Main;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -30,6 +33,8 @@ public class BuzonEntradaController implements Initializable {
     @FXML
     private TextFlow textoMensaje;
     
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -37,6 +42,7 @@ public class BuzonEntradaController implements Initializable {
         Funcionario u = (Funcionario) Main.getUsuarioActual();
         for(Mensaje m : mensajes){
             CajaMensajeResivido cajaM = new CajaMensajeResivido(m);
+            cajaM.changeBackgroundOnHover();
             listaMensajes.getChildren().add(cajaM);
             cajaM.setOnAction(botonApretado);
         }
@@ -45,8 +51,10 @@ public class BuzonEntradaController implements Initializable {
     
     EventHandler botonApretado = (EventHandler) (Event event) -> {
         CajaMensajeResivido boton = (CajaMensajeResivido) event.getTarget();
+        
         String s = boton.getMensaje().getTexto();
         Text t = new Text(s);
+        
         textoMensaje.getChildren().clear();
         textoMensaje.getChildren().add(t);
     };
@@ -55,5 +63,8 @@ public class BuzonEntradaController implements Initializable {
     public void mostrarMensaje (Mensaje m){
         
     }
+    
+   
+  
     
 }

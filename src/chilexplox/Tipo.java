@@ -10,5 +10,5 @@ package chilexplox;
  * @author carlossalame
  */
 public enum Tipo {
-    Normal, Radioactivo, Refrigerado, Animales, Blindado
+    Normal, Radioactivo, Refrigerado, Animales, Blindado, Fragil
 }

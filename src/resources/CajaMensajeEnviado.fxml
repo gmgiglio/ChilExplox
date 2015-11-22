@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,12 +9,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root type="javafx.scene.control.Button" fx:id="boton" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="boton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: null; -fx-border-insets: 0; -fx-label-padding: 0; -fx-padding: 0;" type="javafx.scene.control.Button" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <graphic>
-      <VBox prefHeight="50.0" prefWidth="80.0">
+      <VBox fx:id="buzonEntradaVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="302.0">
          <children>
-            <Text fx:id="textoSucursal" strokeType="OUTSIDE" strokeWidth="0.0" text="Sucursal" />
-            <Text fx:id="textoAsunto" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Asunto" />
+            <Text fx:id="textoSucursal" strokeType="OUTSIDE" strokeWidth="0.0" text="Sucursal" wrappingWidth="285.37906646728516">
+               <VBox.margin>
+                  <Insets left="15.0" top="8.0" />
+               </VBox.margin>
+            </Text>
+            <Text fx:id="textoAsunto" strokeType="OUTSIDE" strokeWidth="0.0" text="Asunto" wrappingWidth="286.6026420593262">
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+            </Text>
+            <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="301.0">
+               <bottom>
+                  <Line endX="185.0" startX="-100.0" stroke="#a4a4a4" strokeWidth="0.4" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets left="15.0" />
+                     </BorderPane.margin>
+                  </Line>
+               </bottom>
+            </BorderPane>
          </children>
       </VBox>
    </graphic>

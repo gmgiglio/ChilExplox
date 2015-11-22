@@ -15,6 +15,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
 import javafx.stage.Screen;
 
 
@@ -80,6 +81,8 @@ public class Main extends Application {
         escenaElegirUsuario = new Scene(root,400,269);
         primaryStage.setTitle("ChilExplox");
         primaryStage.setScene(escenaElegirUsuario);
+        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/resources/images/pedidoIcon.png")));
+      
         primaryStage.setResizable(false);
         primaryStage.show();
         escenarioPrincipal = primaryStage;
@@ -116,7 +119,18 @@ public class Main extends Application {
         Empresa.agregarFuncionario("Tulio Triviño", "31minutos");
         Empresa.agregarFuncionario("a" , "a");
         
-        maipu.agregarCamion("BDGH34", 3000, Tipo.Normal);
+        maipu.agregarCamion("BDGH30", 3000, Tipo.Normal);
+        maipu.agregarCamion("BDGH31", 3000, Tipo.Normal);
+        maipu.agregarCamion("BDGH32", 3000, Tipo.Fragil);
+        maipu.agregarCamion("BDGH33", 3000, Tipo.Fragil);
+        maipu.agregarCamion("BDGH34", 3000, Tipo.Animales);
+        maipu.agregarCamion("BDGH35", 3000, Tipo.Animales);
+        maipu.agregarCamion("BDGH36", 3000, Tipo.Blindado);
+        maipu.agregarCamion("BDGH37", 3000, Tipo.Blindado);
+        maipu.agregarCamion("BDGH38", 3000, Tipo.Radioactivo);
+        maipu.agregarCamion("BDGH39", 3000, Tipo.Radioactivo);
+        maipu.agregarCamion("BDGH40", 3000, Tipo.Refrigerado);
+        maipu.agregarCamion("BDGH41", 3000, Tipo.Refrigerado);
         maipu.agregarCamionPend("JUHK87", 2500, Tipo.Normal);
         maipu.getCamionesDisponibles().get(0).cargarPedido(new Pedido(maipu, victoria, leo, Tipo.Normal));
         Funcionario tulio = Empresa.getFuncionarios().get(0);

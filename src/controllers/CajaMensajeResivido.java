@@ -6,12 +6,21 @@
 package controllers;
 
 import chilexplox.Mensaje;
+import chilexplox.front.Main;
+import java.awt.Desktop.Action;
+import javafx.scene.paint.Color;
 import java.io.IOException;
 import java.net.URL;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 /**
@@ -23,6 +32,12 @@ public class CajaMensajeResivido extends Button {
     
     @FXML
     private Text textoAsunto,textoUsuario;
+    
+    
+    private static final String STANDARD_BUTTON_STYLE = "-fx-background-color: #FFF;";
+    private static final String HOVERED_BUTTON_STYLE  = "-fx-background-color: #F1F1F1;";
+    private static final String ACTIVE_BUTTON_STYLE  = "-fx-background-color: #1269D9;";
+
 
     private Mensaje mensaje;
             
@@ -43,6 +58,8 @@ public class CajaMensajeResivido extends Button {
         
         setTextoAsunto(mensaje.getNombre());
         textoUsuario.setText(mensaje.getRemitente().getNombreUsuario());
+        
+       
     } 
 
     /**
@@ -57,6 +74,36 @@ public class CajaMensajeResivido extends Button {
             textoAsunto.setText(s.substring(0, largoMaxAsunto) + "...");
         }
         else textoAsunto.setText(s);
+    }
+   
+    public void changeBackgroundOnHover(){
+    setStyle(STANDARD_BUTTON_STYLE);
+    setOnMouseEntered(new EventHandler<MouseEvent>() {
+      @Override public void handle(MouseEvent mouseEvent) {
+        setStyle(HOVERED_BUTTON_STYLE);
+        textoAsunto.setFill(Color.BLACK);
+        textoUsuario.setFill(Color.BLACK);  
+      }
+    });
+    
+    setOnMouseExited(new EventHandler<MouseEvent>() {
+      @Override public void handle(MouseEvent mouseEvent) {
+        setStyle(STANDARD_BUTTON_STYLE);
+        textoAsunto.setFill(Color.BLACK);
+        textoUsuario.setFill(Color.BLACK);
+
+      }
+    });
+    this.setOnMouseClicked(new EventHandler<MouseEvent>() {
+           @Override public void handle(MouseEvent mouseEvent) {
+                
+                setStyle(ACTIVE_BUTTON_STYLE);
+                textoAsunto.setFill(Color.WHITE);
+                textoUsuario.setFill(Color.WHITE);
+            }
+    }); 
+   
+        
     }
     
 }

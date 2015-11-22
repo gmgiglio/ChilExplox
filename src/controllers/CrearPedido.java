@@ -10,6 +10,7 @@ import chilexplox.Encomienda;
 import chilexplox.Funcionario;
 import chilexplox.Pedido;
 import chilexplox.Sucursal;
+import chilexplox.Tipo;
 import chilexplox.front.Main;
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -143,7 +144,8 @@ public class CrearPedido extends AnchorPane {
         
         apc.sethandlerPedido((Event e) -> {
             Sucursal s = apc.getSucursal();
-            Pedido p = Main.getUsuarioActual().crearPed(s);
+            Tipo t = apc.getTipo();
+            Pedido p = Main.getUsuarioActual().crearPed(s, t);
             textSucursal.setText(s.getNombre()) ;
             textIdPedido.setText(""+p.getIdPedido());
             botonCrearPedido.setVisible(false);

@@ -31,57 +31,14 @@ public class AgregarPedidoController extends VBox {
      */
         @FXML
     private Button crearPedido;
-     
-<<<<<<< HEAD
         @FXML
     private ComboBox comboBoxSucursales, comboBoxTipos;
         @FXML
     private Text textoAlertaSucursal, textoAlertaTipo;
-=======
-      @FXML
-    private ComboBox comboBoxSucursales;
-       @FXML
-    private Text textoAlertaSucursal;
-       @FXML
-    private Button botonCrearPedido;
->>>>>>> origin/master
     
     private Sucursal sucursal;
     
-<<<<<<< HEAD
-//    
-    @FXML
-    private void handlePedido(ActionEvent event) {
-            Scene scene = crearPedido.getScene();
-            sucursalText = (Text)scene.lookup("#stext");
-            crearP = (Button)scene.lookup("#crearP");
-            idPedido= (Text)scene.lookup("#idPedido");
-            splitPane = (SplitPane)scene.lookup("#splitPane");
-            mod =(Button)scene.lookup("#modificar");
-            if(comboBoxSucursales.getSelectionModel().getSelectedItem() == null){
-                textoAlertaSucursal.setText("Por favor seleccione una sucursal");
-                textoAlertaSucursal.setVisible(true);
-                textoAlertaTipo.setVisible(false);
-
-            }
-            else if(comboBoxTipos.getSelectionModel().getSelectedItem() == null){
-                textoAlertaTipo.setText("Por favor seleccione una sucursal");
-                textoAlertaSucursal.setVisible(false);
-                textoAlertaTipo.setVisible(true);
-
-            }
-            else{
-                Sucursal s = Empresa.getSucursal((String)(comboBoxSucursales.getSelectionModel().getSelectedItem()));
-                Tipo t = (Tipo)comboBoxTipos.getSelectionModel().getSelectedItem();
-                ///////////////////IMPLEMENTAR SELECCIONAR TIPO EN FRONTEND!!!!\\\\\\\\\\\\\\\\\\\\\\\\\\
-                Pedido p = ((Funcionario)Main.getUsuarioActual()).crearPed(s, t);
-                sucursalText.setText((String)(comboBoxSucursales.getSelectionModel().getSelectedItem())) ;
-                idPedido.setText(""+p.getIdPedido());
-                crearP.setVisible(false);
-                splitPane.setDividerPositions(1);
-                mod.setVisible(true);
-            }
-=======
+    private Tipo tipo;
     
     private EventHandler handlerPedido;
     
@@ -92,12 +49,20 @@ public class AgregarPedidoController extends VBox {
     public void crearPedido(ActionEvent event) {
             
      
-            if(!(comboBoxSucursales.getSelectionModel().getSelectedItem()==null)){
+            if(comboBoxSucursales.getSelectionModel().getSelectedItem()==null){
+                textoAlertaSucursal.setText("Por favor seleccione una sucursal");
+            }
+            else if(comboBoxTipos.getSelectionModel().getSelectedItem()==null){
+                textoAlertaTipo.setText("Por favor seleccione el tipo del pedido");
+                textoAlertaSucursal.setText("");
+            }
+            else {
                 sucursal = Empresa.getSucursal((String)comboBoxSucursales.getSelectionModel().getSelectedItem());
+                tipo = (Tipo)comboBoxTipos.getSelectionModel().getSelectedItem();
                 handlerPedido.handle(event);
             } 
-            else { textoAlertaSucursal.setText("Por favor seleccione una sucursal"); }
->>>>>>> origin/master
+            
+
 
     }
     
@@ -105,17 +70,10 @@ public class AgregarPedidoController extends VBox {
         return sucursal;
     }
     
+    public Tipo getTipo(){
+        return tipo;
+    }
     
-<<<<<<< HEAD
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        cargarNombresSucursales();
-        cargarTipos();
-        textoAlertaSucursal.setVisible(false);
-        textoAlertaTipo.setVisible(false);
-
-    }    
-=======
     public AgregarPedidoController(){
         
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/AgregarPedido.fxml"));
@@ -129,9 +87,9 @@ public class AgregarPedidoController extends VBox {
         }
 
         cargarNombresSucursales();
+        cargarTipos();
     }
   
->>>>>>> origin/master
     public void cargarNombresSucursales(){
 
             ObservableList nombreSucursales = FXCollections.observableArrayList();

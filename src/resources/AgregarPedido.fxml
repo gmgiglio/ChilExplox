@@ -7,74 +7,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root type="javafx.scene.layout.VBox" maxHeight="568.0" prefHeight="568.0" prefWidth="567.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="568.0" prefHeight="568.0" prefWidth="567.0" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox maxHeight="50.0" prefHeight="44.0">
          <children>
-<<<<<<< HEAD
-            <HBox maxHeight="50.0" prefHeight="44.0">
-               <children>
-                  <BorderPane prefHeight="100.0" prefWidth="85.0" />
-                  <BorderPane prefHeight="100.0" prefWidth="416.0">
-                     <center>
-                        <Text fill="#0049ba" strokeType="OUTSIDE" strokeWidth="0.0" text="Crear Pedido" BorderPane.alignment="CENTER">
-                           <font>
-                              <Font size="19.0" />
-                           </font>
-                        </Text>
-                     </center>
-                  </BorderPane>
-               </children>
-            </HBox>
-            <HBox alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="96.0" maxHeight="50.0" prefHeight="43.0">
-               <children>
-                  <Text fx:id="textoAlertaSucursal" fill="#e80606" strokeType="OUTSIDE" strokeWidth="0.0" text="Por favor, seleccione la sucursal de destino" textAlignment="CENTER" />
-               </children></HBox>
-            <HBox maxHeight="50.0" prefHeight="42.0">
-               <children>
-                  <BorderPane prefHeight="100.0" prefWidth="85.0">
-                     <right>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sucursal:" BorderPane.alignment="CENTER" />
-                     </right>
-                  </BorderPane>
-                  <BorderPane prefHeight="100.0" prefWidth="416.0">
-                     <center>
-                        <ComboBox fx:id="comboBoxSucursales" prefHeight="26.0" prefWidth="347.0" BorderPane.alignment="CENTER" />
-                     </center>
-                  </BorderPane>
-               </children>
-            </HBox>
-            <HBox alignment="BOTTOM_CENTER" maxHeight="50.0" prefHeight="43.0">
-               <children>
-                  <Text fx:id="textoAlertaTipo" fill="#ee0909" strokeType="OUTSIDE" strokeWidth="0.0" text="Por favor, seleccione el tipo del pedido" textAlignment="CENTER" />
-               </children></HBox>
-            <HBox layoutX="10.0" layoutY="54.0" maxHeight="50.0" prefHeight="42.0">
-               <children>
-                  <BorderPane prefHeight="100.0" prefWidth="85.0">
-                     <right>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo:" BorderPane.alignment="CENTER" />
-                     </right>
-                  </BorderPane>
-                  <BorderPane prefHeight="100.0" prefWidth="416.0">
-                     <center>
-                        <ComboBox fx:id="comboBoxTipos" prefHeight="26.0" prefWidth="347.0" BorderPane.alignment="CENTER" />
-                     </center>
-                  </BorderPane>
-               </children>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="96.0" maxHeight="50.0" prefHeight="43.0" />
-            <HBox layoutX="10.0" layoutY="115.0" maxHeight="50.0" prefHeight="43.0">
-               <children>
-                  <BorderPane prefHeight="100.0" prefWidth="150.0" />
-                  <BorderPane prefHeight="43.0" prefWidth="460.0" />
-                  <BorderPane prefHeight="100.0" prefWidth="381.0">
-                     <left>
-                        <Button fx:id="crearPedido" mnemonicParsing="false" onAction="#handlePedido" prefHeight="26.0" prefWidth="141.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Crear Pedido" BorderPane.alignment="CENTER" />
-                     </left>
-                  </BorderPane>
-               </children>
-            </HBox>
-=======
             <BorderPane prefHeight="100.0" prefWidth="85.0" />
             <BorderPane prefHeight="100.0" prefWidth="416.0">
                <center>
@@ -85,7 +21,11 @@
                   </Text>
                </center>
             </BorderPane>
->>>>>>> origin/master
+         </children>
+      </HBox>
+      <HBox alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="96.0" maxHeight="50.0" prefHeight="43.0">
+         <children>
+            <Text fx:id="textoAlertaSucursal" fill="#e80606" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" />
          </children>
       </HBox>
       <HBox maxHeight="50.0" prefHeight="42.0">
@@ -102,19 +42,33 @@
             </BorderPane>
          </children>
       </HBox>
-      <HBox prefHeight="19.0" prefWidth="567.0">
+      <HBox alignment="BOTTOM_CENTER" maxHeight="50.0" prefHeight="43.0">
          <children>
-            <Pane prefHeight="38.0" prefWidth="122.0" />
-            <Text fx:id="textoAlertaSucursal" fill="#e70707" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="324.0" />
+            <Text fx:id="textoAlertaTipo" fill="#ee0909" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" />
          </children>
       </HBox>
-      <HBox maxHeight="50.0" prefHeight="43.0">
+      <HBox layoutX="10.0" layoutY="54.0" maxHeight="50.0" prefHeight="42.0">
+         <children>
+            <BorderPane prefHeight="100.0" prefWidth="85.0">
+               <right>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo:" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
+            <BorderPane prefHeight="100.0" prefWidth="416.0">
+               <center>
+                  <ComboBox fx:id="comboBoxTipos" prefHeight="26.0" prefWidth="347.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="96.0" maxHeight="50.0" prefHeight="43.0" />
+      <HBox layoutX="10.0" layoutY="115.0" maxHeight="50.0" prefHeight="43.0">
          <children>
             <BorderPane prefHeight="100.0" prefWidth="150.0" />
             <BorderPane prefHeight="43.0" prefWidth="460.0" />
             <BorderPane prefHeight="100.0" prefWidth="381.0">
                <left>
-                  <Button fx:id="botonCrearPedido" mnemonicParsing="false" onAction="#crearPedido" prefHeight="26.0" prefWidth="141.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Crear Pedido" BorderPane.alignment="CENTER" />
+                  <Button fx:id="crearPedido" mnemonicParsing="false" onAction="#crearPedido" prefHeight="26.0" prefWidth="141.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Crear Pedido" BorderPane.alignment="CENTER" />
                </left>
             </BorderPane>
          </children>

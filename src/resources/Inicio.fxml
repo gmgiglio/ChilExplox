@@ -216,9 +216,9 @@
                                                                <children>
                                                                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                                                                      <center>
-                                                                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                                                        <ImageView fx:id="imagenTipo" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                                                            <image>
-                                                                              <Image url="@images/RadioActiveBigIcon.png" />
+                                                                              <Image url="@images" />
                                                                            </image>
                                                                         </ImageView>
                                                                      </center>
@@ -237,7 +237,7 @@
                                                                <children>
                                                                   <BorderPane prefHeight="62.0" prefWidth="114.0">
                                                                      <center>
-                                                                        <Text fill="#0232ac" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo Camión" BorderPane.alignment="CENTER" />
+                                                                        <Text fx:id="textoTipo" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER" />
                                                                      </center>
                                                                   </BorderPane>
                                                                   <Text fx:id="patenteCamAct" strokeType="OUTSIDE" strokeWidth="0.0" />
@@ -294,12 +294,12 @@
                                  <children>
                                     <TitledPane animated="false" collapsible="false" maxHeight="270.0" prefHeight="270.0" prefWidth="360.0" text="Camiones Disponibles">
                                       <content>
-                                        <AnchorPane fx:id="anchorCamDisp" minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="360.0" />
+                                        <AnchorPane fx:id="anchorCamDisp" maxHeight="240.0" minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="360.0" />
                                       </content>
                                     </TitledPane>
                                     <TitledPane animated="false" collapsible="false" maxHeight="270.0" prefHeight="270.0" prefWidth="360.0" text="Camiones por Descargar">
                                       <content>
-                                        <AnchorPane fx:id="anchorCamDesc" minHeight="0.0" minWidth="0.0" prefHeight="433.0" prefWidth="360.0" />
+                                        <AnchorPane fx:id="anchorCamDesc" maxHeight="240.0" minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="360.0" />
                                       </content>
                                     </TitledPane>
                                  </children>

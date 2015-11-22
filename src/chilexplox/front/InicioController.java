@@ -34,6 +34,10 @@ public class InicioController implements Initializable {
        @FXML
     private Button agregarCliente, botonAgregarEncomienda,crearPedido, botonCancelar, cerrarPedido, modificar,
                botonNuevoMensaje, botonBuzonEntrada, botonMensajesEnviados;
+       @FXML
+    private ImageView imagenTipo;
+       @FXML
+    private Text textoTipo;
         @FXML
     private Button accionCamion, retornarCamion;
         @FXML
@@ -176,16 +180,15 @@ public class InicioController implements Initializable {
             String patenteCamionActual = (String)camionesDisp.getSelectionModel().getSelectedItem().getValue();
             Sucursal sucActual1 = ((Funcionario)Main.getUsuarioActual()).getSucActual();
             for (Camion c : sucActual1.getCamionesDisponibles()) {
-                if(c.getPatente() == null ? patenteCamionActual == null : c.getPatente().equals(patenteCamionActual)) camionActual = c;
+                if(c.getPatente() == null ? patenteCamionActual == null : c.getPatente().equals(patenteCamionActual))
+                    camionActual = c;
             }
             pedidosCar = new TreeView<>(listarPedidos(camionActual.getPedidos()));
             amononarTreeView(anchorPedCar, pedidosCar);
             pedidosCar.setOnDragDetected(dragDetected);
             pedidosCar.setOnDragOver(dragOver);
             pedidosCar.setOnDragDropped(dragDropped);
-            patenteCamAct.setText(camionActual.getPatente());
-            capacidadCamAct.setText(Integer.toString(camionActual.getCapacidad()));
-            espDispCamAct.setText(Integer.toString(camionActual.getEspDisp()));
+            actualizarDatosCamion();
             estadoCamAct.setText("DISPONIBLE");
             if (camionActual.getPedidos().size()>0) {
                 accionCamion.setOnMouseClicked((MouseEvent event1) -> {
@@ -208,16 +211,15 @@ public class InicioController implements Initializable {
             String patenteCamionSelec = (String)camionesDesc.getSelectionModel().getSelectedItem().getValue();
             Sucursal sucActual1 = ((Funcionario)Main.getUsuarioActual()).getSucActual();
             for (Camion c : sucActual1.getCamionesPend()) {
-                if(c.getPatente() == null ? patenteCamionSelec == null : c.getPatente().equals(patenteCamionSelec)) camionActual = c;
+                if(c.getPatente() == null ? patenteCamionSelec == null : c.getPatente().equals(patenteCamionSelec))
+                    camionActual = c;
             }
             if(camionActual.getPedidos() != null){
                 pedidosCar = new TreeView<>(listarPedidos(camionActual.getPedidos()));
                 amononarTreeView(anchorPedCar, pedidosCar);
             }
-            patenteCamAct.setText(camionActual.getPatente());
-            capacidadCamAct.setText(Integer.toString(camionActual.getCapacidad()));
-            espDispCamAct.setText(Integer.toString(camionActual.getEspDisp()));
-            estadoCamAct.setText("DISPONIBLE");
+            actualizarDatosCamion();
+            estadoCamAct.setText("PENDIENTE");
             accionCamion.setOnMouseClicked((MouseEvent event1) -> {
                 Sucursal sucActual2 = ((Funcionario)Main.getUsuarioActual()).getSucActual();
                 sucActual2.descargarCamion(camionActual);
@@ -469,9 +471,11 @@ public class InicioController implements Initializable {
 
         camionesDisp = new TreeView<>(listarCamiones(sucActual.getCamionesDisponibles()));
         amononarTreeView(anchorCamDisp, camionesDisp);
+        camionesDisp.setPrefHeight(240);
         
         camionesDesc = new TreeView<>(listarCamiones(sucActual.getCamionesPend()));
         amononarTreeView(anchorCamDesc, camionesDesc);
+        
         
         pedidosDest.setOnMouseClicked((MouseEvent event) -> {
             vBoxConfPed.setVisible(true);
@@ -651,5 +655,36 @@ public class InicioController implements Initializable {
         public Sucursal getSucursal(){
             return sucursal;
         } 
+    }
+    
+    private void actualizarDatosCamion(){
+        patenteCamAct.setText(camionActual.getPatente());
+        capacidadCamAct.setText(Integer.toString(camionActual.getCapacidad()));
+        espDispCamAct.setText(Integer.toString(camionActual.getEspDisp()));
+        textoTipo.setText("Tipo de Camion: " + camionActual.getTipo());
+
+        if(camionActual.getTipo() == Tipo.Animales){
+            Image img = new Image(Main.class.getResourceAsStream("/resources/images/AnimalBigIcon.png"));
+            imagenTipo.setImage(img);
+        }
+        else if(camionActual.getTipo() == Tipo.Blindado){
+            Image img = new Image(Main.class.getResourceAsStream("/resources/images/RubyBigIcon.png"));
+            imagenTipo.setImage(img);
+        }
+        else if(camionActual.getTipo() == Tipo.Fragil){
+            Image img = new Image(Main.class.getResourceAsStream("/resources/images/FragilBigIcon.png"));
+            imagenTipo.setImage(img);
+        }
+        else if(camionActual.getTipo() == Tipo.Radioactivo){
+            Image img = new Image(Main.class.getResourceAsStream("/resources/images/RadioActiveBigIcon.png"));
+            imagenTipo.setImage(img);
+        }
+        else if(camionActual.getTipo() == Tipo.Refrigerado){
+            Image img = new Image(Main.class.getResourceAsStream("/resources/images/CopoBigIcon.png"));
+            imagenTipo.setImage(img);
+        }
+        else{
+            imagenTipo.setImage(null);
+        }
     }
 }

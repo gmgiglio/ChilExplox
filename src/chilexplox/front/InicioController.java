@@ -37,7 +37,7 @@ public class InicioController implements Initializable {
        @FXML
     private ImageView imagenTipo;
        @FXML
-    private Text textoTipo;
+    private Text textoTipo, errorDeCarga;
         @FXML
     private Button accionCamion, retornarCamion;
         @FXML
@@ -134,14 +134,16 @@ public class InicioController implements Initializable {
             Sucursal sucActual = ((Funcionario)Main.getUsuarioActual()).getSucActual();
             Pedido pedidoACargar = sucActual.getPedidoPendiente(Integer.parseInt(idPedido[1]));
             treeDestino = (TreeView) event.getGestureTarget();
-            boolean cabePedido = false;
+            boolean mismoDestino = false;
+            boolean sePuedeCargar = false;
             if(treeOrigen.getParent() == anchorPedPend){
                 if(camionActual != null){
-                    cabePedido = camionActual.verificaEspacioDestino(sucActual, Integer.parseInt(idPedido[1]));
+                    mismoDestino = camionActual.mismoDestino(sucActual, Integer.parseInt(idPedido[1]));
+                    sePuedeCargar = camionActual.verificaEspacioDestino(sucActual, Integer.parseInt(idPedido[1]));
                 }
             }
             if((treeOrigen.getParent() == anchorPedPend && treeDestino.getParent() == anchorPedCar &&
-                    pedidoACargar.getTipo() == camionActual.getTipo() && cabePedido) ||
+                    pedidoACargar.getTipo() == camionActual.getTipo() && sePuedeCargar) ||
                     (treeOrigen.getParent() == anchorPedCar && treeDestino.getParent() == anchorPedPend) ||
                     (treeOrigen.getParent() == anchorPedDest &&
                     (treeDestino.getParent() == anchorPedConf || treeDestino.getParent() == anchorPedEq))){
@@ -168,6 +170,18 @@ public class InicioController implements Initializable {
                     ((Funcionario)Main.getUsuarioActual()).confirmarPed(Integer.parseInt(idPedido[1]), false);
                 
                 event.consume();
+            }
+            else if(treeOrigen.getParent() == anchorPedPend && treeDestino.getParent() == anchorPedCar){
+                if(pedidoACargar.getTipo() != camionActual.getTipo()){
+                    errorDeCarga.setText("Un pedido del tipo " + pedidoACargar.getTipo() + " no puede cargarse en un "
+                            + "camion de tipo " + camionActual.getTipo() + ".");
+                }
+                else if(!mismoDestino){
+                    //el pedido posee un destino distinto al camion
+                }
+                else if(!sePuedeCargar){
+                    //No hay sufiencie espacio en el camion seleccionado
+                }
             }
         };
         
@@ -475,7 +489,6 @@ public class InicioController implements Initializable {
         
         camionesDesc = new TreeView<>(listarCamiones(sucActual.getCamionesPend()));
         amononarTreeView(anchorCamDesc, camionesDesc);
-        
         
         pedidosDest.setOnMouseClicked((MouseEvent event) -> {
             vBoxConfPed.setVisible(true);

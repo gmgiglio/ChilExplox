@@ -227,7 +227,7 @@
                                                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Capacidad:" />
                                                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Espacio Disponible:" />
                                                                   <Text layoutX="10.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado: " />
-                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+                                                                  <Text fx:id="errorDeCarga" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
                                                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pedidos Cargados:" />
                                                                </children>
                                                             </VBox>

@@ -518,119 +518,118 @@ public class InicioController implements Initializable {
      }
     
     public TreeItem<String> listarPedidos(LinkedList<Pedido> pedidos){
-         TreeItem<String> dummyRoot = new TreeItem<>("root");
-         
-         
-         for(Pedido p : pedidos){
-             TreeItem<String> child = new TreeItem<>("Pedido #" + Integer.toString(p.getIdPedido()));
-             child.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/pedidoIconView.png"))));
-             child.getChildren().add(new TreeItem<>("Prioridad: " + p.getPrioridad()));
-             child.getChildren().add(new TreeItem<>("Costo de Envío: $" + p.getCostoEnvio()));
-             child.getChildren().add(new TreeItem<>("Sucursal de Destino: " + p.getSucDestino().getNombre()));
-             child.getChildren().add(new TreeItem<>("Cliente: " + p.getCliente().getNombre()));
-             child.getChildren().add(new TreeItem<>("Peso: " + p.getPeso() + " g"));
-             child.getChildren().add(new TreeItem<>("Volumen aprox.: " + p.getVol()+ " cm^3"));
-             TreeItem<String> encomiendas = new TreeItem<>("Encomiendas");
-             child.getChildren().add(encomiendas);
-             for(Encomienda e : p.getEncomiendas()){
-                 TreeItem<String> encomienda = new TreeItem<>(e.getDescripcion());
-                 encomienda.getChildren().add(new TreeItem<>("Prioridad: " + e.getPrioridad()));
-                 encomienda.getChildren().add(new TreeItem<>("Costo de Envío: $" + e.getCostoEnvio()));
-                 encomienda.getChildren().add(new TreeItem<>("Peso: " + e.getPeso() + " g"));
-                 encomienda.getChildren().add(new TreeItem<>("Volumen aprox.: " + e.getVol()+ " cm^3"));
-                 encomienda.getChildren().add(new TreeItem<>("Dirección de Destino: " + e.getDireccionDestino()));
-                 encomiendas.getChildren().add(encomienda);
-             }
-             dummyRoot.getChildren().add(child);
-         }
-         return dummyRoot;
-     }
+        TreeItem<String> dummyRoot = new TreeItem<>("root");
+        
+        for(Pedido p : pedidos){
+            TreeItem<String> child = new TreeItem<>("Pedido #" + Integer.toString(p.getIdPedido()));
+            child.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/pedidoIconView.png"))));
+            child.getChildren().add(new TreeItem<>("Prioridad: " + p.getPrioridad()));
+            child.getChildren().add(new TreeItem<>("Costo de Envío: $" + p.getCostoEnvio()));
+            child.getChildren().add(new TreeItem<>("Sucursal de Destino: " + p.getSucDestino().getNombre()));
+            child.getChildren().add(new TreeItem<>("Cliente: " + p.getCliente().getNombre()));
+            child.getChildren().add(new TreeItem<>("Peso: " + p.getPeso() + " g"));
+            child.getChildren().add(new TreeItem<>("Volumen aprox.: " + p.getVol()+ " cm^3"));
+            TreeItem<String> encomiendas = new TreeItem<>("Encomiendas");
+            child.getChildren().add(encomiendas);
+            for(Encomienda e : p.getEncomiendas()){
+                TreeItem<String> encomienda = new TreeItem<>(e.getDescripcion());
+                encomienda.getChildren().add(new TreeItem<>("Prioridad: " + e.getPrioridad()));
+                encomienda.getChildren().add(new TreeItem<>("Costo de Envío: $" + e.getCostoEnvio()));
+                encomienda.getChildren().add(new TreeItem<>("Peso: " + e.getPeso() + " g"));
+                encomienda.getChildren().add(new TreeItem<>("Volumen aprox.: " + e.getVol()+ " cm^3"));
+                encomienda.getChildren().add(new TreeItem<>("Dirección de Destino: " + e.getDireccionDestino()));
+                encomiendas.getChildren().add(encomienda);
+            }
+            dummyRoot.getChildren().add(child);
+        }
+        return dummyRoot;
+    }
     
     public void amononarTreeView (AnchorPane ap, TreeView<String> tv){
         tv.setShowRoot(false);
         ap.getChildren().add(tv);
         tv.setPrefWidth(ap.getPrefWidth());
         tv.setPrefHeight(ap.getPrefHeight());
-     }
+    }
     
     public void limpiarAtender(){
-         advertencia.setText("");   
-         crearPedido.setVisible(true);
-         Scene scene = crearPedido.getScene();
-         Text idPedido = (Text) scene.lookup("#idPedido");
-         idPedido.setText("Haga clic en crear pedido");
-         modificar.setVisible(false);
-         Text sucursalText = (Text) scene.lookup("#stext");
-         sucursalText.setText("");
-         listEncomiendas.getItems().clear();    
-         comboBoxClientes.getItems().clear();
-         cargarNombresClientes();
-         presupuesto.setText("0");
-         split.setDividerPositions(1);
-     }
+        advertencia.setText("");   
+        crearPedido.setVisible(true);
+        Scene scene = crearPedido.getScene();
+        Text idPedido = (Text) scene.lookup("#idPedido");
+        idPedido.setText("Haga clic en crear pedido");
+        modificar.setVisible(false);
+        Text sucursalText = (Text) scene.lookup("#stext");
+        sucursalText.setText("");
+        listEncomiendas.getItems().clear();    
+        comboBoxClientes.getItems().clear();
+        cargarNombresClientes();
+        presupuesto.setText("0");
+        split.setDividerPositions(1);
+    }
     
     private void agregarEncomienda(Encomienda encomienda){
-         ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().agregarEnc(encomienda);
-         CajaEncomienda c = new CajaEncomienda(encomienda);
-         c.setHandlerEliminar((Event e) -> {
-             CajaEncomienda caja = (CajaEncomienda) e.getSource();
-             Encomienda enc = caja.getEncomienda();
-             ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().eliminarEncomienda(enc);
-            
-             listEncomiendas.getItems().remove(caja);
-             presupuesto.setText(""+((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getCostoEnvio());
+        ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().agregarEnc(encomienda);
+        CajaEncomienda c = new CajaEncomienda(encomienda);
+        c.setHandlerEliminar((Event e) -> {
+            CajaEncomienda caja = (CajaEncomienda) e.getSource();
+            Encomienda enc = caja.getEncomienda();
+            ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().eliminarEncomienda(enc);
+           
+            listEncomiendas.getItems().remove(caja);
+            presupuesto.setText(""+((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getCostoEnvio());
 
-         });
-         c.setHandlerEditarEncomienda((Event e) -> {
-             CajaEncomienda caja = (CajaEncomienda) e.getSource();
-             Encomienda enc = caja.getEncomienda();
-             editarEncomiendaCon = new EditarEncomiendaController(enc);
-             editarEncomiendaCon.setHandlerAceptarEncomienda((Event ev) -> {
-                 eliminarEncomienda(editarEncomiendaCon.getEnc());
-                 agregarEncomienda(editarEncomiendaCon.getEncomiendaMod());
-            });
-                                agregarPane.getChildren().setAll(editarEncomiendaCon);
-                                split.setDividerPositions(0.4684014869888476);
-         });
-         listEncomiendas.getItems().add(c);
-         //comboBoxEncomiendas.setPromptText(encomienda.getDescripcion());
-         presupuesto.setText(""+((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getCostoEnvio());
-     }
+        });
+        c.setHandlerEditarEncomienda((Event e) -> {
+            CajaEncomienda caja = (CajaEncomienda) e.getSource();
+            Encomienda enc = caja.getEncomienda();
+            editarEncomiendaCon = new EditarEncomiendaController(enc);
+            editarEncomiendaCon.setHandlerAceptarEncomienda((Event ev) -> {
+                eliminarEncomienda(editarEncomiendaCon.getEnc());
+                agregarEncomienda(editarEncomiendaCon.getEncomiendaMod());
+           });
+                               agregarPane.getChildren().setAll(editarEncomiendaCon);
+                               split.setDividerPositions(0.4684014869888476);
+        });
+        listEncomiendas.getItems().add(c);
+        //comboBoxEncomiendas.setPromptText(encomienda.getDescripcion());
+        presupuesto.setText(""+((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getCostoEnvio());
+    }
+
+    
+    private void eliminarEncomienda(Encomienda encomienda){
+        ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().eliminarEncomienda(encomienda);
+        List<CajaEncomienda> listcajas = listEncomiendas.getItems(); 
+        
+        for(CajaEncomienda c:listcajas)
+        {
+            if(c.getEncomienda()==encomienda){
+             
+                listEncomiendas.getItems().remove(c);
+                break;
+            }
+        
+        }
+       
+       presupuesto.setText(""+((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getCostoEnvio());
 
      
-     private void eliminarEncomienda(Encomienda encomienda){
-         ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().eliminarEncomienda(encomienda);
-         List<CajaEncomienda> listcajas = listEncomiendas.getItems(); 
-         
-         for(CajaEncomienda c:listcajas)
-         {
-             if(c.getEncomienda()==encomienda){
-              
-                 listEncomiendas.getItems().remove(c);
-                 break;
-             }
-         
-         }
+    }
+           
+    private class ItemSucursalMenu extends MenuItem{
+        private final Sucursal sucursal;
         
-        presupuesto.setText(""+((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getCostoEnvio());
-
-      
-     }
+        public ItemSucursalMenu(Sucursal sucursal){
+            this.sucursal = sucursal;
+            this.setText(sucursal.getNombre());
             
-     private class ItemSucursalMenu extends MenuItem{
-         private final Sucursal sucursal;
-         
-         public ItemSucursalMenu(Sucursal sucursal){
-             this.sucursal = sucursal;
-             this.setText(sucursal.getNombre());
-             
-         }
-         
-         public Sucursal getSucursal(){
-             return sucursal;
-         }
-         
-     }
+        }
+        
+        public Sucursal getSucursal(){
+            return sucursal;
+        }
+        
+    }
 
 }
 

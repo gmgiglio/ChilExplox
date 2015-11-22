@@ -674,7 +674,7 @@ public class InicioController implements Initializable {
         patenteCamAct.setText(camionActual.getPatente());
         capacidadCamAct.setText(Integer.toString(camionActual.getCapacidad()));
         espDispCamAct.setText(Integer.toString(camionActual.getEspDisp()));
-        textoTipo.setText("Tipo de Camion: " + camionActual.getTipo());
+        textoTipo.setText("Tipo: " + camionActual.getTipo());
 
         if(camionActual.getTipo() == Tipo.Animales){
             Image img = new Image(Main.class.getResourceAsStream("/resources/images/AnimalBigIcon.png"));

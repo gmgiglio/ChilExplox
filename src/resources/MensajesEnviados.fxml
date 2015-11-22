@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.geometry.*?>
@@ -26,7 +27,7 @@
                         <DropShadow />
                      </effect>
                   </Rectangle>
-                  <BorderPane layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="600.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="-2.0">
+                  <BorderPane layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="595.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="-2.0">
                      <center>
                         <TextFlow fx:id="textoMensaje" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="346.0" prefWidth="435.0" translateY="-70.0" BorderPane.alignment="CENTER">
                            <rotationAxis>
@@ -41,18 +42,28 @@
                                  <children>
                                     <HBox prefHeight="31.0" prefWidth="431.0">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="A:" />
-                                          <Text fx:id="receptor" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                          <Text fill="#9a9a9a" strokeType="OUTSIDE" strokeWidth="0.0" text="A :" />
+                                          <Text fx:id="receptor" strokeType="OUTSIDE" strokeWidth="0.0">
                                              <HBox.margin>
                                                 <Insets left="10.0" />
                                              </HBox.margin>
                                           </Text>
                                        </children>
                                     </HBox>
-                                    <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="432.0">
+                                    <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="432.0">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Asunto:" />
-                                          <Text fx:id="asunto" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                          <Text fill="#9a9a9a" strokeType="OUTSIDE" strokeWidth="0.0" text="Asunto :" />
+                                          <Text fx:id="asunto" strokeType="OUTSIDE" strokeWidth="0.0">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="432.0">
+                                       <children>
+                                          <Text fill="#9a9a9a" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha :" />
+                                          <Text fx:id="fecha" strokeType="OUTSIDE" strokeWidth="0.0">
                                              <HBox.margin>
                                                 <Insets left="10.0" />
                                              </HBox.margin>
@@ -69,5 +80,23 @@
             </AnchorPane>
          </children>
       </HBox>
+      <BorderPane fx:id="ningunoSel" layoutX="331.0" prefHeight="540.0" prefWidth="569.0">
+         <right>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="540.0" layoutX="-35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="606.0" />
+                  <BorderPane prefHeight="540.0" prefWidth="573.0">
+                     <center>
+                        <Text fill="#979595" strokeType="OUTSIDE" strokeWidth="0.0" text="Ningún mensaje seleccionado" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Text>
+                     </center>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+         </right>
+      </BorderPane>
    </children>
 </AnchorPane>

@@ -17,6 +17,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -32,6 +33,12 @@ public class BuzonEntradaController implements Initializable {
     private VBox listaMensajes;
     @FXML
     private TextFlow textoMensaje;
+    @FXML
+    private Text de,asunto,fecha;
+    @FXML
+    private BorderPane ningunoSel;
+    
+    
     
     
     
@@ -58,9 +65,14 @@ public class BuzonEntradaController implements Initializable {
         } 
         cajaMensActual = boton;
         cajaMensActual.enModoAzul();
-        
+        ningunoSel.setVisible(false);
+
         String s = boton.getMensaje().getTexto();
         Text t = new Text(s);
+        
+        de.setText(boton.getMensaje().getRemitente().getNombreUsuario());
+        asunto.setText(boton.getMensaje().getNombre());
+        fecha.setText(boton.getMensaje().getFecha());
         
         textoMensaje.getChildren().clear();
         textoMensaje.getChildren().add(t);

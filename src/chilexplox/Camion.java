@@ -18,11 +18,15 @@ public class Camion implements java.io.Serializable {
     private int espacioDisp;
     private LinkedList<Pedido> pedidosCargados = new LinkedList<>();
     private int capacidad;
+    private EstadoCamion estado;
+    private Tipo tipo;
     
-    public Camion(String patente, int capacidad){
+    public Camion(String patente, int capacidad, Tipo tipo){
         this.patente = patente;
         this.capacidad = capacidad;
         this.espacioDisp = capacidad;
+        this.tipo = tipo;
+        estado = EstadoCamion.Sin_Errores;
     }
     
     public boolean verificaEspacioDestino(Sucursal s,int idPedido){
@@ -86,6 +90,27 @@ public class Camion implements java.io.Serializable {
         
         return null;
         
+    }
+
+    /**
+     * @return the estado
+     */
+    public EstadoCamion getEstado() {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(EstadoCamion estado) {
+        this.estado = estado;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public Tipo getTipo() {
+        return tipo;
     }
     
 }

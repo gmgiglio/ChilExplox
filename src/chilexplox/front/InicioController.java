@@ -626,7 +626,7 @@ public class InicioController implements Initializable {
         
         apc.sethandlerPedido((Event e) -> {
             Sucursal s = apc.getSucursal();
-            Pedido p = ((Funcionario)Main.getUsuarioActual()).crearPed(s);
+            Pedido p = ((Funcionario)Main.getUsuarioActual()).crearPed(s,Tipo.Normal);
             textSucursal.setText(s.getNombre()) ;
             textIdPedido.setText(""+p.getIdPedido());
             crearPedido.setVisible(false);

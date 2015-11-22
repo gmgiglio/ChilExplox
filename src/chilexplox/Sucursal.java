@@ -123,13 +123,13 @@ public class Sucursal implements java.io.Serializable{
     public void recibirCamionDescargado(Camion c){
         camionesDisponibles.add(c);
     }
-
-    public void despacharCamion(){
-        camionesPendientes.remove(0);
-    }
     
     public void enviarCamion(Camion c){
         camionesDisponibles.remove(c);
+    }
+    
+    public void retornarCamion(Camion c){
+        camionesPendientes.remove(c);
     }
     
     //Bajar pedido del camion y pasarlo a la lista de pedidos en destino
@@ -210,12 +210,12 @@ public class Sucursal implements java.io.Serializable{
         }
     } 
     
-    public void agregarCamion(String patente, int capacidad){
-        camionesDisponibles.add(new Camion(patente, capacidad));
+    public void agregarCamion(String patente, int capacidad, Tipo tipo){
+        camionesDisponibles.add(new Camion(patente, capacidad, tipo));
     }
     
-    public void agregarCamionPend(String patente, int capacidad){
-        camionesPendientes.add(new Camion(patente, capacidad));
+    public void agregarCamionPend(String patente, int capacidad, Tipo tipo){
+        camionesPendientes.add(new Camion(patente, capacidad, tipo));
     }
     
     public LinkedList<Mensaje> getMensajesEnBuzon(){

@@ -4,6 +4,7 @@ package chilexplox.front;
 import chilexplox.*;
 import controllers.AgregarClienteController;
 import controllers.AgregarEncomiendaController;
+import controllers.AgregarPedidoController;
 import controllers.CajaEncomienda;
 import controllers.EditarEncomiendaController;
 import controllers.FichaCliente;
@@ -56,7 +57,7 @@ public class InicioController implements Initializable {
         @FXML
     private VBox vBoxConfPed;
         @FXML
-    private Text patenteCamAct, capacidadCamAct, espDispCamAct, estadoCamAct, advertencia, presupuesto;
+    private Text patenteCamAct, capacidadCamAct, espDispCamAct, estadoCamAct, advertencia, presupuesto,textSucursal,textIdPedido;
         @FXML
     private AnchorPane anchorPedPend, anchorPedCar, anchorPedDest, anchorPedConf, anchorPedEq;
         @FXML
@@ -244,40 +245,7 @@ public class InicioController implements Initializable {
                 }
             });
         
-           crearPedido.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                    
-                       try{        
 
-                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarPedido.fxml")));
-                       split.setDividerPositions(0.4684014869888476);
-                       
-                       }
-                       catch (Exception exc)
-                      {
-                               }
-                     
-                
-                }
-            });
-            modificar.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                    
-                       try{        
-
-                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarPedido.fxml")));
-                       split.setDividerPositions(0.4684014869888476);
-                       modificar.setVisible(false);
-                       
-                       }
-                       catch (Exception exc)
-                      {
-                               }
-                     
-                
-                }
-            });
-           
             botonAgregarEncomienda.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                     
@@ -637,17 +605,37 @@ public class InicioController implements Initializable {
 
          });
          c.setHandlerEditarEncomienda((Event e) -> {
-             CajaEncomienda caja = (CajaEncomienda) e.getSource();
-             Encomienda enc = caja.getEncomienda();
-             editarEncomiendaCon = new EditarEncomiendaController(enc);
-                                agregarPane.getChildren().setAll(editarEncomiendaCon);
-                                split.setDividerPositions(0.4684014869888476);
+            CajaEncomienda caja = (CajaEncomienda) e.getSource();
+            Encomienda enc = caja.getEncomienda();
+            editarEncomiendaCon = new EditarEncomiendaController(enc);
+            agregarPane.getChildren().setAll(editarEncomiendaCon);
+            split.setDividerPositions(0.4684014869888476);
          });
          listEncomiendas.getItems().add(c);
          //comboBoxEncomiendas.setPromptText(encomienda.getDescripcion());
          presupuesto.setText(""+((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getCostoEnvio());
      }
+        
+     private AgregarPedidoController apc;
+     
+     public void crearPedido(ActionEvent event){
+         
+        apc = new AgregarPedidoController();
+        agregarPane.getChildren().setAll(apc);
+        split.setDividerPositions(0.4684014869888476);
+        
+        apc.sethandlerPedido((Event e) -> {
+            Sucursal s = apc.getSucursal();
+            Pedido p = ((Funcionario)Main.getUsuarioActual()).crearPed(s);
+            textSucursal.setText(s.getNombre()) ;
+            textIdPedido.setText(""+p.getIdPedido());
+            crearPedido.setVisible(false);
+            split.setDividerPositions(1);
+            modificar.setVisible(true);
+        });    
             
+     }
+     
      private class ItemSucursalMenu extends MenuItem{
          private Sucursal sucursal;
          
@@ -662,6 +650,8 @@ public class InicioController implements Initializable {
          }
          
      }
+     
+     
 
 }
 

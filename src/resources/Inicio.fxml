@@ -70,12 +70,12 @@
                                                 </BorderPane>
                                                 <BorderPane prefHeight="91.0" prefWidth="253.0">
                                                    <center>
-                                                      <Text id="idPedido" strokeType="OUTSIDE" strokeWidth="0.0" text="Haga clic en crear pedido" wrappingWidth="153.69308471679688" BorderPane.alignment="CENTER" />
+                                                      <Text id="idPedido" fx:id="textIdPedido" strokeType="OUTSIDE" strokeWidth="0.0" text="Haga clic en crear pedido" wrappingWidth="153.69308471679688" BorderPane.alignment="CENTER" />
                                                    </center>
                                                 </BorderPane>
                                                 <BorderPane prefHeight="91.0" prefWidth="235.0">
                                                    <left>
-                                                      <Button id="crearP" fx:id="crearPedido" mnemonicParsing="false" prefHeight="39.0" prefWidth="135.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Crear Pedido" BorderPane.alignment="CENTER" />
+                                                      <Button id="crearP" fx:id="crearPedido" mnemonicParsing="false" onAction="#crearPedido" prefHeight="39.0" prefWidth="135.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Crear Pedido" BorderPane.alignment="CENTER" />
                                                    </left>
                                                 </BorderPane>
                                              </children>
@@ -89,12 +89,12 @@
                                                 </BorderPane>
                                                 <BorderPane prefHeight="91.0" prefWidth="186.0">
                                                    <center>
-                                                      <Text id="stext" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="153.0" BorderPane.alignment="CENTER" />
+                                                      <Text id="stext" fx:id="textSucursal" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="153.0" BorderPane.alignment="CENTER" />
                                                    </center>
                                                 </BorderPane>
                                                 <BorderPane prefHeight="200.0" prefWidth="200.0">
                                                    <center>
-                                                      <Button id="modificar" fx:id="modificar" mnemonicParsing="false" prefHeight="39.0" prefWidth="126.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Modificar" visible="false" BorderPane.alignment="CENTER" />
+                                                      <Button id="modificar" fx:id="modificar" mnemonicParsing="false" onAction="#crearPedido" prefHeight="39.0" prefWidth="126.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Modificar" visible="false" BorderPane.alignment="CENTER" />
                                                    </center>
                                                 </BorderPane>
                                              </children>

@@ -56,6 +56,7 @@ public class Main extends Application {
         
         pantallaElegirUsuario.setHandlerUsuarioElegido((EventHandler) (Event event) -> {
             usuarioActual = pantallaElegirUsuario.getUsuario();
+            if (usuarioActual.getSucActual() == null) {usuarioActual.setSucActual(Empresa.getSucursales().get(0));}
             try{
                 
                 if (usuarioActual instanceof Cliente){

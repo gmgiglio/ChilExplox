@@ -8,6 +8,8 @@ package controllers;
 import chilexplox.Cliente;
 import chilexplox.Encomienda;
 import chilexplox.Funcionario;
+import chilexplox.Pedido;
+import chilexplox.Sucursal;
 import chilexplox.front.Main;
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -30,12 +32,17 @@ import javafx.scene.text.Text;
 public class CrearPedido extends AnchorPane {
 
     @FXML
-    private Button crearPedido,botonAgregarEncomienda,cerrarPedido,botonCancelar,botonModificar;
+    private Button botonCrearPedido,botonAgregarEncomienda,botonCerrarPedido,botonCancelar,botonModificar;
+    @FXML
     private AgregarEncomiendaController agregarEncomiendaCon;
+    @FXML
     private SplitPane split;
+    @FXML
     private AnchorPane agregarPane;
+    @FXML
     private ListView listEncomiendas;
-    private Text textPresupuesto,textAdvertencia;
+    @FXML
+    private Text textPresupuesto,textSucursal,textIdPedido;
 
     
     public CrearPedido(){
@@ -59,46 +66,8 @@ public class CrearPedido extends AnchorPane {
                        
                 
                 }
-            });
-        
-        
-        
-           crearPedido.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                    
-                       try{        
-
-                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/AgregarPedido.fxml")));
-                       split.setDividerPositions(0.4684014869888476);
-                       
-                       }
-                       catch (Exception exc)
-                      {
-                          System.out.println("CrearPedido: no se pudo cargar AgregarPedido");
-                               }
+            }); 
                      
-                
-                }
-            });
-            
-           botonModificar.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                    
-                       try{        
-
-                       agregarPane.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/CrearPedido.fxml")));
-                       split.setDividerPositions(0.4684014869888476);
-                       botonModificar.setVisible(false);
-                       
-                       }
-                       catch (Exception exc)
-                      {
-                               }
-                     
-                
-                }
-            });
-           
             botonAgregarEncomienda.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                     
@@ -124,7 +93,7 @@ public class CrearPedido extends AnchorPane {
             });
             
             
-           cerrarPedido.setOnAction(new EventHandler<ActionEvent>() {
+           botonCerrarPedido.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 Cliente cl = (Cliente)Main.getUsuarioActual();
                 cl.getSucActual().getPedidoAbierto().setCliente(cl.getNombre());
@@ -136,8 +105,8 @@ public class CrearPedido extends AnchorPane {
     }
     
     public void limpiar(){
-         crearPedido.setVisible(true);
-         Scene scene = crearPedido.getScene();
+         botonCrearPedido.setVisible(true);
+         Scene scene = botonCrearPedido.getScene();
          Text idPedido = (Text) scene.lookup("#idPedido");
          idPedido.setText("Haga clic en crear pedido");
          botonModificar.setVisible(false);
@@ -151,17 +120,37 @@ public class CrearPedido extends AnchorPane {
      }
     
     private void agregarEncomienda(Encomienda encomienda){
-         ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().agregarEnc(encomienda);
+         Main.getUsuarioActual().getSucActual().getPedidoAbierto().agregarEnc(encomienda);
          CajaEncomienda c = new CajaEncomienda(encomienda);
          c.setHandlerEliminar((Event e) -> {
              CajaEncomienda caja = (CajaEncomienda) e.getSource();
              Encomienda enc = caja.getEncomienda();
-             ((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().eliminarEncomienda(enc);
+             Main.getUsuarioActual().getSucActual().getPedidoAbierto().eliminarEncomienda(enc);
              listEncomiendas.getItems().remove(caja);
          });
          listEncomiendas.getItems().add(c);
          //comboBoxEncomiendas.setPromptText(encomienda.getDescripcion());
-         textPresupuesto.setText(""+((Funcionario)Main.getUsuarioActual()).getSucActual().getPedidoAbierto().getCostoEnvio());
+         textPresupuesto.setText(""+Main.getUsuarioActual().getSucActual().getPedidoAbierto().getCostoEnvio());
+     }
+    
+    private AgregarPedidoController apc;
+    
+    public void crearPedido(ActionEvent event){
+         
+        apc = new AgregarPedidoController();
+        agregarPane.getChildren().setAll(apc);
+        split.setDividerPositions(0.4684014869888476);
+        
+        apc.sethandlerPedido((Event e) -> {
+            Sucursal s = apc.getSucursal();
+            Pedido p = Main.getUsuarioActual().crearPed(s);
+            textSucursal.setText(s.getNombre()) ;
+            textIdPedido.setText(""+p.getIdPedido());
+            botonCrearPedido.setVisible(false);
+            split.setDividerPositions(1);
+            botonModificar.setVisible(true);
+        });    
+            
      }
     
 }

@@ -7,17 +7,16 @@ package controllers;
 
 import chilexplox.*;
 import chilexplox.front.Main;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.SplitPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 /**
@@ -25,7 +24,7 @@ import javafx.scene.text.Text;
  *
  * @author alberto
  */
-public class AgregarPedidoController implements Initializable {
+public class AgregarPedidoController extends VBox {
 
     /**
      * Initializes the controller class.
@@ -37,50 +36,55 @@ public class AgregarPedidoController implements Initializable {
     private ComboBox comboBoxSucursales;
        @FXML
     private Text textoAlertaSucursal;
+       @FXML
+    private Button botonCrearPedido;
     
-    private Text sucursalText;
-    private Button crearP;
-    private Text idPedido;
-    private SplitPane splitPane;
-    private Button mod;
+    private Sucursal sucursal;
     
-//    
-    @FXML
-    private void handlePedido(ActionEvent event) {
-            Scene scene = crearPedido.getScene();
+    
+    private EventHandler handlerPedido;
+    
+    public void sethandlerPedido(EventHandler eh){
+        handlerPedido = eh;
+    }
+    
+    public void crearPedido(ActionEvent event) {
             
-            sucursalText = (Text)scene.lookup("#stext");
-            crearP = (Button)scene.lookup("#crearP");
-            idPedido= (Text)scene.lookup("#idPedido");
-            splitPane = (SplitPane)scene.lookup("#splitPane");
-            mod =(Button)scene.lookup("#modificar");
+     
             if(!(comboBoxSucursales.getSelectionModel().getSelectedItem()==null)){
-          
-            Sucursal s = Empresa.getSucursal((String)(comboBoxSucursales.getSelectionModel().getSelectedItem()));
-            Pedido p = ((Funcionario)Main.getUsuarioActual()).crearPed(s);
-            sucursalText.setText((String)(comboBoxSucursales.getSelectionModel().getSelectedItem())) ;
-            idPedido.setText(""+p.getIdPedido());
-            crearP.setVisible(false);
-            splitPane.setDividerPositions(1);
-            mod.setVisible(true);
-            } else {
-                textoAlertaSucursal.setText("Por favor seleccione una sucursal");
-            }
+                sucursal = Empresa.getSucursal((String)comboBoxSucursales.getSelectionModel().getSelectedItem());
+                handlerPedido.handle(event);
+            } 
+            else { textoAlertaSucursal.setText("Por favor seleccione una sucursal"); }
 
     }
     
+    public Sucursal getSucursal(){
+        return sucursal;
+    }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-           cargarNombresSucursales();
+    
+    public AgregarPedidoController(){
         
-    }    
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/AgregarPedido.fxml"));
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+        
+         try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+
+        cargarNombresSucursales();
+    }
+  
     public void cargarNombresSucursales(){
 
             ObservableList nombreSucursales = FXCollections.observableArrayList();
             for (int i=0; i<  Empresa.getSucursales().size();i++)
             {
-                if(!Empresa.getSucursales().get(i).getNombre().equals(((Funcionario)Main.getUsuarioActual()).getSucActual().getNombre()))
+                if(!Empresa.getSucursales().get(i).getNombre().equals(Main.getUsuarioActual().getSucActual().getNombre()))
                 nombreSucursales.add(Empresa.getSucursales().get(i).getNombre());
             }
             

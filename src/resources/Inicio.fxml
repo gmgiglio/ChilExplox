@@ -273,14 +273,14 @@
                                     </VBox>
                                  </children>
                               </StackPane>
-                              <VBox prefHeight="920.0" prefWidth="360.0">
+                              <VBox prefHeight="540.0" prefWidth="360.0">
                                  <children>
-                                    <TitledPane animated="false" collapsible="false" maxHeight="260.0" prefHeight="460.0" prefWidth="360.0" text="Camiones Disponibles">
+                                    <TitledPane animated="false" collapsible="false" maxHeight="270.0" prefHeight="270.0" prefWidth="360.0" text="Camiones Disponibles">
                                       <content>
-                                        <AnchorPane fx:id="anchorCamDisp" minHeight="0.0" minWidth="0.0" prefHeight="233.0" prefWidth="360.0" />
+                                        <AnchorPane fx:id="anchorCamDisp" minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="360.0" />
                                       </content>
                                     </TitledPane>
-                                    <TitledPane animated="false" collapsible="false" prefHeight="460.0" prefWidth="360.0" text="Camiones por Descargar">
+                                    <TitledPane animated="false" collapsible="false" maxHeight="270.0" prefHeight="270.0" prefWidth="360.0" text="Camiones por Descargar">
                                       <content>
                                         <AnchorPane fx:id="anchorCamDesc" minHeight="0.0" minWidth="0.0" prefHeight="433.0" prefWidth="360.0" />
                                       </content>

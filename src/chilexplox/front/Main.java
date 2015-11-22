@@ -15,6 +15,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
 import javafx.stage.Screen;
 
 
@@ -79,6 +80,8 @@ public class Main extends Application {
         escenaElegirUsuario = new Scene(root,400,269);
         primaryStage.setTitle("ChilExplox");
         primaryStage.setScene(escenaElegirUsuario);
+        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/resources/images/pedidoIcon.png")));
+      
         primaryStage.setResizable(false);
         primaryStage.show();
         escenarioPrincipal = primaryStage;

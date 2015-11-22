@@ -75,9 +75,15 @@ public class CajaMensajeResivido extends Button {
          this.mensaje = mensaje;
         
         setTextoAsunto(mensaje.getNombre());
+        if(mensaje.getRemitente()!=null){
         textoUsuario.setText(mensaje.getRemitente().getNombreUsuario());
+        }
+        else
+        {
+            textoUsuario.setText("");
+            
+        }
         
-       
     } 
 
     /**

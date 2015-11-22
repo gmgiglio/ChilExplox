@@ -22,7 +22,7 @@ public class GeneradorReporte {
         String fecha = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS").format(new Date());
         String nombreReporte = "Reporte ganancias " + Empresa.getNombre() + fecha;
         Mensaje reporte = new Mensaje(nombreReporte , "", autoRobot);
-        
+      
         reporte.agregarParrafo("Numero de pedidos: " + Empresa.getNroPedidos());
         reporte.agregarParrafo("Ganancias Totales: $" + gananciasTotales());
         

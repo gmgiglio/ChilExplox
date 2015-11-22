@@ -512,6 +512,7 @@ public class InicioController implements Initializable {
         for(Pedido p : pedidos){
             TreeItem<String> child = new TreeItem<>("Pedido #" + Integer.toString(p.getIdPedido()));
             child.setGraphic(new ImageView(new Image(Main.class.getResourceAsStream("/resources/images/pedidoIconView.png"))));
+            child.getChildren().add(new TreeItem<>("Tipo: " + p.getTipo()));
             child.getChildren().add(new TreeItem<>("Prioridad: " + p.getPrioridad()));
             child.getChildren().add(new TreeItem<>("Costo de Envío: $" + p.getCostoEnvio()));
             child.getChildren().add(new TreeItem<>("Sucursal de Destino: " + p.getSucDestino().getNombre()));
@@ -628,7 +629,8 @@ public class InicioController implements Initializable {
         
         apc.sethandlerPedido((Event e) -> {
             Sucursal s = apc.getSucursal();
-            Pedido p = ((Funcionario)Main.getUsuarioActual()).crearPed(s,Tipo.Normal);
+            Tipo t = apc.getTipo();
+            Pedido p = ((Funcionario)Main.getUsuarioActual()).crearPed(s,t);
             textSucursal.setText(s.getNombre()) ;
             textIdPedido.setText(""+p.getIdPedido());
             crearPedido.setVisible(false);

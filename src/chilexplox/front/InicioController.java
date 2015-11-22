@@ -61,6 +61,8 @@ public class InicioController implements Initializable {
     private AnchorPane anchorPedPend, anchorPedCar, anchorPedDest, anchorPedConf, anchorPedEq;
         @FXML
     private AnchorPane anchorCamDisp, anchorCamDesc;
+       @FXML
+    private AnchorPane enviadoPane, entradaPane,nuevoMensajePane; 
         @FXML
     private ListView listEncomiendas;
         
@@ -420,7 +422,9 @@ public class InicioController implements Initializable {
         botonNuevoMensaje.setOnAction((ActionEvent e) -> {
             try{
                 anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/NuevoMensaje.fxml")));
-                
+                nuevoMensajePane.setStyle("-fx-background-color: #E2E2E2;");
+                entradaPane.setStyle("-fx-background-color: #F2F2F2;");
+                enviadoPane.setStyle("-fx-background-color: #F2F2F2;");
             }
             catch (Exception exc){
                 System.out.println("InicioController: No se cargó NuevoMensaje.fxml ");
@@ -430,6 +434,9 @@ public class InicioController implements Initializable {
         botonBuzonEntrada.setOnAction((ActionEvent e) -> {
             try{
                 anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/BuzonEntrada.fxml"))); 
+                nuevoMensajePane.setStyle("-fx-background-color: #F2F2F2;");
+                entradaPane.setStyle("-fx-background-color: #E2E2E2;");
+                enviadoPane.setStyle("-fx-background-color: #F2F2F2;");
             }
             catch (Exception exc){}
         });
@@ -437,6 +444,9 @@ public class InicioController implements Initializable {
         botonMensajesEnviados.setOnAction((ActionEvent e) -> {
             try{
                 anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/MensajesEnviados.fxml"))); 
+                nuevoMensajePane.setStyle("-fx-background-color: #F2F2F2;");
+                entradaPane.setStyle("-fx-background-color: #F2F2F2;");
+                enviadoPane.setStyle("-fx-background-color: #E2E2E2;");
             }
             catch (Exception exc){}
         });

@@ -317,7 +317,7 @@
                            <children>
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="540.0" prefWidth="180.0">
                                  <children>
-                                    <AnchorPane prefHeight="27.0" prefWidth="180.0">
+                                    <AnchorPane fx:id="nuevoMensajePane" prefHeight="27.0" prefWidth="180.0">
                                        <children>
                                           <BorderPane prefHeight="37.0" prefWidth="94.0">
                                              <center>
@@ -342,7 +342,7 @@
                                           </Button>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane prefHeight="27.0" prefWidth="180.0">
+                                    <AnchorPane fx:id="entradaPane" prefHeight="27.0" prefWidth="180.0">
                                        <children>
                                           <BorderPane prefHeight="37.0" prefWidth="94.0">
                                              <center>
@@ -367,7 +367,7 @@
                                           </Button>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane prefHeight="27.0" prefWidth="180.0">
+                                    <AnchorPane fx:id="enviadoPane" prefHeight="27.0" prefWidth="180.0">
                                        <children>
                                           <BorderPane prefHeight="37.0" prefWidth="94.0">
                                              <center>

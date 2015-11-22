@@ -105,5 +105,12 @@ public class Camion implements java.io.Serializable {
     public void setEstado(EstadoCamion estado) {
         this.estado = estado;
     }
+
+    /**
+     * @return the tipo
+     */
+    public Tipo getTipo() {
+        return tipo;
+    }
     
 }

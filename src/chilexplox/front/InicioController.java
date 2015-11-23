@@ -1,6 +1,7 @@
 package chilexplox.front;
 
 import chilexplox.*;
+import controllers.AdministrarSucursales;
 import controllers.AgregarClienteController;
 import controllers.AgregarEncomiendaController;
 import controllers.AgregarPedidoController;
@@ -19,6 +20,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -464,6 +466,15 @@ public class InicioController implements Initializable {
             catch (Exception exc){}
         });
         
+        
+/////////////////////////////////////////////////////TAB ADMINISTRADOR\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+        
+        if(Main.getUsuarioActual() instanceof Administrador){
+            AdministrarSucursales admSuc = new AdministrarSucursales();
+            addTab(admSuc, "Sucursales");
+        }
+        
+        
     }
     
     public void cargarNombresClientes(){
@@ -740,5 +751,22 @@ public class InicioController implements Initializable {
             enviadoPane.setStyle("-fx-background-color: #F2F2F2;");
         }
         catch (Exception exc){}
+        
+    }
+    
+    public void addTab(Node contenido,String titulo){
+        Tab tab = new Tab();
+        tab.setText(titulo);
+        tab.setContent(contenido);
+        List<Tab> t = tabs.getTabs();
+        t.add(tab);
+    }
+    
+    public List<Tab> getTabs(){
+        return tabs.getTabs();
+    }
+    
+    public void borrarTab(Tab tab){
+        tabs.getTabs().remove(tab);
     }
 }

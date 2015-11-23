@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root maxHeight="568.0" prefHeight="537.0" prefWidth="567.0" type="VBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox maxHeight="50.0" prefHeight="44.0">
+         <children>
+            <BorderPane prefHeight="100.0" prefWidth="85.0" />
+            <BorderPane prefHeight="100.0" prefWidth="416.0">
+               <center>
+                  <Text fill="#0049ba" strokeType="OUTSIDE" strokeWidth="0.0" text="Nueva Sucursal" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Text>
+               </center>
+            </BorderPane>
+         </children>
+      </HBox>
+      <HBox maxHeight="50.0" prefHeight="0.0" prefWidth="567.0">
+         <children>
+            <BorderPane prefHeight="100.0" prefWidth="85.0">
+               <right>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
+            <BorderPane prefHeight="0.0" prefWidth="416.0">
+               <center>
+                  <TextField fx:id="nombreField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </children>
+      </HBox>
+      <HBox prefHeight="19.0" prefWidth="567.0">
+         <children>
+            <Pane prefHeight="38.0" prefWidth="122.0" />
+            <Text fx:id="textoAlertaPeso1" fill="#e70707" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="335.0" />
+         </children>
+      </HBox>
+      <HBox maxHeight="50.0" prefHeight="18.0" prefWidth="567.0">
+         <children>
+            <BorderPane prefHeight="100.0" prefWidth="85.0">
+               <right>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ciudad" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
+            <BorderPane prefHeight="69.0" prefWidth="416.0">
+               <center>
+                  <TextField fx:id="ciudadField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </children>
+      </HBox>
+      <HBox prefHeight="19.0" prefWidth="567.0">
+         <children>
+            <Pane prefHeight="38.0" prefWidth="122.0" />
+            <Text fx:id="textoAlertaPeso" fill="#e70707" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="335.0" />
+         </children>
+      </HBox>
+      <HBox maxHeight="50.0" prefHeight="0.0" prefWidth="567.0">
+         <children>
+            <BorderPane prefHeight="100.0" prefWidth="85.0">
+               <right>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Direccion:" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
+            <BorderPane prefHeight="39.0" prefWidth="416.0">
+               <center>
+                  <TextField fx:id="direccionField" maxWidth="350.0" prefHeight="26.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </children>
+      </HBox>
+      <HBox prefHeight="19.0" prefWidth="567.0">
+         <children>
+            <Pane prefHeight="38.0" prefWidth="122.0" />
+            <Text fx:id="textoAlertaVolumen" fill="#e70707" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="324.0" />
+         </children>
+      </HBox>
+      <HBox maxHeight="53.0" prefHeight="53.0" prefWidth="567.0">
+         <children>
+            <BorderPane minWidth="-Infinity" prefHeight="39.0" prefWidth="150.0" />
+            <BorderPane prefHeight="53.0" prefWidth="260.0" />
+            <BorderPane prefHeight="100.0" prefWidth="381.0">
+               <left>
+                  <Button fx:id="crearSucursal" mnemonicParsing="false" onAction="#botonApretado" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);; -fx-background-insets: 0,1,2,3;; -fx-background-radius: 3,2,2,2;; -fx-padding: 12 30 12 30;; -fx-text-fill: white;; -fx-font-size: 12px;;" text="Crear Sucursal" BorderPane.alignment="CENTER" />
+               </left>
+            </BorderPane>
+         </children>
+      </HBox>
+   </children>
+</fx:root>

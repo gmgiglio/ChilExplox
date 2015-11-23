@@ -118,6 +118,7 @@ public class Main extends Application {
         
         Empresa.agregarFuncionario("Tulio Triviño", "31minutos");
         Empresa.agregarFuncionario("a" , "a");
+        Empresa.agregarFuncionario(new Administrador("b","b"));
         String[] ap = {"melo"};
         RegistroCliente rc = Empresa.agregarCliente("pablo", ap,"asda", "123");
         System.out.println(rc.contrasena);

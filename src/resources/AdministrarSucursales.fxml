@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="537.0" prefWidth="567.0" type="HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="537.0" prefWidth="259.0">
+         <children>
+            <ListView fx:id="listSucursales" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="258.0" />
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="86.0" prefWidth="259.0">
+               <children>
+                  <BorderPane prefHeight="86.0" prefWidth="310.0">
+                     <center>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Sucursal" wrappingWidth="74.21875" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Text>
+                     </center>
+                  </BorderPane>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Circle id="agregarPedido" fill="#0049ba" layoutX="18.0" layoutY="18.0" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Text fill="WHITE" layoutX="7.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="botonAgregarSucursal" ellipsisString="" mnemonicParsing="false" onAction="#agregarSucursalApretado" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+                           </children>
+                        </Pane>
+                     </center>
+                  </BorderPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <AnchorPane fx:id="pane" prefHeight="537.0" prefWidth="311.0" />
+   </children>
+</fx:root>

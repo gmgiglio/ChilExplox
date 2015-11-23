@@ -126,6 +126,9 @@ public class InicioController implements Initializable {
             TreeItem<String> itemToMove = search(treeOrigen.getRoot(), valueToMove);
             String[] idPedido = itemToMove.getValue().split("#");
             boolean cabePedido = false;
+            Pedido pedidoACargar = sucActual.getPedidoPendiente(Integer.parseInt(idPedido[1]));
+            boolean mismoDestino = false;
+            boolean sePuedeCargar = false;
             if(treeOrigen.getParent() == anchorPedPend){
                 if(camionActual != null){
                     cabePedido = camionActual.verificaEspacioDestino(sucActual, Integer.parseInt(idPedido[1]));
@@ -133,6 +136,22 @@ public class InicioController implements Initializable {
             }
             if(treeOrigen.getParent() != anchorPedPend || cabePedido)
                 event.acceptTransferModes(TransferMode.MOVE);
+            else if(treeOrigen.getParent() == anchorPedPend && treeDestino.getParent() == anchorPedCar){
+                if(pedidoACargar.getTipo() != camionActual.getTipo()){
+                    Alert alert = new Alert(AlertType.ERROR, "Un pedido del tipo " + pedidoACargar.getTipo() +
+                            " no puede cargarse en un " + "camion de tipo " + camionActual.getTipo() + ".", ButtonType.CLOSE);
+                    alert.showAndWait();
+                }
+                else if(!mismoDestino){
+                    Alert alert = new Alert(AlertType.ERROR, "Este camión no se dirije a la sucursal de destino del "
+                            + "pedido seleccionado.", ButtonType.CLOSE);
+                    alert.showAndWait();
+                }
+                else if(!sePuedeCargar){
+                    Alert alert = new Alert(AlertType.ERROR, "No hay suficiente espacio en este camión.", ButtonType.CLOSE);
+                    alert.showAndWait();
+                }
+            }
             event.consume();
         };
         dragDropped = (DragEvent event) -> {
@@ -178,22 +197,7 @@ public class InicioController implements Initializable {
                 
                 event.consume();
             }
-            else if(treeOrigen.getParent() == anchorPedPend && treeDestino.getParent() == anchorPedCar){
-                if(pedidoACargar.getTipo() != camionActual.getTipo()){
-                    Alert alert = new Alert(AlertType.ERROR, "Un pedido del tipo " + pedidoACargar.getTipo() +
-                            " no puede cargarse en un " + "camion de tipo " + camionActual.getTipo() + ".", ButtonType.CLOSE);
-                    alert.showAndWait();
-                }
-                else if(!mismoDestino){
-                    Alert alert = new Alert(AlertType.ERROR, "Este camión no se dirije a la sucursal de destino del "
-                            + "pedido seleccionado.", ButtonType.CLOSE);
-                    alert.showAndWait();
-                }
-                else if(!sePuedeCargar){
-                    Alert alert = new Alert(AlertType.ERROR, "No hay suficiente espacio en este camión.", ButtonType.CLOSE);
-                    alert.showAndWait();
-                }
-            }
+            
         };
         
         mostrarCamionDisponible = (MouseEvent event) -> {

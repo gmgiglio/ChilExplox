@@ -34,7 +34,10 @@ public class CajaMensajeEnviado extends Button {
     private boolean modoAzul = false;
     
     private static final String STANDARD_BUTTON_STYLE = "-fx-background-color: #FFF;";
-    private static final String HOVERED_BUTTON_STYLE  = "-fx-background-color: #F1F1F1;";
+    
+    private static final String HOVERED_BUTTON_STYLE  = "-fx-background-color: #E2E2E2;";
+    private static final String NOT_READ_BUTTON_STYLE  = "-fx-background-color: #F1F1F1;";
+
     private static final String ACTIVE_BUTTON_STYLE  = "-fx-background-color: #1269D9;";
     
     public void enModoAzul(){
@@ -82,14 +85,14 @@ public class CajaMensajeEnviado extends Button {
         }
         else textoAsunto.setText(s);
     }
-     
-      public void changeBackgroundOnHover(){
-    setStyle(STANDARD_BUTTON_STYLE);
-    setOnMouseEntered(new EventHandler<MouseEvent>() {
-      @Override public void handle(MouseEvent mouseEvent) {
-        setStyle(HOVERED_BUTTON_STYLE);
-        textoAsunto.setFill(Color.BLACK);
-                getTextoSucursal().setFill(Color.BLACK);  
+     public void changeBackgroundOnHover(){
+          setStyle(STANDARD_BUTTON_STYLE);
+          setOnMouseEntered(new EventHandler<MouseEvent>() {
+              @Override
+              public void handle(MouseEvent mouseEvent) {
+                  setStyle(HOVERED_BUTTON_STYLE);
+                  textoAsunto.setFill(Color.BLACK);
+                  getTextoSucursal().setFill(Color.BLACK);  
       }
     });
     

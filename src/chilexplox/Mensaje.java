@@ -70,4 +70,18 @@ public class Mensaje implements java.io.Serializable {
     public String getFecha() {
         return fecha;
     }
+
+    /**
+     * @return the leido
+     */
+    public boolean isLeido() {
+        return leido;
+    }
+
+    /**
+     * @param leido the leido to set
+     */
+    public void setLeido(boolean leido) {
+        this.leido = leido;
+    }
 }

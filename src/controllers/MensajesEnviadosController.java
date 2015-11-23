@@ -63,6 +63,7 @@ public class MensajesEnviadosController implements Initializable {
         cajaMensActual.enModoAzul();
         ningunoSel.setVisible(false);
         String s = boton.getMensaje().getTexto();
+        boton.getMensaje().setLeido(true);
         Text t = new Text(s);
         receptor.setText(boton.getTextoSucursal().getText());
         asunto.setText(boton.getMensaje().getNombre());

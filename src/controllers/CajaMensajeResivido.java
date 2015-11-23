@@ -35,7 +35,8 @@ public class CajaMensajeResivido extends Button {
     
     
     private static final String STANDARD_BUTTON_STYLE = "-fx-background-color: #FFF;";
-    private static final String HOVERED_BUTTON_STYLE  = "-fx-background-color: #F1F1F1;";
+    private static final String HOVERED_BUTTON_STYLE  = "-fx-background-color: #E2E2E2;";
+    private static final String NOT_READ_BUTTON_STYLE  = "-fx-background-color: #F1F1F1;";
     private static final String ACTIVE_BUTTON_STYLE  = "-fx-background-color: #1269D9;";
 
     private boolean modoAzul = false;
@@ -55,6 +56,14 @@ public class CajaMensajeResivido extends Button {
     
     public void enModoNormal(){
         setStyle(STANDARD_BUTTON_STYLE);
+        textoAsunto.setFill(Color.BLACK);
+        textoUsuario.setFill(Color.BLACK);
+        modoAzul = false;
+        changeBackgroundOnHover();
+    }
+    
+    public void enModoNoLeido(){
+        setStyle(NOT_READ_BUTTON_STYLE);
         textoAsunto.setFill(Color.BLACK);
         textoUsuario.setFill(Color.BLACK);
         modoAzul = false;

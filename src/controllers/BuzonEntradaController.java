@@ -61,7 +61,11 @@ public class BuzonEntradaController implements Initializable {
     EventHandler botonApretado = (EventHandler) (Event event) -> {
         CajaMensajeResivido boton = (CajaMensajeResivido) event.getTarget();
         if (cajaMensActual != null) {
-            cajaMensActual.enModoNormal();
+            if(boton.getMensaje().isLeido())
+                cajaMensActual.enModoNormal();
+            else
+                cajaMensActual.enModoNoLeido();
+            
         } 
         cajaMensActual = boton;
         cajaMensActual.enModoAzul();

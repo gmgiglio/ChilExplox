@@ -173,6 +173,16 @@ public class Empresa implements java.io.Serializable {
         return true;
     }
     
+    public static boolean agregarSucursal(Sucursal sucursal){
+        for(Sucursal s : getInstance().sucursales){
+            if(sucursal.getNombre().equals(s.getNombre())){
+                return false;
+            }
+        }
+        getInstance().sucursales.add(sucursal);
+        return true;
+    }
+    
     public static boolean agregarFuncionario(String nombreUsuario, String contrasena){
         return agregarFuncionario(new Funcionario(nombreUsuario,contrasena));
     }

@@ -126,9 +126,6 @@ public class InicioController implements Initializable {
             TreeItem<String> itemToMove = search(treeOrigen.getRoot(), valueToMove);
             String[] idPedido = itemToMove.getValue().split("#");
             boolean cabePedido = false;
-            Pedido pedidoACargar = sucActual.getPedidoPendiente(Integer.parseInt(idPedido[1]));
-            boolean mismoDestino = false;
-            boolean sePuedeCargar = false;
             if(treeOrigen.getParent() == anchorPedPend){
                 if(camionActual != null){
                     cabePedido = camionActual.verificaEspacioDestino(sucActual, Integer.parseInt(idPedido[1]));
@@ -176,8 +173,19 @@ public class InicioController implements Initializable {
                 else if(treeDestino.getParent() == anchorPedConf)
                     ((Funcionario)Main.getUsuarioActual()).confirmarPed(Integer.parseInt(idPedido[1]), true);
                 
-                else if(treeDestino.getParent() == anchorPedEq)
+                else if(treeDestino.getParent() == anchorPedEq){
                     ((Funcionario)Main.getUsuarioActual()).confirmarPed(Integer.parseInt(idPedido[1]), false);
+                    Sucursal origen = camionActual.getPedidos().get(0).getSucOrigen();
+                    ((Funcionario)Main.getUsuarioActual()).enviarMens("Retorno del Camion " + camionActual.getPatente(),
+                            "Estimado:\n\t Le escribimos desde la sucursal " + sucActual.getNombre() + " para informarle "
+                                    + "que hemos recibido el pedido de id número "+ pedidoACargar.getIdPedido() + ". "
+                                    + "Desafortunadamente, este pedido no debía llegar a nuestra suscursal, por lo que lo "
+                                    + "tenemos retenido junto con el resto de los pedidos equivocados.\n" 
+                                    + "Quedamos atentos a sus comentarios.\nSe despide,\n\n" 
+                                    + ((Funcionario)Main.getUsuarioActual()).getNombreUsuario() + "\nSucursal " 
+                                    + sucActual.getNombre(), origen);
+                camionActual.setEstado(EstadoCamion.Con_Errores);
+                }
                 
                 event.consume();
             }

@@ -19,9 +19,9 @@ public class GeneradorReporte {
     private static Funcionario autoRobot = new Funcionario("AutoGererador reporte","1234");
     
     public static Mensaje generarReporte(){
-        String fecha = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS").format(new Date());
-        String nombreReporte = "Reporte ganancias " + Empresa.getNombre() + fecha;
-        Mensaje reporte = new Mensaje(nombreReporte , "", autoRobot);
+        String fecha = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date());
+        String nombreReporte = "Reporte ganancias " + Empresa.getNombre();
+        Mensaje reporte = new Mensaje(nombreReporte , "", autoRobot,fecha);
       
         reporte.agregarParrafo("Numero de pedidos: " + Empresa.getNroPedidos());
         reporte.agregarParrafo("Ganancias Totales: $" + gananciasTotales());

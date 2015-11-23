@@ -15,11 +15,14 @@ public class Mensaje implements java.io.Serializable {
     private String nombre;
     String mensaje;
     private Funcionario remitente;
+    private String fecha;
     
-    public Mensaje(String nombre, String mensaje, Funcionario remitente){
+    
+    public Mensaje(String nombre, String mensaje, Funcionario remitente, String fecha){
         this.mensaje = mensaje;
         this.nombre = nombre;
         this.remitente = remitente;
+        this.fecha = fecha;
         
     }
     
@@ -54,7 +57,16 @@ public class Mensaje implements java.io.Serializable {
     }
     
     public void agregarParrafo(String parrafo){
-        if (mensaje == null) mensaje = "";
+        if (mensaje.equals("")) {mensaje = parrafo;}
+        else{
         mensaje = mensaje + System.lineSeparator() + System.lineSeparator() + parrafo;
+        }
+    }
+
+    /**
+     * @return the fecha
+     */
+    public String getFecha() {
+        return fecha;
     }
 }

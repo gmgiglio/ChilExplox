@@ -14,6 +14,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -31,7 +32,9 @@ public class MensajesEnviadosController implements Initializable {
     @FXML
     private TextFlow textoMensaje;
     @FXML
-    private Text asunto,receptor;
+    private Text asunto,receptor,fecha;
+    @FXML
+    private BorderPane ningunoSel;
     /**
      * Initializes the controller class.
      */
@@ -58,11 +61,12 @@ public class MensajesEnviadosController implements Initializable {
         } 
         cajaMensActual = boton;
         cajaMensActual.enModoAzul();
-        
+        ningunoSel.setVisible(false);
         String s = boton.getMensaje().getTexto();
         Text t = new Text(s);
         receptor.setText(boton.getTextoSucursal().getText());
         asunto.setText(boton.getMensaje().getNombre());
+        fecha.setText(boton.getMensaje().getFecha());
         textoMensaje.getChildren().clear();
         textoMensaje.getChildren().add(t);
     };  

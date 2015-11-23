@@ -29,15 +29,22 @@ public class Camion implements java.io.Serializable {
         estado = EstadoCamion.Sin_Errores;
     }
     
-    public boolean verificaEspacioDestino(Sucursal s,int idPedido){
+    public boolean mismoDestino(Sucursal s,int idPedido){
         Pedido p = s.getPedidoPendiente(idPedido);
-        if(pedidosCargados.size()>0){
-            if(p.getSucDestino() != pedidosCargados.get(0).getSucDestino() ||
-                    espacioDisp < p.getVol()){
+        if(pedidosCargados.size() > 0){
+            if(p.getSucDestino() != pedidosCargados.get(0).getSucDestino()){
                 return false;
             }
         }
         return true;
+    }
+    
+    public boolean verificaEspacioDestino(Sucursal s,int idPedido){
+        Pedido p = s.getPedidoPendiente(idPedido);
+        if(espacioDisp >= p.getVol()){
+            return mismoDestino(s, idPedido);
+        }
+        return false;
     }
     
     public LinkedList<Pedido> getPedidos(){

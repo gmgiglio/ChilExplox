@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package chilexplox;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.LinkedList;
@@ -12,7 +13,7 @@ import static javafx.scene.input.KeyCode.I;
 /**
  *
  * @author carlossalame
- */
+ */ 
 public class Funcionario extends Usuario implements java.io.Serializable {
     
     
@@ -57,7 +58,10 @@ public class Funcionario extends Usuario implements java.io.Serializable {
     }
     
     public void enviarMens(String titulo, String texto, Sucursal sucursal){
-        Mensaje mensaje = new Mensaje(titulo, texto, this);
+        
+        String fecha = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date());
+
+        Mensaje mensaje = new Mensaje(titulo, texto, this,fecha );
         registroMensajesEnviados.add(mensaje.enviar(sucursal));
     }
     

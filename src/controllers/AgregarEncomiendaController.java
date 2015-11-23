@@ -33,7 +33,7 @@ public class AgregarEncomiendaController extends VBox {
     protected Button crearEncomienda;
 
     @FXML
-    private Text idPedido,presupuesto,textoAlertaPeso,textoAlertaVolumen,textoAlertaPrioridad,textPresupuesto;
+    private Text textoAlertaPeso,textoAlertaVolumen,textoAlertaPrioridad;
 
     
     public void botonApretado(ActionEvent event) {

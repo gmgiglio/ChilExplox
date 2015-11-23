@@ -105,6 +105,7 @@ public class InicioController implements Initializable {
             menuSucursal.getItems().remove(item1);
             menuSucursal.getItems().add(item2);
             actualizarPestanaAdm();
+            actualizarPestanaMens();
         };
         
         dragDetected = (MouseEvent event) -> {
@@ -410,11 +411,10 @@ public class InicioController implements Initializable {
                         
                     case "Administrar":
                         actualizarPestanaAdm();
-                        
-                        
                         break;
                         
                     case "Mensajes":
+                        actualizarPestanaMens();
                         break;
                     default:;
                     break;
@@ -444,7 +444,8 @@ public class InicioController implements Initializable {
         
         botonBuzonEntrada.setOnAction((ActionEvent e) -> {
             try{
-                anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/BuzonEntrada.fxml"))); 
+                anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass()
+                        .getResource("/resources/BuzonEntrada.fxml"))); 
                 nuevoMensajePane.setStyle("-fx-background-color: #F2F2F2;");
                 entradaPane.setStyle("-fx-background-color: #E2E2E2;");
                 enviadoPane.setStyle("-fx-background-color: #F2F2F2;");
@@ -454,7 +455,8 @@ public class InicioController implements Initializable {
         
         botonMensajesEnviados.setOnAction((ActionEvent e) -> {
             try{
-                anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/resources/MensajesEnviados.fxml"))); 
+                anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass()
+                        .getResource("/resources/MensajesEnviados.fxml"))); 
                 nuevoMensajePane.setStyle("-fx-background-color: #F2F2F2;");
                 entradaPane.setStyle("-fx-background-color: #F2F2F2;");
                 enviadoPane.setStyle("-fx-background-color: #E2E2E2;");
@@ -719,5 +721,24 @@ public class InicioController implements Initializable {
         else{
             imagenTipo.setImage(null);
         }
+    }
+    
+    private void actualizarPestanaMens(){
+        try{
+            //Mensajes enviados
+            anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass()
+                    .getResource("/resources/MensajesEnviados.fxml"))); 
+            nuevoMensajePane.setStyle("-fx-background-color: #F2F2F2;");
+            entradaPane.setStyle("-fx-background-color: #F2F2F2;");
+            enviadoPane.setStyle("-fx-background-color: #E2E2E2;");
+            
+            //Buzon de entrada
+            anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass()
+                    .getResource("/resources/BuzonEntrada.fxml"))); 
+            nuevoMensajePane.setStyle("-fx-background-color: #F2F2F2;");
+            entradaPane.setStyle("-fx-background-color: #E2E2E2;");
+            enviadoPane.setStyle("-fx-background-color: #F2F2F2;");
+        }
+        catch (Exception exc){}
     }
 }

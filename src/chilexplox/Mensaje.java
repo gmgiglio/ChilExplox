@@ -16,6 +16,7 @@ public class Mensaje implements java.io.Serializable {
     String mensaje;
     private Funcionario remitente;
     private String fecha;
+    private boolean leido;
     
     
     public Mensaje(String nombre, String mensaje, Funcionario remitente, String fecha){
@@ -23,7 +24,7 @@ public class Mensaje implements java.io.Serializable {
         this.nombre = nombre;
         this.remitente = remitente;
         this.fecha = fecha;
-        
+        leido = false;
     }
     
     public RegistroMensaje enviar(Sucursal destino){   

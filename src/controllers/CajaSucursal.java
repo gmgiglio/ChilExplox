@@ -7,10 +7,10 @@ package controllers;
 
 import chilexplox.Sucursal;
 import java.io.IOException;
-import java.util.Arrays;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
@@ -40,6 +40,20 @@ public class CajaSucursal extends HBox {
         this.sucursal = sucursal;
         textNombre.setText(sucursal.getNombre());
         
+    }
+    
+    public Sucursal getSucursal(){
+        return sucursal;
+    }
+    
+    EventHandler eliminarHandler;
+    
+    public void setEliminarHandler(EventHandler eh){
+        eliminarHandler = eh;
+    }
+    
+    public void botonEliminarApretado(ActionEvent event){
+        eliminarHandler.handle(new ActionEvent(this,null));
     }
     
 }

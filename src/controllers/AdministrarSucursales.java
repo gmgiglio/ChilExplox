@@ -69,7 +69,27 @@ public class AdministrarSucursales extends HBox {
         for(Sucursal sucursal : Empresa.getSucursales()){
             CajaSucursal caja = new CajaSucursal(sucursal);
             listSucursales.getItems().add(caja);
+            caja.setEliminarHandler(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                eliminarSucursal(e);
+                
+                }
+            });
         }
+    }
+    
+    public void eliminarSucursal(ActionEvent event){
+        CajaSucursal caja = (CajaSucursal)event.getSource();
+        Sucursal s = caja.getSucursal();
+        Empresa.eliminarSucursal(s);
+        recargarSucursales();
+        handlerCambiosSucursal.handle(event);
+    }
+    
+    EventHandler handlerCambiosSucursal;
+    
+    public void setHandlerCambiosSucursal(EventHandler eh){
+        handlerCambiosSucursal = eh;
     }
     
 }

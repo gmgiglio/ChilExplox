@@ -40,6 +40,8 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private Menu menuSucursal;
     
+    Menu menuUsuario;
+    
     /**
      * Initializes the controller class.
      */
@@ -50,12 +52,10 @@ public class MenuPrincipalController implements Initializable {
             addTab(new CrearPedido(),"Pedido");
         }
         
-        
-        
         LinkedList<Sucursal> sucursales = Empresa.getSucursales();
         
        
-        Menu menuUsuario = new Menu(Main.getUsuarioActual().getNombreUsuario());
+        menuUsuario = new Menu(Main.getUsuarioActual().getNombreUsuario());
         MenuItem itemCerrarSesion = new MenuItem("Cerrar sesión");
         itemCerrarSesion.setOnAction((ActionEvent e) -> {
             Main.cerrarSesion();
@@ -124,6 +124,22 @@ public class MenuPrincipalController implements Initializable {
              return sucursal;
          }
          
+    }
+    
+    private void recargarMenuSucursal(){
+        
+        menuUsuario.getItems().clear();
+        
+        LinkedList<Sucursal> sucursales = Empresa.getSucursales();
+        
+        LinkedList<Sucursal> sucEnLista = new LinkedList(sucursales);
+        sucEnLista.remove(Main.getUsuarioActual().getSucActual());
+        for(Sucursal s : sucEnLista){
+                ItemSucursalMenu item = new ItemSucursalMenu(s);
+                menuSucursal.getItems().add(item); 
+                item.setOnAction(eventoSucursal);  
+                
+        } 
     }
     
     

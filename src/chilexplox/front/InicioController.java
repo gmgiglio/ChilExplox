@@ -471,6 +471,11 @@ public class InicioController implements Initializable {
         
         if(Main.getUsuarioActual() instanceof Administrador){
             AdministrarSucursales admSuc = new AdministrarSucursales();
+            admSuc.setHandlerCambiosSucursal(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                recargarMenuSucursal();   
+                }
+            });
             addTab(admSuc, "Sucursales");
         }
         
@@ -768,5 +773,21 @@ public class InicioController implements Initializable {
     
     public void borrarTab(Tab tab){
         tabs.getTabs().remove(tab);
+    }
+    
+    private void recargarMenuSucursal(){
+        
+        menuSucursal.getItems().clear();
+        
+        LinkedList<Sucursal> sucursales = Empresa.getSucursales();
+        
+        LinkedList<Sucursal> sucEnLista = new LinkedList(sucursales);
+        sucEnLista.remove(Main.getUsuarioActual().getSucActual());
+        for(Sucursal s : sucEnLista){
+                ItemSucursalMenu item = new ItemSucursalMenu(s);
+                menuSucursal.getItems().add(item); 
+                item.setOnAction(cambiarSucursalActual);  
+                
+        } 
     }
 }

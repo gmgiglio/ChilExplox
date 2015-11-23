@@ -134,24 +134,8 @@ public class InicioController implements Initializable {
                     cabePedido = camionActual.verificaEspacioDestino(sucActual, Integer.parseInt(idPedido[1]));
                 }
             }
-            if(treeOrigen.getParent() != anchorPedPend || cabePedido)
-                event.acceptTransferModes(TransferMode.MOVE);
-            else if(treeOrigen.getParent() == anchorPedPend && treeDestino.getParent() == anchorPedCar){
-                if(pedidoACargar.getTipo() != camionActual.getTipo()){
-                    Alert alert = new Alert(AlertType.ERROR, "Un pedido del tipo " + pedidoACargar.getTipo() +
-                            " no puede cargarse en un " + "camion de tipo " + camionActual.getTipo() + ".", ButtonType.CLOSE);
-                    alert.showAndWait();
-                }
-                else if(!mismoDestino){
-                    Alert alert = new Alert(AlertType.ERROR, "Este camión no se dirije a la sucursal de destino del "
-                            + "pedido seleccionado.", ButtonType.CLOSE);
-                    alert.showAndWait();
-                }
-                else if(!sePuedeCargar){
-                    Alert alert = new Alert(AlertType.ERROR, "No hay suficiente espacio en este camión.", ButtonType.CLOSE);
-                    alert.showAndWait();
-                }
-            }
+            event.acceptTransferModes(TransferMode.MOVE);
+            
             event.consume();
         };
         dragDropped = (DragEvent event) -> {
@@ -197,7 +181,22 @@ public class InicioController implements Initializable {
                 
                 event.consume();
             }
-            
+            else if(treeOrigen.getParent() == anchorPedPend && treeDestino.getParent() == anchorPedCar){
+                if(pedidoACargar.getTipo() != camionActual.getTipo()){
+                    Alert alert = new Alert(AlertType.ERROR, "Un pedido del tipo " + pedidoACargar.getTipo() +
+                            " no puede cargarse en un " + "camion de tipo " + camionActual.getTipo() + ".", ButtonType.CLOSE);
+                    alert.showAndWait();
+                }
+                else if(!mismoDestino){
+                    Alert alert = new Alert(AlertType.ERROR, "Este camión no se dirije a la sucursal de destino del "
+                            + "pedido seleccionado.", ButtonType.CLOSE);
+                    alert.showAndWait();
+                }
+                else if(!sePuedeCargar){
+                    Alert alert = new Alert(AlertType.ERROR, "No hay suficiente espacio en este camión.", ButtonType.CLOSE);
+                    alert.showAndWait();
+                }
+            }
         };
         
         mostrarCamionDisponible = (MouseEvent event) -> {

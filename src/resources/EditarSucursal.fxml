@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="VBox"  maxHeight="568.0" prefHeight="537.0" prefWidth="567.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox maxHeight="50.0" prefHeight="44.0">
+         <children>
+            <BorderPane prefHeight="100.0" prefWidth="85.0" />
+            <BorderPane prefHeight="100.0" prefWidth="416.0">
+               <center>
+                  <Text fx:id="textTitulo" fill="#0049ba" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Text>
+               </center>
+            </BorderPane>
+         </children>
+      </HBox>
+      <HBox prefHeight="19.0" prefWidth="567.0">
+         <children>
+            <Pane prefHeight="38.0" prefWidth="122.0" />
+            <Text fx:id="textoAlertaPeso1" fill="#e70707" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="335.0" />
+         </children>
+      </HBox>
+      <HBox prefHeight="19.0" prefWidth="567.0">
+         <children>
+            <Pane prefHeight="38.0" prefWidth="122.0" />
+            <Text fx:id="textoAlertaPeso" fill="#e70707" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="335.0" />
+         </children>
+      </HBox>
+      <HBox prefHeight="19.0" prefWidth="567.0">
+         <children>
+            <Pane prefHeight="38.0" prefWidth="122.0" />
+            <Text fx:id="textoAlertaVolumen" fill="#e70707" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="324.0" />
+         </children>
+      </HBox>
+   </children>
+</fx:root>

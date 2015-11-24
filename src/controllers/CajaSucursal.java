@@ -56,4 +56,14 @@ public class CajaSucursal extends HBox {
         eliminarHandler.handle(new ActionEvent(this,null));
     }
     
+    EventHandler handlerEditar;
+    
+    public void setHandlerEditar(EventHandler eh){
+        handlerEditar = eh;
+    }
+    
+    public void botonEditarApretado(ActionEvent event){
+        handlerEditar.handle(new ActionEvent(this,null));
+    }
+    
 }

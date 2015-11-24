@@ -25,6 +25,7 @@
                         <Image url="@images/edit.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="botonEditar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#botonEditarApretado" prefHeight="16.0" prefWidth="18.0" style="-fx-background-color: null;" wrapText="true" />
                </children>
             </Pane>
          </right>

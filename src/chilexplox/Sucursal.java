@@ -63,6 +63,8 @@ public class Sucursal implements java.io.Serializable{
         }
     }
     
+    
+    
     public LinkedList<Camion> getCamionesDisponibles(){
         return this.camionesDisponibles;
     }
@@ -125,6 +127,8 @@ public class Sucursal implements java.io.Serializable{
         }
     }
     
+    
+    
     public void recibirCamionDescargado(Camion c){
         camionesDisponibles.add(c);
     }
@@ -183,6 +187,18 @@ public class Sucursal implements java.io.Serializable{
             return true;
         }
         else return false;
+    }
+    
+    public void descargarCamionEquivocado(Camion camion){
+        
+        
+            pedidosEquivocados.addAll(camion.descargarPedidos());
+            camionesPendientes.remove(camion);
+            camionesDisponibles.add(camion);
+            
+            for(Pedido p : camion.getPedidos()){
+                p.setEstado(Estado.Equivocado);
+            }
     }
     
     public boolean cerrarPedido(){

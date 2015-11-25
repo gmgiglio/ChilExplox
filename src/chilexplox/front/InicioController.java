@@ -231,8 +231,9 @@ public class InicioController implements Initializable {
             if (camionActual.getPedidos().size()>0) {
                 accionCamion.setOnMouseClicked((MouseEvent event1) -> {
                     Sucursal destino = camionActual.getPedidos().get(0).getSucDestino();
-                    destino.recibirCamionCargado(camionActual);
                     sucActual.enviarCamion(camionActual);
+                    destino.recibirCamionCargado(camionActual);
+                    
                     actualizarPestanaAdm();
                 });
             }
@@ -243,7 +244,6 @@ public class InicioController implements Initializable {
             pedidosCar.setVisible(true);
             accionCamion.setVisible(true);
             accionCamion.setText("Descargar Camión");
-            retornarCamion.setVisible(true);
             camionActual = null;
             String patenteCamionSelec = (String)camionesDesc.getSelectionModel().getSelectedItem().getValue();
             for (Camion c : sucActual.getCamionesPend()) {
@@ -254,10 +254,20 @@ public class InicioController implements Initializable {
                 pedidosCar = new TreeView<>(listarPedidos(camionActual.getPedidos()));
                 amononarTreeView(anchorPedCar, pedidosCar);
             }
+            
+            if(camionActual.getEstado() == EstadoCamion.Sin_Errores)
+                retornarCamion.setVisible(true);
+            else
+                retornarCamion.setVisible(false);
+            
             actualizarDatosCamion();
             estadoCamAct.setText("PENDIENTE");
             accionCamion.setOnMouseClicked((MouseEvent event1) -> {
-                sucActual.descargarCamion(camionActual);
+                if(camionActual.getEstado() == EstadoCamion.Sin_Errores)
+                    sucActual.descargarCamion(camionActual);
+                else
+                    sucActual.descargarCamionEquivocado(camionActual);
+                camionActual.setEstado(EstadoCamion.Sin_Errores);
                 actualizarPestanaAdm();
             });
             retornarCamion.setOnMouseClicked((MouseEvent event1) -> {

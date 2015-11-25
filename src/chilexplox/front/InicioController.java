@@ -450,15 +450,15 @@ public class InicioController implements Initializable {
         });
         
         botonBuzonEntrada.setOnAction((ActionEvent e) -> {
-            try{
-                anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass()
-                        .getResource("/resources/BuzonEntrada.fxml"))); 
-                nuevoMensajePane.setStyle("-fx-background-color: #F2F2F2;");
-                entradaPane.setStyle("-fx-background-color: #E2E2E2;");
-                enviadoPane.setStyle("-fx-background-color: #F2F2F2;");
+            
+            BuzonEntradaController bec = new BuzonEntradaController();
+            anchorPaneMensajes.getChildren().setAll(bec); 
+ 
+            nuevoMensajePane.setStyle("-fx-background-color: #F2F2F2;");
+            entradaPane.setStyle("-fx-background-color: #E2E2E2;");
+            enviadoPane.setStyle("-fx-background-color: #F2F2F2;");
                 
-            }
-            catch (Exception exc){}
+            
         });
         
         botonMensajesEnviados.setOnAction((ActionEvent e) -> {
@@ -753,12 +753,13 @@ public class InicioController implements Initializable {
             enviadoPane.setStyle("-fx-background-color: #E2E2E2;");
             
             //Buzon de entrada
-            anchorPaneMensajes.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass()
-                    .getResource("/resources/BuzonEntrada.fxml"))); 
+            BuzonEntradaController bec = new BuzonEntradaController();
+            anchorPaneMensajes.getChildren().setAll(bec); 
             nuevoMensajePane.setStyle("-fx-background-color: #F2F2F2;");
             entradaPane.setStyle("-fx-background-color: #E2E2E2;");
             enviadoPane.setStyle("-fx-background-color: #F2F2F2;");
             indicadorPane.getChildren().setAll(new Indicador(0));
+            bec.actualizarIndicador();
             
             
             

@@ -7,17 +7,16 @@ package controllers;
 
 import chilexplox.*;
 import chilexplox.front.Main;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -29,7 +28,7 @@ import javafx.scene.text.TextFlow;
  *
  * @author carlossalame
  */
-public class BuzonEntradaController implements Initializable {
+public class BuzonEntradaController extends AnchorPane {
 
     @FXML
     private VBox listaMensajes;
@@ -44,8 +43,19 @@ public class BuzonEntradaController implements Initializable {
     
     private int cantidad=0;
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    
+    public BuzonEntradaController() {
+        
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/BuzonEntrada.fxml"));
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+        
+         try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+        
         
         List<Mensaje> mensajes = ((Funcionario)Main.getUsuarioActual()).getSucActual().getMensajesEnBuzon();
         Funcionario u = (Funcionario) Main.getUsuarioActual();
@@ -135,6 +145,24 @@ public class BuzonEntradaController implements Initializable {
     
     public void mostrarMensaje (Mensaje m){
         
+    }
+    public void actualizarIndicador()
+    {
+     if(cantidad>0){
+                
+                Scene inicio =  this.getScene();
+                Pane indicador = (Pane) inicio.lookup("#indicador");
+                indicador.setVisible(true);
+                Text cantidadText = (Text) inicio.lookup("#cantidad");
+                if(cantidad<100){
+                cantidadText.setText(""+(cantidad));
+                }
+                else{
+                    cantidadText.setText("99+");
+                }
+
+
+            }
     }
     
    

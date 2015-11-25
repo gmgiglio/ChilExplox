@@ -20,6 +20,8 @@ public class Camion implements java.io.Serializable {
     private int capacidad;
     private EstadoCamion estado;
     private Tipo tipo;
+    private Sucursal origen;
+    private Sucursal destino;
     
     public Camion(String patente, int capacidad, Tipo tipo){
         this.patente = patente;
@@ -27,6 +29,18 @@ public class Camion implements java.io.Serializable {
         this.espacioDisp = capacidad;
         this.tipo = tipo;
         estado = EstadoCamion.Sin_Errores;
+        destino = null;
+        origen = null;
+    }
+    
+    public Camion(String patente, int capacidad, Tipo tipo, Sucursal origen){
+        this.patente = patente;
+        this.capacidad = capacidad;
+        this.espacioDisp = capacidad;
+        this.tipo = tipo;
+        estado = EstadoCamion.Sin_Errores;
+        destino = null;
+        this.origen = origen;
     }
     
     public boolean mismoDestino(Sucursal s,int idPedido){
@@ -62,6 +76,7 @@ public class Camion implements java.io.Serializable {
     public void cargarPedido(Pedido p){
         pedidosCargados.add(p);
         espacioDisp -= p.getVol();
+        destino = p.getSucDestino();
     }
     
     public void descargarPedido(Pedido p){
@@ -118,6 +133,34 @@ public class Camion implements java.io.Serializable {
      */
     public Tipo getTipo() {
         return tipo;
+    }
+
+    /**
+     * @return the origen
+     */
+    public Sucursal getOrigen() {
+        return origen;
+    }
+
+    /**
+     * @param origen the origen to set
+     */
+    public void setOrigen(Sucursal origen) {
+        this.origen = origen;
+    }
+
+    /**
+     * @return the destino
+     */
+    public Sucursal getDestino() {
+        return destino;
+    }
+
+    /**
+     * @param destino the destino to set
+     */
+    public void setDestino(Sucursal destino) {
+        this.destino = destino;
     }
     
 }

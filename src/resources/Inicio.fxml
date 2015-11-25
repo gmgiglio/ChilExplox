@@ -225,6 +225,8 @@
                                                                      </center>
                                                                   </BorderPane>
                                                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patente:" />
+                                                                  <Text layoutX="10.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S. de Origen:" />
+                                                                  <Text layoutX="10.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S. de Destino:" />
                                                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Capacidad:" />
                                                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Espacio Disponible:" />
                                                                   <Text layoutX="10.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado: " />
@@ -242,6 +244,8 @@
                                                                      </center>
                                                                   </BorderPane>
                                                                   <Text fx:id="patenteCamAct" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                                                  <Text fx:id="origenCamAct" layoutX="10.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                                                  <Text fx:id="destinoCamAct" layoutX="10.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                                                                   <Text fx:id="capacidadCamAct" strokeType="OUTSIDE" strokeWidth="0.0" />
                                                                   <Text fx:id="espDispCamAct" strokeType="OUTSIDE" strokeWidth="0.0" />
                                                                   <Text fx:id="estadoCamAct" layoutX="10.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" />

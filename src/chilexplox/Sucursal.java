@@ -131,6 +131,7 @@ public class Sucursal implements java.io.Serializable{
     
     public void recibirCamionDescargado(Camion c){
         camionesDisponibles.add(c);
+        c.setOrigen(this);
     }
     
     public void enviarCamion(Camion c){
@@ -232,7 +233,7 @@ public class Sucursal implements java.io.Serializable{
     } 
     
     public void agregarCamion(String patente, int capacidad, Tipo tipo){
-        camionesDisponibles.add(new Camion(patente, capacidad, tipo));
+        camionesDisponibles.add(new Camion(patente, capacidad, tipo, this));
     }
     
     public void agregarCamionPend(String patente, int capacidad, Tipo tipo){

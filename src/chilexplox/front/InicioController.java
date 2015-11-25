@@ -62,7 +62,9 @@ public class InicioController implements Initializable {
         @FXML
     private VBox vBoxConfPed;
         @FXML
-    private Text patenteCamAct, capacidadCamAct, espDispCamAct, estadoCamAct, advertencia, presupuesto,textSucursal,textIdPedido;
+    private Text patenteCamAct, origenCamAct, destinoCamAct, capacidadCamAct, espDispCamAct, estadoCamAct;
+        @FXML
+    private Text advertencia, presupuesto,textSucursal,textIdPedido;
         @FXML
     private AnchorPane anchorPedPend, anchorPedCar, anchorPedDest, anchorPedConf, anchorPedEq;
         @FXML
@@ -519,6 +521,8 @@ public class InicioController implements Initializable {
         retornarCamion.setVisible(false);
         camionActual = null;
         patenteCamAct.setText("");
+        origenCamAct.setText("");
+        destinoCamAct.setText("");
         capacidadCamAct.setText("");
         espDispCamAct.setText("");
         estadoCamAct.setText("");
@@ -728,9 +732,13 @@ public class InicioController implements Initializable {
     
     private void actualizarDatosCamion(){
         patenteCamAct.setText(camionActual.getPatente());
+        origenCamAct.setText(camionActual.getOrigen().getNombre());
+        if(camionActual.getDestino() != null)
+            destinoCamAct.setText(camionActual.getDestino().getNombre());
         capacidadCamAct.setText(Integer.toString(camionActual.getCapacidad()));
         espDispCamAct.setText(Integer.toString(camionActual.getEspDisp()));
         textoTipo.setText("Tipo: " + camionActual.getTipo());
+        
 
         if(camionActual.getTipo() == Tipo.Animales){
             Image img = new Image(Main.class.getResourceAsStream("/resources/images/AnimalBigIcon.png"));

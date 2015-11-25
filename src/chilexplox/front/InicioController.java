@@ -108,8 +108,6 @@ public class InicioController implements Initializable {
             if (Empresa.getSucursales().size() > 1) {menuSucursal.getItems().add(itemActual); }
             actualizarPestanaAdm();
             actualizarPestanaMens();
-            
-            //for(Sucursal s : Empresa.getSucursales()){ System.out.println(s.getNombre());}
         };
         
         dragDetected = (MouseEvent event) -> {

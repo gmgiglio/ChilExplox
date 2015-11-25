@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -23,22 +25,174 @@
             </BorderPane>
          </children>
       </HBox>
-      <HBox prefHeight="19.0" prefWidth="567.0">
+      <Pane prefHeight="56.0" prefWidth="820.0" />
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="31.0" prefWidth="820.0">
          <children>
-            <Pane prefHeight="38.0" prefWidth="122.0" />
-            <Text fx:id="textoAlertaPeso1" fill="#e70707" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="335.0" />
+            <Pane prefHeight="51.0" prefWidth="89.0" />
+            <BorderPane prefHeight="51.0" prefWidth="73.0">
+               <center>
+                  <ImageView fitHeight="31.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@images/truckIcon.png" />
+                     </image>
+                  </ImageView>
+               </center>
+            </BorderPane>
+            <Pane prefHeight="51.0" prefWidth="28.0" />
+            <BorderPane prefHeight="31.0" prefWidth="61.0">
+               <center>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Capacidad:" wrappingWidth="106.21875" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+            <TextField fx:id="fieldNormal" prefHeight="27.0" prefWidth="80.0" />
+            <Pane prefHeight="31.0" prefWidth="45.0" />
+            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
+               <children>
+                  <Circle centerX="18.0" centerY="18.0" fill="#0049ba" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Text fill="WHITE" layoutX="7.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="agregarCamNormal" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+               </children>
+            </Pane>
          </children>
       </HBox>
-      <HBox prefHeight="19.0" prefWidth="567.0">
+      <Pane prefHeight="29.0" prefWidth="820.0" />
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="31.0" prefWidth="820.0">
          <children>
-            <Pane prefHeight="38.0" prefWidth="122.0" />
-            <Text fx:id="textoAlertaPeso" fill="#e70707" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="335.0" />
+            <Pane prefHeight="51.0" prefWidth="89.0" />
+            <BorderPane prefHeight="51.0" prefWidth="73.0">
+               <center>
+                  <ImageView fitHeight="31.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@images/RubyTruckIcon.png" />
+                     </image>
+                  </ImageView>
+               </center>
+            </BorderPane>
+            <Pane prefHeight="51.0" prefWidth="28.0" />
+            <BorderPane prefHeight="31.0" prefWidth="61.0">
+               <center>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Capacidad:" wrappingWidth="106.21875" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+            <TextField fx:id="fieldBlindado" prefHeight="27.0" prefWidth="80.0" />
+            <Pane prefHeight="31.0" prefWidth="45.0" />
+            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
+               <children>
+                  <Circle centerX="18.0" centerY="18.0" fill="#0049ba" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Text fill="WHITE" layoutX="7.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="agregarCamBlindado" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+               </children>
+            </Pane>
          </children>
       </HBox>
-      <HBox prefHeight="19.0" prefWidth="567.0">
+      <Pane prefHeight="33.0" prefWidth="820.0" />
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="31.0" prefWidth="820.0">
          <children>
-            <Pane prefHeight="38.0" prefWidth="122.0" />
-            <Text fx:id="textoAlertaVolumen" fill="#e70707" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="324.0" />
+            <Pane prefHeight="51.0" prefWidth="89.0" />
+            <BorderPane prefHeight="51.0" prefWidth="73.0">
+               <center>
+                  <ImageView fitHeight="31.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@images/ColdTruckIcon.png" />
+                     </image>
+                  </ImageView>
+               </center>
+            </BorderPane>
+            <Pane prefHeight="51.0" prefWidth="28.0" />
+            <BorderPane prefHeight="31.0" prefWidth="61.0">
+               <center>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Capacidad:" wrappingWidth="106.21875" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+            <TextField fx:id="fieldFrio" prefHeight="27.0" prefWidth="80.0" />
+            <Pane prefHeight="31.0" prefWidth="45.0" />
+            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
+               <children>
+                  <Circle centerX="18.0" centerY="18.0" fill="#0049ba" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Text fill="WHITE" layoutX="7.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="agregarCamFrio" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+      <Pane prefHeight="33.0" prefWidth="820.0" />
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="31.0" prefWidth="820.0">
+         <children>
+            <Pane prefHeight="51.0" prefWidth="89.0" />
+            <BorderPane prefHeight="51.0" prefWidth="73.0">
+               <center>
+                  <ImageView fitHeight="31.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@images/AnimalTruckIcon.png" />
+                     </image>
+                  </ImageView>
+               </center>
+            </BorderPane>
+            <Pane prefHeight="51.0" prefWidth="28.0" />
+            <BorderPane prefHeight="31.0" prefWidth="61.0">
+               <center>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Capacidad:" wrappingWidth="106.21875" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+            <TextField fx:id="fieldAnimal" prefHeight="27.0" prefWidth="80.0" />
+            <Pane prefHeight="31.0" prefWidth="45.0" />
+            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
+               <children>
+                  <Circle centerX="18.0" centerY="18.0" fill="#0049ba" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Text fill="WHITE" layoutX="7.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="agregarCamAnimal" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+      <Pane prefHeight="33.0" prefWidth="820.0" />
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="31.0" prefWidth="820.0">
+         <children>
+            <Pane prefHeight="51.0" prefWidth="89.0" />
+            <BorderPane prefHeight="51.0" prefWidth="73.0">
+               <center>
+                  <ImageView fitHeight="31.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@images/RadioactiveTruckIcon.png" />
+                     </image>
+                  </ImageView>
+               </center>
+            </BorderPane>
+            <Pane prefHeight="51.0" prefWidth="28.0" />
+            <BorderPane prefHeight="31.0" prefWidth="61.0">
+               <center>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Capacidad:" wrappingWidth="106.21875" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+            <TextField fx:id="fieldRadiactivo" prefHeight="27.0" prefWidth="80.0" />
+            <Pane prefHeight="31.0" prefWidth="45.0" />
+            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
+               <children>
+                  <Circle centerX="18.0" centerY="18.0" fill="#0049ba" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Text fill="WHITE" layoutX="7.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="agregarCamRadiactivo" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+               </children>
+            </Pane>
          </children>
       </HBox>
    </children>

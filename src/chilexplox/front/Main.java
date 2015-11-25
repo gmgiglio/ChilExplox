@@ -143,7 +143,7 @@ public class Main extends Application {
         a.enviarMens("hola", "te queria mandar saludos", victoria);
         a.enviarMens("Banana Split", "Esto es un banana split", victoria);
         
-        
+        Empresa.setProperties("ChilExplox", "70.306.847-0");
         
     }
     

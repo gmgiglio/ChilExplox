@@ -97,17 +97,19 @@ public class InicioController implements Initializable {
 
     public InicioController() {
         cambiarSucursalActual = (EventHandler) (Event e) -> {
-            ItemSucursalMenu item1 = (ItemSucursalMenu)e.getSource();
-            Sucursal suc = item1.getSucursal();
+            ItemSucursalMenu itemNuevo = (ItemSucursalMenu)e.getSource();
+            Sucursal suc = itemNuevo.getSucursal();
             menuSucursal.setText(suc.getNombre());
-            ItemSucursalMenu item2 = new ItemSucursalMenu(sucActual);
-            item2.setOnAction(cambiarSucursalActual);
-            ((Funcionario)Main.getUsuarioActual()).setSucActual(suc);
+            ItemSucursalMenu itemActual = new ItemSucursalMenu(getSucActual());
+            itemActual.setOnAction(cambiarSucursalActual);
+            Main.getUsuarioActual().setSucActual(suc);
             sucActual = suc;
-            menuSucursal.getItems().remove(item1);
-            menuSucursal.getItems().add(item2);
+            menuSucursal.getItems().remove(itemNuevo);
+            if (Empresa.getSucursales().size() > 1) {menuSucursal.getItems().add(itemActual); }
             actualizarPestanaAdm();
             actualizarPestanaMens();
+            
+            //for(Sucursal s : Empresa.getSucursales()){ System.out.println(s.getNombre());}
         };
         
         dragDetected = (MouseEvent event) -> {
@@ -472,10 +474,8 @@ public class InicioController implements Initializable {
         
         if(Main.getUsuarioActual() instanceof Administrador){
             AdministrarSucursales admSuc = new AdministrarSucursales();
-            admSuc.setHandlerCambiosSucursal(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                recargarMenuSucursal();   
-                }
+            admSuc.setHandlerCambiosSucursal((EventHandler) (Event e)->{
+                recargarMenuSucursal();
             });
             addTab(admSuc, "Sucursales");
         }
@@ -783,12 +783,22 @@ public class InicioController implements Initializable {
         LinkedList<Sucursal> sucursales = Empresa.getSucursales();
         
         LinkedList<Sucursal> sucEnLista = new LinkedList(sucursales);
-        sucEnLista.remove(Main.getUsuarioActual().getSucActual());
+        if(getSucActual() != null) { sucEnLista.remove(Main.getUsuarioActual().getSucActual()); }
+        
+        String nombreMenuSuc;
+        if(sucActual == null){ nombreMenuSuc = "Sucursal";}
+        else{ nombreMenuSuc = sucActual.getNombre();}
+        menuSucursal.setText(nombreMenuSuc);
+        
         for(Sucursal s : sucEnLista){
                 ItemSucursalMenu item = new ItemSucursalMenu(s);
                 menuSucursal.getItems().add(item); 
                 item.setOnAction(cambiarSucursalActual);  
                 
         } 
+    }
+    
+    private Sucursal getSucActual(){
+        return Main.getUsuarioActual().getSucActual();
     }
 }

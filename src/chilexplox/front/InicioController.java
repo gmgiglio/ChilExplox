@@ -431,7 +431,8 @@ public class InicioController implements Initializable {
                         break;
                         
                     case "Administrar":
-                        actualizarPestanaAdm();
+                        if(sucActual!=null)
+                          actualizarPestanaAdm();
                         break;
                         
                     case "Mensajes":

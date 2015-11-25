@@ -174,7 +174,7 @@ public class Main extends Application {
         }
     }
     
-    private static void enviarReporte(){
+    public static void enviarReporte(){
         Mensaje m = GeneradorReporte.generarReporte();
         m.enviar(usuarioActual.getSucActual());
     }

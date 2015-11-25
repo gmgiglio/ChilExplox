@@ -201,6 +201,7 @@
                                        </content>
                                     </TitledPane>
                                     <Button fx:id="botonMostrarEquivocados" mnemonicParsing="false" prefHeight="26.0" prefWidth="390.0" text="Mostrar pedidos equivocados" />
+                                    <Button fx:id="generarReporte" layoutX="10.0" layoutY="524.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="390.0" text="Generar Reporte" />
                                  </children>
                               </VBox>
                               <StackPane prefHeight="150.0" prefWidth="360.0">
@@ -311,7 +312,7 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <AnchorPane fx:id="noHaySucursalAdmin" prefHeight="501.0" prefWidth="1081.0">
+                        <AnchorPane fx:id="noHaySucursalAdmin" prefHeight="501.0" prefWidth="1081.0" visible="false">
                            <children>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="540.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1081.0" />
                               <BorderPane layoutX="-1.0" prefHeight="540.0" prefWidth="1081.0">

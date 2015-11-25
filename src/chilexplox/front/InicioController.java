@@ -42,7 +42,7 @@ public class InicioController implements Initializable {
     private MenuBar menuBar;
        @FXML
     private Button agregarCliente, botonAgregarEncomienda,crearPedido, botonCancelar, cerrarPedido, modificar,
-               botonNuevoMensaje, botonBuzonEntrada, botonMensajesEnviados,botonMostrarEquivocados;
+               botonNuevoMensaje, botonBuzonEntrada, botonMensajesEnviados,botonMostrarEquivocados, generarReporte;
        @FXML
     private ImageView imagenTipo;
        @FXML
@@ -527,7 +527,11 @@ public class InicioController implements Initializable {
          
         botonMostrarEquivocados.setOnAction((ActionEvent e) -> {
             vBoxConfPed.setVisible(true);
-        });;
+        });
+        generarReporte.setOnAction((ActionEvent e) -> {
+            if(sucActual != null)
+                Main.enviarReporte();
+        });
         accionCamion.setVisible(false);
         retornarCamion.setVisible(false);
         camionActual = null;

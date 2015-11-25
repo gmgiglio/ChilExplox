@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
@@ -9,18 +10,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="indicador" maxHeight="50.0" maxWidth="53.0" prefHeight="20.0" prefWidth="20.0" type="Pane" visible="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Circle id="agregarPedido" fill="#0049ba" layoutX="18.0" layoutY="18.0" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <BorderPane layoutX="-2.0" layoutY="-1.0" prefHeight="38.0" prefWidth="39.0">
+      <Circle id="agregarPedido" fill="#0049ba" layoutX="10.0" layoutY="10.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <BorderPane prefHeight="19.0" prefWidth="17.0">
          <center>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="1" textAlignment="CENTER" wrappingWidth="41.8585205078125" BorderPane.alignment="CENTER">
+            <Text id="cantidad" fx:id="textNumero" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="99+" textAlignment="CENTER" wrappingWidth="21.618520736694336" BorderPane.alignment="CENTER">
                <font>
-                  <Font size="17.0" />
+                  <Font size="10.0" />
                </font>
             </Text>
          </center>
       </BorderPane>
-      <Button fx:id="botonAgregarEncomienda" ellipsisString="" mnemonicParsing="false" prefHeight="39.0" prefWidth="39.0" style="-fx-background-color: null;" />
    </children>
-</Pane>
+</fx:root>

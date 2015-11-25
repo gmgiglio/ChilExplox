@@ -5,9 +5,11 @@ import controllers.AdministrarSucursales;
 import controllers.AgregarClienteController;
 import controllers.AgregarEncomiendaController;
 import controllers.AgregarPedidoController;
+import controllers.BuzonEntradaController;
 import controllers.CajaEncomienda;
 import controllers.EditarEncomiendaController;
 import controllers.FichaCliente;
+import controllers.Indicador;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
@@ -43,6 +45,8 @@ public class InicioController implements Initializable {
                botonNuevoMensaje, botonBuzonEntrada, botonMensajesEnviados;
        @FXML
     private ImageView imagenTipo;
+       @FXML
+    private Pane indicadorPane;
        @FXML
     private Text textoTipo, errorDeCarga;
         @FXML
@@ -451,6 +455,7 @@ public class InicioController implements Initializable {
                 nuevoMensajePane.setStyle("-fx-background-color: #F2F2F2;");
                 entradaPane.setStyle("-fx-background-color: #E2E2E2;");
                 enviadoPane.setStyle("-fx-background-color: #F2F2F2;");
+                
             }
             catch (Exception exc){}
         });
@@ -749,6 +754,11 @@ public class InicioController implements Initializable {
             nuevoMensajePane.setStyle("-fx-background-color: #F2F2F2;");
             entradaPane.setStyle("-fx-background-color: #E2E2E2;");
             enviadoPane.setStyle("-fx-background-color: #F2F2F2;");
+            indicadorPane.getChildren().setAll(new Indicador(0));
+            
+            
+            
+            
         }
         catch (Exception exc){}
         

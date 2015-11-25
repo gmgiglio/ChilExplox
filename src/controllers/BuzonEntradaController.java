@@ -17,7 +17,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -40,33 +42,79 @@ public class BuzonEntradaController implements Initializable {
     
     
     
-    
+    private int cantidad=0;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         List<Mensaje> mensajes = ((Funcionario)Main.getUsuarioActual()).getSucActual().getMensajesEnBuzon();
         Funcionario u = (Funcionario) Main.getUsuarioActual();
+        Scene inicio =  null;
         for(Mensaje m : mensajes){
             CajaMensajeResivido cajaM = new CajaMensajeResivido(m);
             cajaM.changeBackgroundOnHover();
+            if(cajaM.getMensaje().isLeido()){
+
+                cajaM.enModoNormal();
+                
+            }else{
+                cantidad++;
+                cajaM.enModoNoLeido();
+                
+            }
+
             listaMensajes.getChildren().add(cajaM);
             cajaM.setOnAction(botonApretado);
+            inicio =  cajaM.getScene();
         }
-        
+     
     }   
-    
+   
     private CajaMensajeResivido cajaMensActual;
     
     EventHandler botonApretado = (EventHandler) (Event event) -> {
         CajaMensajeResivido boton = (CajaMensajeResivido) event.getTarget();
         if (cajaMensActual != null) {
-            if(boton.getMensaje().isLeido())
                 cajaMensActual.enModoNormal();
-            else
-                cajaMensActual.enModoNoLeido();
-            
+       
         } 
+        if(!boton.getMensaje().isLeido()){
+        Scene inicio =  boton.getScene();
+        Pane indicador = (Pane) inicio.lookup("#indicador");
+        indicador.setVisible(true);
+        Text cantidadText = (Text) inicio.lookup("#cantidad");
+        cantidad--;
+            if(cantidad<100){
+                cantidadText.setText(""+(cantidad));
+            }
+            else{
+                cantidadText.setText("99+");
+            }
+        
+            if(cantidad==0)
+            {
+                indicador.setVisible(false);
+            }
+        } else{
+            if(cantidad>0){
+                
+                Scene inicio =  boton.getScene();
+                Pane indicador = (Pane) inicio.lookup("#indicador");
+                indicador.setVisible(true);
+                Text cantidadText = (Text) inicio.lookup("#cantidad");
+                if(cantidad<100){
+                cantidadText.setText(""+(cantidad));
+                }
+                else{
+                    cantidadText.setText("99+");
+                }
+
+
+            }
+                
+        }
+        boton.getMensaje().setLeido(true);
+        
         cajaMensActual = boton;
         cajaMensActual.enModoAzul();
         ningunoSel.setVisible(false);
@@ -80,6 +128,8 @@ public class BuzonEntradaController implements Initializable {
         
         textoMensaje.getChildren().clear();
         textoMensaje.getChildren().add(t);
+        
+       
     };
     
     

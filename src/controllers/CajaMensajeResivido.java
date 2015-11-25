@@ -66,8 +66,9 @@ public class CajaMensajeResivido extends Button {
         setStyle(NOT_READ_BUTTON_STYLE);
         textoAsunto.setFill(Color.BLACK);
         textoUsuario.setFill(Color.BLACK);
-        modoAzul = false;
-        changeBackgroundOnHover();
+        modoAzul = false;        
+        setOnMouseExited(null);
+        setOnMouseEntered(null);
     }
 
     public CajaMensajeResivido (Mensaje mensaje){

@@ -64,6 +64,7 @@ public class ElegirUsuario extends AnchorPane{
     }*/
     public void handlerTextFieldUsuario(ActionEvent event){
         Usuario u = getUsuario();
+        u.setSucActual(null);
         if(u != null && u.contrasenaCorrecta(textFieldClave.getText()) ){
             handlerUsuarioElegido.handle(event);
             textFieldUsuario.setText("");

@@ -200,6 +200,7 @@
                                           <AnchorPane fx:id="anchorPedDest" minHeight="0.0" minWidth="0.0" prefHeight="243.0" prefWidth="360.0" />
                                        </content>
                                     </TitledPane>
+                                    <Button fx:id="botonMostrarEquivocados" mnemonicParsing="false" prefHeight="26.0" prefWidth="364.0" text="Mostrar pedidos equivocados" />
                                  </children>
                               </VBox>
                               <StackPane prefHeight="150.0" prefWidth="360.0">

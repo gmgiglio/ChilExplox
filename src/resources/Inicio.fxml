@@ -215,7 +215,7 @@
                                                          <left>
                                                             <VBox maxHeight="158.0" maxWidth="125.0" prefHeight="158.0" prefWidth="117.0" BorderPane.alignment="BOTTOM_CENTER">
                                                                <children>
-                                                                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                                                  <BorderPane maxHeight="60.0" minHeight="60.0" prefHeight="200.0" prefWidth="200.0">
                                                                      <center>
                                                                         <ImageView fx:id="imagenTipo" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                                                            <image>

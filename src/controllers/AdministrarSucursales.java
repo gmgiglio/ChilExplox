@@ -54,13 +54,11 @@ public class AdministrarSucursales extends HBox {
     public void agregarSucursalApretado(){
         agregarSucursal = new AgregarSucursal();
         pane.getChildren().setAll(agregarSucursal);
-        agregarSucursal.setHandlerAgregarSucursal(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                Empresa.agregarSucursal(agregarSucursal.getSucursal());
-                recargarSucursales();
-                
-                }
-            });
+        agregarSucursal.setHandlerAgregarSucursal((EventHandler<ActionEvent>) (ActionEvent e) -> {
+            Empresa.agregarSucursal(agregarSucursal.getSucursal());
+            recargarSucursales();
+            handlerCambiosSucursal.handle(new ActionEvent(this,null));
+        });
     }
     
     
@@ -69,7 +67,36 @@ public class AdministrarSucursales extends HBox {
         for(Sucursal sucursal : Empresa.getSucursales()){
             CajaSucursal caja = new CajaSucursal(sucursal);
             listSucursales.getItems().add(caja);
+            caja.setEliminarHandler((EventHandler<ActionEvent>) (ActionEvent e) -> {
+                CajaSucursal caja1 = (CajaSucursal)e.getSource();
+                Sucursal s = caja1.getSucursal();
+                eliminarSucursal(s);
+            });
+            caja.setHandlerEditar((EventHandler<ActionEvent>) (ActionEvent e) -> {
+                CajaSucursal caja1 = (CajaSucursal)e.getSource();
+                Sucursal s = caja1.getSucursal();
+                editarSucursal(s);
+            });
         }
+    }
+    
+    public void eliminarSucursal(Sucursal sucursal){
+        Empresa.eliminarSucursal(sucursal);
+        recargarSucursales();
+        handlerCambiosSucursal.handle(new ActionEvent(this,null));
+    }
+    
+    EventHandler handlerCambiosSucursal;
+    
+    public void setHandlerCambiosSucursal(EventHandler eh){
+        handlerCambiosSucursal = eh;
+    }
+    
+    public void editarSucursal(Sucursal sucursal){
+
+        EditarSucursal edSuc = new EditarSucursal(sucursal);
+        pane.getChildren().setAll(edSuc);
+        
     }
     
 }

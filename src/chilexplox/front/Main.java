@@ -57,9 +57,7 @@ public class Main extends Application {
         
         pantallaElegirUsuario.setHandlerUsuarioElegido((EventHandler) (Event event) -> {
             usuarioActual = pantallaElegirUsuario.getUsuario();
-            if (usuarioActual.getSucActual() == null) {usuarioActual.setSucActual(Empresa.getSucursales().get(0));}
-            try{
-                
+            try{    
                 if (usuarioActual instanceof Cliente){
                     primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/resources/MenuPrincipal.fxml"))));
                 }
@@ -146,6 +144,7 @@ public class Main extends Application {
         a.enviarMens("Banana Split", "Esto es un banana split", victoria);
         
         
+        
     }
     
     
@@ -154,7 +153,7 @@ public class Main extends Application {
             poblar();
         }
         revisarTpoPedidos();
-        enviarReportePrueba();
+        //enviarReporte();
     }
     
     public static void inicio(){
@@ -175,9 +174,9 @@ public class Main extends Application {
         }
     }
     
-    private static void enviarReportePrueba(){
+    private static void enviarReporte(){
         Mensaje m = GeneradorReporte.generarReporte();
-        m.enviar(Empresa.getSucursal("Maipu"));
+        m.enviar(usuarioActual.getSucActual());
     }
         
 

@@ -7,11 +7,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root maxHeight="568.0" prefHeight="537.0" prefWidth="567.0" type="VBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="568.0" prefHeight="537.0" prefWidth="820.0" type="VBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox maxHeight="50.0" prefHeight="44.0">
          <children>
-            <BorderPane prefHeight="100.0" prefWidth="85.0" />
+            <BorderPane prefHeight="44.0" prefWidth="194.0" />
             <BorderPane prefHeight="100.0" prefWidth="416.0">
                <center>
                   <Text fill="#0049ba" strokeType="OUTSIDE" strokeWidth="0.0" text="Nueva Sucursal" BorderPane.alignment="CENTER">
@@ -25,7 +25,7 @@
       </HBox>
       <HBox maxHeight="50.0" prefHeight="0.0" prefWidth="567.0">
          <children>
-            <BorderPane prefHeight="100.0" prefWidth="85.0">
+            <BorderPane prefHeight="27.0" prefWidth="191.0">
                <right>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:" BorderPane.alignment="CENTER" />
                </right>
@@ -45,9 +45,9 @@
       </HBox>
       <HBox maxHeight="50.0" prefHeight="18.0" prefWidth="567.0">
          <children>
-            <BorderPane prefHeight="100.0" prefWidth="85.0">
+            <BorderPane prefHeight="27.0" prefWidth="191.0">
                <right>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ciudad" BorderPane.alignment="CENTER" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ciudad:" BorderPane.alignment="CENTER" />
                </right>
             </BorderPane>
             <BorderPane prefHeight="69.0" prefWidth="416.0">
@@ -65,7 +65,7 @@
       </HBox>
       <HBox maxHeight="50.0" prefHeight="0.0" prefWidth="567.0">
          <children>
-            <BorderPane prefHeight="100.0" prefWidth="85.0">
+            <BorderPane prefHeight="27.0" prefWidth="192.0">
                <right>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Direccion:" BorderPane.alignment="CENTER" />
                </right>

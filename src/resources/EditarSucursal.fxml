@@ -7,12 +7,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root type="VBox"  maxHeight="568.0" prefHeight="537.0" prefWidth="567.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="568.0" prefHeight="537.0" prefWidth="820.0" type="VBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox maxHeight="50.0" prefHeight="44.0">
          <children>
-            <BorderPane prefHeight="100.0" prefWidth="85.0" />
-            <BorderPane prefHeight="100.0" prefWidth="416.0">
+            <BorderPane prefHeight="44.0" prefWidth="200.0" />
+            <BorderPane prefHeight="44.0" prefWidth="429.0">
                <center>
                   <Text fx:id="textTitulo" fill="#0049ba" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
                      <font>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
@@ -9,40 +10,52 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root minHeight="-Infinity" minWidth="-Infinity" prefWidth="258.0" type="HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxWidth="-Infinity" minHeight="-Infinity" prefHeight="60.0" prefWidth="233.0" type="VBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="162.0">
+      <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="230.0">
+         <children>
+            <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="162.0">
+               <center>
+                  <Text fx:id="textNombre" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="150.78924560546875" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="9.0" prefWidth="53.0">
+               <right>
+                  <Pane maxHeight="16.0" maxWidth="16.0" prefHeight="10.0" prefWidth="17.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/edit.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="botonEditar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#botonEditarApretado" prefHeight="16.0" prefWidth="18.0" style="-fx-background-color: null;" wrapText="true" />
+                     </children>
+                  </Pane>
+               </right>
+            </BorderPane>
+            <BorderPane prefHeight="26.0" prefWidth="40.0">
+               <center>
+                  <Pane maxHeight="16.0" maxWidth="16.0" prefHeight="10.0" prefWidth="17.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Circle centerX="18.0" centerY="18.0" fill="#0049ba" layoutX="-10.0" layoutY="-10.0" radius="8.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Text fill="WHITE" layoutX="4.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="12.901801109313965">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="botonMenos" ellipsisString="" layoutX="-6.0" layoutY="-5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="28.0" style="-fx-background-color: null;" />
+                     </children>
+                  </Pane>
+               </center>
+            </BorderPane>
+         </children>
+      </HBox>
+      <BorderPane maxWidth="-Infinity" minHeight="-Infinity" prefHeight="23.0" prefWidth="230.0">
          <center>
-            <Text fx:id="textNombre" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="150.78924560546875" BorderPane.alignment="CENTER" />
-         </center>
-      </BorderPane>
-      <BorderPane prefHeight="9.0" prefWidth="53.0">
-         <right>
-            <Pane maxHeight="16.0" maxWidth="16.0" prefHeight="10.0" prefWidth="17.0" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/edit.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="botonEditar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#botonEditarApretado" prefHeight="16.0" prefWidth="18.0" style="-fx-background-color: null;" wrapText="true" />
-               </children>
-            </Pane>
-         </right>
-      </BorderPane>
-      <BorderPane prefHeight="26.0" prefWidth="40.0">
-         <center>
-            <Pane maxHeight="16.0" maxWidth="16.0" prefHeight="10.0" prefWidth="17.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Circle centerX="18.0" centerY="18.0" fill="#0049ba" layoutX="-10.0" layoutY="-10.0" radius="8.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
-                  <Text fill="WHITE" layoutX="4.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="12.901801109313965">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Text>
-                  <Button fx:id="botonEliminar" ellipsisString="" layoutX="-6.0" layoutY="-5.0" mnemonicParsing="false" onAction="#botonEliminarApretado" prefHeight="26.0" prefWidth="28.0" style="-fx-background-color: null;" />
-               </children>
-            </Pane>
+            <Button fx:id="botonEliminar" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#botonEliminarApretado" prefHeight="26.0" prefWidth="221.0" style="-fx-background-color: #dd1c1c;" text="Eliminar" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
          </center>
       </BorderPane>
    </children>

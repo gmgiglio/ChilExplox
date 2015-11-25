@@ -301,10 +301,11 @@ public class InicioController implements Initializable {
             Main.cerrarSesion();
         });
         menuUsuario.getItems().add(itemCerrarSesion);
-        ((Funcionario)Main.getUsuarioActual()).setSucActual(Empresa.getSucursales().get(0));
-        sucActual = Empresa.getSucursales().get(0);
-        ItemSucursalMenu i = new ItemSucursalMenu(sucActual);
-        menuSucursal = new Menu(sucActual.getNombre());
+        String nombreMenuSuc;
+        if(sucActual == null){ nombreMenuSuc = "Sucursal";}
+        else{ nombreMenuSuc = sucActual.getNombre();} 
+        
+        menuSucursal = new Menu(nombreMenuSuc);
         
         //agregar sucursales al menu de sucursales
         LinkedList<Sucursal> sucEnLista = new LinkedList(sucursales);

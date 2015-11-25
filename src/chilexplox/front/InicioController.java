@@ -104,14 +104,17 @@ public class InicioController implements Initializable {
             ItemSucursalMenu itemNuevo = (ItemSucursalMenu)e.getSource();
             Sucursal suc = itemNuevo.getSucursal();
             menuSucursal.setText(suc.getNombre());
-            ItemSucursalMenu itemActual = new ItemSucursalMenu(getSucActual());
-            itemActual.setOnAction(cambiarSucursalActual);
+            if(getSucActual() != null){
+                ItemSucursalMenu itemActual = new ItemSucursalMenu(getSucActual());
+                itemActual.setOnAction(cambiarSucursalActual);
+                if (Empresa.getSucursales().size() > 1) {menuSucursal.getItems().add(itemActual); }
+            }
             Main.getUsuarioActual().setSucActual(suc);
             sucActual = suc;
             menuSucursal.getItems().remove(itemNuevo);
-            if (Empresa.getSucursales().size() > 1) {menuSucursal.getItems().add(itemActual); }
-            actualizarPestanaAdm();
-            actualizarPestanaMens();
+            
+                actualizarPestanaAdm();
+                actualizarPestanaMens();
         };
         
         dragDetected = (MouseEvent event) -> {
@@ -218,6 +221,7 @@ public class InicioController implements Initializable {
             vBoxConfPed.setVisible(false);
             pedidosCar.setVisible(true);
             accionCamion.setVisible(true);
+            retornarCamion.setVisible(false);
             accionCamion.setText("Enviar Camión");
             camionActual = null;
             String patenteCamionActual = (String)camionesDisp.getSelectionModel().getSelectedItem().getValue();

@@ -6,9 +6,14 @@
 package controllers;
 
 import chilexplox.Sucursal;
+import chilexplox.Tipo;
 import java.io.IOException;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -21,6 +26,11 @@ public class EditarSucursal extends VBox  {
 
     @FXML
     Text textTitulo;
+    @FXML
+    Button botonNormal, botonFrio, botonAnimal, botonRadiactivo, botonBlindado;
+    @FXML 
+    TextField fieldNormal, fieldFrio, fieldAnimal, fieldRadiactivo, fieldBlindado;
+    
     Sucursal sucursal;
     
     public EditarSucursal(Sucursal sucursal){
@@ -36,6 +46,42 @@ public class EditarSucursal extends VBox  {
          
          this.sucursal = sucursal;
          textTitulo.setText("Sucursal: " + sucursal.getNombre());
+         
+         
+        botonNormal.setOnAction((EventHandler) (Event ev) -> {
+            try { 
+                int cap = Integer.parseInt(fieldNormal.getText()); 
+                sucursal.agregarCamion(null, cap, Tipo.Normal);
+            } catch(Exception ex){}
+        });
+        
+        botonFrio.setOnAction((EventHandler) (Event ev) -> {
+            try { 
+                int cap = Integer.parseInt(fieldFrio.getText()); 
+                sucursal.agregarCamion(null, cap, Tipo.Refrigerado);
+            } catch(Exception ex){}
+        });
+        
+        botonAnimal.setOnAction((EventHandler) (Event ev) -> {
+            try { 
+                int cap = Integer.parseInt(fieldAnimal.getText()); 
+                sucursal.agregarCamion(null, cap, Tipo.Animales);
+            } catch(Exception ex){}
+        });
+        
+        botonRadiactivo.setOnAction((EventHandler) (Event ev) -> {
+            try { 
+                int cap = Integer.parseInt(fieldRadiactivo.getText()); 
+                sucursal.agregarCamion(null, cap, Tipo.Radioactivo);
+            } catch(Exception ex){}
+        });
+        
+        botonBlindado.setOnAction((EventHandler) (Event ev) -> {
+            try { 
+                int cap = Integer.parseInt(fieldBlindado.getText()); 
+                sucursal.agregarCamion(null, cap, Tipo.Blindado);
+            } catch(Exception ex){}
+        });
     }
     
     

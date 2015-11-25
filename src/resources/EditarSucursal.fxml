@@ -54,7 +54,7 @@
                         <Font size="36.0" />
                      </font>
                   </Text>
-                  <Button fx:id="agregarCamNormal" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+                  <Button fx:id="botonNormal" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
                </children>
             </Pane>
          </children>
@@ -88,7 +88,7 @@
                         <Font size="36.0" />
                      </font>
                   </Text>
-                  <Button fx:id="agregarCamBlindado" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+                  <Button fx:id="botonBlindado" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
                </children>
             </Pane>
          </children>
@@ -122,7 +122,7 @@
                         <Font size="36.0" />
                      </font>
                   </Text>
-                  <Button fx:id="agregarCamFrio" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+                  <Button fx:id="botonFrio" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
                </children>
             </Pane>
          </children>
@@ -156,7 +156,7 @@
                         <Font size="36.0" />
                      </font>
                   </Text>
-                  <Button fx:id="agregarCamAnimal" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+                  <Button fx:id="botonAnimal" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
                </children>
             </Pane>
          </children>
@@ -190,7 +190,7 @@
                         <Font size="36.0" />
                      </font>
                   </Text>
-                  <Button fx:id="agregarCamRadiactivo" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+                  <Button fx:id="botonRadiactivo" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
                </children>
             </Pane>
          </children>

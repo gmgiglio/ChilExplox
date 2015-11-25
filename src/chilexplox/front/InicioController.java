@@ -56,7 +56,7 @@ public class InicioController implements Initializable {
         @FXML
     private SplitPane split;
         @FXML
-    private AnchorPane anchorPaneMensajes, agregarPane;
+    private AnchorPane anchorPaneMensajes, agregarPane,noHaySucursalMensaje,noHaySucursalAdmin;
         @FXML
     private ComboBox comboBoxClientes;
         @FXML
@@ -112,7 +112,9 @@ public class InicioController implements Initializable {
             Main.getUsuarioActual().setSucActual(suc);
             sucActual = suc;
             menuSucursal.getItems().remove(itemNuevo);
-            
+                noHaySucursalAdmin.setVisible(false);
+                noHaySucursalMensaje.setVisible(false);
+
                 actualizarPestanaAdm();
                 actualizarPestanaMens();
         };
@@ -431,12 +433,17 @@ public class InicioController implements Initializable {
                         break;
                         
                     case "Administrar":
-                        if(sucActual!=null)
-                          actualizarPestanaAdm();
+                        if(sucActual!=null){
+                            noHaySucursalAdmin.setVisible(false);
+                            actualizarPestanaAdm();
+                        }
                         break;
                         
                     case "Mensajes":
-                        actualizarPestanaMens();
+                        if(sucActual!=null){
+                            noHaySucursalMensaje.setVisible(false);
+                            actualizarPestanaMens();
+                        }
                         break;
                     default:;
                     break;

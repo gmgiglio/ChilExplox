@@ -200,7 +200,7 @@
                                           <AnchorPane fx:id="anchorPedDest" minHeight="0.0" minWidth="0.0" prefHeight="243.0" prefWidth="360.0" />
                                        </content>
                                     </TitledPane>
-                                    <Button fx:id="botonMostrarEquivocados" mnemonicParsing="false" prefHeight="26.0" prefWidth="364.0" text="Mostrar pedidos equivocados" />
+                                    <Button fx:id="botonMostrarEquivocados" mnemonicParsing="false" prefHeight="26.0" prefWidth="390.0" text="Mostrar pedidos equivocados" />
                                  </children>
                               </VBox>
                               <StackPane prefHeight="150.0" prefWidth="360.0">
@@ -307,6 +307,20 @@
                               </VBox>
                            </children>
                         </HBox>
+                        <AnchorPane fx:id="noHaySucursalAdmin" prefHeight="501.0" prefWidth="1081.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="540.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1081.0" />
+                              <BorderPane layoutX="-1.0" prefHeight="540.0" prefWidth="1081.0">
+                                 <center>
+                                    <Text fill="#979595" strokeType="OUTSIDE" strokeWidth="0.0" text="No hay sucursal seleccionada" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Text>
+                                 </center>
+                              </BorderPane>
+                           </children>
+                        </AnchorPane>
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -399,6 +413,20 @@
                               <AnchorPane fx:id="anchorPaneMensajes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="900.0" />
                            </children>
                         </HBox>
+                        <AnchorPane fx:id="noHaySucursalMensaje" prefHeight="501.0" prefWidth="1081.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="540.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1081.0" />
+                              <BorderPane layoutX="-1.0" prefHeight="540.0" prefWidth="1081.0">
+                                 <center>
+                                    <Text fill="#979595" strokeType="OUTSIDE" strokeWidth="0.0" text="No hay sucursal seleccionada" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Text>
+                                 </center>
+                              </BorderPane>
+                           </children>
+                        </AnchorPane>
                      </children></AnchorPane>
                </content>
             </Tab>

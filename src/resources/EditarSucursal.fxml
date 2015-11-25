@@ -29,7 +29,7 @@
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="31.0" prefWidth="820.0">
          <children>
             <Pane prefHeight="51.0" prefWidth="89.0" />
-            <BorderPane prefHeight="51.0" prefWidth="73.0">
+            <BorderPane prefHeight="31.0" prefWidth="54.0">
                <center>
                   <ImageView fitHeight="31.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
@@ -38,6 +38,16 @@
                   </ImageView>
                </center>
             </BorderPane>
+            <VBox prefHeight="31.0" prefWidth="27.0">
+               <children>
+                  <Pane prefHeight="22.0" prefWidth="27.0" />
+                  <BorderPane prefHeight="8.0" prefWidth="27.0">
+                     <left>
+                        <Pane fx:id="paneNumNormal" prefHeight="8.0" prefWidth="9.0" BorderPane.alignment="CENTER" />
+                     </left>
+                  </BorderPane>
+               </children>
+            </VBox>
             <Pane prefHeight="51.0" prefWidth="28.0" />
             <BorderPane prefHeight="31.0" prefWidth="61.0">
                <center>
@@ -63,7 +73,7 @@
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="31.0" prefWidth="820.0">
          <children>
             <Pane prefHeight="51.0" prefWidth="89.0" />
-            <BorderPane prefHeight="51.0" prefWidth="73.0">
+            <BorderPane prefHeight="31.0" prefWidth="54.0">
                <center>
                   <ImageView fitHeight="31.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
@@ -72,6 +82,16 @@
                   </ImageView>
                </center>
             </BorderPane>
+            <VBox prefHeight="31.0" prefWidth="27.0">
+               <children>
+                  <Pane prefHeight="22.0" prefWidth="27.0" />
+                  <BorderPane prefHeight="8.0" prefWidth="27.0">
+                     <left>
+                        <Pane fx:id="paneNumBlindado" prefHeight="8.0" prefWidth="9.0" BorderPane.alignment="CENTER" />
+                     </left>
+                  </BorderPane>
+               </children>
+            </VBox>
             <Pane prefHeight="51.0" prefWidth="28.0" />
             <BorderPane prefHeight="31.0" prefWidth="61.0">
                <center>
@@ -97,7 +117,7 @@
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="31.0" prefWidth="820.0">
          <children>
             <Pane prefHeight="51.0" prefWidth="89.0" />
-            <BorderPane prefHeight="51.0" prefWidth="73.0">
+            <BorderPane prefHeight="31.0" prefWidth="54.0">
                <center>
                   <ImageView fitHeight="31.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
@@ -106,6 +126,16 @@
                   </ImageView>
                </center>
             </BorderPane>
+            <VBox prefHeight="31.0" prefWidth="27.0">
+               <children>
+                  <Pane prefHeight="22.0" prefWidth="27.0" />
+                  <BorderPane prefHeight="8.0" prefWidth="27.0">
+                     <left>
+                        <Pane fx:id="paneNumFrio" prefHeight="8.0" prefWidth="9.0" BorderPane.alignment="CENTER" />
+                     </left>
+                  </BorderPane>
+               </children>
+            </VBox>
             <Pane prefHeight="51.0" prefWidth="28.0" />
             <BorderPane prefHeight="31.0" prefWidth="61.0">
                <center>
@@ -131,7 +161,7 @@
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="31.0" prefWidth="820.0">
          <children>
             <Pane prefHeight="51.0" prefWidth="89.0" />
-            <BorderPane prefHeight="51.0" prefWidth="73.0">
+            <BorderPane prefHeight="31.0" prefWidth="54.0">
                <center>
                   <ImageView fitHeight="31.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
@@ -140,6 +170,16 @@
                   </ImageView>
                </center>
             </BorderPane>
+            <VBox prefHeight="31.0" prefWidth="27.0">
+               <children>
+                  <Pane prefHeight="22.0" prefWidth="27.0" />
+                  <BorderPane prefHeight="8.0" prefWidth="27.0">
+                     <left>
+                        <Pane fx:id="paneNumAnimal" prefHeight="8.0" prefWidth="9.0" BorderPane.alignment="CENTER" />
+                     </left>
+                  </BorderPane>
+               </children>
+            </VBox>
             <Pane prefHeight="51.0" prefWidth="28.0" />
             <BorderPane prefHeight="31.0" prefWidth="61.0">
                <center>
@@ -165,7 +205,7 @@
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="31.0" prefWidth="820.0">
          <children>
             <Pane prefHeight="51.0" prefWidth="89.0" />
-            <BorderPane prefHeight="51.0" prefWidth="73.0">
+            <BorderPane prefHeight="31.0" prefWidth="54.0">
                <center>
                   <ImageView fitHeight="31.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
@@ -174,6 +214,16 @@
                   </ImageView>
                </center>
             </BorderPane>
+            <VBox prefHeight="31.0" prefWidth="27.0">
+               <children>
+                  <Pane prefHeight="22.0" prefWidth="27.0" />
+                  <BorderPane prefHeight="8.0" prefWidth="27.0">
+                     <left>
+                        <Pane fx:id="paneNumRadiactivo" prefHeight="8.0" prefWidth="9.0" BorderPane.alignment="CENTER" />
+                     </left>
+                  </BorderPane>
+               </children>
+            </VBox>
             <Pane prefHeight="51.0" prefWidth="28.0" />
             <BorderPane prefHeight="31.0" prefWidth="61.0">
                <center>

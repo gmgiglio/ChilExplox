@@ -6,8 +6,10 @@
 package controllers;
 
 import chilexplox.Camion;
+import chilexplox.Empresa;
 import chilexplox.Sucursal;
 import chilexplox.Tipo;
+import chilexplox.front.Main;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,8 +34,8 @@ public class EditarSucursal extends VBox  {
     @FXML
     Text textTitulo;
     @FXML
-    Button botonNormal, botonFrio, botonAnimal, botonRadiactivo, botonBlindado,botonFragil,
-            botonNormalMenos, botonFrioMenos, botonAnimalMenos, botonRadiactivoMenos, botonBlindadoMenos,botonFragilMenos;
+    Button botonNormal, botonFrio, botonAnimal, botonRadiactivo, botonBlindado,botonFragil;
+            
     @FXML 
     TextField fieldNormal, fieldFrio, fieldAnimal, fieldRadiactivo, fieldBlindado,fieldFragil,
             fieldPatNormal, fieldPatFrio, fieldPatAnimal, fieldPatRadiactivo, fieldPatBlindado,fieldPatFragil;
@@ -111,30 +113,7 @@ public class EditarSucursal extends VBox  {
         });
         
         
-        
-        botonNormalMenos.setOnAction((EventHandler) (Event ev) -> {
-            
-        });
-        
-        botonFrioMenos.setOnAction((EventHandler) (Event ev) -> {
-
-        });
-        
-        botonAnimalMenos.setOnAction((EventHandler) (Event ev) -> {
-
-        });
-        
-        botonRadiactivoMenos.setOnAction((EventHandler<ActionEvent>) (ActionEvent ev) -> {
-                
-        });
-        
-        botonBlindadoMenos.setOnAction((EventHandler) (Event ev) -> {
-
-        });
-        
-        botonFragilMenos.setOnAction((EventHandler) (Event ev) -> {
-
-        });
+     
         
         
         contRadiactivo = new Indicador(camionesDeTipo(Tipo.Radioactivo).size());
@@ -178,9 +157,5 @@ public class EditarSucursal extends VBox  {
             
         return result;
     }
-        
-        
-    
-    
     
 }

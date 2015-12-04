@@ -108,15 +108,15 @@ public class Main extends Application {
         Empresa.agregarSucursal("Victoria", "Temuco", "Bernardo Ohiggins 4256");
         String[] apellidos = {"Silva", "Lopez"};
         Empresa.agregarCliente("Leo",apellidos, "Las Raíces 1172", "7778899");
-        Empresa.agregarFuncionario("Karl Saleam","112233445");
+        Empresa.agregarFuncionario("funcionario","1234");
         
         Cliente leo = Empresa.getClientes().get(0);
         Sucursal maipu = Empresa.getSucursal("Maipu");
         Sucursal victoria = Empresa.getSucursal("Victoria");
         
-        Empresa.agregarFuncionario("Tulio Triviño", "31minutos");
+        Empresa.agregarFuncionario("funcionario2", "4321");
         Empresa.agregarFuncionario("a" , "a");
-        Empresa.agregarFuncionario(new Administrador("b","b"));
+        Empresa.agregarFuncionario(new Administrador("admin","admin"));
         String[] ap = {"melo"};
         RegistroCliente rc = Empresa.agregarCliente("pablo", ap,"asda", "123");
         System.out.println(rc.contrasena);
@@ -133,8 +133,6 @@ public class Main extends Application {
         maipu.agregarCamion("BDGH39", 3000, Tipo.Radioactivo);
         maipu.agregarCamion("BDGH40", 3000, Tipo.Refrigerado);
         maipu.agregarCamion("BDGH41", 3000, Tipo.Refrigerado);
-        maipu.agregarCamionPend("JUHK87", 2500, Tipo.Normal);
-        maipu.getCamionesDisponibles().get(0).cargarPedido(new Pedido(maipu, victoria, leo, Tipo.Normal));
         Funcionario tulio = Empresa.getFuncionarios().get(0);
        // tulio.setSucActual(maipu);
         Funcionario a = (Funcionario) Empresa.getUsuario("a");

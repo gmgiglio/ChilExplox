@@ -16,7 +16,10 @@
          <children>
             <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="162.0">
                <center>
-                  <Text fx:id="textNombre" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="150.78924560546875" BorderPane.alignment="CENTER" />
+                  <Text fx:id="textNombre" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="150.78924560546875" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Text>
                </center>
             </BorderPane>
             <BorderPane prefHeight="9.0" prefWidth="53.0">

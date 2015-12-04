@@ -32,9 +32,11 @@ public class EditarSucursal extends VBox  {
     @FXML
     Text textTitulo;
     @FXML
-    Button botonNormal, botonFrio, botonAnimal, botonRadiactivo, botonBlindado,botonFragil;
+    Button botonNormal, botonFrio, botonAnimal, botonRadiactivo, botonBlindado,botonFragil,
+            botonNormalMenos, botonFrioMenos, botonAnimalMenos, botonRadiactivoMenos, botonBlindadoMenos,botonFragilMenos;
     @FXML 
-    TextField fieldNormal, fieldFrio, fieldAnimal, fieldRadiactivo, fieldBlindado,fieldFragil;
+    TextField fieldNormal, fieldFrio, fieldAnimal, fieldRadiactivo, fieldBlindado,fieldFragil,
+            fieldPatNormal, fieldPatFrio, fieldPatAnimal, fieldPatRadiactivo, fieldPatBlindado,fieldPatFragil;
     @FXML
     Pane paneNumRadiactivo, paneNumNormal, paneNumFrio, paneNumBlindado, paneNumAnimal, paneNumFragil ;
     
@@ -60,7 +62,7 @@ public class EditarSucursal extends VBox  {
         botonNormal.setOnAction((EventHandler) (Event ev) -> {
             try { 
                 int cap = Integer.parseInt(fieldNormal.getText()); 
-                sucursal.agregarCamion(null, cap, Tipo.Normal);
+                sucursal.agregarCamion(fieldPatNormal.getText(), cap, Tipo.Normal);
                 contNormal.setNumero(camionesDeTipo(Tipo.Normal).size());
             } catch(Exception ex){}
         });
@@ -68,15 +70,15 @@ public class EditarSucursal extends VBox  {
         botonFrio.setOnAction((EventHandler) (Event ev) -> {
             try { 
                 int cap = Integer.parseInt(fieldFrio.getText()); 
-                sucursal.agregarCamion(null, cap, Tipo.Refrigerado);
+                sucursal.agregarCamion(fieldPatFrio.getText(), cap, Tipo.Refrigerado);
                 contFrio.setNumero(camionesDeTipo(Tipo.Refrigerado).size());
             } catch(Exception ex){}
         });
         
         botonAnimal.setOnAction((EventHandler) (Event ev) -> {
             try { 
-                int cap = Integer.parseInt(fieldAnimal.getText()); 
-                sucursal.agregarCamion(null, cap, Tipo.Animales);
+                int cap = Integer.parseInt(fieldAnimal.getText());
+                sucursal.agregarCamion(fieldPatAnimal.getText(), cap, Tipo.Animales);
                 contAnimal.setNumero(camionesDeTipo(Tipo.Animales).size());
             } catch(Exception ex){}
         });
@@ -84,7 +86,7 @@ public class EditarSucursal extends VBox  {
         botonRadiactivo.setOnAction((EventHandler<ActionEvent>) (ActionEvent ev) -> {
             try { 
                 int cap = Integer.parseInt(fieldRadiactivo.getText()); 
-                sucursal.agregarCamion(null, cap, Tipo.Radioactivo);
+                sucursal.agregarCamion(fieldPatRadiactivo.getText(), cap, Tipo.Radioactivo);
                 contRadiactivo.setNumero(camionesDeTipo(Tipo.Radioactivo).size());
                 
             } catch(Exception ex){}
@@ -93,7 +95,7 @@ public class EditarSucursal extends VBox  {
         botonBlindado.setOnAction((EventHandler) (Event ev) -> {
             try { 
                 int cap = Integer.parseInt(fieldBlindado.getText()); 
-                sucursal.agregarCamion(null, cap, Tipo.Blindado);
+                sucursal.agregarCamion(fieldPatBlindado.getText(), cap, Tipo.Blindado);
                 contBlindado.setNumero(camionesDeTipo(Tipo.Blindado).size());
             } catch(Exception ex){}
 
@@ -102,9 +104,35 @@ public class EditarSucursal extends VBox  {
         botonFragil.setOnAction((EventHandler) (Event ev) -> {
             try { 
                 int cap = Integer.parseInt(fieldFragil.getText()); 
-                sucursal.agregarCamion(null, cap, Tipo.Fragil);
+                sucursal.agregarCamion(fieldPatBlindado.getText(), cap, Tipo.Fragil);
                 contFragil.setNumero(camionesDeTipo(Tipo.Fragil).size());
             } catch(Exception ex){}
+
+        });
+        
+        
+        
+        botonNormalMenos.setOnAction((EventHandler) (Event ev) -> {
+            
+        });
+        
+        botonFrioMenos.setOnAction((EventHandler) (Event ev) -> {
+
+        });
+        
+        botonAnimalMenos.setOnAction((EventHandler) (Event ev) -> {
+
+        });
+        
+        botonRadiactivoMenos.setOnAction((EventHandler<ActionEvent>) (ActionEvent ev) -> {
+                
+        });
+        
+        botonBlindadoMenos.setOnAction((EventHandler) (Event ev) -> {
+
+        });
+        
+        botonFragilMenos.setOnAction((EventHandler) (Event ev) -> {
 
         });
         

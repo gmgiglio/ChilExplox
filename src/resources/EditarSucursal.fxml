@@ -26,12 +26,18 @@
          </children>
       </HBox>
       <Pane prefHeight="21.0" prefWidth="820.0" />
-      <HBox prefHeight="65.0" prefWidth="820.0">
+      <HBox prefHeight="32.0" prefWidth="820.0">
          <children>
-            <Pane prefHeight="65.0" prefWidth="149.0" />
-            <BorderPane prefHeight="65.0" prefWidth="194.0">
+            <Pane prefHeight="25.0" prefWidth="202.0" />
+            <BorderPane prefHeight="25.0" prefWidth="71.0">
                <center>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Capacidad" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+            <Pane prefHeight="32.0" prefWidth="36.0" />
+            <BorderPane prefHeight="32.0" prefWidth="87.0">
+               <center>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patente" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
          </children>
@@ -60,7 +66,9 @@
             </VBox>
             <Pane prefHeight="51.0" prefWidth="28.0" />
             <TextField fx:id="fieldNormal" prefHeight="27.0" prefWidth="80.0" />
-            <Pane prefHeight="31.0" prefWidth="45.0" />
+            <Pane prefHeight="31.0" prefWidth="30.0" />
+            <TextField fx:id="fieldPatNormal" prefHeight="27.0" prefWidth="88.0" />
+            <Pane prefHeight="31.0" prefWidth="24.0" />
             <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
                <children>
                   <Circle centerX="18.0" centerY="18.0" fill="#0049ba" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
@@ -70,6 +78,18 @@
                      </font>
                   </Text>
                   <Button fx:id="botonNormal" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+               </children>
+            </Pane>
+            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="31.0" prefWidth="29.0" />
+            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
+               <children>
+                  <Circle centerX="18.0" centerY="18.0" fill="#0049ba" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Text fx:id="botonNormalMenos" fill="WHITE" layoutX="7.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" textAlignment="CENTER" wrappingWidth="23.560455322265625">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="botonNormalMenos" ellipsisString="" layoutX="-3.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="40.0" style="-fx-background-color: null;" />
                </children>
             </Pane>
          </children>
@@ -99,7 +119,9 @@
             </VBox>
             <Pane prefHeight="51.0" prefWidth="28.0" />
             <TextField fx:id="fieldBlindado" prefHeight="27.0" prefWidth="80.0" />
-            <Pane prefHeight="31.0" prefWidth="45.0" />
+            <Pane prefHeight="31.0" prefWidth="30.0" />
+            <TextField fx:id="fieldPatBlindado" prefHeight="27.0" prefWidth="88.0" />
+            <Pane prefHeight="31.0" prefWidth="24.0" />
             <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
                <children>
                   <Circle centerX="18.0" centerY="18.0" fill="#0049ba" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
@@ -109,6 +131,18 @@
                      </font>
                   </Text>
                   <Button fx:id="botonBlindado" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+               </children>
+            </Pane>
+            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="31.0" prefWidth="29.0" />
+            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
+               <children>
+                  <Circle centerX="18.0" centerY="18.0" fill="#0049ba" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Text fx:id="botonNormalMenos1" fill="WHITE" layoutX="7.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" textAlignment="CENTER" wrappingWidth="23.560455322265625">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="botonBlindadoMenos" ellipsisString="" layoutX="-3.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="40.0" style="-fx-background-color: null;" />
                </children>
             </Pane>
          </children>
@@ -138,7 +172,9 @@
             </VBox>
             <Pane prefHeight="51.0" prefWidth="28.0" />
             <TextField fx:id="fieldFrio" prefHeight="27.0" prefWidth="80.0" />
-            <Pane prefHeight="31.0" prefWidth="45.0" />
+            <Pane prefHeight="31.0" prefWidth="30.0" />
+            <TextField fx:id="fieldPatFrio" prefHeight="27.0" prefWidth="88.0" />
+            <Pane prefHeight="31.0" prefWidth="24.0" />
             <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
                <children>
                   <Circle centerX="18.0" centerY="18.0" fill="#0049ba" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
@@ -148,6 +184,18 @@
                      </font>
                   </Text>
                   <Button fx:id="botonFrio" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+               </children>
+            </Pane>
+            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="31.0" prefWidth="29.0" />
+            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
+               <children>
+                  <Circle centerX="18.0" centerY="18.0" fill="#0049ba" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Text fx:id="botonNormalMenos2" fill="WHITE" layoutX="7.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" textAlignment="CENTER" wrappingWidth="23.560455322265625">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="botonFrioMenos" ellipsisString="" layoutX="-3.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="40.0" style="-fx-background-color: null;" />
                </children>
             </Pane>
          </children>
@@ -177,7 +225,9 @@
             </VBox>
             <Pane prefHeight="51.0" prefWidth="28.0" />
             <TextField fx:id="fieldAnimal" prefHeight="27.0" prefWidth="80.0" />
-            <Pane prefHeight="31.0" prefWidth="45.0" />
+            <Pane prefHeight="31.0" prefWidth="30.0" />
+            <TextField fx:id="fieldPatAnimal" prefHeight="27.0" prefWidth="88.0" />
+            <Pane prefHeight="31.0" prefWidth="24.0" />
             <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
                <children>
                   <Circle centerX="18.0" centerY="18.0" fill="#0049ba" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
@@ -187,6 +237,18 @@
                      </font>
                   </Text>
                   <Button fx:id="botonAnimal" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+               </children>
+            </Pane>
+            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="31.0" prefWidth="29.0" />
+            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
+               <children>
+                  <Circle centerX="18.0" centerY="18.0" fill="#0049ba" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Text fx:id="botonNormalMenos3" fill="WHITE" layoutX="7.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" textAlignment="CENTER" wrappingWidth="23.560455322265625">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="botonAnimalMenos" ellipsisString="" layoutX="-3.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="40.0" style="-fx-background-color: null;" />
                </children>
             </Pane>
          </children>
@@ -216,7 +278,9 @@
             </VBox>
             <Pane prefHeight="51.0" prefWidth="28.0" />
             <TextField fx:id="fieldRadiactivo" prefHeight="27.0" prefWidth="80.0" />
-            <Pane prefHeight="31.0" prefWidth="45.0" />
+            <Pane prefHeight="31.0" prefWidth="30.0" />
+            <TextField fx:id="fieldPatRadiactiva" prefHeight="27.0" prefWidth="88.0" />
+            <Pane prefHeight="31.0" prefWidth="24.0" />
             <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
                <children>
                   <Circle centerX="18.0" centerY="18.0" fill="#0049ba" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
@@ -226,6 +290,18 @@
                      </font>
                   </Text>
                   <Button fx:id="botonRadiactivo" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+               </children>
+            </Pane>
+            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="31.0" prefWidth="29.0" />
+            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
+               <children>
+                  <Circle centerX="18.0" centerY="18.0" fill="#0049ba" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Text fx:id="botonNormalMenos4" fill="WHITE" layoutX="7.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" textAlignment="CENTER" wrappingWidth="23.560455322265625">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="botonRadioactivoMenos" ellipsisString="" layoutX="-3.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="40.0" style="-fx-background-color: null;" />
                </children>
             </Pane>
          </children>
@@ -255,7 +331,9 @@
             </VBox>
             <Pane prefHeight="51.0" prefWidth="28.0" />
             <TextField fx:id="fieldFragil" prefHeight="27.0" prefWidth="80.0" />
-            <Pane prefHeight="31.0" prefWidth="45.0" />
+            <Pane prefHeight="31.0" prefWidth="30.0" />
+            <TextField fx:id="fieldPatFragil" prefHeight="27.0" prefWidth="88.0" />
+            <Pane prefHeight="31.0" prefWidth="24.0" />
             <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
                <children>
                   <Circle centerX="18.0" centerY="18.0" fill="#0049ba" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
@@ -265,6 +343,18 @@
                      </font>
                   </Text>
                   <Button fx:id="botonFragil" ellipsisString="" mnemonicParsing="false" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: null;" />
+               </children>
+            </Pane>
+            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="31.0" prefWidth="29.0" />
+            <Pane maxHeight="36.0" maxWidth="36.0" prefHeight="36.0" prefWidth="36.0">
+               <children>
+                  <Circle centerX="18.0" centerY="18.0" fill="#0049ba" radius="18.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Text fx:id="botonNormalMenos5" fill="WHITE" layoutX="7.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" textAlignment="CENTER" wrappingWidth="23.560455322265625">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="botonFragilMenos" ellipsisString="" layoutX="-3.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="40.0" style="-fx-background-color: null;" />
                </children>
             </Pane>
          </children>

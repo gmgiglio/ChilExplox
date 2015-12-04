@@ -137,7 +137,6 @@ public class Main extends Application {
         maipu.getCamionesDisponibles().get(0).cargarPedido(new Pedido(maipu, victoria, leo, Tipo.Normal));
         Funcionario tulio = Empresa.getFuncionarios().get(0);
        // tulio.setSucActual(maipu);
-        
         Funcionario a = (Funcionario) Empresa.getUsuario("a");
         a.enviarMens("prueba", "esto es una prueba", victoria);
         a.enviarMens("hola", "te queria mandar saludos", victoria);

@@ -32,15 +32,15 @@ public class EditarSucursal extends VBox  {
     @FXML
     Text textTitulo;
     @FXML
-    Button botonNormal, botonFrio, botonAnimal, botonRadiactivo, botonBlindado;
+    Button botonNormal, botonFrio, botonAnimal, botonRadiactivo, botonBlindado,botonFragil;
     @FXML 
-    TextField fieldNormal, fieldFrio, fieldAnimal, fieldRadiactivo, fieldBlindado;
+    TextField fieldNormal, fieldFrio, fieldAnimal, fieldRadiactivo, fieldBlindado,fieldFragil;
     @FXML
-    Pane paneNumRadiactivo, paneNumNormal, paneNumFrio, paneNumBlindado, paneNumAnimal ;
+    Pane paneNumRadiactivo, paneNumNormal, paneNumFrio, paneNumBlindado, paneNumAnimal, paneNumFragil ;
     
     Sucursal sucursal;
     
-    Indicador contRadiactivo,contAnimal,contNormal,contBlindado,contFrio;
+    Indicador contRadiactivo,contAnimal,contNormal,contBlindado,contFrio, contFragil;
     
     public EditarSucursal(Sucursal sucursal){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/EditarSucursal.fxml"));
@@ -96,6 +96,16 @@ public class EditarSucursal extends VBox  {
                 sucursal.agregarCamion(null, cap, Tipo.Blindado);
                 contBlindado.setNumero(camionesDeTipo(Tipo.Blindado).size());
             } catch(Exception ex){}
+
+        });
+        
+        botonFragil.setOnAction((EventHandler) (Event ev) -> {
+            try { 
+                int cap = Integer.parseInt(fieldFragil.getText()); 
+                sucursal.agregarCamion(null, cap, Tipo.Fragil);
+                contFragil.setNumero(camionesDeTipo(Tipo.Fragil).size());
+            } catch(Exception ex){}
+
         });
         
         
@@ -104,7 +114,7 @@ public class EditarSucursal extends VBox  {
         contAnimal = new Indicador(camionesDeTipo(Tipo.Animales).size());
         contFrio = new Indicador(camionesDeTipo(Tipo.Refrigerado).size());
         contBlindado = new Indicador(camionesDeTipo(Tipo.Blindado).size());
-        
+        contFragil = new Indicador(camionesDeTipo(Tipo.Fragil).size());
         
         
         contRadiactivo.setVisible(true);
@@ -114,12 +124,14 @@ public class EditarSucursal extends VBox  {
         contAnimal.setVisible(true);
         contFrio.setVisible(true);
         contBlindado.setVisible(true);
+        contFragil.setVisible(true);
         
         paneNumNormal.getChildren().setAll(contNormal);
-
         paneNumAnimal.getChildren().setAll(contAnimal);
         paneNumFrio.getChildren().setAll(contFrio);
         paneNumBlindado.getChildren().setAll(contBlindado);
+        paneNumFragil.getChildren().setAll(contFragil);
+        
     }
     
     private List<Camion> getCamiones(){
